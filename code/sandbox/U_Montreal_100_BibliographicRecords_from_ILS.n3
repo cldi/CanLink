@@ -1,0 +1,2548 @@
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix frbr: <http://purl.org/vocab/frbr/core#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rel: <http://purl.org/vocab/relationship/> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://canlink.library.ualberta.ca/manifestation/1bb75f6495d6068d4bac99e00c8c8f16> a frbr:Manifestation,
+        schema:MediaObject ;
+    schema:contentUrl <https://papyrus.bib.umontreal.ca/xmlui/bitstream/handle/1866/8535/Gervasi_Flavia_2011_these.pdf?sequence=2&isAllowed=y> ;
+    schema:encodesCreativeWork <http://canlink.library.ualberta.ca/thesis/2b1026388a1c3b8e2e64d791cbd9f20f> .
+
+<http://canlink.library.ualberta.ca/thesis/072d8ff1e50cbd192f41efc06019b4a0> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/b3d4ee4ff2f26bd2fdff4b89fc25d099> ;
+    dc:issued "1946"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Les relations entre le Canada et les États-Unis" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/b3d4ee4ff2f26bd2fdff4b89fc25d099> .
+
+<http://canlink.library.ualberta.ca/thesis/0753139b011b4d9a61f05e91f5bf7b2d> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2008037016> ;
+    dc:issued "2009"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/1f7cdf27b884acd6e55b7b30c4fd7a07>,
+        <http://canlink.library.ualberta.ca/subject/33d8e9519facc36447f364e965951bd1>,
+        <http://canlink.library.ualberta.ca/subject/386d040d7d0db366cb0cdc848d3b2b8f>,
+        <http://canlink.library.ualberta.ca/subject/3b0002e6ef7a7c5d6ba7e25a4616748e>,
+        <http://canlink.library.ualberta.ca/subject/6c1dedc9d57eaf02b85f560125fe5c70>,
+        <http://canlink.library.ualberta.ca/subject/85ae32147e437e7be76db3952823d2a6>,
+        <http://canlink.library.ualberta.ca/subject/9312869442c7101f3b1a1be1836a25ee>,
+        <http://canlink.library.ualberta.ca/subject/9ba269bf690ef217c4a69197e3c0203a>,
+        <http://canlink.library.ualberta.ca/subject/a55cbd62dd7e3f2e1e7f44f18255b18f>,
+        <http://canlink.library.ualberta.ca/subject/e178e1828850771e9e4bea54a62b1c3e>,
+        <http://canlink.library.ualberta.ca/subject/fe2b4fe6d471f7be7bf7b9ee6701abb6>,
+        <http://id.loc.gov/authorities/subjects/sh85006457> ;
+    dc:title "L'arbitrage commercial international et les garanties procédurales" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> ;
+    rel:author <http://id.loc.gov/authorities/names/no2008037016> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/0e8e5fd9141749a805c581ff466ee2b0> .
+
+<http://canlink.library.ualberta.ca/thesis/07c137043c500aa61cf909ce85b303fd> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2014168692> ;
+    dc:issued "2009"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <b11>,
+        <http://canlink.library.ualberta.ca/subject/05f695afc9f98e33e938b9a533f9a2fc>,
+        <http://canlink.library.ualberta.ca/subject/1455fa4be1c0fb658dd8ffdfa6ab493e>,
+        <http://canlink.library.ualberta.ca/subject/2ef08f174ac98725fa860746a2e0db2b>,
+        <http://canlink.library.ualberta.ca/subject/43c6854263e132d7b7538130b2bfc9dd>,
+        <http://canlink.library.ualberta.ca/subject/5e6997d65aa9e783e4258a763015f49c>,
+        <http://canlink.library.ualberta.ca/subject/6b7cb89cbb769585402bdfb85272e040>,
+        <http://canlink.library.ualberta.ca/subject/74e9af2246b7085ed082dae691a3bcaa>,
+        <http://canlink.library.ualberta.ca/subject/76c9a3c313492c0f9b4099c107c04391>,
+        <http://canlink.library.ualberta.ca/subject/77374c9092857aa3e5edee5bee055876>,
+        <http://canlink.library.ualberta.ca/subject/7bd016b4d5e9d56dd8b20ad4e7458c43>,
+        <http://canlink.library.ualberta.ca/subject/905b4f757dbfe5cbe766c5be0e45212d>,
+        <http://canlink.library.ualberta.ca/subject/a1af4ff5856f999a00ecbc5da3f460bb>,
+        <http://canlink.library.ualberta.ca/subject/cdbbc3427a05a19d12fab23aaff11d72>,
+        <http://id.loc.gov/authorities/subjects/sh85089365>,
+        <http://id.loc.gov/authorities/subjects/sh85104530>,
+        <http://id.loc.gov/authorities/subjects/sh85114228>,
+        <http://id.loc.gov/authorities/subjects/sh85131408> ;
+    dc:title "Entre mythe et corps : les quizilas dans le Candomblé du Brésil" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2014168692> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/e20ad673193bd8d2461edd14c88c4c6b> .
+
+<http://canlink.library.ualberta.ca/thesis/096c2b297dee0d424041b7275fba0b09> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n86867328> ;
+    dc:issued "1974"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/8209d260efc34e717693bd1fbd96dd4c>,
+        <http://canlink.library.ualberta.ca/subject/9618e33df57a268f907dac6e316380c3>,
+        <http://canlink.library.ualberta.ca/subject/b5b4591482117e5366cc984d0465d9c7>,
+        <http://id.loc.gov/authorities/subjects/sh2009008051>,
+        <http://id.loc.gov/authorities/subjects/sh85029495>,
+        <http://id.loc.gov/authorities/subjects/sh85111346>,
+        <http://id.loc.gov/authorities/subjects/sh88000495> ;
+    dc:title "Un système de fichiers évolué pour un mini-ordinateur" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/n86867328> .
+
+<http://canlink.library.ualberta.ca/thesis/0a216e8d349a809cdc4fcaf95e430019> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2004009202> ;
+    dc:issued "1994"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Le primitivisme dans l'oeuvre de Françoise Sullivan" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n2004009202> .
+
+<http://canlink.library.ualberta.ca/thesis/0c148f37b0b1b753b2a52c79238659c4> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:issued "1896"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:title "De la contrainte par corps" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> .
+
+<http://canlink.library.ualberta.ca/thesis/1055cabacaf59200e425bb718791b503> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/1e57a09272c93ca584c7cc0f0a1705e3> ;
+    dc:issued "1969"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://id.loc.gov/authorities/subjects/sh99004861> ;
+    dc:title "Etudes expérimentales sur la pathogénie de l'invation cancéreuse" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/1e57a09272c93ca584c7cc0f0a1705e3> .
+
+<http://canlink.library.ualberta.ca/thesis/10c5f1e4ac2253d381f7e71756bfb8af> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/0290ce87e6e75218290f37e479bf0659> ;
+    dc:issued "1987"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Pierre-Elliott Trudeau et la centralisation des pouvoirs politiques stratégiques" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/0290ce87e6e75218290f37e479bf0659> .
+
+<http://canlink.library.ualberta.ca/thesis/10fa0dd070f283f5c8d4bc1e85ad7aeb> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2015036673> ;
+    dc:issued "1999"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/spa> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "La invención del sujeto moderno gracias a la inquisición novohispana" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/no2015036673> .
+
+<http://canlink.library.ualberta.ca/thesis/13c2524cf1f620a62433f54ad35cc6ef> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2015079705> ;
+    dc:issued "2002"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/6a619d98c3168b39a43881a4a63f8846>,
+        <http://canlink.library.ualberta.ca/subject/d4e6beb67c0c66abd09f33486963eb76> ;
+    dc:title "Étude des propriétés atmosphériques de naines blanches chaudes riches en hélium" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/no2015079705> .
+
+<http://canlink.library.ualberta.ca/thesis/16e75db5977337abb0bdee79e6ad7514> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> ;
+    dc:issued "1947"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/91453641438d0e2c1ce8f4a00c36a490>,
+        <http://id.loc.gov/authorities/subjects/sh85095558> ;
+    dc:title "Préparation des dérivés organomagnésiens sans éther" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> .
+
+<http://canlink.library.ualberta.ca/thesis/19c41033395ad3b49012f944ffef8274> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/81b2c6ac589cefecdfe2246d1a7db2e1> ;
+    dc:issued "1946"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/d581b5f5e095ca73178299179be86057>,
+        <http://id.loc.gov/authorities/subjects/sh85125350> ;
+    dc:title "Le problème de la définition de l'âme chez Aristote" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/81b2c6ac589cefecdfe2246d1a7db2e1> .
+
+<http://canlink.library.ualberta.ca/thesis/19c85306aeee0ebd56fcde9c7108b2b6> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n98007050> ;
+    dc:issued "1977"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "L'intervention anglaise en Égypte et ses fondements, 1875-1882" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n98007050> .
+
+<http://canlink.library.ualberta.ca/thesis/1e17b270a9723a6567349d54ed3441c0> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/6796e7474674fbcbd2b9d3472c7efe3a> ;
+    dc:issued "1998"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Les voies de fait au jour le jour : l'influence du temps sur les voies de fait à Montréal en 1995" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/6796e7474674fbcbd2b9d3472c7efe3a> .
+
+<http://canlink.library.ualberta.ca/thesis/2117db78e4cb245f3a7a529c49260f08> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9> ;
+    dc:issued "1967"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/053751a21b7b1aa6691d4f1011f7d69b>,
+        <http://canlink.library.ualberta.ca/subject/e3dc97d980ab7f2f5f0a55fcdc8026d3>,
+        <http://id.loc.gov/authorities/subjects/sh85025528>,
+        <http://id.loc.gov/authorities/subjects/sh85136729> ;
+    dc:title "Développement industriel, problème social et systèmes d'action à la naissance du syndicalisme catholique" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9> .
+
+<http://canlink.library.ualberta.ca/thesis/22b3ffa574e91fd580a86f0bd301a576> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/328a0ca680396823bd29f6e7b3c8cee5> ;
+    dc:issued "1984"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Musique in-ouie dans la bande dessinée" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/328a0ca680396823bd29f6e7b3c8cee5> .
+
+<http://canlink.library.ualberta.ca/thesis/2336806c041c19015be932dd478eccb4> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/d930b137b20eadfbd55ea7bed5682f14> ;
+    dc:issued "1945"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/1f9dd2ec688df39f32965f435d67018b>,
+        <http://canlink.library.ualberta.ca/subject/52d65de3ab650385c86c649e79a60ff2> ;
+    dc:title "Un siècle d'enseignement français en Ontario" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/d930b137b20eadfbd55ea7bed5682f14> .
+
+<http://canlink.library.ualberta.ca/thesis/23bf38efefbae5b46b953272d78097c4> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/85b9a110878d79abbad0da1fcac3aa8a> ;
+    dc:issued "1988"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Propriétés atmosphériques des étoiles naines blanches froides de type DA" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/85b9a110878d79abbad0da1fcac3aa8a> .
+
+<http://canlink.library.ualberta.ca/thesis/252aa5150ebdbe5cccbf44e25ce3f273> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2015079705> ;
+    dc:issued "2006"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/01ac4fa82f682d88eccbec67959b24b3>,
+        <http://canlink.library.ualberta.ca/subject/41c5cafb8400732045c40f17fabcac57>,
+        <http://canlink.library.ualberta.ca/subject/8e3eb57b2c667f9366c1c8de9309d32b>,
+        <http://canlink.library.ualberta.ca/subject/a0f563e76dd432b21efca18983d0c19a>,
+        <http://canlink.library.ualberta.ca/subject/c84b446c8058ec8eb839038779980bd2> ;
+    dc:title "Étude de l'évolution spectrale des étoiles naines blanches froides riches en hélium : analyse spectroscopique et photométrique des étoiles de type DQ et DZ" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2015079705> .
+
+<http://canlink.library.ualberta.ca/thesis/27c2451efa0c7d7393a3f72fe46a3966> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2002078086> ;
+    dc:issued "2002"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/06e33aa8d185c8af0e9ddebe75bc8d3b>,
+        <http://canlink.library.ualberta.ca/subject/283a0def223e820d0d9a46d714326334>,
+        <http://canlink.library.ualberta.ca/subject/59a5778834d60c4b5f44b7c8e2267d64>,
+        <http://canlink.library.ualberta.ca/subject/602f606711c6d404803380662affde60>,
+        <http://canlink.library.ualberta.ca/subject/69c03727306a14ef736542eb567b879c>,
+        <http://canlink.library.ualberta.ca/subject/a729d00b5d130c9635c2a8089bd77f03>,
+        <http://canlink.library.ualberta.ca/subject/fc1f052f5a14cb7a75bf0236ccfe6478> ;
+    dc:title "Lorsque le temps devient espace : analyse du deuxième livre d'études pour piano de György Ligeti" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2002078086> .
+
+<http://canlink.library.ualberta.ca/thesis/296271061042b448538962b405c1aa28> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n88104967> ;
+    dc:issued "1971"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/522f0779fbd654a44f48b76c90b9b9b3>,
+        <http://canlink.library.ualberta.ca/subject/8677af7617dbd74c412a86c8bd8d9c1f>,
+        <http://canlink.library.ualberta.ca/subject/c7277f32334eb24fce166296a07f414d>,
+        <http://id.loc.gov/authorities/subjects/sh85081907> ;
+    dc:title "Spectrométrie de masse des composés peroxydiques et étude sur les réactions des atomes de mercure dans leur état 6(³p₁)" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n88104967> .
+
+<http://canlink.library.ualberta.ca/thesis/33861f14a0cb69be47a03cbe4020efa4> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/48799c61d6cb906bf62cf2f1d84c91a6> ;
+    dc:issued "1952"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Arthur Buies, journaliste et chroniqueur" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/48799c61d6cb906bf62cf2f1d84c91a6> .
+
+<http://canlink.library.ualberta.ca/thesis/35b119e2ce2f3e5d82330ce2b20af80e> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no96018459> ;
+    dc:issued "1977"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://id.loc.gov/authorities/subjects/sh85008854> ;
+    dc:title "Quelques aspects de la génécologie de deux espèces d'Aster (Asteraceae), A. Acuminatus Michaux et A. nemoralis aiton et de leur hybride naturel : A.X Blakei (Porter) house" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/no96018459> .
+
+<http://canlink.library.ualberta.ca/thesis/3899c767c5797249ca22b26f3263e65b> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2006019625> ;
+    dc:issued "1991"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/e1dfd13a7abe2b6084b3e33cd239a720> ;
+    dc:title "Sujets et identités multiples : analyse des histoires de vie d'un groupe d'immigrants italiens à Montréal" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n2006019625> .
+
+<http://canlink.library.ualberta.ca/thesis/3a3852f0a859a7ce5a26a27c56f40520> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> ;
+    dc:issued "1960"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Les \"Montrealers\" et la crise politique du Bas-Canada (juillet 1835- mars 1836)" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> .
+
+<http://canlink.library.ualberta.ca/thesis/3c6f30ae34d3dfdf4d3fb3ee432654c8> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2014159120> ;
+    dc:issued "2008"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/10371bdba2ff69575c757a4156e3a143>,
+        <http://canlink.library.ualberta.ca/subject/2b41340d62fe6f611d1b8ea7578b0d6d>,
+        <http://canlink.library.ualberta.ca/subject/40a8a36c43da3a787b870ebcb2d769c9>,
+        <http://canlink.library.ualberta.ca/subject/5bc6dc2df26300a2ad0d9e567787fdb9>,
+        <http://canlink.library.ualberta.ca/subject/ea7cb28a017363f70294b2f4c7bfa32b>,
+        <http://canlink.library.ualberta.ca/subject/f3ee211eaff2e448e05ba21b9759af63> ;
+    dc:title "Becoming and impermanence in Nietzsche's Philosophy" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2014159120> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/817ad09c0d122fa3d9d047d950c31e52> .
+
+<http://canlink.library.ualberta.ca/thesis/4363e9f7778d71dbe14776db2cdc31b4> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2009011162> ;
+    dc:issued "2004"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/09d422ab6e3686a26b17aef764b21a80>,
+        <http://canlink.library.ualberta.ca/subject/528afbba7d87cf597114cda0d8f20dc0>,
+        <http://canlink.library.ualberta.ca/subject/775a051d187ab9eab6af5ee23e220a0b>,
+        <http://canlink.library.ualberta.ca/subject/9b49c780a6973d6f4f56e6f741b34a08>,
+        <http://canlink.library.ualberta.ca/subject/abebf57d383c0ebd34f31f4d6415d7e4>,
+        <http://canlink.library.ualberta.ca/subject/cd32536cc0c170fa31a01ac2c11213e3>,
+        <http://canlink.library.ualberta.ca/subject/e75ffd9ae04f68e5ef32915baeebe761>,
+        <http://id.loc.gov/authorities/subjects/sh85099805> ;
+    dc:title "Organisational system and performance of post-disaster reconstruction projects" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n2009011162> .
+
+<http://canlink.library.ualberta.ca/thesis/4832708c8c72213d4d0df723c94b5670> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/4b4fd6ed97b881c1d9c3cc1176a26953> ;
+    dc:issued "1961"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/182b0316545119b6bf93ba3ac5b025af>,
+        <http://canlink.library.ualberta.ca/subject/6bf96c5b69021eaa63909958cb28e2f9>,
+        <http://canlink.library.ualberta.ca/subject/e532d30a5a1dadf1dc09c7ca1839ec78>,
+        <http://id.loc.gov/authorities/subjects/sh85059537>,
+        <http://id.loc.gov/authorities/subjects/sh85118295>,
+        <http://id.loc.gov/authorities/subjects/sh85118338> ;
+    dc:title "La santé des écoliers" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/master> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/4b4fd6ed97b881c1d9c3cc1176a26953> .
+
+<http://canlink.library.ualberta.ca/thesis/4a589e19aa7128ca6d654f3e415ccc5b> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2014159120> ;
+    dc:issued "2005"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/107836da52db245f34f0797dd969bfcc>,
+        <http://canlink.library.ualberta.ca/subject/58551b08bcf6c99c3df2f6b2241da95e>,
+        <http://canlink.library.ualberta.ca/subject/894860f25818b3e8e78560f1c3997a87> ;
+    dc:title "Heidegger's reading of Nietzsche as a point of access to his interpretation of modern technology" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/no2014159120> .
+
+<http://canlink.library.ualberta.ca/thesis/4c15cada62913fa0c8545ffbcdb47ced> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/41eadabf8bdcea939c54d570762fdd93> ;
+    dc:issued "1962"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "The religious and philosophical thought of George Eliot" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/41eadabf8bdcea939c54d570762fdd93> .
+
+<http://canlink.library.ualberta.ca/thesis/5368cd299c025bf29a6c881ea215461a> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/ca58c8cc1bc594282af2daa9c8202cae> ;
+    dc:issued "1974"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/989d73b3b3ad2119edd6ceceab1378a1>,
+        <http://canlink.library.ualberta.ca/subject/9cfad75aff37605ac6eb37bef5653d82>,
+        <http://id.loc.gov/authorities/subjects/sh85025011> ;
+    dc:title "Les normes de l'image sacrée de la seconde moitié du cinquecento" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/ca58c8cc1bc594282af2daa9c8202cae> .
+
+<http://canlink.library.ualberta.ca/thesis/60497377ae32134e4511ad6606c11a7c> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> ;
+    dc:issued "1967"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/a987455bf6c5f7d77f9de2e3e4d80070>,
+        <http://canlink.library.ualberta.ca/subject/d9996505ddb7d165a6f205281a32e341>,
+        <http://id.loc.gov/authorities/subjects/sh85090150> ;
+    dc:title "La Montreal Gazette et le nationalisme canadien, 1835-1842" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> .
+
+<http://canlink.library.ualberta.ca/thesis/61460fdce284f47d154c192d15cefde0> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:issued "1952"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:title "Une église paroissiale comprenant: l'église proprement dite, une chapelle, la sacristie, le presbytère et les bureaux" .
+
+<http://canlink.library.ualberta.ca/thesis/625d47dc371d416ddf26d5414a2c95a5> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/1bbb7893811811a62f53e03ed45a1ffa> ;
+    dc:issued "1938"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/21d7f1515bbfd620778f5dbbb18eff74>,
+        <http://canlink.library.ualberta.ca/subject/9bf4485b458ff872214703421cb70bd4>,
+        <http://id.loc.gov/authorities/subjects/sh85003405>,
+        <http://id.loc.gov/authorities/subjects/sh85037219> ;
+    dc:title "Flore desmidiale de la région de Montréal" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/1bbb7893811811a62f53e03ed45a1ffa> .
+
+<http://canlink.library.ualberta.ca/thesis/6482b41459e020292e994224830ec3b4> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n80156239> ;
+    dc:issued "1952"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Le poète Saint-Denys-Garneau" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n80156239> .
+
+<http://canlink.library.ualberta.ca/thesis/6e42938562a42d4f71703783dcaa135c> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2016008187> ;
+    dc:issued "1993"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Identité africaine et mythe européen dans Un nègre à Paris de Bernard B. Dadié" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n2016008187> .
+
+<http://canlink.library.ualberta.ca/thesis/71b4739c65cc3b3c464dab518da6f466> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/a8c733019321c62f097493d3a38af462> ;
+    dc:issued "1950"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Olivar Asselin" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/a8c733019321c62f097493d3a38af462> .
+
+<http://canlink.library.ualberta.ca/thesis/724cffac1e79f58770d7327e6ba31cf3> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/613784c95107a0dc70b3b92960ac9ba7> ;
+    dc:issued "1952"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Le théâtre de Jean Anouilh" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/613784c95107a0dc70b3b92960ac9ba7> .
+
+<http://canlink.library.ualberta.ca/thesis/750c61b1579a1b505804832c333c95f7> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/548839a6f3dfb30ad17924b025b01875> ;
+    dc:issued "2009"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/123a52f01cc80b647e972f9c24421f0c>,
+        <http://canlink.library.ualberta.ca/subject/30bda08c38ad46bc32d9ad9bdea8e398>,
+        <http://canlink.library.ualberta.ca/subject/3955d1fde323898cc48bee436339f3ed>,
+        <http://canlink.library.ualberta.ca/subject/3f122bdb52b89fd508236c33757e58f7>,
+        <http://canlink.library.ualberta.ca/subject/53c12c6952e93ff18d060d5ccfb3e303>,
+        <http://canlink.library.ualberta.ca/subject/88fc3e3292e7d909427b2d234786d842>,
+        <http://canlink.library.ualberta.ca/subject/97aa5b2ed091eca7a5ce55d265cd6fbd>,
+        <http://canlink.library.ualberta.ca/subject/a59e584da2c9997de287af6959eefd28>,
+        <http://canlink.library.ualberta.ca/subject/cc2cdb27889ebd0f62643cec7d70aa06>,
+        <http://canlink.library.ualberta.ca/subject/e81fe5f26c61f5e9cbd91c0176d6e45b>,
+        <http://id.loc.gov/authorities/childrensSubjects/sj96005907>,
+        <http://id.loc.gov/authorities/subjects/sh85076480>,
+        <http://id.loc.gov/authorities/subjects/sh85138279>,
+        <http://id.loc.gov/authorities/subjects/sh99002336>,
+        <http://id.loc.gov/authorities/subjects/sh99005366> ;
+    dc:title "Vérité et amour : une lecture de \"La théologique\" de Hans Urs von Balthasar" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/548839a6f3dfb30ad17924b025b01875> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/9c77b7af94a7a515190eef5e459cadae> .
+
+<http://canlink.library.ualberta.ca/thesis/754c95668175e440cdd4f6eccc250ad1> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n85302944> ;
+    dc:issued "1974"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/a6e77bfd23a96d7a653f9ac8d8137c8a>,
+        <http://id.loc.gov/authorities/subjects/sh85077482> ;
+    dc:title "L'alphabétisation fonctionnelle dans les formations sociales dépendantes : pratiques et idéologies" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/n85302944> .
+
+<http://canlink.library.ualberta.ca/thesis/78a7acf42cfdf068d2103b0292626a41> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/4647959d06d7baf6aa74bb307c252aca> ;
+    dc:issued "1962"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/6b03e90015ba4305e81bdace42ccb9a0>,
+        <http://id.loc.gov/authorities/subjects/sh85147609> ;
+    dc:title "La femme dans la Bible sa destinée" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/4647959d06d7baf6aa74bb307c252aca> .
+
+<http://canlink.library.ualberta.ca/thesis/7a9d30d4c8c500a1ba297519734562a5> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2016102323> ;
+    dc:issued "2005"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/0cc01d6b482bce3abb4f2b8c61e5c8d9>,
+        <http://canlink.library.ualberta.ca/subject/107836da52db245f34f0797dd969bfcc>,
+        <http://canlink.library.ualberta.ca/subject/29f6b5725157fe996ed46659b337e8ac>,
+        <http://canlink.library.ualberta.ca/subject/58417757009eb17e15aeb1fe72e966cd>,
+        <http://canlink.library.ualberta.ca/subject/a75b58171f13e25dbb519c08d0775483> ;
+    dc:title "Le virage métaphysique dans le Sophiste de Platon : héritage éléatique et intrusion sophistique" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/no2016102323> .
+
+<http://canlink.library.ualberta.ca/thesis/7cdcd680dc59a1ca685cf0adb28224db> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2007183064> ;
+    dc:issued "1991"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Évaluation de la fiabilité et de la validité d'un index d'humanisation des soins" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/n2007183064> .
+
+<http://canlink.library.ualberta.ca/thesis/8163f160a983d3bcc9384d82cf3d77ad> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2002078086> ;
+    dc:issued "1997"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "La présence de la musique dans Concert baroque d'Alejo Carpentier" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2002078086> .
+
+<http://canlink.library.ualberta.ca/thesis/85439970d4a0d65626be048a2d6f4a09> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2013003333> ;
+    dc:issued "2008"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/05f0a44aee21a17c730951625fc6e829>,
+        <http://canlink.library.ualberta.ca/subject/2d9e476a1a1511646b7b2fe0a19c0c7e>,
+        <http://canlink.library.ualberta.ca/subject/31aa824b173071505eeb5177945e04a1>,
+        <http://canlink.library.ualberta.ca/subject/33122727a3737e28c9c23055f1b827d4>,
+        <http://canlink.library.ualberta.ca/subject/3acc04fb854f7a377e9d3656df8e99f1>,
+        <http://canlink.library.ualberta.ca/subject/52d2ddbd436454896a00da4e1369ec0a>,
+        <http://canlink.library.ualberta.ca/subject/7b4a6a7256b41880103160aeac36a819>,
+        <http://canlink.library.ualberta.ca/subject/8e8593bba0114158c09a41fb51bc7a4e>,
+        <http://canlink.library.ualberta.ca/subject/aede44c7b2dc51d22ff1bf8508767b06>,
+        <http://canlink.library.ualberta.ca/subject/beed621c5a44f065017e3168e20405dc>,
+        <http://canlink.library.ualberta.ca/subject/c36279fecca9b950104a138902655df3>,
+        <http://canlink.library.ualberta.ca/subject/d4bbee818389f52e205c26d6d2022e79>,
+        <http://canlink.library.ualberta.ca/subject/f2faf9340cdfeee5782cbfd9fcf92878>,
+        <http://canlink.library.ualberta.ca/subject/f4becb6ffb66c18c424e504bc05aba89>,
+        <http://canlink.library.ualberta.ca/subject/f4e4c3505ad331f96d7dd8dea393eba5>,
+        <http://canlink.library.ualberta.ca/subject/fe7a37b8fa1ac6d993626a07253f8c06>,
+        <http://id.loc.gov/authorities/subjects/sh85091772> ;
+    dc:title "Préparation, caractérisation et étude de réactivité de complexes de nickel comportant un ligand de type \"pincer\"" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2013003333> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/de95f0b46cc1bcf2e9f48d3cc012790d> .
+
+<http://canlink.library.ualberta.ca/thesis/8545de1e6e26a003bef9900c637ede49> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2015036673> ;
+    dc:issued "2004"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/spa> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/373deb263fa35c77383b56bf06d0685f>,
+        <http://canlink.library.ualberta.ca/subject/3973e141bfff38f071c53f494c0f5608>,
+        <http://canlink.library.ualberta.ca/subject/9efec698ff021413c82fc71e68ee7cd9>,
+        <http://canlink.library.ualberta.ca/subject/eed9eb367b4c59a0d0d52f3a92dbf7b5>,
+        <http://canlink.library.ualberta.ca/subject/f947b4efbb84671de83a240489586ca8> ;
+    dc:title "El archipiélago de la memoria en la novela de la migración" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2015036673> .
+
+<http://canlink.library.ualberta.ca/thesis/896e2a8c0a02940968754d8b364fa9ff> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n88665850> ;
+    dc:issued "1979"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/2c8974a24c2f81748789ae4fb3862679>,
+        <http://canlink.library.ualberta.ca/subject/eed2747c7a03f52e403f08043307d67d>,
+        <http://id.loc.gov/authorities/subjects/sh85051829>,
+        <http://id.loc.gov/authorities/subjects/sh85052841>,
+        <http://id.loc.gov/authorities/subjects/sh85095226> ;
+    dc:title "L'influence des erreurs en langue seconde sur la communication orale" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n88665850> .
+
+<http://canlink.library.ualberta.ca/thesis/943b3b8692e5f6285a1a0a40416d00c8> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n90718702> ;
+    dc:issued "1987"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/83185494283dd5d10856cdde4202ceed> ;
+    dc:title "Principes de la reconnaissance des acquis" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n90718702> .
+
+<http://canlink.library.ualberta.ca/thesis/9444e42411f1145ce35cc627ef68b852> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/8279cba5bd5a48b005dd20997c840ecb> ;
+    dc:issued "1968"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/e2507857afd39f85e86e7143e1911396>,
+        <http://id.loc.gov/authorities/subjects/sh85108801> ;
+    dc:title "L'opinion canadienne-française et les problèmes d'éducation au Bas-Canada, 1840-1846" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/des> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/8279cba5bd5a48b005dd20997c840ecb> .
+
+<http://canlink.library.ualberta.ca/thesis/9739c1fe732ce8d5c021e8cd3fefdef3> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1> ;
+    dc:issued "1946"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Acton Vale et son évolution" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1> .
+
+<http://canlink.library.ualberta.ca/thesis/981736ea14cf9de41e2403a05876172e> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2006019625> ;
+    dc:issued "1983"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Pratiques et stratégies migratoires : le cas des italiens originaires du Frioul" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/n2006019625> .
+
+<http://canlink.library.ualberta.ca/thesis/99118474bd806fd349b42e4d12ddfa5d> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no90009715> ;
+    dc:issued "1981"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://id.loc.gov/authorities/subjects/sh85026719> ;
+    dc:title "Essai d'analyse anthropologique de quelques systèmes de classification documentaire" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no90009715> .
+
+<http://canlink.library.ualberta.ca/thesis/9a021ff382664da8455ad5153e3c76b5> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2010101795> ;
+    dc:issued "1983"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Le débat de la spécificité de la morale chrétienne : 1966-1976" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/no2010101795> .
+
+<http://canlink.library.ualberta.ca/thesis/9c44918f924bab22367b1bc8e748b596> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n87123622> ;
+    dc:issued "1981"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/51be4350ca65402d0c995958409adaed>,
+        <http://id.loc.gov/authorities/subjects/sh85088762> ;
+    dc:title "Nouvelle approche de la conception du matériau sonore dans les oeuvres post-sérielles : une analyse du quintette de Serge Garant" ;
+    rel:author <http://id.loc.gov/authorities/names/n87123622> .
+
+<http://canlink.library.ualberta.ca/thesis/9da189132ab04bd8c5407fd52a531851> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/06b891673851f29119d14777bd201e92> ;
+    dc:issued "1975"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/0833088ded3a2e7695ed21d0f8f2b82e>,
+        <http://canlink.library.ualberta.ca/subject/8b0fc2ffaa0d40b8ce0be2508be6646f> ;
+    dc:title "L'instruction sur les deux esprits de la règle de la communauté (IQS 3,13-4,26) et ses affinités perses" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/06b891673851f29119d14777bd201e92> .
+
+<http://canlink.library.ualberta.ca/thesis/9f2acb0a9866b62befe059bb304013c6> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2013070066> ;
+    dc:issued "1999"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Understanding confusion : a historical and critical essay on the constitution of Cameroon" ;
+    rel:author <http://id.loc.gov/authorities/names/no2013070066> ;
+    = <>,
+        <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
+
+<http://canlink.library.ualberta.ca/thesis/ad834fe69f6d214a715752aabffb82b8> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/d0d81020ead177da306f453b955792a2> ;
+    dc:issued "1948"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/919ebcf8043def3f83ac1b5fe17dc4e8>,
+        <http://id.loc.gov/authorities/subjects/sh2002006447> ;
+    dc:title "Réhabilitation des anciens combattants" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/d0d81020ead177da306f453b955792a2> .
+
+<http://canlink.library.ualberta.ca/thesis/b217e762f2011ecc11d140a914f9484e> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n83328074> ;
+    dc:issued "1969"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/ad1a3c286e34b08041128409a5c44136>,
+        <http://id.loc.gov/authorities/subjects/sh85071166> ;
+    dc:title "Délinquance juvénile : perspectives épidémiologique et stigmatique" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n83328074> .
+
+<http://canlink.library.ualberta.ca/thesis/b254343166418a48aa019fcef0287bed> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n78092749> ;
+    dc:issued "1967"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/0b741a7b2f2daa166f7e3474e3af5ddf>,
+        <http://canlink.library.ualberta.ca/subject/a2a4ddd90b4e45e9165b1ee664378f6b>,
+        <http://id.loc.gov/authorities/subjects/sh85105976>,
+        <http://id.loc.gov/authorities/subjects/sh85131626> ;
+    dc:title "La sociologie du syndicalisme de Robert Michels" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n78092749> .
+
+<http://canlink.library.ualberta.ca/thesis/b3e0c6261715302c9d15b8e8b9a78635> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> ;
+    dc:issued "1951"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/20d9a01a39a88459f5aa8584e73bd4a8>,
+        <http://id.loc.gov/authorities/subjects/sh85000954>,
+        <http://id.loc.gov/authorities/subjects/sh85000957>,
+        <http://id.loc.gov/authorities/subjects/sh85000969>,
+        <http://id.loc.gov/authorities/subjects/sh87006824> ;
+    dc:title "Les problèmes d'une adolescente de foyer désuni : une étude de cas" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> .
+
+<http://canlink.library.ualberta.ca/thesis/b5a5666ac167614a12d24ef077a87ae3> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2016102323> ;
+    dc:issued "2007"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/0afc8e4cba8b6ac90b58394a75768f93>,
+        <http://canlink.library.ualberta.ca/subject/505d1ad60ea05a53401da346de090b7c>,
+        <http://canlink.library.ualberta.ca/subject/b1c9b7074ed2ca8b92565492a4ab9801>,
+        <http://canlink.library.ualberta.ca/subject/f017d6bcd861b77754d3d47b98611dff> ;
+    dc:title "Le festin comique : le motif alimentaire dans la structure dramatique d'Aristophane" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/no2016102323> .
+
+<http://canlink.library.ualberta.ca/thesis/bc5725c44661d95e854f15231767e07f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/36e05bafdd89d97923146984f329d6b9> ;
+    dc:issued "1977"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/89d3b20edb26b9efcf87a7827d6280b9> ;
+    dc:title "Poésie et silence : lecture de Fernand Ouellette, Gaston Miron et Paul-Marie Lapointe" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/36e05bafdd89d97923146984f329d6b9> .
+
+<http://canlink.library.ualberta.ca/thesis/bd95605495d1a826f34704986a8c312d> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2006061773> ;
+    dc:issued "1998"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/5ca963801f198157dc06305bc5c359fb>,
+        <http://canlink.library.ualberta.ca/subject/97aa5b2ed091eca7a5ce55d265cd6fbd>,
+        <http://id.loc.gov/authorities/subjects/sh85029616> ;
+    dc:title "Le projet analogue : les phases analogiques du projet d'architecture en situation pédagogique" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2006061773> ;
+    = <>,
+        <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
+
+<http://canlink.library.ualberta.ca/thesis/c0205a678e65dc7b8ee18911313c1a32> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2002046395> ;
+    dc:issued "1998"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Responsabilité pénale et troubles mentaux : histoire de la folie en droit pénal français, anglais et canadien" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2002046395> ;
+    = <>,
+        <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
+
+<http://canlink.library.ualberta.ca/thesis/c0a4a76883b4e3a6b729bde9a4e1fa26> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/a1356bf027b49d1c35e3f3953690b118> ;
+    dc:issued "1967"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "La conscription de 1917 d'après les journaux français de Montréal" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/a1356bf027b49d1c35e3f3953690b118> .
+
+<http://canlink.library.ualberta.ca/thesis/c0d3242a9081f0375a9fdd5a80332a47> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/9da4466f8b816637976f7bdae9154bb0> ;
+    dc:issued "1999"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "L'influence de la consistance et de la similarité sur la recherche visuelle et mnésique" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/9da4466f8b816637976f7bdae9154bb0> .
+
+<http://canlink.library.ualberta.ca/thesis/c1bcaaf5b5fe7d4caa84d261bd796ae9> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n90661135> ;
+    dc:issued "1954"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "L'histoire et la doctrine de l'enrichissement sans cause en droit civil québécois" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> ;
+    rel:author <http://id.loc.gov/authorities/names/n90661135> .
+
+<http://canlink.library.ualberta.ca/thesis/c264a265759363745376b7b8d751af1e> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/c83688c03816ea89526ad4d012efe464> ;
+    dc:issued "2004"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/spa> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/1b62fd62b993e4b2bc19564796495bdc>,
+        <http://canlink.library.ualberta.ca/subject/5b1c3d3c1151d0871c5d6c976f6c3dd0>,
+        <http://canlink.library.ualberta.ca/subject/66c8f9d69c52b671e50799b291879db6>,
+        <http://canlink.library.ualberta.ca/subject/9b44248dc7f74c374b53525863466f93>,
+        <http://canlink.library.ualberta.ca/subject/bbd66af14bb51d5a481af62ed64bee5b>,
+        <http://canlink.library.ualberta.ca/subject/c78aa14c32bc3ef0bbbce9aa3fee7c7f>,
+        <http://id.loc.gov/authorities/subjects/sh85104910> ;
+    dc:title "Población y sociedad en un real de minas de la frontera norte Novohispana : San Luis Potosí, de finales del siglo XVI a 1810" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/c83688c03816ea89526ad4d012efe464> .
+
+<http://canlink.library.ualberta.ca/thesis/c274fbe48fa222189a683a367d59d101> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/a6696dab1fd42a7c967d37ad9b63aad3> ;
+    dc:issued "1951"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/4341cf03285db4e67e43c80c549d8121>,
+        <http://id.loc.gov/authorities/subjects/sh85128731> ;
+    dc:title "La grève des instituteurs : Une étude du caractère moral du conflit survenu entre la Commission des Écoles Catholiques de Montréal et l'Alliance des Professeurs Catholiques de Montréal, du 17 au 24 janvier 1949" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/a6696dab1fd42a7c967d37ad9b63aad3> .
+
+<http://canlink.library.ualberta.ca/thesis/c3ce6513a1b479d8413068b1a7b44e16> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2015013013> ;
+    dc:issued "2007"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/06464f2b014af13a1d43d4e70aa63ee0>,
+        <http://canlink.library.ualberta.ca/subject/1e2bf24482a686c2137413eae0aeac38>,
+        <http://canlink.library.ualberta.ca/subject/73024603ed86b82566df2bee5580dd95>,
+        <http://canlink.library.ualberta.ca/subject/b0c7a4c4d4cbe3612566441bedb85b77>,
+        <http://canlink.library.ualberta.ca/subject/e165d4f2174b66a7d1a95cb204d296eb>,
+        <http://canlink.library.ualberta.ca/subject/f8e42375a39fb5ef12b1a240bdac6a97>,
+        <http://id.loc.gov/authorities/subjects/sh2002005444> ;
+    dc:title "L'essor du livre illustré au Québec en relation avec les milieux artistiques et éditoriaux français, 1880-1940" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2015013013> .
+
+<http://canlink.library.ualberta.ca/thesis/c536d7bce3077b0cd64b59a6600fc2a1> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2014002841> ;
+    dc:issued "1989"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Du considérable : pour une grammaire de la fiction esthétique" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2014002841> .
+
+<http://canlink.library.ualberta.ca/thesis/c880c3fb49eb5df3a8a60d86e39d0472> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2012001538> ;
+    dc:issued "2003"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/00e0868463b1ddc2ba31ec9ef835bc35>,
+        <http://canlink.library.ualberta.ca/subject/84ab36b2995bb3949db34038a2b24c64>,
+        <http://canlink.library.ualberta.ca/subject/b179a9ec0777eae19382c14319872e1b>,
+        <http://canlink.library.ualberta.ca/subject/be5ade92ef8c916908660a58e4d36ce0>,
+        <http://canlink.library.ualberta.ca/subject/ed81c0311eb5364a8d6d1d1b63f3c51d>,
+        <http://id.loc.gov/authorities/subjects/sh85090277> ;
+    dc:title "L'inceste romanesque en France, 1715-1789" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2012001538> ;
+    = <>,
+        <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
+
+<http://canlink.library.ualberta.ca/thesis/ca7c8cd5e892d2c028739775b6ee5812> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no00061317> ;
+    dc:issued "1997"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "La spectature prise au jeu : la narration, la cognition et le jeu dans le cinéma narratif" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no00061317> ;
+    = <>,
+        <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
+
+<http://canlink.library.ualberta.ca/thesis/cb32370469f5392138d5e88a3849ce9f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n93083513> ;
+    dc:issued "1987"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Les instituts séculiers et le problème de la sécularité" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n93083513> .
+
+<http://canlink.library.ualberta.ca/thesis/ccf1b70af797a500fc7bec0033b5b35f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n83238110> ;
+    dc:issued "1954"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "La région de Sept-Iles, côte nord du Saint-Laurent : étude morphologique" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n83238110> .
+
+<http://canlink.library.ualberta.ca/thesis/cef37e4063dec1b410547a2041746761> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/3f7857d38bb73889e21053c0e37a0b39> ;
+    dc:issued "1955"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "L'influence d'Homère, Aristote et Virgile sur la poétique de Racine, illustrée dans Phèdre" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/3f7857d38bb73889e21053c0e37a0b39> .
+
+<http://canlink.library.ualberta.ca/thesis/d05480d0c5ea84efbd429f1638c5cb00> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> ;
+    dc:issued "1945"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/91453641438d0e2c1ce8f4a00c36a490>,
+        <http://id.loc.gov/authorities/subjects/sh85095558> ;
+    dc:title "Préparation des organo-magnésiens sans ether" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> .
+
+<http://canlink.library.ualberta.ca/thesis/d49f5ff5e63bea8612205440fdf8c1fe> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> ;
+    dc:issued "1963"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/1e3ce5065fa4b0472942448726a482f1>,
+        <http://canlink.library.ualberta.ca/subject/ad1a3c286e34b08041128409a5c44136>,
+        <http://id.loc.gov/authorities/subjects/sh85033993>,
+        <http://id.loc.gov/authorities/subjects/sh85071166> ;
+    dc:title "Facteurs sociaux et familiaux de la délinquance des adolescents à Montréal" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> .
+
+<http://canlink.library.ualberta.ca/thesis/d4f223a82cf150dcdab929678a187b9c> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n85302944> ;
+    dc:issued "1979"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/2e66c2f46923c9b68d8fb4b667d36b98>,
+        <http://canlink.library.ualberta.ca/subject/51f8a19f0d0727eda1f05d250021b39a>,
+        <http://canlink.library.ualberta.ca/subject/bf1962bb2f07e0010b513750d63427c8>,
+        <http://id.loc.gov/authorities/subjects/sh85001034>,
+        <http://id.loc.gov/authorities/subjects/sh85009461>,
+        <http://id.loc.gov/authorities/subjects/sh85041146>,
+        <http://id.loc.gov/authorities/subjects/sh99002124> ;
+    dc:title "Analyse sociologique d'un programme d'éducation populaire : l'expérience multi-media au Québec" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n85302944> .
+
+<http://canlink.library.ualberta.ca/thesis/d63abff1c860f6ed603852fa35adb0f3> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/cc33b0f0d12d9db3f8b684251f4a8320> ;
+    dc:issued "1992"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "L'évaluation des préférences sexuelles des agresseurs sexuels : problèmes de validité interne et de validité externe" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/cc33b0f0d12d9db3f8b684251f4a8320> .
+
+<http://canlink.library.ualberta.ca/thesis/d66a91eb36edcd626391953411240ba3> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n88665850> ;
+    dc:issued "1994"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Les salons de musique à Paris sous la Troisième République" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n88665850> .
+
+<http://canlink.library.ualberta.ca/thesis/d758d54c86cfcf2572527c7ad3e8f07d> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2013014439> ;
+    dc:issued "2008"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/00fb12a33be4e2740652916cd7aed92e>,
+        <http://canlink.library.ualberta.ca/subject/325a704e8d5f198d8feb9091e13c3b4f>,
+        <http://canlink.library.ualberta.ca/subject/525685b9a8bfe05322d3f0094f31e409>,
+        <http://canlink.library.ualberta.ca/subject/6e07e97ba15cbe5b493605e0e7d20b82>,
+        <http://canlink.library.ualberta.ca/subject/9d8b8d35b3a8024869a4c90d17b34c70>,
+        <http://canlink.library.ualberta.ca/subject/bcb3603403b3c89cefd49d1e3c75e4c6>,
+        <http://canlink.library.ualberta.ca/subject/c6bd2f660cc00ccc1646828e95e3ff42>,
+        <http://canlink.library.ualberta.ca/subject/e829b442185bb1218461454379ef2753> ;
+    dc:title "Évaluation ultrasonographique du bien-être foetal bovin en fin de gestation" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/no2013014439> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/a744dd53df67d61dbc4fbdc705b23dfa> .
+
+<http://canlink.library.ualberta.ca/thesis/d8979f9dca68f092571f9e9e3b995f4f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/d1c2549f6f91c3a7ba1eb24fa7a0d409> ;
+    dc:issued "1945"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/ed81c0311eb5364a8d6d1d1b63f3c51d> ;
+    dc:title "Condition de la famille ouvrière à Québec pendant la guerre" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/d1c2549f6f91c3a7ba1eb24fa7a0d409> .
+
+<http://canlink.library.ualberta.ca/thesis/db3dea677c512b156c3959502dd6248d> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2010101795> ;
+    dc:issued "1989"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "D'une éthique autonome à une éthique prudentielle : analyse et prolongement du modèle éthico-théologique d'Alfons Auer (1915- )" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2010101795> .
+
+<http://canlink.library.ualberta.ca/thesis/db9a35c4ef104c6f3c9b07b67c4bb85e> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/8c58a81907d43db162311d70d5dfcf77> ;
+    dc:issued "1973"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/University_of_Toronto> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/2e66c2f46923c9b68d8fb4b667d36b98>,
+        <http://id.loc.gov/authorities/subjects/sh99002124> ;
+    dc:title "Évolution des objectifs et des programmes en éducation des adultes à l'Université de Montréal, 1876-1950" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/8c58a81907d43db162311d70d5dfcf77> .
+
+<http://canlink.library.ualberta.ca/thesis/deeb9db0ce84c9587a0a8b1656d8c4b7> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nr2001045305> ;
+    dc:issued "1991"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/63b76da70517a17aac7da65578fdf7e9> ;
+    dc:title "Vers une pédagogie de l'organisation sociale dans le mouvement d'éducation populaire en Amérique latine: valeurs, stratégies, tactiques" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/nr2001045305> .
+
+<http://canlink.library.ualberta.ca/thesis/e0025f6cef198a163d7c22dceca8289f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/8405248dec66ead7c8c9b7423500b386> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Were Newman to come Montreal, what judgment would be lay on our university?" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/8405248dec66ead7c8c9b7423500b386> .
+
+<http://canlink.library.ualberta.ca/thesis/e1becdfe1818f31edfa621a10e5172aa> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/fb112b5e15b8d902718d397b86f80a55> ;
+    dc:issued "1952"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/24ca74eb558b7dc10daa3833ee2ebe9a>,
+        <http://id.loc.gov/authorities/subjects/sh85138085> ;
+    dc:title "Contribution à l'étude du comportement de Salvelinus fontinalis fontinalis" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/fb112b5e15b8d902718d397b86f80a55> .
+
+<http://canlink.library.ualberta.ca/thesis/e617b75486c167d34c597f76ed2e5ef5> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2009011153> ;
+    dc:issued "2006"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/09d422ab6e3686a26b17aef764b21a80>,
+        <http://canlink.library.ualberta.ca/subject/2c27e6eaea3fe2d541f55ffe0b525800>,
+        <http://canlink.library.ualberta.ca/subject/59298cf80a1250c02544470fb62f4bc3>,
+        <http://canlink.library.ualberta.ca/subject/60b90b9f6f46458a663f3e02544a1e1f>,
+        <http://canlink.library.ualberta.ca/subject/91975b26b6d9e03556f384bf7892cc98>,
+        <http://canlink.library.ualberta.ca/subject/9b49c780a6973d6f4f56e6f741b34a08>,
+        <http://canlink.library.ualberta.ca/subject/e75ffd9ae04f68e5ef32915baeebe761> ;
+    dc:title "Strategic planning for temporary housing : 1999 earthquakes in Turkey" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n2009011153> .
+
+<http://canlink.library.ualberta.ca/thesis/e651b67408a178b039ed0087155e319c> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/deecde06ab9f93e5eabe161c50402ff4> ;
+    dc:issued "1941"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/5e30364ce28f200d4e7053577f7239e6>,
+        <http://canlink.library.ualberta.ca/subject/8884b2f45a20cdeaf7ad5031e973a4d7>,
+        <http://id.loc.gov/authorities/subjects/sh85063443>,
+        <http://id.loc.gov/authorities/subjects/sh85074030> ;
+    dc:title "Contribution à l'hydrographie des lacs du Parc des Laurentides" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/deecde06ab9f93e5eabe161c50402ff4> .
+
+<http://canlink.library.ualberta.ca/thesis/e81e9096154958f95bc0e13133764d39> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2015010156> ;
+    dc:issued "1999"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Apprentissage moteur à court terme chez le sujet hémiparétique : les stratégies correctives du mouvement mono-articulaire" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2015010156> .
+
+<http://canlink.library.ualberta.ca/thesis/e88269d22775ad1ac4823ca835f456a9> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n83328074> ;
+    dc:issued "1967"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://id.loc.gov/authorities/subjects/sh85000952> ;
+    dc:title "Les attitudes morales des adolescents" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/n83328074> .
+
+<http://canlink.library.ualberta.ca/thesis/eca797d334010d374f11a400390de31f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nr90007762> ;
+    dc:issued "1984"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:title "Règne de Dieu et névrose dans la bible" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
+    rel:author <http://id.loc.gov/authorities/names/nr90007762> .
+
+<http://canlink.library.ualberta.ca/thesis/f3833d65440b644a534f49297d6fe61f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/nb2016015953> ;
+    dc:issued "2007"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/018c7659d2d5a9f435dac0c5391c85b6>,
+        <http://canlink.library.ualberta.ca/subject/3dac72783f355eb5f7204a16e28581aa>,
+        <http://canlink.library.ualberta.ca/subject/c3e9d129f01fadfb49ad8a99cd9a2f9c>,
+        <http://canlink.library.ualberta.ca/subject/f556ed3b2cc45ee07f00b5d2841f3f03>,
+        <http://canlink.library.ualberta.ca/subject/f9c4b71f148b37411f0b09e114447c76>,
+        <http://id.loc.gov/authorities/subjects/sh85104183> ;
+    dc:title "La surveillance policière dans les bars de Montréal" ;
+    bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
+    rel:author <http://id.loc.gov/authorities/names/nb2016015953> .
+
+<http://canlink.library.ualberta.ca/thesis/f5dd475c8fea8f3f0686366bbc9438ac> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/1e85613973f13ecc8840f184a382f3c1> ;
+    dc:issued "2007"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/05a41de658b84289287ecf1ffa384384>,
+        <http://canlink.library.ualberta.ca/subject/1b0968cf71092023e77aa12a7772c6d0>,
+        <http://canlink.library.ualberta.ca/subject/20f1848c02edd6a4b453623b71ed6907>,
+        <http://canlink.library.ualberta.ca/subject/23ed3b3e9a35cf8d01c626510b6b71a7>,
+        <http://canlink.library.ualberta.ca/subject/33d47fb94bcf90a1960511fcccd19288>,
+        <http://canlink.library.ualberta.ca/subject/34d5676cfebde1953894dcca3cfe6724>,
+        <http://canlink.library.ualberta.ca/subject/3836554008a46c62a075a8ca78dfef67>,
+        <http://canlink.library.ualberta.ca/subject/38446a6bf254977661d91f98f99542dc>,
+        <http://canlink.library.ualberta.ca/subject/4048584ab4b5456f5cf80a89d856a41b>,
+        <http://canlink.library.ualberta.ca/subject/4f78862ff007f7191ba1b48725abeb4b>,
+        <http://canlink.library.ualberta.ca/subject/553b0bea7057a64e8f6f81bd2695d27d>,
+        <http://canlink.library.ualberta.ca/subject/5c1f9b8b8f94df630fe4be5cf7d6a86f>,
+        <http://canlink.library.ualberta.ca/subject/79b202e0eb34bef614fba835f6ba7b3a>,
+        <http://canlink.library.ualberta.ca/subject/7d34b3c4d36f7f08b109bc58d56e043d>,
+        <http://canlink.library.ualberta.ca/subject/8d206934952741134de1aee21dfa4428>,
+        <http://canlink.library.ualberta.ca/subject/9031078cd879584788675207fbcfb2ed>,
+        <http://canlink.library.ualberta.ca/subject/a0388a538acf8ee8dd7026c01e79747a>,
+        <http://canlink.library.ualberta.ca/subject/b6ab84c7d932cf51711301d9d57217e7>,
+        <http://canlink.library.ualberta.ca/subject/b8d3e41b06d2ba43928abb716f9d8595>,
+        <http://canlink.library.ualberta.ca/subject/c421e8a86bbb8f98898077fad7cb2e55>,
+        <http://canlink.library.ualberta.ca/subject/d11a0a03f94dcffc03e067638e61bac6>,
+        <http://canlink.library.ualberta.ca/subject/da02324b7a30fb59719755724956738b>,
+        <http://canlink.library.ualberta.ca/subject/fa1a2573fa0dc7089015cae980664ffd> ;
+    dc:title "The moral difference between premature infants and neonates compared to older patients" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/1e85613973f13ecc8840f184a382f3c1> .
+
+<http://canlink.library.ualberta.ca/thesis/f6b5e3f5cd25d456bc17d9eb152eb260> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/c7c55657d5f6c780ad960f27b55badec> ;
+    dc:issued "1954"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/eng> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/d6a0934efe79d272aeea04b3d75f9b5a>,
+        <http://id.loc.gov/authorities/subjects/sh85066108> ;
+    dc:title "A biochemical contribution to the study of inflammation" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/c7c55657d5f6c780ad960f27b55badec> .
+
+<http://canlink.library.ualberta.ca/thesis/f938248559ab86312f4685bd3ff36df8> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/c05cb9b311b175bfd3d28f0327662ec0> ;
+    dc:issued "1986"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/a1c594abdaa7abe1b8db9136a72deb0e> ;
+    dc:title "La bibliothèque/médiathèque : instrument d'éducation dans l'enseignement secondaire au Québec" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://canlink.library.ualberta.ca/Person/c05cb9b311b175bfd3d28f0327662ec0> .
+
+<http://canlink.library.ualberta.ca/thesis/fb3942f8d9a6f063504ce5a587b6c8a7> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/no2015059709> ;
+    dc:issued "2003"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/3442ee7de4438cffaf8c5ea9b3a05f7e>,
+        <http://canlink.library.ualberta.ca/subject/433f03787dc72896739f9b371c86cd09>,
+        <http://canlink.library.ualberta.ca/subject/56aa7f225d81ca1bfc651bbf358c4c8e>,
+        <http://canlink.library.ualberta.ca/subject/902a6f05777b9f5b093a2c8b853b7ea6>,
+        <http://canlink.library.ualberta.ca/subject/94a223decbd8cae91c432ca80c2be1f7>,
+        <http://canlink.library.ualberta.ca/subject/b986b2bf13bf3f2657939047c64cec29>,
+        <http://canlink.library.ualberta.ca/subject/ee3ce66373ed3b716f25889ffa085445> ;
+    dc:title "Le développement de la personnalité de l'homme de l'adolescence au milieu de la vie : approches centrées sur les variables et sur les personnes" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/no2015059709> ;
+    = <>,
+        <http://search.proquest.com/docview/305239136?accountid=12543> .
+
+<http://canlink.library.ualberta.ca/thesis/fe55ac56ec280053f6c8bdcf430cc3dc> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/fd5c434ad9c8d54b6cdbb1c9b0ce6247> ;
+    dc:issued "1948"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/fe45c44d4402fdae3c3ae94a1711ce0f>,
+        <http://id.loc.gov/authorities/subjects/sh85008697>,
+        <http://id.loc.gov/authorities/subjects/sh85104888> ;
+    dc:title "Les peupliers de la section Tacamahaga en Amérique du Nord : leur place dans la taxonomie du genre Populus" ;
+    rel:author <http://canlink.library.ualberta.ca/Person/fd5c434ad9c8d54b6cdbb1c9b0ce6247> .
+
+<http://canlink.library.ualberta.ca/Person/0e8e5fd9141749a805c581ff466ee2b0> a foaf:Person ;
+    foaf:name "Nabil N. Antaki" .
+
+<http://canlink.library.ualberta.ca/Person/39277b8eac6ee2e80cce5bc186031d73> a foaf:Person ;
+    foaf:name "Jean-Jacques Nattiez" .
+
+<http://canlink.library.ualberta.ca/Person/817ad09c0d122fa3d9d047d950c31e52> a foaf:Person ;
+    foaf:name "Jean Grondin" .
+
+<http://canlink.library.ualberta.ca/Person/9c77b7af94a7a515190eef5e459cadae> a foaf:Person ;
+    foaf:name "Mme Denise Couture" .
+
+<http://canlink.library.ualberta.ca/Person/a744dd53df67d61dbc4fbdc705b23dfa> a foaf:Person ;
+    foaf:name "Gilles Fecteau et codirecteur : Réjean C. Lefebvre" .
+
+<http://canlink.library.ualberta.ca/Person/de95f0b46cc1bcf2e9f48d3cc012790d> a foaf:Person ;
+    foaf:name "Davit Zargarian" .
+
+<http://canlink.library.ualberta.ca/Person/e20ad673193bd8d2461edd14c88c4c6b> a foaf:Person ;
+    foaf:name "Jean-Claude Muller" .
+
+<http://canlink.library.ualberta.ca/subject/00e0868463b1ddc2ba31ec9ef835bc35> a skos:Concept ;
+    rdfs:label "inceste" .
+
+<http://canlink.library.ualberta.ca/subject/00fb12a33be4e2740652916cd7aed92e> a skos:Concept ;
+    rdfs:label "bien-être foetal" .
+
+<http://canlink.library.ualberta.ca/subject/018c7659d2d5a9f435dac0c5391c85b6> a skos:Concept ;
+    rdfs:label "recherche évaluative" .
+
+<http://canlink.library.ualberta.ca/subject/01ac4fa82f682d88eccbec67959b24b3> a skos:Concept ;
+    rdfs:label "étoiles" .
+
+<http://canlink.library.ualberta.ca/subject/053751a21b7b1aa6691d4f1011f7d69b> a skos:Concept ;
+    rdfs:label "syndicats catholiques" .
+
+<http://canlink.library.ualberta.ca/subject/05a41de658b84289287ecf1ffa384384> a skos:Concept ;
+    rdfs:label "opinions" .
+
+<http://canlink.library.ualberta.ca/subject/05f0a44aee21a17c730951625fc6e829> a skos:Concept ;
+    rdfs:label "olefin hydroamination" .
+
+<http://canlink.library.ualberta.ca/subject/05f695afc9f98e33e938b9a533f9a2fc> a skos:Concept ;
+    rdfs:label "candomblé" .
+
+<http://canlink.library.ualberta.ca/subject/06464f2b014af13a1d43d4e70aa63ee0> a skos:Concept ;
+    rdfs:label "livres illustrés" .
+
+<http://canlink.library.ualberta.ca/subject/06e33aa8d185c8af0e9ddebe75bc8d3b> a skos:Concept ;
+    rdfs:label "sémiologie musicale" .
+
+<http://canlink.library.ualberta.ca/subject/0833088ded3a2e7695ed21d0f8f2b82e> a skos:Concept ;
+    rdfs:label "manuscrits de la mer morte" .
+
+<http://canlink.library.ualberta.ca/subject/0afc8e4cba8b6ac90b58394a75768f93> a skos:Concept ;
+    rdfs:label "personnage" .
+
+<http://canlink.library.ualberta.ca/subject/0b741a7b2f2daa166f7e3474e3af5ddf> a skos:Concept ;
+    rdfs:label "syndicalisme" .
+
+<http://canlink.library.ualberta.ca/subject/0cc01d6b482bce3abb4f2b8c61e5c8d9> a skos:Concept ;
+    rdfs:label "platon" .
+
+<http://canlink.library.ualberta.ca/subject/0dd29c91a3b2c095e265c8016313c920> a skos:Concept ;
+    rdfs:label "revivalisme" .
+
+<http://canlink.library.ualberta.ca/subject/10371bdba2ff69575c757a4156e3a143> a skos:Concept ;
+    rdfs:label "onto-theology" .
+
+<http://canlink.library.ualberta.ca/subject/123a52f01cc80b647e972f9c24421f0c> a skos:Concept ;
+    rdfs:label "vérité intramondaine" .
+
+<http://canlink.library.ualberta.ca/subject/1455fa4be1c0fb658dd8ffdfa6ab493e> a skos:Concept ;
+    rdfs:label "prohibitions" .
+
+<http://canlink.library.ualberta.ca/subject/182b0316545119b6bf93ba3ac5b025af> a skos:Concept ;
+    rdfs:label "hygiène scolaire" .
+
+<http://canlink.library.ualberta.ca/subject/1b0968cf71092023e77aa12a7772c6d0> a skos:Concept ;
+    rdfs:label "principe du meilleur intérêt" .
+
+<http://canlink.library.ualberta.ca/subject/1b62fd62b993e4b2bc19564796495bdc> a skos:Concept ;
+    rdfs:label "mines" .
+
+<http://canlink.library.ualberta.ca/subject/1e2bf24482a686c2137413eae0aeac38> a skos:Concept ;
+    rdfs:label "québec" .
+
+<http://canlink.library.ualberta.ca/subject/1e3ce5065fa4b0472942448726a482f1> a skos:Concept ;
+    rdfs:label "criminalité" .
+
+<http://canlink.library.ualberta.ca/subject/1f7cdf27b884acd6e55b7b30c4fd7a07> a skos:Concept ;
+    rdfs:label "harmonisationn de la procédure d'arbitrage commercial international" .
+
+<http://canlink.library.ualberta.ca/subject/1f9dd2ec688df39f32965f435d67018b> a skos:Concept ;
+    rdfs:label "canadiens français" .
+
+<http://canlink.library.ualberta.ca/subject/1fd6284c4bec0db2b8d9362c03dbd317> a skos:Concept ;
+    rdfs:label "rural universe" .
+
+<http://canlink.library.ualberta.ca/subject/20d9a01a39a88459f5aa8584e73bd4a8> a skos:Concept ;
+    rdfs:label "adolescentes" .
+
+<http://canlink.library.ualberta.ca/subject/20f1848c02edd6a4b453623b71ed6907> a skos:Concept ;
+    rdfs:label "prématurité" .
+
+<http://canlink.library.ualberta.ca/subject/21d7f1515bbfd620778f5dbbb18eff74> a skos:Concept ;
+    rdfs:label "desmidiacées" .
+
+<http://canlink.library.ualberta.ca/subject/23ed3b3e9a35cf8d01c626510b6b71a7> a skos:Concept ;
+    rdfs:label "incertitude" .
+
+<http://canlink.library.ualberta.ca/subject/24ca74eb558b7dc10daa3833ee2ebe9a> a skos:Concept ;
+    rdfs:label "truites" .
+
+<http://canlink.library.ualberta.ca/subject/283a0def223e820d0d9a46d714326334> a skos:Concept ;
+    rdfs:label "musique contemporaine" .
+
+<http://canlink.library.ualberta.ca/subject/29f6b5725157fe996ed46659b337e8ac> a skos:Concept ;
+    rdfs:label "parménide" .
+
+<http://canlink.library.ualberta.ca/subject/2b41340d62fe6f611d1b8ea7578b0d6d> a skos:Concept ;
+    rdfs:label "heidegger" .
+
+<http://canlink.library.ualberta.ca/subject/2c27e6eaea3fe2d541f55ffe0b525800> a skos:Concept ;
+    rdfs:label "cadre logique" .
+
+<http://canlink.library.ualberta.ca/subject/2c8974a24c2f81748789ae4fb3862679> a skos:Concept ;
+    rdfs:label "communication orale" .
+
+<http://canlink.library.ualberta.ca/subject/2d9e476a1a1511646b7b2fe0a19c0c7e> a skos:Concept ;
+    rdfs:label "silanes oligomerization" .
+
+<http://canlink.library.ualberta.ca/subject/2ef08f174ac98725fa860746a2e0db2b> a skos:Concept ;
+    rdfs:label "symbolisme" .
+
+<http://canlink.library.ualberta.ca/subject/30bda08c38ad46bc32d9ad9bdea8e398> a skos:Concept ;
+    rdfs:label "vérité" .
+
+<http://canlink.library.ualberta.ca/subject/31aa824b173071505eeb5177945e04a1> a skos:Concept ;
+    rdfs:label "rmn" .
+
+<http://canlink.library.ualberta.ca/subject/325a704e8d5f198d8feb9091e13c3b4f> a skos:Concept ;
+    rdfs:label "fetal well-being" .
+
+<http://canlink.library.ualberta.ca/subject/33122727a3737e28c9c23055f1b827d4> a skos:Concept ;
+    rdfs:label "diffraction des rayons x" .
+
+<http://canlink.library.ualberta.ca/subject/33d47fb94bcf90a1960511fcccd19288> a skos:Concept ;
+    rdfs:label "soins intensifs néonatals" .
+
+<http://canlink.library.ualberta.ca/subject/33d8e9519facc36447f364e965951bd1> a skos:Concept ;
+    rdfs:label "exécution de la sentence arbitrale internationale" .
+
+<http://canlink.library.ualberta.ca/subject/3442ee7de4438cffaf8c5ea9b3a05f7e> a skos:Concept ;
+    rdfs:label "continuité" .
+
+<http://canlink.library.ualberta.ca/subject/34d5676cfebde1953894dcca3cfe6724> a skos:Concept ;
+    rdfs:label "néonatologie" .
+
+<http://canlink.library.ualberta.ca/subject/373deb263fa35c77383b56bf06d0685f> a skos:Concept ;
+    rdfs:label "îles" .
+
+<http://canlink.library.ualberta.ca/subject/3836554008a46c62a075a8ca78dfef67> a skos:Concept ;
+    rdfs:label "perceptions" .
+
+<http://canlink.library.ualberta.ca/subject/38446a6bf254977661d91f98f99542dc> a skos:Concept ;
+    rdfs:label "retrait d'intervention" .
+
+<http://canlink.library.ualberta.ca/subject/386d040d7d0db366cb0cdc848d3b2b8f> a skos:Concept ;
+    rdfs:label "arbitrage commercial international" .
+
+<http://canlink.library.ualberta.ca/subject/3955d1fde323898cc48bee436339f3ed> a skos:Concept ;
+    rdfs:label "amour" .
+
+<http://canlink.library.ualberta.ca/subject/3973e141bfff38f071c53f494c0f5608> a skos:Concept ;
+    rdfs:label "littérature" .
+
+<http://canlink.library.ualberta.ca/subject/3acc04fb854f7a377e9d3656df8e99f1> a skos:Concept ;
+    rdfs:label "nmr" .
+
+<http://canlink.library.ualberta.ca/subject/3b0002e6ef7a7c5d6ba7e25a4616748e> a skos:Concept ;
+    rdfs:label "predictability of international arbitration" .
+
+<http://canlink.library.ualberta.ca/subject/3dac72783f355eb5f7204a16e28581aa> a skos:Concept ;
+    rdfs:label "bars" .
+
+<http://canlink.library.ualberta.ca/subject/3f122bdb52b89fd508236c33757e58f7> a skos:Concept ;
+    rdfs:label "vérité divine" .
+
+<http://canlink.library.ualberta.ca/subject/4048584ab4b5456f5cf80a89d856a41b> a skos:Concept ;
+    rdfs:label "allocation des ressources" .
+
+<http://canlink.library.ualberta.ca/subject/40a8a36c43da3a787b870ebcb2d769c9> a skos:Concept ;
+    rdfs:label "nietzsche" .
+
+<http://canlink.library.ualberta.ca/subject/41c5cafb8400732045c40f17fabcac57> a skos:Concept ;
+    rdfs:label "abondances" .
+
+<http://canlink.library.ualberta.ca/subject/433f03787dc72896739f9b371c86cd09> a skos:Concept ;
+    rdfs:label "comportement antisocial" .
+
+<http://canlink.library.ualberta.ca/subject/4341cf03285db4e67e43c80c549d8121> a skos:Concept ;
+    rdfs:label "grèves et lock-out" .
+
+<http://canlink.library.ualberta.ca/subject/43c6854263e132d7b7538130b2bfc9dd> a skos:Concept ;
+    rdfs:label "antipathies" .
+
+<http://canlink.library.ualberta.ca/subject/4f78862ff007f7191ba1b48725abeb4b> a skos:Concept ;
+    rdfs:label "dévaluation" .
+
+<http://canlink.library.ualberta.ca/subject/505d1ad60ea05a53401da346de090b7c> a skos:Concept ;
+    rdfs:label "structure dynamique" .
+
+<http://canlink.library.ualberta.ca/subject/51be4350ca65402d0c995958409adaed> a skos:Concept ;
+    rdfs:label "musique" .
+
+<http://canlink.library.ualberta.ca/subject/51f8a19f0d0727eda1f05d250021b39a> a skos:Concept ;
+    rdfs:label "sociologie de l'éducation" .
+
+<http://canlink.library.ualberta.ca/subject/522f0779fbd654a44f48b76c90b9b9b3> a skos:Concept ;
+    rdfs:label "peroxydes organiques" .
+
+<http://canlink.library.ualberta.ca/subject/525685b9a8bfe05322d3f0094f31e409> a skos:Concept ;
+    rdfs:label "high-risk pregnancies" .
+
+<http://canlink.library.ualberta.ca/subject/528afbba7d87cf597114cda0d8f20dc0> a skos:Concept ;
+    rdfs:label "pays en voie de développement" .
+
+<http://canlink.library.ualberta.ca/subject/52d2ddbd436454896a00da4e1369ec0a> a skos:Concept ;
+    rdfs:label "pincer complexes" .
+
+<http://canlink.library.ualberta.ca/subject/52d65de3ab650385c86c649e79a60ff2> a skos:Concept ;
+    rdfs:label "éducation" .
+
+<http://canlink.library.ualberta.ca/subject/53c12c6952e93ff18d060d5ccfb3e303> a skos:Concept ;
+    rdfs:label "divine truth" .
+
+<http://canlink.library.ualberta.ca/subject/553b0bea7057a64e8f6f81bd2695d27d> a skos:Concept ;
+    rdfs:label "patients incompétents" .
+
+<http://canlink.library.ualberta.ca/subject/56aa7f225d81ca1bfc651bbf358c4c8e> a skos:Concept ;
+    rdfs:label "typologie" .
+
+<http://canlink.library.ualberta.ca/subject/58417757009eb17e15aeb1fe72e966cd> a skos:Concept ;
+    rdfs:label "épistémologie" .
+
+<http://canlink.library.ualberta.ca/subject/58551b08bcf6c99c3df2f6b2241da95e> a skos:Concept ;
+    rdfs:label "ontologie" .
+
+<http://canlink.library.ualberta.ca/subject/59298cf80a1250c02544470fb62f4bc3> a skos:Concept ;
+    rdfs:label "planification stratégique" .
+
+<http://canlink.library.ualberta.ca/subject/59a5778834d60c4b5f44b7c8e2267d64> a skos:Concept ;
+    rdfs:label "sociologie musicale" .
+
+<http://canlink.library.ualberta.ca/subject/5b1c3d3c1151d0871c5d6c976f6c3dd0> a skos:Concept ;
+    rdfs:label "climat" .
+
+<http://canlink.library.ualberta.ca/subject/5bc6dc2df26300a2ad0d9e567787fdb9> a skos:Concept ;
+    rdfs:label "onto-théologie" .
+
+<http://canlink.library.ualberta.ca/subject/5c1f9b8b8f94df630fe4be5cf7d6a86f> a skos:Concept ;
+    rdfs:label "valeur de la vie" .
+
+<http://canlink.library.ualberta.ca/subject/5ca963801f198157dc06305bc5c359fb> a skos:Concept ;
+    rdfs:label "pédagogie" .
+
+<http://canlink.library.ualberta.ca/subject/5e30364ce28f200d4e7053577f7239e6> a skos:Concept ;
+    rdfs:label "lacs" .
+
+<http://canlink.library.ualberta.ca/subject/5e6997d65aa9e783e4258a763015f49c> a skos:Concept ;
+    rdfs:label "contamination" .
+
+<http://canlink.library.ualberta.ca/subject/602f606711c6d404803380662affde60> a skos:Concept ;
+    rdfs:label "esthétique musicale" .
+
+<http://canlink.library.ualberta.ca/subject/60b90b9f6f46458a663f3e02544a1e1f> a skos:Concept ;
+    rdfs:label "logements temporaires" .
+
+<http://canlink.library.ualberta.ca/subject/63b76da70517a17aac7da65578fdf7e9> a skos:Concept ;
+    rdfs:label "amérique latine" .
+
+<http://canlink.library.ualberta.ca/subject/66144e39e4a1260925ca2397d7f8fd58> a skos:Concept ;
+    rdfs:label "notte della taranta" .
+
+<http://canlink.library.ualberta.ca/subject/66c8f9d69c52b671e50799b291879db6> a skos:Concept ;
+    rdfs:label "épidémies" .
+
+<http://canlink.library.ualberta.ca/subject/69c03727306a14ef736542eb567b879c> a skos:Concept ;
+    rdfs:label "temps musical" .
+
+<http://canlink.library.ualberta.ca/subject/6a619d98c3168b39a43881a4a63f8846> a skos:Concept ;
+    rdfs:label "étoiles: individuelle (gd 190, gd 358, pg 0112+104, pg 1654+160)" .
+
+<http://canlink.library.ualberta.ca/subject/6b03e90015ba4305e81bdace42ccb9a0> a skos:Concept ;
+    rdfs:label "femmes dans la bible" .
+
+<http://canlink.library.ualberta.ca/subject/6b7cb89cbb769585402bdfb85272e040> a skos:Concept ;
+    rdfs:label "antipathie" .
+
+<http://canlink.library.ualberta.ca/subject/6bf96c5b69021eaa63909958cb28e2f9> a skos:Concept ;
+    rdfs:label "éducation sanitaire" .
+
+<http://canlink.library.ualberta.ca/subject/6c1dedc9d57eaf02b85f560125fe5c70> a skos:Concept ;
+    rdfs:label "respect du principe du procès équitable" .
+
+<http://canlink.library.ualberta.ca/subject/6e07e97ba15cbe5b493605e0e7d20b82> a skos:Concept ;
+    rdfs:label "gestations à risque" .
+
+<http://canlink.library.ualberta.ca/subject/73024603ed86b82566df2bee5580dd95> a skos:Concept ;
+    rdfs:label "éditeurs" .
+
+<http://canlink.library.ualberta.ca/subject/74e9af2246b7085ed082dae691a3bcaa> a skos:Concept ;
+    rdfs:label "corps" .
+
+<http://canlink.library.ualberta.ca/subject/76c9a3c313492c0f9b4099c107c04391> a skos:Concept ;
+    rdfs:label "quizila" .
+
+<http://canlink.library.ualberta.ca/subject/77374c9092857aa3e5edee5bee055876> a skos:Concept ;
+    rdfs:label "brésil" .
+
+<http://canlink.library.ualberta.ca/subject/775a051d187ab9eab6af5ee23e220a0b> a skos:Concept ;
+    rdfs:label "logement" .
+
+<http://canlink.library.ualberta.ca/subject/79b202e0eb34bef614fba835f6ba7b3a> a skos:Concept ;
+    rdfs:label "statut de personne" .
+
+<http://canlink.library.ualberta.ca/subject/7b4a6a7256b41880103160aeac36a819> a skos:Concept ;
+    rdfs:label "oligomérisation des silanes" .
+
+<http://canlink.library.ualberta.ca/subject/7bd016b4d5e9d56dd8b20ad4e7458c43> a skos:Concept ;
+    rdfs:label "interdit" .
+
+<http://canlink.library.ualberta.ca/subject/7d34b3c4d36f7f08b109bc58d56e043d> a skos:Concept ;
+    rdfs:label "handicap" .
+
+<http://canlink.library.ualberta.ca/subject/7f76556cc841076aab23c55031ff6f3f> a skos:Concept ;
+    rdfs:label "salento" .
+
+<http://canlink.library.ualberta.ca/subject/8209d260efc34e717693bd1fbd96dd4c> a skos:Concept ;
+    rdfs:label "ordinateurs" .
+
+<http://canlink.library.ualberta.ca/subject/83185494283dd5d10856cdde4202ceed> a skos:Concept ;
+    rdfs:label "apprentissage des adultes" .
+
+<http://canlink.library.ualberta.ca/subject/84ab36b2995bb3949db34038a2b24c64> a skos:Concept ;
+    rdfs:label "loi" .
+
+<http://canlink.library.ualberta.ca/subject/85ae32147e437e7be76db3952823d2a6> a skos:Concept ;
+    rdfs:label "implementation of the international arbitation award" .
+
+<http://canlink.library.ualberta.ca/subject/8677af7617dbd74c412a86c8bd8d9c1f> a skos:Concept ;
+    rdfs:label "mercure" .
+
+<http://canlink.library.ualberta.ca/subject/8884b2f45a20cdeaf7ad5031e973a4d7> a skos:Concept ;
+    rdfs:label "hydrographie" .
+
+<http://canlink.library.ualberta.ca/subject/88fc3e3292e7d909427b2d234786d842> a skos:Concept ;
+    rdfs:label "gestalt" .
+
+<http://canlink.library.ualberta.ca/subject/894860f25818b3e8e78560f1c3997a87> a skos:Concept ;
+    rdfs:label "philosophie" .
+
+<http://canlink.library.ualberta.ca/subject/89d3b20edb26b9efcf87a7827d6280b9> a skos:Concept ;
+    rdfs:label "poésie québécoise" .
+
+<http://canlink.library.ualberta.ca/subject/8b0fc2ffaa0d40b8ce0be2508be6646f> a skos:Concept ;
+    rdfs:label "avesta" .
+
+<http://canlink.library.ualberta.ca/subject/8d206934952741134de1aee21dfa4428> a skos:Concept ;
+    rdfs:label "soins intensifs" .
+
+<http://canlink.library.ualberta.ca/subject/8e3eb57b2c667f9366c1c8de9309d32b> a skos:Concept ;
+    rdfs:label "évolution" .
+
+<http://canlink.library.ualberta.ca/subject/8e8593bba0114158c09a41fb51bc7a4e> a skos:Concept ;
+    rdfs:label "kumada-corriu coupling" .
+
+<http://canlink.library.ualberta.ca/subject/8f866aedf63ce414f401b010051111ea> a skos:Concept ;
+    rdfs:label "pratiques vocales" .
+
+<http://canlink.library.ualberta.ca/subject/902a6f05777b9f5b093a2c8b853b7ea6> a skos:Concept ;
+    rdfs:label "longitudinal" .
+
+<http://canlink.library.ualberta.ca/subject/9031078cd879584788675207fbcfb2ed> a skos:Concept ;
+    rdfs:label "devenir à long terme" .
+
+<http://canlink.library.ualberta.ca/subject/905b4f757dbfe5cbe766c5be0e45212d> a skos:Concept ;
+    rdfs:label "rite" .
+
+<http://canlink.library.ualberta.ca/subject/90b56ab07902e1e50c4f87d5c145abb9> a skos:Concept ;
+    rdfs:label "vocal practices" .
+
+<http://canlink.library.ualberta.ca/subject/91975b26b6d9e03556f384bf7892cc98> a skos:Concept ;
+    rdfs:label "approche systémique" .
+
+<http://canlink.library.ualberta.ca/subject/919ebcf8043def3f83ac1b5fe17dc4e8> a skos:Concept ;
+    rdfs:label "anciens combattants" .
+
+<http://canlink.library.ualberta.ca/subject/9312869442c7101f3b1a1be1836a25ee> a skos:Concept ;
+    rdfs:label "procedural safeguards in internationalarbitration" .
+
+<http://canlink.library.ualberta.ca/subject/94a223decbd8cae91c432ca80c2be1f7> a skos:Concept ;
+    rdfs:label "trait" .
+
+<http://canlink.library.ualberta.ca/subject/9618e33df57a268f907dac6e316380c3> a skos:Concept ;
+    rdfs:label "miniportatifs (ordinateurs)" .
+
+<http://canlink.library.ualberta.ca/subject/989d73b3b3ad2119edd6ceceab1378a1> a skos:Concept ;
+    rdfs:label "art chrétien" .
+
+<http://canlink.library.ualberta.ca/subject/9b44248dc7f74c374b53525863466f93> a skos:Concept ;
+    rdfs:label "histoire sociale" .
+
+<http://canlink.library.ualberta.ca/subject/9ba269bf690ef217c4a69197e3c0203a> a skos:Concept ;
+    rdfs:label "harmonization of arbitation proceedings" .
+
+<http://canlink.library.ualberta.ca/subject/9bf4485b458ff872214703421cb70bd4> a skos:Concept ;
+    rdfs:label "algues" .
+
+<http://canlink.library.ualberta.ca/subject/9cfad75aff37605ac6eb37bef5653d82> a skos:Concept ;
+    rdfs:label "symbolisme chrétien" .
+
+<http://canlink.library.ualberta.ca/subject/9d8b8d35b3a8024869a4c90d17b34c70> a skos:Concept ;
+    rdfs:label "cloned calves" .
+
+<http://canlink.library.ualberta.ca/subject/a0388a538acf8ee8dd7026c01e79747a> a skos:Concept ;
+    rdfs:label "nouveau-nés" .
+
+<http://canlink.library.ualberta.ca/subject/a0f563e76dd432b21efca18983d0c19a> a skos:Concept ;
+    rdfs:label "atmosphères" .
+
+<http://canlink.library.ualberta.ca/subject/a1af4ff5856f999a00ecbc5da3f460bb> a skos:Concept ;
+    rdfs:label "embodiment" .
+
+<http://canlink.library.ualberta.ca/subject/a1c594abdaa7abe1b8db9136a72deb0e> a skos:Concept ;
+    rdfs:label "bibliothèque scolaire" .
+
+<http://canlink.library.ualberta.ca/subject/a2a4ddd90b4e45e9165b1ee664378f6b> a skos:Concept ;
+    rdfs:label "pouvoir (sciences sociales)" .
+
+<http://canlink.library.ualberta.ca/subject/a55cbd62dd7e3f2e1e7f44f18255b18f> a skos:Concept ;
+    rdfs:label "prévisibilité de la procédure arbitrale internationale" .
+
+<http://canlink.library.ualberta.ca/subject/a59e584da2c9997de287af6959eefd28> a skos:Concept ;
+    rdfs:label "inworldly truth" .
+
+<http://canlink.library.ualberta.ca/subject/a6e77bfd23a96d7a653f9ac8d8137c8a> a skos:Concept ;
+    rdfs:label "analphabétisme" .
+
+<http://canlink.library.ualberta.ca/subject/a729d00b5d130c9635c2a8089bd77f03> a skos:Concept ;
+    rdfs:label "espace musical" .
+
+<http://canlink.library.ualberta.ca/subject/a75b58171f13e25dbb519c08d0775483> a skos:Concept ;
+    rdfs:label "sophistique" .
+
+<http://canlink.library.ualberta.ca/subject/a987455bf6c5f7d77f9de2e3e4d80070> a skos:Concept ;
+    rdfs:label "nationalisme" .
+
+<http://canlink.library.ualberta.ca/subject/abebf57d383c0ebd34f31f4d6415d7e4> a skos:Concept ;
+    rdfs:label "évaluation de projets" .
+
+<http://canlink.library.ualberta.ca/subject/aede44c7b2dc51d22ff1bf8508767b06> a skos:Concept ;
+    rdfs:label "c-h activation" .
+
+<http://canlink.library.ualberta.ca/subject/b0c7a4c4d4cbe3612566441bedb85b77> a skos:Concept ;
+    rdfs:label "courants artistiques" .
+
+<http://canlink.library.ualberta.ca/subject/b179a9ec0777eae19382c14319872e1b> a skos:Concept ;
+    rdfs:label "roman" .
+
+<http://canlink.library.ualberta.ca/subject/b1c9b7074ed2ca8b92565492a4ab9801> a skos:Concept ;
+    rdfs:label "nourriture" .
+
+<http://canlink.library.ualberta.ca/subject/b5b4591482117e5366cc984d0465d9c7> a skos:Concept ;
+    rdfs:label "mémoire magnétique (machines à calculer)" .
+
+<http://canlink.library.ualberta.ca/subject/b6ab84c7d932cf51711301d9d57217e7> a skos:Concept ;
+    rdfs:label "prédictions" .
+
+<http://canlink.library.ualberta.ca/subject/b8d3e41b06d2ba43928abb716f9d8595> a skos:Concept ;
+    rdfs:label "énoncé de principe" .
+
+<http://canlink.library.ualberta.ca/subject/b986b2bf13bf3f2657939047c64cec29> a skos:Concept ;
+    rdfs:label "maturation" .
+
+<http://canlink.library.ualberta.ca/subject/bbd66af14bb51d5a481af62ed64bee5b> a skos:Concept ;
+    rdfs:label "démographie" .
+
+<http://canlink.library.ualberta.ca/subject/bcb3603403b3c89cefd49d1e3c75e4c6> a skos:Concept ;
+    rdfs:label "veaux clonés" .
+
+<http://canlink.library.ualberta.ca/subject/be5ade92ef8c916908660a58e4d36ce0> a skos:Concept ;
+    rdfs:label "xviiie siècle" .
+
+<http://canlink.library.ualberta.ca/subject/beed621c5a44f065017e3168e20405dc> a skos:Concept ;
+    rdfs:label "cyclic voltammetry" .
+
+<http://canlink.library.ualberta.ca/subject/bf1962bb2f07e0010b513750d63427c8> a skos:Concept ;
+    rdfs:label "enseignement" .
+
+<http://canlink.library.ualberta.ca/subject/c36279fecca9b950104a138902655df3> a skos:Concept ;
+    rdfs:label "hydroamination des oléfines" .
+
+<http://canlink.library.ualberta.ca/subject/c3e9d129f01fadfb49ad8a99cd9a2f9c> a skos:Concept ;
+    rdfs:label "reportabilité" .
+
+<http://canlink.library.ualberta.ca/subject/c421e8a86bbb8f98898077fad7cb2e55> a skos:Concept ;
+    rdfs:label "éthique substitutive" .
+
+<http://canlink.library.ualberta.ca/subject/c5c5819d0c2c15c593d99a5193bdefc6> a skos:Concept ;
+    rdfs:label "tradition orale" .
+
+<http://canlink.library.ualberta.ca/subject/c6bd2f660cc00ccc1646828e95e3ff42> a skos:Concept ;
+    rdfs:label "ultrasonograhie transabdominale" .
+
+<http://canlink.library.ualberta.ca/subject/c7277f32334eb24fce166296a07f414d> a skos:Concept ;
+    rdfs:label "spectrométrie de masse" .
+
+<http://canlink.library.ualberta.ca/subject/c78aa14c32bc3ef0bbbce9aa3fee7c7f> a skos:Concept ;
+    rdfs:label "mariage" .
+
+<http://canlink.library.ualberta.ca/subject/c84b446c8058ec8eb839038779980bd2> a skos:Concept ;
+    rdfs:label "naines blanches" .
+
+<http://canlink.library.ualberta.ca/subject/cc2cdb27889ebd0f62643cec7d70aa06> a skos:Concept ;
+    rdfs:label "liberté" .
+
+<http://canlink.library.ualberta.ca/subject/cd32536cc0c170fa31a01ac2c11213e3> a skos:Concept ;
+    rdfs:label "système organisationnel" .
+
+<http://canlink.library.ualberta.ca/subject/cdbbc3427a05a19d12fab23aaff11d72> a skos:Concept ;
+    rdfs:label "mythe" .
+
+<http://canlink.library.ualberta.ca/subject/cf97948b050a07a6ed99c1879fddea99> a skos:Concept ;
+    rdfs:label "italie du sud" .
+
+<http://canlink.library.ualberta.ca/subject/d11a0a03f94dcffc03e067638e61bac6> a skos:Concept ;
+    rdfs:label "qualité de vie" .
+
+<http://canlink.library.ualberta.ca/subject/d4bbee818389f52e205c26d6d2022e79> a skos:Concept ;
+    rdfs:label "x-ray diffraction" .
+
+<http://canlink.library.ualberta.ca/subject/d4e6beb67c0c66abd09f33486963eb76> a skos:Concept ;
+    rdfs:label "spectrophotométrie" .
+
+<http://canlink.library.ualberta.ca/subject/d581b5f5e095ca73178299179be86057> a skos:Concept ;
+    rdfs:label "âme" .
+
+<http://canlink.library.ualberta.ca/subject/d6a0934efe79d272aeea04b3d75f9b5a> a skos:Concept ;
+    rdfs:label "inflammation (pathologie)" .
+
+<http://canlink.library.ualberta.ca/subject/d9996505ddb7d165a6f205281a32e341> a skos:Concept ;
+    rdfs:label "the gazette (montréal, québec)" .
+
+<http://canlink.library.ualberta.ca/subject/da02324b7a30fb59719755724956738b> a skos:Concept ;
+    rdfs:label "légalité de la naissance" .
+
+<http://canlink.library.ualberta.ca/subject/e165d4f2174b66a7d1a95cb204d296eb> a skos:Concept ;
+    rdfs:label "france" .
+
+<http://canlink.library.ualberta.ca/subject/e178e1828850771e9e4bea54a62b1c3e> a skos:Concept ;
+    rdfs:label "garanties procédurales en arbitrage international" .
+
+<http://canlink.library.ualberta.ca/subject/e1dfd13a7abe2b6084b3e33cd239a720> a skos:Concept ;
+    rdfs:label "montréal" .
+
+<http://canlink.library.ualberta.ca/subject/e2507857afd39f85e86e7143e1911396> a skos:Concept ;
+    rdfs:label "écoles publiques" .
+
+<http://canlink.library.ualberta.ca/subject/e3dc97d980ab7f2f5f0a55fcdc8026d3> a skos:Concept ;
+    rdfs:label "église et problèmes sociaux" .
+
+<http://canlink.library.ualberta.ca/subject/e532d30a5a1dadf1dc09c7ca1839ec78> a skos:Concept ;
+    rdfs:label "élèves du primaire" .
+
+<http://canlink.library.ualberta.ca/subject/e81fe5f26c61f5e9cbd91c0176d6e45b> a skos:Concept ;
+    rdfs:label "langage" .
+
+<http://canlink.library.ualberta.ca/subject/e829b442185bb1218461454379ef2753> a skos:Concept ;
+    rdfs:label "transabdominal ultrasound" .
+
+<http://canlink.library.ualberta.ca/subject/ea7cb28a017363f70294b2f4c7bfa32b> a skos:Concept ;
+    rdfs:label "devenir" .
+
+<http://canlink.library.ualberta.ca/subject/ec40cabd3ec3573fae1cad0d68583362> a skos:Concept ;
+    rdfs:label "communications and the arts - music / communication et les arts - musique (umi : 0413)" .
+
+<http://canlink.library.ualberta.ca/subject/ee3ce66373ed3b716f25889ffa085445> a skos:Concept ;
+    rdfs:label "judiciarisé" .
+
+<http://canlink.library.ualberta.ca/subject/eed2747c7a03f52e403f08043307d67d> a skos:Concept ;
+    rdfs:label "français (langue)" .
+
+<http://canlink.library.ualberta.ca/subject/eed9eb367b4c59a0d0d52f3a92dbf7b5> a skos:Concept ;
+    rdfs:label "mémoire" .
+
+<http://canlink.library.ualberta.ca/subject/f017d6bcd861b77754d3d47b98611dff> a skos:Concept ;
+    rdfs:label "comédie grecque" .
+
+<http://canlink.library.ualberta.ca/subject/f2faf9340cdfeee5782cbfd9fcf92878> a skos:Concept ;
+    rdfs:label "voltammétrie cyclique" .
+
+<http://canlink.library.ualberta.ca/subject/f3ee211eaff2e448e05ba21b9759af63> a skos:Concept ;
+    rdfs:label "becoming" .
+
+<http://canlink.library.ualberta.ca/subject/f4becb6ffb66c18c424e504bc05aba89> a skos:Concept ;
+    rdfs:label "couplage de kumada-corriu" .
+
+<http://canlink.library.ualberta.ca/subject/f4e4c3505ad331f96d7dd8dea393eba5> a skos:Concept ;
+    rdfs:label "activation c-h" .
+
+<http://canlink.library.ualberta.ca/subject/f556ed3b2cc45ee07f00b5d2841f3f03> a skos:Concept ;
+    rdfs:label "gangs de rue" .
+
+<http://canlink.library.ualberta.ca/subject/f8e42375a39fb5ef12b1a240bdac6a97> a skos:Concept ;
+    rdfs:label "écoles" .
+
+<http://canlink.library.ualberta.ca/subject/f947b4efbb84671de83a240489586ca8> a skos:Concept ;
+    rdfs:label "migrante" .
+
+<http://canlink.library.ualberta.ca/subject/f9c4b71f148b37411f0b09e114447c76> a skos:Concept ;
+    rdfs:label "opération coup-de-poing" .
+
+<http://canlink.library.ualberta.ca/subject/fa1a2573fa0dc7089015cae980664ffd> a skos:Concept ;
+    rdfs:label "bioéthique" .
+
+<http://canlink.library.ualberta.ca/subject/fc1f052f5a14cb7a75bf0236ccfe6478> a skos:Concept ;
+    rdfs:label "györgy ligeti" .
+
+<http://canlink.library.ualberta.ca/subject/fd83ea80197adfd8136513804ab0948f> a skos:Concept ;
+    rdfs:label "paysannerie" .
+
+<http://canlink.library.ualberta.ca/subject/fe2b4fe6d471f7be7bf7b9ee6701abb6> a skos:Concept ;
+    rdfs:label "principe de la contradiction" .
+
+<http://canlink.library.ualberta.ca/subject/fe45c44d4402fdae3c3ae94a1711ce0f> a skos:Concept ;
+    rdfs:label "peuplier" .
+
+<http://canlink.library.ualberta.ca/subject/fe7a37b8fa1ac6d993626a07253f8c06> a skos:Concept ;
+    rdfs:label "complexe \"pincer\"" .
+
+<http://canlink.library.ualberta.ca/thesis/2b1026388a1c3b8e2e64d791cbd9f20f> a bibo:thesis,
+        frbr:Expression,
+        frbr:Work,
+        schema:creativeWork ;
+    dc:creator <http://id.loc.gov/authorities/names/n2017002478> ;
+    dc:issued "2011"^^<gYear> ;
+    dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
+    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/0dd29c91a3b2c095e265c8016313c920>,
+        <http://canlink.library.ualberta.ca/subject/1fd6284c4bec0db2b8d9362c03dbd317>,
+        <http://canlink.library.ualberta.ca/subject/66144e39e4a1260925ca2397d7f8fd58>,
+        <http://canlink.library.ualberta.ca/subject/7f76556cc841076aab23c55031ff6f3f>,
+        <http://canlink.library.ualberta.ca/subject/8f866aedf63ce414f401b010051111ea>,
+        <http://canlink.library.ualberta.ca/subject/90b56ab07902e1e50c4f87d5c145abb9>,
+        <http://canlink.library.ualberta.ca/subject/9efec698ff021413c82fc71e68ee7cd9>,
+        <http://canlink.library.ualberta.ca/subject/c5c5819d0c2c15c593d99a5193bdefc6>,
+        <http://canlink.library.ualberta.ca/subject/cf97948b050a07a6ed99c1879fddea99>,
+        <http://canlink.library.ualberta.ca/subject/ec40cabd3ec3573fae1cad0d68583362>,
+        <http://canlink.library.ualberta.ca/subject/fd83ea80197adfd8136513804ab0948f>,
+        <http://id.loc.gov/authorities/subjects/sh85001441>,
+        <http://id.loc.gov/authorities/subjects/sh85069035>,
+        <http://id.loc.gov/authorities/subjects/sh85095251>,
+        <http://id.loc.gov/authorities/subjects/sh93002569>,
+        <http://id.loc.gov/authorities/subjects/sh99002501> ;
+    dc:title "Ethnomusicologie et esthétique de la réflexion épistémologique à la recherche de terrain : une étude comparative de la vocalité de tradition orale au sud de l'Italie" ;
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
+    rel:author <http://id.loc.gov/authorities/names/n2017002478> ;
+    rel:ths <http://canlink.library.ualberta.ca/Person/39277b8eac6ee2e80cce5bc186031d73> ;
+    = <http://hdl.handle.net/1866/8535> .
+
+<http://canlink.library.ualberta.ca/thesisDegree/des> a bibo:thesisDegree ;
+    rdfs:label "Des" .
+
+<http://canlink.library.ualberta.ca/thesisDegree/master> a bibo:thesisDegree ;
+    rdfs:label "Master" .
+
+<http://canlink.library.ualberta.ca/Person/0290ce87e6e75218290f37e479bf0659> a foaf:Person ;
+    foaf:firstName "Serge" ;
+    foaf:lastName "Bédard" .
+
+<http://canlink.library.ualberta.ca/Person/06b891673851f29119d14777bd201e92> a foaf:Person ;
+    foaf:firstName "Jean" ;
+    foaf:lastName "Duhaime" .
+
+<http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1> a foaf:Person ;
+    foaf:firstName "Claire" ;
+    foaf:lastName "Rousseau" .
+
+<http://canlink.library.ualberta.ca/Person/1bbb7893811811a62f53e03ed45a1ffa> a foaf:Person ;
+    foaf:name "Irénée-Marie" .
+
+<http://canlink.library.ualberta.ca/Person/1e57a09272c93ca584c7cc0f0a1705e3> a foaf:Person ;
+    foaf:firstName "Féridoun" ;
+    foaf:lastName "Babaï" .
+
+<http://canlink.library.ualberta.ca/Person/1e85613973f13ecc8840f184a382f3c1> a foaf:Person ;
+    foaf:firstName "Annie" ;
+    foaf:lastName "Janvier" .
+
+<http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9> a foaf:Person ;
+    foaf:firstName "Louis" ;
+    foaf:lastName "Maheu" .
+
+<http://canlink.library.ualberta.ca/Person/328a0ca680396823bd29f6e7b3c8cee5> a foaf:Person ;
+    foaf:firstName "Lucie" ;
+    foaf:lastName "Jasmin" .
+
+<http://canlink.library.ualberta.ca/Person/36e05bafdd89d97923146984f329d6b9> a foaf:Person ;
+    foaf:firstName "Pierre" ;
+    foaf:lastName "Nepveu" .
+
+<http://canlink.library.ualberta.ca/Person/3f7857d38bb73889e21053c0e37a0b39> a foaf:Person ;
+    foaf:firstName "Laurent" ;
+    foaf:lastName "Mailhot" .
+
+<http://canlink.library.ualberta.ca/Person/41eadabf8bdcea939c54d570762fdd93> a foaf:Person ;
+    foaf:firstName "Albert" ;
+    foaf:lastName "Robert" .
+
+<http://canlink.library.ualberta.ca/Person/4647959d06d7baf6aa74bb307c252aca> a foaf:Person ;
+    foaf:firstName "Madeleine" ;
+    foaf:lastName "Sauvé" .
+
+<http://canlink.library.ualberta.ca/Person/48799c61d6cb906bf62cf2f1d84c91a6> a foaf:Person ;
+    foaf:firstName "Éloi" ;
+    foaf:lastName "Cataphard" .
+
+<http://canlink.library.ualberta.ca/Person/4b4fd6ed97b881c1d9c3cc1176a26953> a foaf:Person ;
+    foaf:firstName "Jean-Guy" ;
+    foaf:lastName "Pépin" .
+
+<http://canlink.library.ualberta.ca/Person/548839a6f3dfb30ad17924b025b01875> a foaf:Person ;
+    foaf:firstName "Fadi" ;
+    foaf:lastName "Abdel-Nour" .
+
+<http://canlink.library.ualberta.ca/Person/613784c95107a0dc70b3b92960ac9ba7> a foaf:Person ;
+    foaf:firstName "Louis-Georges" ;
+    foaf:lastName "Carrier" .
+
+<http://canlink.library.ualberta.ca/Person/6796e7474674fbcbd2b9d3472c7efe3a> a foaf:Person ;
+    foaf:firstName "Francis" ;
+    foaf:lastName "Fortin" .
+
+<http://canlink.library.ualberta.ca/Person/81b2c6ac589cefecdfe2246d1a7db2e1> a foaf:Person ;
+    foaf:firstName "Yvon" ;
+    foaf:lastName "Blanchard" .
+
+<http://canlink.library.ualberta.ca/Person/8279cba5bd5a48b005dd20997c840ecb> a foaf:Person ;
+    foaf:firstName "Marcel" ;
+    foaf:lastName "Lajeunesse" .
+
+<http://canlink.library.ualberta.ca/Person/8405248dec66ead7c8c9b7423500b386> a foaf:Person ;
+    foaf:firstName "Jean de" ;
+    foaf:lastName "La Glèbe" .
+
+<http://canlink.library.ualberta.ca/Person/85b9a110878d79abbad0da1fcac3aa8a> a foaf:Person ;
+    foaf:firstName "Pierre" ;
+    foaf:lastName "Bergeron" .
+
+<http://canlink.library.ualberta.ca/Person/8c58a81907d43db162311d70d5dfcf77> a foaf:Person ;
+    foaf:firstName "Claude" ;
+    foaf:lastName "Touchette" .
+
+<http://canlink.library.ualberta.ca/Person/9da4466f8b816637976f7bdae9154bb0> a foaf:Person ;
+    foaf:firstName "Christine" ;
+    foaf:lastName "Lefebvre" .
+
+<http://canlink.library.ualberta.ca/Person/a1356bf027b49d1c35e3f3953690b118> a foaf:Person ;
+    foaf:firstName "René" ;
+    foaf:lastName "Chantelois" .
+
+<http://canlink.library.ualberta.ca/Person/a6696dab1fd42a7c967d37ad9b63aad3> a foaf:Person ;
+    foaf:firstName "André" ;
+    foaf:lastName "Raynauld" .
+
+<http://canlink.library.ualberta.ca/Person/a8c733019321c62f097493d3a38af462> a foaf:Person ;
+    foaf:firstName "Marcel-Aimé" ;
+    foaf:lastName "Gagnon" .
+
+<http://canlink.library.ualberta.ca/Person/b3d4ee4ff2f26bd2fdff4b89fc25d099> a foaf:Person ;
+    foaf:firstName "Michel" ;
+    foaf:lastName "Brunet" .
+
+<http://canlink.library.ualberta.ca/Person/c05cb9b311b175bfd3d28f0327662ec0> a foaf:Person ;
+    foaf:firstName "Paulette" ;
+    foaf:lastName "Bernhard" .
+
+<http://canlink.library.ualberta.ca/Person/c7c55657d5f6c780ad960f27b55badec> a foaf:Person ;
+    foaf:firstName "V. W" ;
+    foaf:lastName "Adamkiewicz" .
+
+<http://canlink.library.ualberta.ca/Person/c83688c03816ea89526ad4d012efe464> a foaf:Person ;
+    foaf:firstName "Ramón Alejandro" ;
+    foaf:lastName "Montoya" .
+
+<http://canlink.library.ualberta.ca/Person/ca58c8cc1bc594282af2daa9c8202cae> a foaf:Person ;
+    foaf:firstName "Alain" ;
+    foaf:lastName "Laframboise" .
+
+<http://canlink.library.ualberta.ca/Person/cc33b0f0d12d9db3f8b684251f4a8320> a foaf:Person ;
+    foaf:firstName "Jean" ;
+    foaf:lastName "Proulx" .
+
+<http://canlink.library.ualberta.ca/Person/d0d81020ead177da306f453b955792a2> a foaf:Person ;
+    foaf:firstName "Berthe" ;
+    foaf:lastName "Leclerc" .
+
+<http://canlink.library.ualberta.ca/Person/d1c2549f6f91c3a7ba1eb24fa7a0d409> a foaf:Person ;
+    foaf:firstName "Thérèse" ;
+    foaf:lastName "Morisset" .
+
+<http://canlink.library.ualberta.ca/Person/d930b137b20eadfbd55ea7bed5682f14> a foaf:Person ;
+    foaf:name "Benoît" .
+
+<http://canlink.library.ualberta.ca/Person/deecde06ab9f93e5eabe161c50402ff4> a foaf:Person ;
+    foaf:firstName "Vianney" ;
+    foaf:lastName "Legendre" .
+
+<http://canlink.library.ualberta.ca/Person/fb112b5e15b8d902718d397b86f80a55> a foaf:Person ;
+    foaf:firstName "Gustave" ;
+    foaf:lastName "Prévost" .
+
+<http://canlink.library.ualberta.ca/Person/fd5c434ad9c8d54b6cdbb1c9b0ce6247> a foaf:Person ;
+    foaf:firstName "Ernest" ;
+    foaf:lastName "Rouleau" .
+
+<http://canlink.library.ualberta.ca/subject/09d422ab6e3686a26b17aef764b21a80> a skos:Concept ;
+    rdfs:label "catastrophes naturelles" .
+
+<http://canlink.library.ualberta.ca/subject/107836da52db245f34f0797dd969bfcc> a skos:Concept ;
+    rdfs:label "métaphysique" .
+
+<http://canlink.library.ualberta.ca/subject/2e66c2f46923c9b68d8fb4b667d36b98> a skos:Concept ;
+    rdfs:label "éducation des adultes" .
+
+<http://canlink.library.ualberta.ca/subject/91453641438d0e2c1ce8f4a00c36a490> a skos:Concept ;
+    rdfs:label "composés organomagnésiens" .
+
+<http://canlink.library.ualberta.ca/subject/97aa5b2ed091eca7a5ce55d265cd6fbd> a skos:Concept ;
+    rdfs:label "analogie" .
+
+<http://canlink.library.ualberta.ca/subject/9b49c780a6973d6f4f56e6f741b34a08> a skos:Concept ;
+    rdfs:label "gestion de projets" .
+
+<http://canlink.library.ualberta.ca/subject/9efec698ff021413c82fc71e68ee7cd9> a skos:Concept ;
+    rdfs:label "esthétique" .
+
+<http://canlink.library.ualberta.ca/subject/ad1a3c286e34b08041128409a5c44136> a skos:Concept ;
+    rdfs:label "délinquance juvénile" .
+
+<http://canlink.library.ualberta.ca/subject/e75ffd9ae04f68e5ef32915baeebe761> a skos:Concept ;
+    rdfs:label "reconstruction" .
+
+<http://canlink.library.ualberta.ca/subject/ed81c0311eb5364a8d6d1d1b63f3c51d> a skos:Concept ;
+    rdfs:label "famille" .
+
+<http://id.loc.gov/authorities/names/n2004009202> a foaf:Person ;
+    foaf:firstName "Louise" ;
+    foaf:lastName "Vigneault" .
+
+<http://id.loc.gov/authorities/names/n2007183064> a foaf:Person ;
+    foaf:firstName "Slim" ;
+    foaf:lastName "Haddad" .
+
+<http://id.loc.gov/authorities/names/n2009011153> a foaf:Person ;
+    foaf:firstName "Cassidy" ;
+    foaf:lastName "Johnson" .
+
+<http://id.loc.gov/authorities/names/n2009011162> a foaf:Person ;
+    foaf:firstName "Gonzalo" ;
+    foaf:lastName "Lizarralde" .
+
+<http://id.loc.gov/authorities/names/n2016008187> a foaf:Person ;
+    foaf:firstName "Michèle" ;
+    foaf:lastName "Ratovonony" .
+
+<http://id.loc.gov/authorities/names/n2017002478> a foaf:Person ;
+    foaf:firstName "Flavia" ;
+    foaf:lastName "Gervasi" .
+
+<http://id.loc.gov/authorities/names/n78092749> a foaf:Person ;
+    foaf:firstName "Léo" ;
+    foaf:lastName "Roback" .
+
+<http://id.loc.gov/authorities/names/n80156239> a foaf:Person ;
+    foaf:firstName "Gilles" ;
+    foaf:lastName "Marcotte" .
+
+<http://id.loc.gov/authorities/names/n83238110> a foaf:Person ;
+    foaf:firstName "Camille" ;
+    foaf:lastName "Laverdière" .
+
+<http://id.loc.gov/authorities/names/n86867328> a foaf:Person ;
+    foaf:firstName "Gilles" ;
+    foaf:lastName "Brassard" .
+
+<http://id.loc.gov/authorities/names/n87123622> a foaf:Person ;
+    foaf:firstName "Marie-Thérèse" ;
+    foaf:lastName "Lefebvre" .
+
+<http://id.loc.gov/authorities/names/n88104967> a foaf:Person ;
+    foaf:firstName "Michel" ;
+    foaf:lastName "Bertrand" .
+
+<http://id.loc.gov/authorities/names/n90661135> a foaf:Person ;
+    foaf:firstName "André" ;
+    foaf:lastName "Morel" .
+
+<http://id.loc.gov/authorities/names/n90718702> a foaf:Person ;
+    foaf:firstName "Marthe" ;
+    foaf:lastName "Sansregret" .
+
+<http://id.loc.gov/authorities/names/n93083513> a foaf:Person ;
+    foaf:firstName "Solange" ;
+    foaf:lastName "Lefebvre" .
+
+<http://id.loc.gov/authorities/names/n98007050> a foaf:Person ;
+    foaf:firstName "Samir" ;
+    foaf:lastName "Saul" .
+
+<http://id.loc.gov/authorities/names/nb2012001538> a foaf:Person ;
+    foaf:firstName "Jacqueline" ;
+    foaf:lastName "Chammas" .
+
+<http://id.loc.gov/authorities/names/nb2013003333> a foaf:Person ;
+    foaf:firstName "A" ;
+    foaf:lastName "Castonguay" .
+
+<http://id.loc.gov/authorities/names/nb2014002841> a foaf:Person ;
+    foaf:firstName "Éric" ;
+    foaf:lastName "Méchoulan" .
+
+<http://id.loc.gov/authorities/names/nb2015010156> a foaf:Person ;
+    foaf:firstName "Numa" ;
+    foaf:lastName "Dancause" .
+
+<http://id.loc.gov/authorities/names/nb2016015953> a foaf:Person ;
+    foaf:firstName "Rémi" ;
+    foaf:lastName "Boivin" .
+
+<http://id.loc.gov/authorities/names/no00061317> a foaf:Person ;
+    foaf:firstName "Bernard" ;
+    foaf:lastName "Perron" .
+
+<http://id.loc.gov/authorities/names/no2002046395> a foaf:Person ;
+    foaf:firstName "Hugues" ;
+    foaf:lastName "Parent" .
+
+<http://id.loc.gov/authorities/names/no2006061773> a foaf:Person ;
+    foaf:firstName "Jean-Pierre" ;
+    foaf:lastName "Chupin" .
+
+<http://id.loc.gov/authorities/names/no2008037016> a foaf:Person ;
+    foaf:firstName "Jacceus" ;
+    foaf:lastName "Joseph" .
+
+<http://id.loc.gov/authorities/names/no2013014439> a foaf:Person ;
+    foaf:firstName "Sébastien" ;
+    foaf:lastName "Buczinski" .
+
+<http://id.loc.gov/authorities/names/no2013070066> a foaf:Person ;
+    foaf:firstName "Peter Ateh-Afac" ;
+    foaf:lastName "Fossungu" .
+
+<http://id.loc.gov/authorities/names/no2014168692> a foaf:Person ;
+    foaf:firstName "Francesca" ;
+    foaf:lastName "Bassi" .
+
+<http://id.loc.gov/authorities/names/no2015013013> a foaf:Person ;
+    foaf:firstName "Stéphanie" ;
+    foaf:lastName "Danaux" .
+
+<http://id.loc.gov/authorities/names/no2015059709> a foaf:Person ;
+    foaf:firstName "Julien" ;
+    foaf:lastName "Morizot" .
+
+<http://id.loc.gov/authorities/names/no90009715> a foaf:Person ;
+    foaf:firstName "Paule" ;
+    foaf:lastName "Rolland-Thomas" .
+
+<http://id.loc.gov/authorities/names/no96018459> a foaf:Person ;
+    foaf:firstName "Luc" ;
+    foaf:lastName "Brouillet" .
+
+<http://id.loc.gov/authorities/names/nr2001045305> a foaf:Person ;
+    foaf:firstName "Bertha" ;
+    foaf:lastName "Salinas Amescua" .
+
+<http://id.loc.gov/authorities/names/nr90007762> a foaf:Person ;
+    foaf:firstName "Jean-Bertrand" ;
+    foaf:lastName "Aristide" .
+
+<http://id.loc.gov/authorities/subjects/sh2012003813> a bibo:thesisDegree ;
+    rdfs:label "LLM" .
+
+<http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> a foaf:Person ;
+    foaf:firstName "Jacques de" ;
+    foaf:lastName "Repentigny" .
+
+<http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> a foaf:Person ;
+    foaf:firstName "André" ;
+    foaf:lastName "Lefebvre" .
+
+<http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> a foaf:Person ;
+    foaf:firstName "Marie-Andrée" ;
+    foaf:lastName "Bertrand" .
+
+<http://id.loc.gov/authorities/names/n2006019625> a foaf:Person ;
+    foaf:firstName "Mauro" ;
+    foaf:lastName "Peressini" .
+
+<http://id.loc.gov/authorities/names/n83328074> a foaf:Person ;
+    foaf:firstName "Marc" ;
+    foaf:lastName "Le Blanc" .
+
+<http://id.loc.gov/authorities/names/n85302944> a foaf:Person ;
+    foaf:firstName "Émile" ;
+    foaf:lastName "Ollivier" .
+
+<http://id.loc.gov/authorities/names/n88665850> a foaf:Person ;
+    foaf:firstName "Cécile" ;
+    foaf:lastName "Tardif" .
+
+<http://id.loc.gov/authorities/names/nb2002078086> a foaf:Person ;
+    foaf:firstName "Leiling" ;
+    foaf:lastName "Chang" .
+
+<http://id.loc.gov/authorities/names/no2010101795> a foaf:Person ;
+    foaf:firstName "Denise" ;
+    foaf:lastName "Couture" .
+
+<http://id.loc.gov/authorities/names/no2014159120> a foaf:Person ;
+    foaf:firstName "Paul" ;
+    foaf:lastName "Catanu" .
+
+<http://id.loc.gov/authorities/names/no2015036673> a foaf:Person ;
+    foaf:firstName "Ángel" ;
+    foaf:lastName "Mota Berriozábal" .
+
+<http://id.loc.gov/authorities/names/no2015079705> a foaf:Person ;
+    foaf:firstName "Patrick" ;
+    foaf:lastName "Dufour" .
+
+<http://id.loc.gov/authorities/names/no2016102323> a foaf:Person ;
+    foaf:firstName "Elsa" ;
+    foaf:lastName "Bouchard" .
+
+<http://canlink.library.ualberta.ca/thesisDegree/msc> a bibo:thesisDegree ;
+    rdfs:label "MSc" .
+
+<http://id.loc.gov/authorities/subjects/sh85081990> a bibo:thesisDegree ;
+    rdfs:label "MA" .
+
+<http://id.loc.gov/authorities/subjects/sh85038715> a bibo:thesisDegree ;
+    rdfs:label "DSc",
+        "PhD" .
+

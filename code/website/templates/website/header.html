@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CLDI - Testing Website</title>
+    <meta charset="utf-8"/> {% load static %}
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'website/css/fonts.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{% csrf_token %}">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="{% static 'website/js/scripts.js' %}"></script>
+    
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- title -->
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 text-center center-block" id="mainTitle"> Insert Title Here </div>
+            <div class="col-sm-3"></div>
+        </div>
+
+        <!-- paste area -->
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="pasteArea">
+                <span id="heading">PASTE MARC RECORDS</span>
+                    <textarea id="records" name="records"></textarea>
+                    <!-- <button
+                        id="pasteAreaSubmitButton" 
+                        class="g-recaptcha center-block"
+                        data-sitekey="6LdPqSUUAAAAAELhARQQcRdQtPZAT60CTNYXXMPC"
+                        data-callback="submitForm">
+                        <span id="pasteAreaSubmitButtonText">Submit</span>
+                        <div id="pasteAreaSubmitButtonLoading" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active center-block" style="display: none"></div>
+                    </button> -->
+                    <button
+                        id="pasteAreaSubmitButton" 
+                        class="center-block"
+                        onclick="submitForm()">
+                        <span id="pasteAreaSubmitButtonText">Submit</span>
+                        <div id="pasteAreaSubmitButtonLoading" class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active center-block" style="display: none"></div>
+                    </button>
+                    <div id="messages">
+                        <div id="errors">
+                            <div id="heading">ERRORS</div>
+                            <div id="errors_body"></div>
+                        </div>
+
+                        <div id="warnings">
+                            <hr>
+                            <div id="heading">WARNINGS</div>
+                            <div id="warnings_body"></div>
+                        </div>
+
+                        <div id="theses">
+                            <hr>
+                            <div id="heading">RECORDS</div>
+                            <div id="theses_body"></div>
+                        </div>
+                    </div>
+                    
+
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+
+    </div>
+</body>
+
+</html>
