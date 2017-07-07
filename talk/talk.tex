@@ -1,0 +1,98 @@
+\documentclass{beamer}
+\usetheme{Warsaw}
+%\setbeameroption{show only notes}
+\usefonttheme[onlylarge]{structurebold}
+\setbeamerfont*{frametitle}{size=\normalsize,series=\bfseries}
+\setbeamertemplate{navigation symbols}{}
+\usepackage[english]{babel}
+\usepackage{setspace}
+\usepackage[latin1]{inputenc}
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage{tikz}
+\bibliographystyle{acm}
+\usetikzlibrary{arrows}
+\usepackage{soul}
+\usepackage{chronosys}
+\usepackage{color}
+\tikzstyle{block}=[draw opacity=0.3,line width=1.4cm]
+
+\title{Linked Open Data - the value-add to a postcard collection}
+%\subtitle{or, representing an untidy world on paper}
+\author[Warren and Farnel, Farnel and Warren]
+{
+ Sharon Farnel\inst{2} \and Maharsh Patel\inst{2} \and   Rob Warren\inst{1}
+}
+\institute[]
+{
+  \inst{1}%
+  {\small rwarren@math.carleton.ca} - @muninn\_project \\
+Carleton University \\
+\inst{2}
+{\small sharon.farnel@ualberta.ca}\\
+University of Alberta 
+}
+\usebackgroundtemplate{%
+\tikz[overlay,remember picture] \node[opacity=0.15, at=(current page.center)]
+{
+ \centering
+ \includegraphics[width=0.98\paperwidth]{figures/lod-cloud}};
+}
+\date[Access 2017]{September, 2017}
+%\includegraphics[height=0.5in]{figures/institutelogo}}
+%\usebackgroundtemplate{%
+%\tikz[overlay] \node[opacity=0.15, at=(current page.center)]
+%{
+% \centering
+% \includegraphics[width=0.95\paperwidth]{figures/lod-cloud}};
+%}
+%\date[searchisover.org]{The Search Is Over! - Exploring Cultural Collections with Visualization - DL2015}
+% The main document
+\useoutertheme{infolines}
+%\makeatletter
+%    \newenvironment{withoutheadline}{
+%
+%        \setbeamertemplate{headline}[default]
+%        \def\beamer@entrycode{\vspace*{-\headheight}}
+%  }{}
+%kx\makeatother
+\begin{document}
+
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%\begin{withoutheadline}
+\usebackgroundtemplate{}
+\frame{\tableofcontents}
+%\section{Introduction}
+
+%   \begin{frame}
+%        \frametitle{Presentation Outline}
+%        \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+
+%        \frametitle{Presentation Outline}
+%        \tableofcontents[currentsection,currentsubsection]
+%   \end{frame}
+
+\section{Introduction}
+
+\section{Conclusion}
+
+\begin{frame}
+\begin{block}{Lessons Learned, Next Steps}
+\begin{itemize}
+\item ....
+\end{itemize}
+\end{block}
+\begin{alertblock}{}
+Code and scripts at: \url{https://github.com/rwarren2/CanLink.git}
+\end{alertblock}
+\end{frame}
+
+%\end{withoutheadline}
+
+\end{document}
+
