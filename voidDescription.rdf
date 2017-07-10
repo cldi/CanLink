@@ -41,7 +41,7 @@
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
     <dcat:distribution rdf:resource="#canlinkmaindataset-sparql"/>
     <void:uriRegexPattern>http://canlink.library.ualberta.ca/data/.+</void:uriRegexPattern>
-    <foaf:homepage rdf:resource="http://https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
+    <foaf:homepage rdf:resource="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
     <void:exampleResource rdf:resource="http://canlink.library.ualberta.ca/"/>
     <void:sparqlEndpoint rdf:resource="http://canlink.library.ualberta.ca/sparql" />
     <void:dataDump rdf:resource="http://canlink.library.ualberta.ca/Downloads/"/>
