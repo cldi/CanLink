@@ -25,19 +25,26 @@
     xmlns:loc="http://id.loc.gov/vocabulary/relators/"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:cwrc="http://www.cwrc.ca/ontologies/cwrc#"
-    xml:base="http://sparql.cwrc.ca/.well-know/void#"
-    xmlns="http://sparql.cwrc.ca/.well-know/void#">
+    xml:base="http://canlink.library.ualberta.ca/.well-know/void#"
+    xmlns:dcat="http://www.w3.org/ns/dcat#"
+    xmlns="http://canlink.library.ualberta.ca/.well-know/void#">
 
+  <!-- This document is largely static and describes the dataset. -->  
+  <dcat:Distribution rdf:about="#canlinkmaindataset-sparql">
+   <dcat:accessURL rdf:resource="http://canlink.library.ualberta.ca/sparql"/>
+  </dcat:Distribution>
+  
   <rdf:Description rdf:about="#canlinkmaindataset">
-    <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void.rdf"/>
-    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#Date">ONTOLOGY_DATE</dcterms:modified>
+    <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
+    <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#Date">DATE_TODAY</dcterms:modified>
     <rdf:type rdf:resource="http://rdfs.org/ns/void#Dataset"/>
+    <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
+    <dcat:distribution rdf:resource="#canlinkmaindataset-sparql"/>
     <void:uriRegexPattern>http://canlink.library.ualberta.ca/data/.+</void:uriRegexPattern>
-    <foaf:homepage rdf:resource="http://www.cwrc.ca"/>
+    <foaf:homepage rdf:resource="http://https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
     <void:exampleResource rdf:resource="http://canlink.library.ualberta.ca/"/>
     <void:sparqlEndpoint rdf:resource="http://canlink.library.ualberta.ca/sparql" />
-    <void:dataDump rdf:resource="http://canlink.library.ualberta.ca/Downloads/Dump-Latest.nq"/>
-    <void:dataDump rdf:resource="http://canlink.library.ualberta.ca/Downloads/Dump-Latest.n3"/>
+    <void:dataDump rdf:resource="http://canlink.library.ualberta.ca/Downloads/"/>
     <void:feature rdf:resource="http://www.w3.org/ns/formats/RDF_XML"/>
     <void:feature rdf:resource="http://www.w3.org/ns/formats/N-Triples"/>
     <void:feature rdf:resource="http://www.w3.org/ns/formats/Turtle"/>
@@ -58,26 +65,27 @@
     <void:vocabulary rdf:resource="http://www.w3.org/TR/void/"/>
     <void:vocabulary rdf:resource="http://purl.org/dc/elements/1.1/"/>
     <void:vocabulary rdf:resource="http://www.w3.org/2003/11/swrlb#"/>
-    <void:triples>TOTAL_TRIPLES_CWRC</void:triples>
-    <void:entities>TOTAL_ENTITIES_CWRC</void:entities>
+    <void:triples>TOTAL_TRIPLES_CLDI</void:triples>
+    <void:entities>TOTAL_ENTITIES_CLDI</void:entities>
     <dc:title xml:lang="en">Can Link - a linked data project for Canadian theses</dc:title>
     <rdfs:label xml:lang="en">Can Link - a linked data project for Canadian theses</rdfs:label>
     <foaf:name xml:lang="en">Can Link - a linked data project for Canadian theses</foaf:name>
     <dc:title xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes</dc:title>
     <rdfs:label xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes</rdfs:label>
     <foaf:name xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes</foaf:name>
-    <dc:description xml:lang="en">LONG HAND DESCRIPTION ENGLISH</dc:description>
-    <skos:definition xml:lang="en">LONG HAND DESCRIPTION ENGLISH</skos:definition>
-    <rdfs:comment xml:lang="en">LONG HAND DESCRIPTION ENGLISH</rdfs:comment>
-    <dc:description xml:lang="en">LONGUE DESCRIPTION DU PROJECT</dc:description>
-    <skos:definition xml:lang="en">LONGUE DESCRIPTION DU PROJECT</skos:definition>
-    <rdfs:comment xml:lang="en">LONGUE DESCRIPTION DU PROJECT</rdfs:comment>
+    <dc:description xml:lang="en">Can Link - a linked data project for Canadian theses is a proof of concept project of the Digital Projects Working Group of the Canadian Linked Data Initiative (<![CDATA[https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home]]>). Its goal is to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships. Participating institutions are: University of British Columbia, University of Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Queens University, University of Toronto, McGill University, Université de Montréal, Memorial University of Newfoundland.</dc:description>
+    <skos:definition xml:lang="en">Can Link - a linked data project for Canadian theses is a proof of concept project of the Digital Projects Working Group of the Canadian Linked Data Initiative (<![CDATA[https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home]]>). Its goal is to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships. Participating institutions are: University of British Columbia, University of Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Queens University, University of Toronto, McGill University, Université de Montréal, Memorial University of Newfoundland.</skos:definition>
+    <rdfs:comment xml:lang="en">Can Link - a linked data project for Canadian theses is a proof of concept project of the Digital Projects Working Group of the Canadian Linked Data Initiative (<![CDATA[https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home]]>). Its goal is to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships. Participating institutions are: University of British Columbia, University of Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Queens University, University of Toronto, McGill University, Université de Montréal, Memorial University of Newfoundland.</rdfs:comment>
+    <dc:description xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes est un projet pilote du Groupe de travail sur les projets numériques de l'Initiative Canadienne sur les Données Liées (<![CDATA[https: //connect.library.utoronto .ca / display / U5LD / Canadian + Linked + Data + Initiative + Home]]>). Son objectif est d'accroître la découverte des thèses et des dissertations au Canada en profitant du pouvoir des données liées pour créer des connexions et des relations inattendues. Les établissements participants sont: Université de la Colombie-Britannique, Université de l'Alberta, Université d'Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Université Queens, Université de Toronto, Université McGill, Université de Montréal, Université Memorial de Terre-Neuve.</dc:description>
+    <skos:definition xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes est un projet pilote du Groupe de travail sur les projets numériques de l'Initiative Canadienne sur les Données Liées (<![CDATA[https: //connect.library.utoronto .ca / display / U5LD / Canadian + Linked + Data + Initiative + Home]]>). Son objectif est d'accroître la découverte des thèses et des dissertations au Canada en profitant du pouvoir des données liées pour créer des connexions et des relations inattendues. Les établissements participants sont: Université de la Colombie-Britannique, Université de l'Alberta, Université d'Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Université Queens, Université de Toronto, Université McGill, Université de Montréal, Université Memorial de Terre-Neuve.</skos:definition>
+    <rdfs:comment xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes est un projet pilote du Groupe de travail sur les projets numériques de l'Initiative Canadienne sur les Données Liées (<![CDATA[https: //connect.library.utoronto .ca / display / U5LD / Canadian + Linked + Data + Initiative + Home]]>). Son objectif est d'accroître la découverte des thèses et des dissertations au Canada en profitant du pouvoir des données liées pour créer des connexions et des relations inattendues. Les établissements participants sont: Université de la Colombie-Britannique, Université de l'Alberta, Université d'Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Université Queens, Université de Toronto, Université McGill, Université de Montréal, Université Memorial de Terre-Neuve.</rdfs:comment>
     <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">DATE_TODAY</dc:date>
     <dc:rights rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/"/> 
     <dc:creator>
      <foaf:Person rdf:about="#RobWarren">
       <foaf:name>Robert Warren</foaf:name>
       <owl:sameAs rdf:resource="http://rdf.muninn-project.org/ww1/2011/11/11/Person/Warren"/>
+      <owl:sameAs rdf:resource="http://sparql.cwrc.ca/ontology/cwrc#RobWarren"/>
      </foaf:Person>
     </dc:creator>
     <dc:creator>
@@ -86,24 +94,89 @@
       <!-- Glue to link to university / parent organization -->
      </foaf:Person>
     </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#MaharshPatel">
+        <foaf:name>Maharsh Patel</foaf:name>
+      </foaf:Person>
+    </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#MeganChellew">
+        <foaf:name>Megan Chellew</foaf:name>
+      </foaf:Person>
+    </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#SueAndrews">
+        <foaf:name>Sue Andrews</foaf:name>
+      </foaf:Person>
+    </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#SandraMorden">
+        <foaf:name>Sandra Morden</foaf:name>
+      </foaf:Person>
+    </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#ArouceWasty">
+        <foaf:name>Arouce Wasty</foaf:name>
+      </foaf:Person>
+    </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#Marie-HélèneVézina">
+        <foaf:name>Marie-Hélène Vézina</foaf:name>
+      </foaf:Person>
+    </dc:creator>
+    <dc:creator>
+      <foaf:Person rdf:about="#HeatherPretty">
+        <foaf:name>Heather Pretty</foaf:name>
+      </foaf:Person>
+    </dc:creator>
     <dc:publisher>
-     <foaf:Organization rdf:about="#cldi">
-      <foaf:name xml:lang="fr">CLDI - NOM FRANCAIS?</foaf:name>
-      <foaf:name xml:lang="en">Canadian Linked Data Initiative</foaf:name>
-      <foaf:member rdf:resource="#SharonFarnel"/>
-      <foaf:member rdf:resource="#RobWarren"/>      
-     </foaf:Organization>
+      <foaf:Organization rdf:about="#CLDI">
+        <foaf:name xml:lang="fr">L'initiative Canadiennes des Données Liées</foaf:name>
+        <foaf:name xml:lang="en">Canadian Linked Data Initiative</foaf:name>
+        <foaf:member rdf:resource="#MaharshPatel"/>
+        <foaf:member rdf:resource="#RobertWarren"/>
+        <foaf:member rdf:resource="#SharonFarnel"/>
+        <foaf:member rdf:resource="#MeganChellew"/>
+        <foaf:member rdf:resource="#SueAndrews"/>
+        <foaf:member rdf:resource="#SandraMorden"/>
+        <foaf:member rdf:resource="#ArouceWasty"/>
+        <foaf:member rdf:resource="#Marie-HélèneVézina"/>
+        <foaf:member rdf:resource="#HeatherPretty"/>
+        <foaf:homepage rdf:resource="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
+      </foaf:Organization>
     </dc:publisher>
-    <loc:fnd>
-     <foaf:Organization rdf:about="#tbd">
-      <foaf:name xml:lang="en">WHAT IS THE FUNDING AGENCY</foaf:name>
-      <foaf:nick>SSHRC</foaf:nick>
-     </foaf:Organization>
-    </loc:fnd>
     <!-- USE LOC SUBJECT HEADINGS -->
     <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh2009007122"/>
   </rdf:Description>
 
+  <!-- Glue to assign University membership -->
+  <rdf:Description rdf:about="http://dbpedia.org/resource/University_of_Alberta">
+   <foaf:member rdf:resource="#MaharshPatel"/>
+   <foaf:member rdf:resource="#SharonFarnel"/>
+  </rdf:Description>
 
+  <rdf:Description rdf:about="http://dbpedia.org/resource/University_of_British_Columbia">
+   <foaf:member rdf:resource="#SueAndrews"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://dbpedia.org/resource/McGill_University">
+   <foaf:member rdf:resource="#MeganChellew"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Queen%27s_University">
+   <foaf:member rdf:resource="#SandraMorden"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Library_and_Archives_Canada">
+   <foaf:member rdf:resource="#ArouceWasty"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Université_de_Montréal">
+   <foaf:member rdf:resource="#Marie-HélèneVézina"/>
+  </rdf:Description>
+
+  <rdf:Description rdf:about="http://dbpedia.org/resource/Memorial_University_of_Newfoundland">
+   <foaf:member rdf:resource="#HeatherPretty"/>
+  </rdf:Description>
 
 </rdf:RDF>
