@@ -262,8 +262,8 @@
     dc:issued "1945"^^<gYear> ;
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
-    dc:subject <http://canlink.library.ualberta.ca/subject/1f9dd2ec688df39f32965f435d67018b>,
-        <http://canlink.library.ualberta.ca/subject/52d65de3ab650385c86c649e79a60ff2> ;
+    dc:subject <http://canlink.library.ualberta.ca/subject/52d65de3ab650385c86c649e79a60ff2>,
+        <http://id.loc.gov/authorities/subjects/sh85051781> ;
     dc:title "Un siècle d'enseignement français en Ontario" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
     rel:author <http://canlink.library.ualberta.ca/Person/d930b137b20eadfbd55ea7bed5682f14> .
@@ -719,7 +719,6 @@
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:subject <http://canlink.library.ualberta.ca/subject/2c8974a24c2f81748789ae4fb3862679>,
-        <http://canlink.library.ualberta.ca/subject/eed2747c7a03f52e403f08043307d67d>,
         <http://id.loc.gov/authorities/subjects/sh85051829>,
         <http://id.loc.gov/authorities/subjects/sh85052841>,
         <http://id.loc.gov/authorities/subjects/sh85095226> ;
@@ -1291,14 +1290,14 @@
         frbr:Expression,
         frbr:Work,
         schema:creativeWork ;
-    dc:creator <http://canlink.library.ualberta.ca/Person/fb112b5e15b8d902718d397b86f80a55> ;
+    dc:creator <http://canlink.library.ualberta.ca/Person/c9d1715f781b95f71d4aedc24d95f3f5> ;
     dc:issued "1952"^^<gYear> ;
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
-    dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
+    dc:publisher <http://dbpedia.org/resource/École_de_Biologie_Industrielle> ;
     dc:subject <http://canlink.library.ualberta.ca/subject/24ca74eb558b7dc10daa3833ee2ebe9a>,
         <http://id.loc.gov/authorities/subjects/sh85138085> ;
     dc:title "Contribution à l'étude du comportement de Salvelinus fontinalis fontinalis" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/fb112b5e15b8d902718d397b86f80a55> .
+    rel:author <http://canlink.library.ualberta.ca/Person/c9d1715f781b95f71d4aedc24d95f3f5> .
 
 <http://canlink.library.ualberta.ca/thesis/e617b75486c167d34c597f76ed2e5ef5> a bibo:thesis,
         frbr:Expression,
@@ -1579,9 +1578,6 @@
 
 <http://canlink.library.ualberta.ca/subject/1f7cdf27b884acd6e55b7b30c4fd7a07> a skos:Concept ;
     rdfs:label "harmonisationn de la procédure d'arbitrage commercial international" .
-
-<http://canlink.library.ualberta.ca/subject/1f9dd2ec688df39f32965f435d67018b> a skos:Concept ;
-    rdfs:label "canadiens français" .
 
 <http://canlink.library.ualberta.ca/subject/1fd6284c4bec0db2b8d9362c03dbd317> a skos:Concept ;
     rdfs:label "rural universe" .
@@ -2078,9 +2074,6 @@
 <http://canlink.library.ualberta.ca/subject/ee3ce66373ed3b716f25889ffa085445> a skos:Concept ;
     rdfs:label "judiciarisé" .
 
-<http://canlink.library.ualberta.ca/subject/eed2747c7a03f52e403f08043307d67d> a skos:Concept ;
-    rdfs:label "français (langue)" .
-
 <http://canlink.library.ualberta.ca/subject/eed9eb367b4c59a0d0d52f3a92dbf7b5> a skos:Concept ;
     rdfs:label "mémoire" .
 
@@ -2284,6 +2277,10 @@
     foaf:firstName "Ramón Alejandro" ;
     foaf:lastName "Montoya" .
 
+<http://canlink.library.ualberta.ca/Person/c9d1715f781b95f71d4aedc24d95f3f5> a foaf:Person ;
+    foaf:firstName "Gustave" ;
+    foaf:lastName "Prévost" .
+
 <http://canlink.library.ualberta.ca/Person/ca58c8cc1bc594282af2daa9c8202cae> a foaf:Person ;
     foaf:firstName "Alain" ;
     foaf:lastName "Laframboise" .
@@ -2306,10 +2303,6 @@
 <http://canlink.library.ualberta.ca/Person/deecde06ab9f93e5eabe161c50402ff4> a foaf:Person ;
     foaf:firstName "Vianney" ;
     foaf:lastName "Legendre" .
-
-<http://canlink.library.ualberta.ca/Person/fb112b5e15b8d902718d397b86f80a55> a foaf:Person ;
-    foaf:firstName "Gustave" ;
-    foaf:lastName "Prévost" .
 
 <http://canlink.library.ualberta.ca/Person/fd5c434ad9c8d54b6cdbb1c9b0ce6247> a foaf:Person ;
     foaf:firstName "Ernest" ;

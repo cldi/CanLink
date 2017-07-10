@@ -23,7 +23,7 @@ context = ssl._create_unverified_context()
 with open("files/universities.pickle", "rb") as handle:
     universities = pickle.load(handle)      # key: name, value: uri
 
-with open("files/subjects.pickle", "rb") as handle:
+with open("files/subjects_full.pickle", "rb") as handle:
     subjects = pickle.load(handle)      # key: subject name, value: uri
 
 # with open("files/authoritiesnames.pickle", "rb") as handle:
@@ -671,7 +671,7 @@ def main():
         # print("-"*50)
 
 
-    # print(g.serialize(format="n3").decode("utf-8"))
+    print(g.serialize(format="n3").decode("utf-8"))
     g.serialize("U_Montreal_100_BibliographicRecords_from_ILS.n3", format="n3")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
