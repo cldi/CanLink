@@ -509,6 +509,7 @@ class Thesis():
         g.add((URIRef(self.uri), RDF.type, FRBR.Expression)) 
         g.add((URIRef(self.uri), RDF.type, SCHEMA.creativeWork))
         g.add((URIRef(self.uri), RDF.type, BIBO.thesis))
+        g.add((URIRef(self.uri), RDF.type, URIRef("http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation")))
         # advisors
         if self.advisorUris:
             for index, uri in enumerate(self.advisorUris):
@@ -671,8 +672,8 @@ def main():
         # print("-"*50)
 
 
-    print(g.serialize(format="n3").decode("utf-8"))
-    g.serialize("U_Montreal_100_BibliographicRecords_from_ILS.n3", format="n3")
+    print(g.serialize(format="xml").decode("utf-8"))
+    # g.serialize("U_Montreal_100_BibliographicRecords_from_ILS.n3", format="n3")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 
