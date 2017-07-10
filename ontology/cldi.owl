@@ -1,10 +1,10 @@
 <?xml version="1.0"?>
-<rdf:RDF xml:base="http://canlink.library.ualberta.ca/ontologies/cwrc#" 
-  xmlns="http://canlink.library.ualberta.ca/ontologies/cwrc#" 
+<rdf:RDF xml:base="http://canlink.library.ualberta.ca/ontologies/canlink#" 
+  xmlns="http://canlink.library.ualberta.ca/ontologies/canlink#" 
   xmlns:as="http://www.w3.org/ns/activitystreams#" 
   xmlns:bio="http://purl.org/vocab/bio/0.1/" 
   xmlns:cc="http://creativecommons.org/ns#" 
-  xmlns:cwrc="http://canlink.library.ualberta.ca/ontologies/cwrc#" 
+  xmlns:cwrc="http://canlink.library.ualberta.ca/ontologies/canlink#" 
   xmlns:dbpedia="http://dbpedia.org/resource/" 
   xmlns:dc="http://purl.org/dc/terms/" 
   xmlns:dcterms="http://dublincore.org/documents/dcmi-terms/" 
@@ -28,6 +28,7 @@
   xmlns:void="http://rdfs.org/ns/void#" 
   xmlns:vs="http://www.w3.org/2003/06/sw-vocab-status/ns#" 
   xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+
   <owl:Ontology rdf:about="">
     <rdf:type rdf:resource="http://purl.org/vocommons/voaf#Vocabulary"/>
     <dc:title xml:lang="en">The CanLink Ontology</dc:title>
@@ -43,7 +44,7 @@
     <skos:definition xml:lang="fr">L'ontologie CanLink lie plusieurs vocabulaires pour représenter une collection de thèses canadiennes.</skos:definition>
     <rdfs:comment xml:lang="fr">L'ontologie CanLink lie plusieurs vocabulaires pour représenter une collection de thèses canadiennes.</rdfs:comment>
     <owl:versionInfo>1.0</owl:versionInfo>
-    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">ONTOLOGY_DATE</dc:date>
+    <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">DATE_TODAY</dc:date>
     <dc:rights rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/"/>
     <vs:term_status xml:lang="en">Testing</vs:term_status>
     <dc:creator>
@@ -62,84 +63,64 @@
         <foaf:name>Maharsh Patel</foaf:name>
       </foaf:Person>
     </dc:creator>
-    <dc:publisher>
-      <foaf:Organization rdf:about="#CLDI">
-        <foaf:name xml:lang="fr">L'initiative Canadiennes des Données Liées</foaf:name>
-        <foaf:name xml:lang="en">Canadian Linked Data Initiative</foaf:name>
-        <foaf:member rdf:resource="#MaharshPatel"/>
-        <foaf:member rdf:resource="#RobertWarren"/>
-        <foaf:member rdf:resource="#SharonFarnel"/>
-      </foaf:Organization>
-    </dc:publisher>
-    <void:inDataset rdf:resource="#datasetdefinition"/>
+    <dc:publisher rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#CLDI"/>
+    <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+    <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
     <!-- Electronic dissertations  -->
     <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
     <!-- Dissertations, Academic -->
     <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
   </owl:Ontology>
-  
-  <!-- Glue to assign University membership -->
-  <rdf:Description rdf:about="http://dbpedia.org/resource/University_of_Alberta">
-   <foaf:member rdf:resource="#MaharshPatel"/>
-   <foaf:member rdf:resource="#SharonFarnel"/>
-  </rdf:Description>
-  
-  <void:Dataset rdf:about="#datasetdefinition">
-    <dc:title xml:lang="en">The CanLink Ontology</dc:title>
-    <rdfs:label xml:lang="en">The CanLink Ontology</rdfs:label>
-    <foaf:name xml:lang="en">The CanLink Ontology</foaf:name>
-    <dc:title xml:lang="fr">L'Ontologie CanLink</dc:title>
-    <rdfs:label xml:lang="fr">L'Ontologie CanLink</rdfs:label>
-    <foaf:name xml:lang="fr">L'Ontologie CanLink</foaf:name>
-    <dc:description xml:lang="en">The CanLink ontology ties together several vocabularies to represent a Canadian thesis collection.</dc:description>
-    <skos:definition xml:lang="en">The CanLink ontology ties together several vocabularies to represent a Canadian thesis collection.</skos:definition>
-    <rdfs:comment xml:lang="en">The CanLink ontology ties together several vocabularies to represent a Canadian thesis collection.</rdfs:comment>
-    <dc:description xml:lang="fr">L'ontologie CanLink lie plusieurs vocabulaires pour représenter une collection de thèses canadiennes.</dc:description>
-    <skos:definition xml:lang="fr">L'ontologie CanLink lie plusieurs vocabulaires pour représenter une collection de thèses canadiennes.</skos:definition>
-    <rdfs:comment xml:lang="fr">L'ontologie CanLink lie plusieurs vocabulaires pour représenter une collection de thèses canadiennes.</rdfs:comment>
-    <!-- -->
-    <cc:license rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/"/>
-    <cc:Jurisdiction rdf:resource="http://dbpedia.org/resource/Canada"/>
-    <cc:attributionURL rdf:resource="http://canlink.library.ualberta.ca/"/>
-    <dc:creator rdf:resource="#RobWarren"/>
-    <dc:creator rdf:resource="#SharonFarnel"/>
-    <dc:creator rdf:resource="#MaharshPatel"/>
-    <dc:publisher rdf:resource="#CLDI"/>
-    <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/canlink"/>
-    <!-- Electronic dissertations  -->
-    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
-    <!-- Dissertations, Academic -->
-    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
-  </void:Dataset>
 
 <rdf:Description rdf:about="http://dublincore.org/documents/dcmi-terms/language">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
  <rdfs:range rdf:resource="http://id.loc.gov/vocabulary/languages"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">Most thesis are unilingual and their language is listed in the record.<rdfs:comment>
+ <rdfs:comment xml:lang="fr">Les thèses sont unilingue et le language viens du record MARC.</rdfs:comment>
 </rdf:Description>
 
 <rdf:Description rdf:about="http://dublincore.org/documents/dcmi-terms/issued">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">Deposit date.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">Date de dépot.</rdfs:comment>
 </rdf:Description>
 
-<!-- Title is not enforced by bibo, but we do. -->
 <rdf:Description rdf:about="http://dublincore.org/documents/dcmi-terms/title">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">Title is not enforced by BIBO, but we do.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">L'ontogie BIBO ne force pas un titre, donc on le fait ici.</rdfs:comment>
 </rdf:Description>
 
-<!-- CLDI will state publisher using both LOC and DCTERMS -->
-[B<rdf:Description rdf:about="http://dublincore.org/documents/dcmi-terms/publisher">
+<rdf:Description rdf:about="http://dublincore.org/documents/dcmi-terms/publisher">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
  <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">CLDI will state publisher using both LOC and DCTERMS.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">ICDL émet le triplet LOC ainsi que le DC pour le publicateur.</rdfs:comment>
 </rdf:Description>
 
 <rdf:Description rdf:about="http://id.loc.gov/vocabulary/relators/pbl">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
  <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">CLDI will state publisher using both LOC and DCTERMS.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">ICDL émet le triplet LOC ainsi que le DC pour le publicateur.</rdfs:comment>
 </rdf:Description>
 
-<!-- Not all thesis records list their advisors, but when they do, it makes use of FOAF to represent advisor. -->
 <rdf:Description rdf:about="http://id.loc.gov/vocabulary/relators/ths">
  <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">Not all thesis records list their advisors, but when they do, it makes use of FOAF to represent advisor.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">Certaine des thèses enregistre l'adviseur et le FOAF est utilisé pour cet information. </rdfs:comment>
 </rdf:Description>
 
 <!-- CLDI will state author using both LOC and DCTERMS -->
@@ -147,11 +128,19 @@
 <rdf:Description rdf:about="http://dublincore.org/documents/dcmi-terms/creator">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
  <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">CLDI will state author using both LOC and DCTERMS.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">ICDL émet le triplet LOC ainsi que le DC pour l'auteur.</rdfs:comment>
 </rdf:Description>
 
 <rdf:Description rdf:about="http://id.loc.gov/vocabulary/relators/aut">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
  <rdfs:range rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">CLDI will state author using both LOC and DCTERMS.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">ICDL émet le triplet LOC ainsi que le DC pour l'auteur.</rdfs:comment>
 </rdf:Description>
 
 <!-- CLDI makes use of either LCHS or basic SKOS for subjects -->
@@ -159,6 +148,10 @@
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
  <rdfs:range rdf:resource="http://id.loc.gov/authorities/subjects"/>
  <rdfs:range rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+ <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+ <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
+ <rdfs:comment xml:lang="en">CLDI makes use of either LCHS or basic SKOS for subjects.</rdfs:comment>
+ <rdfs:comment xml:lang="fr">L'ICDL utilise soit les sujets LCHS ou un concept SKOS.</rdfs:comment>
 </rdf:Description>
 
 </rdf:RDF>

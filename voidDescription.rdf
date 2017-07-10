@@ -145,8 +145,10 @@
         <foaf:homepage rdf:resource="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
       </foaf:Organization>
     </dc:publisher>
-    <!-- USE LOC SUBJECT HEADINGS -->
-    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh2009007122"/>
+    <!-- Electronic dissertations  -->
+    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
+    <!-- Dissertations, Academic -->
+    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
   </rdf:Description>
 
   <!-- Glue to assign University membership -->
