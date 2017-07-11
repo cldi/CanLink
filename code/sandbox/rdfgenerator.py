@@ -37,6 +37,7 @@ REL = Namespace("http://purl.org/vocab/relationship/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
+CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
 
 g.bind("foaf", FOAF)
 g.bind("dc", DC)
@@ -48,6 +49,7 @@ g.bind("schema", SCHEMA)
 g.bind("skos", SKOS)
 g.bind("rdfs", RDFS)
 g.bind("owl", OWL)
+g.bind("cwrc", CWRC)
 # used to keep non-persistent memory of the universities we have processed before
 # so that we don't need to go to dbpedia every time
 university_uri_cache = {}
@@ -509,7 +511,7 @@ class Thesis():
         g.add((URIRef(self.uri), RDF.type, FRBR.Expression)) 
         g.add((URIRef(self.uri), RDF.type, SCHEMA.creativeWork))
         g.add((URIRef(self.uri), RDF.type, BIBO.thesis))
-        g.add((URIRef(self.uri), RDF.type, URIRef("http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation")))
+        g.add((URIRef(self.uri), CWRC.hasGenre, CWRC.genreDissertation))
         # advisors
         if self.advisorUris:
             for index, uri in enumerate(self.advisorUris):
