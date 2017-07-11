@@ -67,6 +67,7 @@ class Thesis():
         self.linking = self.getLinkingControlNumber()
         self.author = self.getAuthorName()
         self.title = self.getTitle()
+        self.abstract = self.getAbstract()
         self.university = self.getUniversity()
         self.universityUri = self.getUniversityUri()
         self.authorUri = self.getAuthorUri()
@@ -129,6 +130,13 @@ class Thesis():
         if not self.record.title():
             return None
         return(self.record.title().strip("/. "))
+
+    def getAbstract(self):
+        value_520_a = getField(self.record, "520", "a")
+
+        if not value_520_a:
+            return(None)
+        return(value_520_a)
 
     def getUniversity(self): 
 
@@ -260,7 +268,7 @@ class Thesis():
 
         language = "eng"
 
-        if value_008 and len(str(value_008).split()[1]) >= 38: 
+        if value_008 and len(str(value_008).split()[1]) >= 38 and str(value_008).split()[1][35:38].isalpha(): 
             language = str(value_008).split()[1][35:38]
         elif value_041a: 
             language = value_041a[0]
@@ -503,6 +511,10 @@ class Thesis():
                 g.add((URIRef(self.authorUri), FOAF.firstName, Literal(self.author.split(",")[1].strip())))    
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
+        # abstract
+        if self.abstract:
+            for item in self.abstract:
+                g.add((URIRef(self.uri), BIBO.abstract, Literal(item)))
         # publisher
         if self.universityUri:
             g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri))) 
@@ -526,7 +538,6 @@ class Thesis():
                     g.add((URIRef(self.uri), DC.subject, URIRef(self.subjectUris[subject])))
                 else:
                     # the subject uri couldn't be found for this
-                    # create a skos:concept node, add the subject heading string as rdfs:label of that new node and then link the new node as a subject heading of the current thesis - use md5 of the lower case value of the subject heading so we don't generate doubles (Rob - June 23)
                     newSubjectUri = "http://canlink.library.ualberta.ca/subject/" + hashlib.md5(subject.lower().encode("utf-8")).hexdigest()
 
                     g.add((URIRef(newSubjectUri), RDF.type, SKOS.Concept))
@@ -543,8 +554,8 @@ class Thesis():
 
 
     def __str__(self):
-        return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s
-        """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations)
+        return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
+        """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstract)
 
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
@@ -569,7 +580,7 @@ def mergeRecords(thesis1, thesis2):
     # if thesis2 contains some authors and thesis1 contains some, then they won't be merged even though it logically makes sense to merge them --> assuming that a single field isn't split between two records
     
     # the list of attributes that need to be merged into one object
-    attributes = ["title", "author", "university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
+    attributes = ["title", "author", "abstract","university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
 
     for attribute in attributes:
         # if thesis1 doesn't have a value for this attribute, then copy it from thesis2
@@ -674,8 +685,8 @@ def main():
         # print("-"*50)
 
 
-    print(g.serialize(format="xml").decode("utf-8"))
-    # g.serialize("U_Montreal_100_BibliographicRecords_from_ILS.n3", format="n3")
+    #print(g.serialize(format="xml").decode("utf-8"))
+    g.serialize("U_Montreal_100_BibliographicRecords_from_ILS.xml", format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 
