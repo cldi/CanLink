@@ -23,17 +23,12 @@ context = ssl._create_unverified_context()
 with open("website/processing/files/universities.pickle", "rb") as handle:
     universities = pickle.load(handle)      # key: name, value: uri
 
-with open("website/processing/files/subjects.pickle", "rb") as handle:
+with open("website/processing/files/subjects_full.pickle", "rb") as handle:
     subjects = pickle.load(handle)      # key: subject name, value: uri
 
 # with open("files/authoritiesnames.pickle", "rb") as handle:
 #     names = pickle.load(handle)         # key: name, value: uri
 
-# TODO will need to convert this to a proper mysql database OR
-# maybe just keep it on the server but add it to .gitignore if doing 
-# production deployment through github
-conn = sqlite3.connect("website/processing/files/advisors.db", check_same_thread=False)
-c = conn.cursor()
 
 # set up the RDFLib output
 g = Graph()
@@ -42,6 +37,7 @@ REL = Namespace("http://purl.org/vocab/relationship/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
+CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
 
 g.bind("foaf", FOAF)
 g.bind("dc", DC)
@@ -53,6 +49,7 @@ g.bind("schema", SCHEMA)
 g.bind("skos", SKOS)
 g.bind("rdfs", RDFS)
 g.bind("owl", OWL)
+g.bind("cwrc", CWRC)
 # used to keep non-persistent memory of the universities we have processed before
 # so that we don't need to go to dbpedia every time
 university_uri_cache = {}
@@ -70,6 +67,7 @@ class Thesis():
         self.linking = self.getLinkingControlNumber()
         self.author = self.getAuthorName()
         self.title = self.getTitle()
+        self.abstract = self.getAbstract()
         self.university = self.getUniversity()
         self.universityUri = self.getUniversityUri()
         self.authorUri = self.getAuthorUri()
@@ -132,6 +130,13 @@ class Thesis():
         if not self.record.title():
             return None
         return(self.record.title().strip("/. "))
+
+    def getAbstract(self):
+        value_520_a = getField(self.record, "520", "a")
+
+        if not value_520_a:
+            return(None)
+        return(value_520_a)
 
     def getUniversity(self): 
 
@@ -263,7 +268,7 @@ class Thesis():
 
         language = "eng"
 
-        if value_008 and len(str(value_008).split()[1]) >= 38: 
+        if value_008 and len(str(value_008).split()[1]) >= 38 and str(value_008).split()[1][35:38].isalpha(): 
             language = str(value_008).split()[1][35:38]
         elif value_041a: 
             language = value_041a[0]
@@ -402,22 +407,13 @@ class Thesis():
             return None
         
         for name in self.advisors:
-            # check if it exists in the sqlite database already
-            r = c.execute("SELECT uri FROM advisors WHERE name like ? and university_uri like ? ", (name, self.universityUri,))
-            rows = r.fetchall()
-            
-            if len(rows) >= 1:
-                # found the advisor from the database - we have seen this person in a record before
-                uris.append(rows[0][0])
-                # print("FOUND VALUE")
-            
-            elif self.universityUri:
-                # generate a uri for this advisor and save it to the database for later
+            uri = ""
+            if self.universityUri:
                 uri = "http://canlink.library.ualberta.ca/Person/"+str(hashlib.md5(name.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest())
-                # save the uri to the database so that it can be reused later 
-                c.execute("INSERT INTO advisors VALUES(?, ?, ?)", (name, self.universityUri, uri,))
-                # print("ADDED VALUE")
-                uris.append(uri)
+            else:
+                uri = "http://canlink.library.ualberta.ca/Person/"+str(hashlib.md5(name.encode("utf-8")).hexdigest())
+
+            uris.append(uri)
 
         return uris
 
@@ -515,6 +511,10 @@ class Thesis():
                 g.add((URIRef(self.authorUri), FOAF.firstName, Literal(self.author.split(",")[1].strip())))    
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
+        # abstract
+        if self.abstract:
+            for item in self.abstract:
+                g.add((URIRef(self.uri), BIBO.abstract, Literal(item)))
         # publisher
         if self.universityUri:
             g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri))) 
@@ -523,6 +523,7 @@ class Thesis():
         g.add((URIRef(self.uri), RDF.type, FRBR.Expression)) 
         g.add((URIRef(self.uri), RDF.type, SCHEMA.creativeWork))
         g.add((URIRef(self.uri), RDF.type, BIBO.thesis))
+        g.add((URIRef(self.uri), CWRC.hasGenre, CWRC.genreDissertation))
         # advisors
         if self.advisorUris:
             for index, uri in enumerate(self.advisorUris):
@@ -537,7 +538,6 @@ class Thesis():
                     g.add((URIRef(self.uri), DC.subject, URIRef(self.subjectUris[subject])))
                 else:
                     # the subject uri couldn't be found for this
-                    # create a skos:concept node, add the subject heading string as rdfs:label of that new node and then link the new node as a subject heading of the current thesis - use md5 of the lower case value of the subject heading so we don't generate doubles (Rob - June 23)
                     newSubjectUri = "http://canlink.library.ualberta.ca/subject/" + hashlib.md5(subject.lower().encode("utf-8")).hexdigest()
 
                     g.add((URIRef(newSubjectUri), RDF.type, SKOS.Concept))
@@ -554,8 +554,8 @@ class Thesis():
 
 
     def __str__(self):
-        return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s
-        """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations)
+        return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
+        """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstract)
 
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
@@ -580,7 +580,7 @@ def mergeRecords(thesis1, thesis2):
     # if thesis2 contains some authors and thesis1 contains some, then they won't be merged even though it logically makes sense to merge them --> assuming that a single field isn't split between two records
     
     # the list of attributes that need to be merged into one object
-    attributes = ["title", "author", "university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri"]
+    attributes = ["title", "author", "abstract","university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
 
     for attribute in attributes:
         # if thesis1 doesn't have a value for this attribute, then copy it from thesis2
@@ -677,22 +677,20 @@ def process(records_file):
             records[controlNumber] = thesis
         
     for thesis in records.values():
-        # TODO print(thesis)
+        # print(thesis)
         theses.append(str(thesis))
         if validateRecord(thesis, errors, warnings):
             # if there were no errors (could still have warnings) then generate RDF
             thesis.generateRDF()
-        # TODO print("-"*50)
+        # print("-"*50)
 
-    print(g.serialize(format="n3").decode("utf-8"))
-    conn.commit()
-    # conn.close()      causes a problem when refreshing the website and submitting again
+
+    #print(g.serialize(format="xml").decode("utf-8"))
+    g.serialize("qs_thesis.xml", format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 
     # return(sorted(list(set(errors))), sorted(list(set(warnings))))
-    return(errors, warnings, theses)
-    
-
-
-
+    # NOTE
+    # return(errors)
+    return([errors, warnings, theses])
