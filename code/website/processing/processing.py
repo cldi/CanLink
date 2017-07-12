@@ -686,7 +686,7 @@ def process(records_file):
 
 
     #print(g.serialize(format="xml").decode("utf-8"))
-    g.serialize("qs_thesis.xml", format="xml")
+    g.serialize("website/processing/tmp/qs_thesis.xml", format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 
