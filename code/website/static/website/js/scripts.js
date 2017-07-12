@@ -42,7 +42,7 @@ function submitForm(){
 
     //Send data  
     $.ajax({
-        url: "submit/", 
+        url: "thesisSubmission/", 
         type: "POST", // http method
         data: {
             csrfmiddlewaretoken: csrftoken,
@@ -60,32 +60,35 @@ function submitForm(){
             // // TODO check the response here and do something with it
             console.log(my_response);
 
-            if (my_response.status == 1){
-                if (my_response.errors.length >= 1){
-                    document.getElementById("errors").style.display = "block";
-                    document.getElementById("pasteAreaSubmitButton").style.background = "#FF3838";
-                    $("#pasteAreaSubmitButtonText").html('Errors Occured');
-                    
-                    for(error in my_response.errors){
-                        console.log(my_response.errors[error]);
-                        $("#errors_body").append("<div class='file_error'><div class='file_error_message'>" + my_response.errors[error] + "</div>");
-                    }
+            localStorage.setItem('my_response', JSON.stringify(my_response));
 
-                }
-                if (my_response.warnings.length >= 1){
-                    document.getElementById("warnings").style.display = "block";
-                    for(warning in my_response.warnings){
-                        console.log(my_response.warnings[warning]);
-                        $("#warnings_body").append("<div class='file_warning'><div class='file_warning_message'>" + my_response.warnings[warning] + "</div>");
-                    }
-                }
-                if (my_response.theses.length >= 1){
-                    document.getElementById("theses").style.display = "block";
-                    for(thesis in my_response.theses){
-                        console.log(my_response.theses[thesis]);
-                        $("#theses_body").append("<div class='file_thesis'><div class='file_thesis_message'>" + my_response.theses[thesis] + "</div>");
-                    }
-                }
+            if (my_response.status == 1){
+                window.location.replace("/thesisSubmission")
+                // if (my_response.errors.length >= 1){
+                //     document.getElementById("errors").style.display = "block";
+                //     document.getElementById("pasteAreaSubmitButton").style.background = "#FF3838";
+                //     $("#pasteAreaSubmitButtonText").html('Errors Occured');
+                    
+                //     for(error in my_response.errors){
+                //         console.log(my_response.errors[error]);
+                //         $("#errors_body").append("<div class='file_error'><div class='file_error_message'>" + my_response.errors[error] + "</div>");
+                //     }
+
+                // }
+                // if (my_response.warnings.length >= 1){
+                //     document.getElementById("warnings").style.display = "block";
+                //     for(warning in my_response.warnings){
+                //         console.log(my_response.warnings[warning]);
+                //         $("#warnings_body").append("<div class='file_warning'><div class='file_warning_message'>" + my_response.warnings[warning] + "</div>");
+                //     }
+                // }
+                // if (my_response.theses.length >= 1){
+                //     document.getElementById("theses").style.display = "block";
+                //     for(thesis in my_response.theses){
+                //         console.log(my_response.theses[thesis]);
+                //         $("#theses_body").append("<div class='file_thesis'><div class='file_thesis_message'>" + my_response.theses[thesis] + "</div>");
+                //     }
+                // }
             }
             else{
                 // recaptcha error - someone tampered with the recaptcha code

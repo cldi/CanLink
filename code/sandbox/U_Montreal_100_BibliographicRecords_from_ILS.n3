@@ -1,4 +1,5 @@
 @prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix cwrc: <http://sparql.cwrc.ca/ontologies/cwrc#> .
 @prefix dc: <http://purl.org/dc/elements/1.1/> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/> .
 @prefix frbr: <http://purl.org/vocab/frbr/core#> .
@@ -26,7 +27,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Les relations entre le Canada et les États-Unis" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/b3d4ee4ff2f26bd2fdff4b89fc25d099> .
+    rel:author <http://canlink.library.ualberta.ca/Person/b3d4ee4ff2f26bd2fdff4b89fc25d099> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/0753139b011b4d9a61f05e91f5bf7b2d> a bibo:thesis,
         frbr:Expression,
@@ -51,7 +53,8 @@
     dc:title "L'arbitrage commercial international et les garanties procédurales" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> ;
     rel:author <http://id.loc.gov/authorities/names/no2008037016> ;
-    rel:ths <http://canlink.library.ualberta.ca/Person/0e8e5fd9141749a805c581ff466ee2b0> .
+    rel:ths <http://canlink.library.ualberta.ca/Person/0e8e5fd9141749a805c581ff466ee2b0> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/07c137043c500aa61cf909ce85b303fd> a bibo:thesis,
         frbr:Expression,
@@ -82,7 +85,8 @@
     dc:title "Entre mythe et corps : les quizilas dans le Candomblé du Brésil" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/no2014168692> ;
-    rel:ths <http://canlink.library.ualberta.ca/Person/e20ad673193bd8d2461edd14c88c4c6b> .
+    rel:ths <http://canlink.library.ualberta.ca/Person/e20ad673193bd8d2461edd14c88c4c6b> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/096c2b297dee0d424041b7275fba0b09> a bibo:thesis,
         frbr:Expression,
@@ -101,7 +105,8 @@
         <http://id.loc.gov/authorities/subjects/sh88000495> ;
     dc:title "Un système de fichiers évolué pour un mini-ordinateur" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/n86867328> .
+    rel:author <http://id.loc.gov/authorities/names/n86867328> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/0a216e8d349a809cdc4fcaf95e430019> a bibo:thesis,
         frbr:Expression,
@@ -113,7 +118,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Le primitivisme dans l'oeuvre de Françoise Sullivan" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n2004009202> .
+    rel:author <http://id.loc.gov/authorities/names/n2004009202> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/0c148f37b0b1b753b2a52c79238659c4> a bibo:thesis,
         frbr:Expression,
@@ -122,7 +128,8 @@
     dc:issued "1896"^^<gYear> ;
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
     dc:title "De la contrainte par corps" ;
-    bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> .
+    bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/1055cabacaf59200e425bb718791b503> a bibo:thesis,
         frbr:Expression,
@@ -135,7 +142,8 @@
     dc:subject <http://id.loc.gov/authorities/subjects/sh99004861> ;
     dc:title "Etudes expérimentales sur la pathogénie de l'invation cancéreuse" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/1e57a09272c93ca584c7cc0f0a1705e3> .
+    rel:author <http://canlink.library.ualberta.ca/Person/1e57a09272c93ca584c7cc0f0a1705e3> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/10c5f1e4ac2253d381f7e71756bfb8af> a bibo:thesis,
         frbr:Expression,
@@ -147,7 +155,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Pierre-Elliott Trudeau et la centralisation des pouvoirs politiques stratégiques" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/0290ce87e6e75218290f37e479bf0659> .
+    rel:author <http://canlink.library.ualberta.ca/Person/0290ce87e6e75218290f37e479bf0659> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/10fa0dd070f283f5c8d4bc1e85ad7aeb> a bibo:thesis,
         frbr:Expression,
@@ -159,7 +168,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "La invención del sujeto moderno gracias a la inquisición novohispana" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/no2015036673> .
+    rel:author <http://id.loc.gov/authorities/names/no2015036673> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/13c2524cf1f620a62433f54ad35cc6ef> a bibo:thesis,
         frbr:Expression,
@@ -173,7 +183,8 @@
         <http://canlink.library.ualberta.ca/subject/d4e6beb67c0c66abd09f33486963eb76> ;
     dc:title "Étude des propriétés atmosphériques de naines blanches chaudes riches en hélium" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/no2015079705> .
+    rel:author <http://id.loc.gov/authorities/names/no2015079705> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/16e75db5977337abb0bdee79e6ad7514> a bibo:thesis,
         frbr:Expression,
@@ -187,7 +198,8 @@
         <http://id.loc.gov/authorities/subjects/sh85095558> ;
     dc:title "Préparation des dérivés organomagnésiens sans éther" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> .
+    rel:author <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/19c41033395ad3b49012f944ffef8274> a bibo:thesis,
         frbr:Expression,
@@ -201,7 +213,8 @@
         <http://id.loc.gov/authorities/subjects/sh85125350> ;
     dc:title "Le problème de la définition de l'âme chez Aristote" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/81b2c6ac589cefecdfe2246d1a7db2e1> .
+    rel:author <http://canlink.library.ualberta.ca/Person/81b2c6ac589cefecdfe2246d1a7db2e1> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/19c85306aeee0ebd56fcde9c7108b2b6> a bibo:thesis,
         frbr:Expression,
@@ -213,7 +226,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "L'intervention anglaise en Égypte et ses fondements, 1875-1882" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n98007050> .
+    rel:author <http://id.loc.gov/authorities/names/n98007050> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/1e17b270a9723a6567349d54ed3441c0> a bibo:thesis,
         frbr:Expression,
@@ -225,7 +239,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Les voies de fait au jour le jour : l'influence du temps sur les voies de fait à Montréal en 1995" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/6796e7474674fbcbd2b9d3472c7efe3a> .
+    rel:author <http://canlink.library.ualberta.ca/Person/6796e7474674fbcbd2b9d3472c7efe3a> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/2117db78e4cb245f3a7a529c49260f08> a bibo:thesis,
         frbr:Expression,
@@ -240,7 +255,8 @@
         <http://id.loc.gov/authorities/subjects/sh85025528>,
         <http://id.loc.gov/authorities/subjects/sh85136729> ;
     dc:title "Développement industriel, problème social et systèmes d'action à la naissance du syndicalisme catholique" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9> .
+    rel:author <http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/22b3ffa574e91fd580a86f0bd301a576> a bibo:thesis,
         frbr:Expression,
@@ -252,7 +268,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Musique in-ouie dans la bande dessinée" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/328a0ca680396823bd29f6e7b3c8cee5> .
+    rel:author <http://canlink.library.ualberta.ca/Person/328a0ca680396823bd29f6e7b3c8cee5> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/2336806c041c19015be932dd478eccb4> a bibo:thesis,
         frbr:Expression,
@@ -266,7 +283,8 @@
         <http://id.loc.gov/authorities/subjects/sh85051781> ;
     dc:title "Un siècle d'enseignement français en Ontario" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/d930b137b20eadfbd55ea7bed5682f14> .
+    rel:author <http://canlink.library.ualberta.ca/Person/d930b137b20eadfbd55ea7bed5682f14> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/23bf38efefbae5b46b953272d78097c4> a bibo:thesis,
         frbr:Expression,
@@ -278,7 +296,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Propriétés atmosphériques des étoiles naines blanches froides de type DA" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/85b9a110878d79abbad0da1fcac3aa8a> .
+    rel:author <http://canlink.library.ualberta.ca/Person/85b9a110878d79abbad0da1fcac3aa8a> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/252aa5150ebdbe5cccbf44e25ce3f273> a bibo:thesis,
         frbr:Expression,
@@ -295,7 +314,8 @@
         <http://canlink.library.ualberta.ca/subject/c84b446c8058ec8eb839038779980bd2> ;
     dc:title "Étude de l'évolution spectrale des étoiles naines blanches froides riches en hélium : analyse spectroscopique et photométrique des étoiles de type DQ et DZ" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/no2015079705> .
+    rel:author <http://id.loc.gov/authorities/names/no2015079705> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/27c2451efa0c7d7393a3f72fe46a3966> a bibo:thesis,
         frbr:Expression,
@@ -314,7 +334,8 @@
         <http://canlink.library.ualberta.ca/subject/fc1f052f5a14cb7a75bf0236ccfe6478> ;
     dc:title "Lorsque le temps devient espace : analyse du deuxième livre d'études pour piano de György Ligeti" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/nb2002078086> .
+    rel:author <http://id.loc.gov/authorities/names/nb2002078086> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/296271061042b448538962b405c1aa28> a bibo:thesis,
         frbr:Expression,
@@ -330,7 +351,8 @@
         <http://id.loc.gov/authorities/subjects/sh85081907> ;
     dc:title "Spectrométrie de masse des composés peroxydiques et étude sur les réactions des atomes de mercure dans leur état 6(³p₁)" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n88104967> .
+    rel:author <http://id.loc.gov/authorities/names/n88104967> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/33861f14a0cb69be47a03cbe4020efa4> a bibo:thesis,
         frbr:Expression,
@@ -342,7 +364,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Arthur Buies, journaliste et chroniqueur" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/48799c61d6cb906bf62cf2f1d84c91a6> .
+    rel:author <http://canlink.library.ualberta.ca/Person/48799c61d6cb906bf62cf2f1d84c91a6> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/35b119e2ce2f3e5d82330ce2b20af80e> a bibo:thesis,
         frbr:Expression,
@@ -355,7 +378,8 @@
     dc:subject <http://id.loc.gov/authorities/subjects/sh85008854> ;
     dc:title "Quelques aspects de la génécologie de deux espèces d'Aster (Asteraceae), A. Acuminatus Michaux et A. nemoralis aiton et de leur hybride naturel : A.X Blakei (Porter) house" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/no96018459> .
+    rel:author <http://id.loc.gov/authorities/names/no96018459> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/3899c767c5797249ca22b26f3263e65b> a bibo:thesis,
         frbr:Expression,
@@ -368,7 +392,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/e1dfd13a7abe2b6084b3e33cd239a720> ;
     dc:title "Sujets et identités multiples : analyse des histoires de vie d'un groupe d'immigrants italiens à Montréal" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n2006019625> .
+    rel:author <http://id.loc.gov/authorities/names/n2006019625> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/3a3852f0a859a7ce5a26a27c56f40520> a bibo:thesis,
         frbr:Expression,
@@ -379,7 +404,8 @@
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Les \"Montrealers\" et la crise politique du Bas-Canada (juillet 1835- mars 1836)" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> .
+    rel:author <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/3c6f30ae34d3dfdf4d3fb3ee432654c8> a bibo:thesis,
         frbr:Expression,
@@ -398,7 +424,8 @@
     dc:title "Becoming and impermanence in Nietzsche's Philosophy" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/no2014159120> ;
-    rel:ths <http://canlink.library.ualberta.ca/Person/817ad09c0d122fa3d9d047d950c31e52> .
+    rel:ths <http://canlink.library.ualberta.ca/Person/817ad09c0d122fa3d9d047d950c31e52> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/4363e9f7778d71dbe14776db2cdc31b4> a bibo:thesis,
         frbr:Expression,
@@ -418,7 +445,8 @@
         <http://id.loc.gov/authorities/subjects/sh85099805> ;
     dc:title "Organisational system and performance of post-disaster reconstruction projects" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n2009011162> .
+    rel:author <http://id.loc.gov/authorities/names/n2009011162> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/4832708c8c72213d4d0df723c94b5670> a bibo:thesis,
         frbr:Expression,
@@ -436,7 +464,8 @@
         <http://id.loc.gov/authorities/subjects/sh85118338> ;
     dc:title "La santé des écoliers" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/master> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/4b4fd6ed97b881c1d9c3cc1176a26953> .
+    rel:author <http://canlink.library.ualberta.ca/Person/4b4fd6ed97b881c1d9c3cc1176a26953> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/4a589e19aa7128ca6d654f3e415ccc5b> a bibo:thesis,
         frbr:Expression,
@@ -451,7 +480,8 @@
         <http://canlink.library.ualberta.ca/subject/894860f25818b3e8e78560f1c3997a87> ;
     dc:title "Heidegger's reading of Nietzsche as a point of access to his interpretation of modern technology" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/no2014159120> .
+    rel:author <http://id.loc.gov/authorities/names/no2014159120> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/4c15cada62913fa0c8545ffbcdb47ced> a bibo:thesis,
         frbr:Expression,
@@ -463,7 +493,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "The religious and philosophical thought of George Eliot" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/41eadabf8bdcea939c54d570762fdd93> .
+    rel:author <http://canlink.library.ualberta.ca/Person/41eadabf8bdcea939c54d570762fdd93> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/5368cd299c025bf29a6c881ea215461a> a bibo:thesis,
         frbr:Expression,
@@ -478,7 +509,8 @@
         <http://id.loc.gov/authorities/subjects/sh85025011> ;
     dc:title "Les normes de l'image sacrée de la seconde moitié du cinquecento" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/ca58c8cc1bc594282af2daa9c8202cae> .
+    rel:author <http://canlink.library.ualberta.ca/Person/ca58c8cc1bc594282af2daa9c8202cae> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/60497377ae32134e4511ad6606c11a7c> a bibo:thesis,
         frbr:Expression,
@@ -492,7 +524,8 @@
         <http://canlink.library.ualberta.ca/subject/d9996505ddb7d165a6f205281a32e341>,
         <http://id.loc.gov/authorities/subjects/sh85090150> ;
     dc:title "La Montreal Gazette et le nationalisme canadien, 1835-1842" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> .
+    rel:author <http://canlink.library.ualberta.ca/Person/e2f90091e62dd7d37c3c494e0abe90c9> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/61460fdce284f47d154c192d15cefde0> a bibo:thesis,
         frbr:Expression,
@@ -500,7 +533,8 @@
         schema:creativeWork ;
     dc:issued "1952"^^<gYear> ;
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
-    dc:title "Une église paroissiale comprenant: l'église proprement dite, une chapelle, la sacristie, le presbytère et les bureaux" .
+    dc:title "Une église paroissiale comprenant: l'église proprement dite, une chapelle, la sacristie, le presbytère et les bureaux" ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/625d47dc371d416ddf26d5414a2c95a5> a bibo:thesis,
         frbr:Expression,
@@ -516,7 +550,8 @@
         <http://id.loc.gov/authorities/subjects/sh85037219> ;
     dc:title "Flore desmidiale de la région de Montréal" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/1bbb7893811811a62f53e03ed45a1ffa> .
+    rel:author <http://canlink.library.ualberta.ca/Person/1bbb7893811811a62f53e03ed45a1ffa> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/6482b41459e020292e994224830ec3b4> a bibo:thesis,
         frbr:Expression,
@@ -528,7 +563,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Le poète Saint-Denys-Garneau" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n80156239> .
+    rel:author <http://id.loc.gov/authorities/names/n80156239> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/6e42938562a42d4f71703783dcaa135c> a bibo:thesis,
         frbr:Expression,
@@ -540,7 +576,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Identité africaine et mythe européen dans Un nègre à Paris de Bernard B. Dadié" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n2016008187> .
+    rel:author <http://id.loc.gov/authorities/names/n2016008187> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/71b4739c65cc3b3c464dab518da6f466> a bibo:thesis,
         frbr:Expression,
@@ -552,7 +589,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Olivar Asselin" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/a8c733019321c62f097493d3a38af462> .
+    rel:author <http://canlink.library.ualberta.ca/Person/a8c733019321c62f097493d3a38af462> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/724cffac1e79f58770d7327e6ba31cf3> a bibo:thesis,
         frbr:Expression,
@@ -564,7 +602,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Le théâtre de Jean Anouilh" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/613784c95107a0dc70b3b92960ac9ba7> .
+    rel:author <http://canlink.library.ualberta.ca/Person/613784c95107a0dc70b3b92960ac9ba7> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/750c61b1579a1b505804832c333c95f7> a bibo:thesis,
         frbr:Expression,
@@ -592,7 +631,8 @@
     dc:title "Vérité et amour : une lecture de \"La théologique\" de Hans Urs von Balthasar" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://canlink.library.ualberta.ca/Person/548839a6f3dfb30ad17924b025b01875> ;
-    rel:ths <http://canlink.library.ualberta.ca/Person/9c77b7af94a7a515190eef5e459cadae> .
+    rel:ths <http://canlink.library.ualberta.ca/Person/9c77b7af94a7a515190eef5e459cadae> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/754c95668175e440cdd4f6eccc250ad1> a bibo:thesis,
         frbr:Expression,
@@ -606,7 +646,8 @@
         <http://id.loc.gov/authorities/subjects/sh85077482> ;
     dc:title "L'alphabétisation fonctionnelle dans les formations sociales dépendantes : pratiques et idéologies" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/n85302944> .
+    rel:author <http://id.loc.gov/authorities/names/n85302944> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/78a7acf42cfdf068d2103b0292626a41> a bibo:thesis,
         frbr:Expression,
@@ -620,7 +661,8 @@
         <http://id.loc.gov/authorities/subjects/sh85147609> ;
     dc:title "La femme dans la Bible sa destinée" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/4647959d06d7baf6aa74bb307c252aca> .
+    rel:author <http://canlink.library.ualberta.ca/Person/4647959d06d7baf6aa74bb307c252aca> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/7a9d30d4c8c500a1ba297519734562a5> a bibo:thesis,
         frbr:Expression,
@@ -637,7 +679,8 @@
         <http://canlink.library.ualberta.ca/subject/a75b58171f13e25dbb519c08d0775483> ;
     dc:title "Le virage métaphysique dans le Sophiste de Platon : héritage éléatique et intrusion sophistique" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/no2016102323> .
+    rel:author <http://id.loc.gov/authorities/names/no2016102323> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/7cdcd680dc59a1ca685cf0adb28224db> a bibo:thesis,
         frbr:Expression,
@@ -649,7 +692,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Évaluation de la fiabilité et de la validité d'un index d'humanisation des soins" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/n2007183064> .
+    rel:author <http://id.loc.gov/authorities/names/n2007183064> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/8163f160a983d3bcc9384d82cf3d77ad> a bibo:thesis,
         frbr:Expression,
@@ -661,7 +705,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "La présence de la musique dans Concert baroque d'Alejo Carpentier" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/nb2002078086> .
+    rel:author <http://id.loc.gov/authorities/names/nb2002078086> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/85439970d4a0d65626be048a2d6f4a09> a bibo:thesis,
         frbr:Expression,
@@ -691,7 +736,8 @@
     dc:title "Préparation, caractérisation et étude de réactivité de complexes de nickel comportant un ligand de type \"pincer\"" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/nb2013003333> ;
-    rel:ths <http://canlink.library.ualberta.ca/Person/de95f0b46cc1bcf2e9f48d3cc012790d> .
+    rel:ths <http://canlink.library.ualberta.ca/Person/de95f0b46cc1bcf2e9f48d3cc012790d> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/8545de1e6e26a003bef9900c637ede49> a bibo:thesis,
         frbr:Expression,
@@ -708,7 +754,8 @@
         <http://canlink.library.ualberta.ca/subject/f947b4efbb84671de83a240489586ca8> ;
     dc:title "El archipiélago de la memoria en la novela de la migración" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/no2015036673> .
+    rel:author <http://id.loc.gov/authorities/names/no2015036673> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/896e2a8c0a02940968754d8b364fa9ff> a bibo:thesis,
         frbr:Expression,
@@ -724,7 +771,8 @@
         <http://id.loc.gov/authorities/subjects/sh85095226> ;
     dc:title "L'influence des erreurs en langue seconde sur la communication orale" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n88665850> .
+    rel:author <http://id.loc.gov/authorities/names/n88665850> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/943b3b8692e5f6285a1a0a40416d00c8> a bibo:thesis,
         frbr:Expression,
@@ -737,7 +785,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/83185494283dd5d10856cdde4202ceed> ;
     dc:title "Principes de la reconnaissance des acquis" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n90718702> .
+    rel:author <http://id.loc.gov/authorities/names/n90718702> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/9444e42411f1145ce35cc627ef68b852> a bibo:thesis,
         frbr:Expression,
@@ -751,7 +800,8 @@
         <http://id.loc.gov/authorities/subjects/sh85108801> ;
     dc:title "L'opinion canadienne-française et les problèmes d'éducation au Bas-Canada, 1840-1846" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/des> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/8279cba5bd5a48b005dd20997c840ecb> .
+    rel:author <http://canlink.library.ualberta.ca/Person/8279cba5bd5a48b005dd20997c840ecb> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/9739c1fe732ce8d5c021e8cd3fefdef3> a bibo:thesis,
         frbr:Expression,
@@ -762,7 +812,8 @@
     dc:language <http://id.loc.gov/vocabulary/languages/fre> ;
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Acton Vale et son évolution" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1> .
+    rel:author <http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/981736ea14cf9de41e2403a05876172e> a bibo:thesis,
         frbr:Expression,
@@ -774,7 +825,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Pratiques et stratégies migratoires : le cas des italiens originaires du Frioul" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/n2006019625> .
+    rel:author <http://id.loc.gov/authorities/names/n2006019625> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/99118474bd806fd349b42e4d12ddfa5d> a bibo:thesis,
         frbr:Expression,
@@ -787,7 +839,8 @@
     dc:subject <http://id.loc.gov/authorities/subjects/sh85026719> ;
     dc:title "Essai d'analyse anthropologique de quelques systèmes de classification documentaire" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/no90009715> .
+    rel:author <http://id.loc.gov/authorities/names/no90009715> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/9a021ff382664da8455ad5153e3c76b5> a bibo:thesis,
         frbr:Expression,
@@ -799,7 +852,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Le débat de la spécificité de la morale chrétienne : 1966-1976" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/no2010101795> .
+    rel:author <http://id.loc.gov/authorities/names/no2010101795> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/9c44918f924bab22367b1bc8e748b596> a bibo:thesis,
         frbr:Expression,
@@ -812,7 +866,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/51be4350ca65402d0c995958409adaed>,
         <http://id.loc.gov/authorities/subjects/sh85088762> ;
     dc:title "Nouvelle approche de la conception du matériau sonore dans les oeuvres post-sérielles : une analyse du quintette de Serge Garant" ;
-    rel:author <http://id.loc.gov/authorities/names/n87123622> .
+    rel:author <http://id.loc.gov/authorities/names/n87123622> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/9da189132ab04bd8c5407fd52a531851> a bibo:thesis,
         frbr:Expression,
@@ -826,7 +881,8 @@
         <http://canlink.library.ualberta.ca/subject/8b0fc2ffaa0d40b8ce0be2508be6646f> ;
     dc:title "L'instruction sur les deux esprits de la règle de la communauté (IQS 3,13-4,26) et ses affinités perses" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/06b891673851f29119d14777bd201e92> .
+    rel:author <http://canlink.library.ualberta.ca/Person/06b891673851f29119d14777bd201e92> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/9f2acb0a9866b62befe059bb304013c6> a bibo:thesis,
         frbr:Expression,
@@ -838,6 +894,7 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Understanding confusion : a historical and critical essay on the constitution of Cameroon" ;
     rel:author <http://id.loc.gov/authorities/names/no2013070066> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <>,
         <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
 
@@ -853,7 +910,8 @@
         <http://id.loc.gov/authorities/subjects/sh2002006447> ;
     dc:title "Réhabilitation des anciens combattants" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/d0d81020ead177da306f453b955792a2> .
+    rel:author <http://canlink.library.ualberta.ca/Person/d0d81020ead177da306f453b955792a2> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/b217e762f2011ecc11d140a914f9484e> a bibo:thesis,
         frbr:Expression,
@@ -867,7 +925,8 @@
         <http://id.loc.gov/authorities/subjects/sh85071166> ;
     dc:title "Délinquance juvénile : perspectives épidémiologique et stigmatique" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n83328074> .
+    rel:author <http://id.loc.gov/authorities/names/n83328074> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/b254343166418a48aa019fcef0287bed> a bibo:thesis,
         frbr:Expression,
@@ -883,7 +942,8 @@
         <http://id.loc.gov/authorities/subjects/sh85131626> ;
     dc:title "La sociologie du syndicalisme de Robert Michels" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n78092749> .
+    rel:author <http://id.loc.gov/authorities/names/n78092749> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/b3e0c6261715302c9d15b8e8b9a78635> a bibo:thesis,
         frbr:Expression,
@@ -900,7 +960,8 @@
         <http://id.loc.gov/authorities/subjects/sh87006824> ;
     dc:title "Les problèmes d'une adolescente de foyer désuni : une étude de cas" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> .
+    rel:author <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/b5a5666ac167614a12d24ef077a87ae3> a bibo:thesis,
         frbr:Expression,
@@ -916,7 +977,8 @@
         <http://canlink.library.ualberta.ca/subject/f017d6bcd861b77754d3d47b98611dff> ;
     dc:title "Le festin comique : le motif alimentaire dans la structure dramatique d'Aristophane" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/no2016102323> .
+    rel:author <http://id.loc.gov/authorities/names/no2016102323> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/bc5725c44661d95e854f15231767e07f> a bibo:thesis,
         frbr:Expression,
@@ -928,7 +990,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:subject <http://canlink.library.ualberta.ca/subject/89d3b20edb26b9efcf87a7827d6280b9> ;
     dc:title "Poésie et silence : lecture de Fernand Ouellette, Gaston Miron et Paul-Marie Lapointe" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/36e05bafdd89d97923146984f329d6b9> .
+    rel:author <http://canlink.library.ualberta.ca/Person/36e05bafdd89d97923146984f329d6b9> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/bd95605495d1a826f34704986a8c312d> a bibo:thesis,
         frbr:Expression,
@@ -944,6 +1007,7 @@
     dc:title "Le projet analogue : les phases analogiques du projet d'architecture en situation pédagogique" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/no2006061773> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <>,
         <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
 
@@ -958,6 +1022,7 @@
     dc:title "Responsabilité pénale et troubles mentaux : histoire de la folie en droit pénal français, anglais et canadien" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/no2002046395> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <>,
         <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
 
@@ -971,7 +1036,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "La conscription de 1917 d'après les journaux français de Montréal" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/a1356bf027b49d1c35e3f3953690b118> .
+    rel:author <http://canlink.library.ualberta.ca/Person/a1356bf027b49d1c35e3f3953690b118> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c0d3242a9081f0375a9fdd5a80332a47> a bibo:thesis,
         frbr:Expression,
@@ -983,7 +1049,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "L'influence de la consistance et de la similarité sur la recherche visuelle et mnésique" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/9da4466f8b816637976f7bdae9154bb0> .
+    rel:author <http://canlink.library.ualberta.ca/Person/9da4466f8b816637976f7bdae9154bb0> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c1bcaaf5b5fe7d4caa84d261bd796ae9> a bibo:thesis,
         frbr:Expression,
@@ -995,7 +1062,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "L'histoire et la doctrine de l'enrichissement sans cause en droit civil québécois" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh2012003813> ;
-    rel:author <http://id.loc.gov/authorities/names/n90661135> .
+    rel:author <http://id.loc.gov/authorities/names/n90661135> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c264a265759363745376b7b8d751af1e> a bibo:thesis,
         frbr:Expression,
@@ -1014,7 +1082,8 @@
         <http://id.loc.gov/authorities/subjects/sh85104910> ;
     dc:title "Población y sociedad en un real de minas de la frontera norte Novohispana : San Luis Potosí, de finales del siglo XVI a 1810" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/c83688c03816ea89526ad4d012efe464> .
+    rel:author <http://canlink.library.ualberta.ca/Person/c83688c03816ea89526ad4d012efe464> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c274fbe48fa222189a683a367d59d101> a bibo:thesis,
         frbr:Expression,
@@ -1028,7 +1097,8 @@
         <http://id.loc.gov/authorities/subjects/sh85128731> ;
     dc:title "La grève des instituteurs : Une étude du caractère moral du conflit survenu entre la Commission des Écoles Catholiques de Montréal et l'Alliance des Professeurs Catholiques de Montréal, du 17 au 24 janvier 1949" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/a6696dab1fd42a7c967d37ad9b63aad3> .
+    rel:author <http://canlink.library.ualberta.ca/Person/a6696dab1fd42a7c967d37ad9b63aad3> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c3ce6513a1b479d8413068b1a7b44e16> a bibo:thesis,
         frbr:Expression,
@@ -1047,7 +1117,8 @@
         <http://id.loc.gov/authorities/subjects/sh2002005444> ;
     dc:title "L'essor du livre illustré au Québec en relation avec les milieux artistiques et éditoriaux français, 1880-1940" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/no2015013013> .
+    rel:author <http://id.loc.gov/authorities/names/no2015013013> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c536d7bce3077b0cd64b59a6600fc2a1> a bibo:thesis,
         frbr:Expression,
@@ -1059,7 +1130,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Du considérable : pour une grammaire de la fiction esthétique" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/nb2014002841> .
+    rel:author <http://id.loc.gov/authorities/names/nb2014002841> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/c880c3fb49eb5df3a8a60d86e39d0472> a bibo:thesis,
         frbr:Expression,
@@ -1078,6 +1150,7 @@
     dc:title "L'inceste romanesque en France, 1715-1789" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/nb2012001538> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <>,
         <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
 
@@ -1092,6 +1165,7 @@
     dc:title "La spectature prise au jeu : la narration, la cognition et le jeu dans le cinéma narratif" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/no00061317> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <>,
         <http://search.proquest.com/pqdtlocal1006863/advanced?accountid=12543> .
 
@@ -1105,7 +1179,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Les instituts séculiers et le problème de la sécularité" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n93083513> .
+    rel:author <http://id.loc.gov/authorities/names/n93083513> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/ccf1b70af797a500fc7bec0033b5b35f> a bibo:thesis,
         frbr:Expression,
@@ -1117,7 +1192,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "La région de Sept-Iles, côte nord du Saint-Laurent : étude morphologique" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n83238110> .
+    rel:author <http://id.loc.gov/authorities/names/n83238110> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/cef37e4063dec1b410547a2041746761> a bibo:thesis,
         frbr:Expression,
@@ -1129,7 +1205,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "L'influence d'Homère, Aristote et Virgile sur la poétique de Racine, illustrée dans Phèdre" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/3f7857d38bb73889e21053c0e37a0b39> .
+    rel:author <http://canlink.library.ualberta.ca/Person/3f7857d38bb73889e21053c0e37a0b39> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d05480d0c5ea84efbd429f1638c5cb00> a bibo:thesis,
         frbr:Expression,
@@ -1143,7 +1220,8 @@
         <http://id.loc.gov/authorities/subjects/sh85095558> ;
     dc:title "Préparation des organo-magnésiens sans ether" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> .
+    rel:author <http://canlink.library.ualberta.ca/Person/b5e6dc728a1e287e2121d2e9709a9d8e> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d49f5ff5e63bea8612205440fdf8c1fe> a bibo:thesis,
         frbr:Expression,
@@ -1158,7 +1236,8 @@
         <http://id.loc.gov/authorities/subjects/sh85033993>,
         <http://id.loc.gov/authorities/subjects/sh85071166> ;
     dc:title "Facteurs sociaux et familiaux de la délinquance des adolescents à Montréal" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> .
+    rel:author <http://canlink.library.ualberta.ca/Person/fea954987560810e7935f222fba1a537> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d4f223a82cf150dcdab929678a187b9c> a bibo:thesis,
         frbr:Expression,
@@ -1177,7 +1256,8 @@
         <http://id.loc.gov/authorities/subjects/sh99002124> ;
     dc:title "Analyse sociologique d'un programme d'éducation populaire : l'expérience multi-media au Québec" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n85302944> .
+    rel:author <http://id.loc.gov/authorities/names/n85302944> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d63abff1c860f6ed603852fa35adb0f3> a bibo:thesis,
         frbr:Expression,
@@ -1189,7 +1269,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "L'évaluation des préférences sexuelles des agresseurs sexuels : problèmes de validité interne et de validité externe" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/cc33b0f0d12d9db3f8b684251f4a8320> .
+    rel:author <http://canlink.library.ualberta.ca/Person/cc33b0f0d12d9db3f8b684251f4a8320> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d66a91eb36edcd626391953411240ba3> a bibo:thesis,
         frbr:Expression,
@@ -1201,7 +1282,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Les salons de musique à Paris sous la Troisième République" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n88665850> .
+    rel:author <http://id.loc.gov/authorities/names/n88665850> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d758d54c86cfcf2572527c7ad3e8f07d> a bibo:thesis,
         frbr:Expression,
@@ -1222,7 +1304,8 @@
     dc:title "Évaluation ultrasonographique du bien-être foetal bovin en fin de gestation" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
     rel:author <http://id.loc.gov/authorities/names/no2013014439> ;
-    rel:ths <http://canlink.library.ualberta.ca/Person/a744dd53df67d61dbc4fbdc705b23dfa> .
+    rel:ths <http://canlink.library.ualberta.ca/Person/a744dd53df67d61dbc4fbdc705b23dfa> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/d8979f9dca68f092571f9e9e3b995f4f> a bibo:thesis,
         frbr:Expression,
@@ -1235,7 +1318,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/ed81c0311eb5364a8d6d1d1b63f3c51d> ;
     dc:title "Condition de la famille ouvrière à Québec pendant la guerre" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/d1c2549f6f91c3a7ba1eb24fa7a0d409> .
+    rel:author <http://canlink.library.ualberta.ca/Person/d1c2549f6f91c3a7ba1eb24fa7a0d409> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/db3dea677c512b156c3959502dd6248d> a bibo:thesis,
         frbr:Expression,
@@ -1247,7 +1331,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "D'une éthique autonome à une éthique prudentielle : analyse et prolongement du modèle éthico-théologique d'Alfons Auer (1915- )" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/no2010101795> .
+    rel:author <http://id.loc.gov/authorities/names/no2010101795> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/db9a35c4ef104c6f3c9b07b67c4bb85e> a bibo:thesis,
         frbr:Expression,
@@ -1260,7 +1345,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/2e66c2f46923c9b68d8fb4b667d36b98>,
         <http://id.loc.gov/authorities/subjects/sh99002124> ;
     dc:title "Évolution des objectifs et des programmes en éducation des adultes à l'Université de Montréal, 1876-1950" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/8c58a81907d43db162311d70d5dfcf77> .
+    rel:author <http://canlink.library.ualberta.ca/Person/8c58a81907d43db162311d70d5dfcf77> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/deeb9db0ce84c9587a0a8b1656d8c4b7> a bibo:thesis,
         frbr:Expression,
@@ -1273,7 +1359,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/63b76da70517a17aac7da65578fdf7e9> ;
     dc:title "Vers une pédagogie de l'organisation sociale dans le mouvement d'éducation populaire en Amérique latine: valeurs, stratégies, tactiques" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/nr2001045305> .
+    rel:author <http://id.loc.gov/authorities/names/nr2001045305> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/e0025f6cef198a163d7c22dceca8289f> a bibo:thesis,
         frbr:Expression,
@@ -1284,7 +1371,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Were Newman to come Montreal, what judgment would be lay on our university?" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/8405248dec66ead7c8c9b7423500b386> .
+    rel:author <http://canlink.library.ualberta.ca/Person/8405248dec66ead7c8c9b7423500b386> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/e1becdfe1818f31edfa621a10e5172aa> a bibo:thesis,
         frbr:Expression,
@@ -1297,7 +1385,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/24ca74eb558b7dc10daa3833ee2ebe9a>,
         <http://id.loc.gov/authorities/subjects/sh85138085> ;
     dc:title "Contribution à l'étude du comportement de Salvelinus fontinalis fontinalis" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/c9d1715f781b95f71d4aedc24d95f3f5> .
+    rel:author <http://canlink.library.ualberta.ca/Person/c9d1715f781b95f71d4aedc24d95f3f5> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/e617b75486c167d34c597f76ed2e5ef5> a bibo:thesis,
         frbr:Expression,
@@ -1316,7 +1405,8 @@
         <http://canlink.library.ualberta.ca/subject/e75ffd9ae04f68e5ef32915baeebe761> ;
     dc:title "Strategic planning for temporary housing : 1999 earthquakes in Turkey" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://id.loc.gov/authorities/names/n2009011153> .
+    rel:author <http://id.loc.gov/authorities/names/n2009011153> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/e651b67408a178b039ed0087155e319c> a bibo:thesis,
         frbr:Expression,
@@ -1332,7 +1422,8 @@
         <http://id.loc.gov/authorities/subjects/sh85074030> ;
     dc:title "Contribution à l'hydrographie des lacs du Parc des Laurentides" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/deecde06ab9f93e5eabe161c50402ff4> .
+    rel:author <http://canlink.library.ualberta.ca/Person/deecde06ab9f93e5eabe161c50402ff4> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/e81e9096154958f95bc0e13133764d39> a bibo:thesis,
         frbr:Expression,
@@ -1344,7 +1435,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Apprentissage moteur à court terme chez le sujet hémiparétique : les stratégies correctives du mouvement mono-articulaire" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/nb2015010156> .
+    rel:author <http://id.loc.gov/authorities/names/nb2015010156> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/e88269d22775ad1ac4823ca835f456a9> a bibo:thesis,
         frbr:Expression,
@@ -1357,7 +1449,8 @@
     dc:subject <http://id.loc.gov/authorities/subjects/sh85000952> ;
     dc:title "Les attitudes morales des adolescents" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/n83328074> .
+    rel:author <http://id.loc.gov/authorities/names/n83328074> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/eca797d334010d374f11a400390de31f> a bibo:thesis,
         frbr:Expression,
@@ -1369,7 +1462,8 @@
     dc:publisher <http://dbpedia.org/resource/Université_de_Montréal> ;
     dc:title "Règne de Dieu et névrose dans la bible" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85081990> ;
-    rel:author <http://id.loc.gov/authorities/names/nr90007762> .
+    rel:author <http://id.loc.gov/authorities/names/nr90007762> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/f3833d65440b644a534f49297d6fe61f> a bibo:thesis,
         frbr:Expression,
@@ -1387,7 +1481,8 @@
         <http://id.loc.gov/authorities/subjects/sh85104183> ;
     dc:title "La surveillance policière dans les bars de Montréal" ;
     bibo:degree <http://canlink.library.ualberta.ca/thesisDegree/msc> ;
-    rel:author <http://id.loc.gov/authorities/names/nb2016015953> .
+    rel:author <http://id.loc.gov/authorities/names/nb2016015953> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/f5dd475c8fea8f3f0686366bbc9438ac> a bibo:thesis,
         frbr:Expression,
@@ -1422,7 +1517,8 @@
         <http://canlink.library.ualberta.ca/subject/fa1a2573fa0dc7089015cae980664ffd> ;
     dc:title "The moral difference between premature infants and neonates compared to older patients" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/1e85613973f13ecc8840f184a382f3c1> .
+    rel:author <http://canlink.library.ualberta.ca/Person/1e85613973f13ecc8840f184a382f3c1> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/f6b5e3f5cd25d456bc17d9eb152eb260> a bibo:thesis,
         frbr:Expression,
@@ -1436,7 +1532,8 @@
         <http://id.loc.gov/authorities/subjects/sh85066108> ;
     dc:title "A biochemical contribution to the study of inflammation" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/c7c55657d5f6c780ad960f27b55badec> .
+    rel:author <http://canlink.library.ualberta.ca/Person/c7c55657d5f6c780ad960f27b55badec> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/f938248559ab86312f4685bd3ff36df8> a bibo:thesis,
         frbr:Expression,
@@ -1449,7 +1546,8 @@
     dc:subject <http://canlink.library.ualberta.ca/subject/a1c594abdaa7abe1b8db9136a72deb0e> ;
     dc:title "La bibliothèque/médiathèque : instrument d'éducation dans l'enseignement secondaire au Québec" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
-    rel:author <http://canlink.library.ualberta.ca/Person/c05cb9b311b175bfd3d28f0327662ec0> .
+    rel:author <http://canlink.library.ualberta.ca/Person/c05cb9b311b175bfd3d28f0327662ec0> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/thesis/fb3942f8d9a6f063504ce5a587b6c8a7> a bibo:thesis,
         frbr:Expression,
@@ -1469,6 +1567,7 @@
     dc:title "Le développement de la personnalité de l'homme de l'adolescence au milieu de la vie : approches centrées sur les variables et sur les personnes" ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/no2015059709> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <>,
         <http://search.proquest.com/docview/305239136?accountid=12543> .
 
@@ -1484,7 +1583,8 @@
         <http://id.loc.gov/authorities/subjects/sh85008697>,
         <http://id.loc.gov/authorities/subjects/sh85104888> ;
     dc:title "Les peupliers de la section Tacamahaga en Amérique du Nord : leur place dans la taxonomie du genre Populus" ;
-    rel:author <http://canlink.library.ualberta.ca/Person/fd5c434ad9c8d54b6cdbb1c9b0ce6247> .
+    rel:author <http://canlink.library.ualberta.ca/Person/fd5c434ad9c8d54b6cdbb1c9b0ce6247> ;
+    cwrc:hasGenre cwrc:genreDissertation .
 
 <http://canlink.library.ualberta.ca/Person/0e8e5fd9141749a805c581ff466ee2b0> a foaf:Person ;
     foaf:name "Nabil N. Antaki" .
@@ -2147,9 +2247,12 @@
         <http://id.loc.gov/authorities/subjects/sh93002569>,
         <http://id.loc.gov/authorities/subjects/sh99002501> ;
     dc:title "Ethnomusicologie et esthétique de la réflexion épistémologique à la recherche de terrain : une étude comparative de la vocalité de tradition orale au sud de l'Italie" ;
+    bibo:abstract "Cette thèse aborde les problématiques épistémologiques et méthodologiques relatives à l'étude esthétique des pratiques vocales traditionnelles du Salento (sud de l'Italie). Les deux premières parties développent une réflexion épistémologique concernant d'une part le statut ontologique de l'expérience esthétique, de l'autre la pertinence d'une étude esthétique sur un terrain ethnomusicologique. La troisième et la quatrième parties exposent la recherche de terrain réalisée auprès de deux groupes socioculturels bien distincts de chanteurs du Salento : celui des paysans et celui des revivalistes. Ces deux univers en plus d'être caractérisés par deux classes d'âge différentes, s'ancrent dans deux réalités socioculturelles et économiques distinctes : d'une part le monde agro-pastoral ayant subsisté au Salento jusqu'aux années 1960 ; de l'autre la société contemporaine résultant des processus de tertiarisation, d'urbanisation et de globalisation mis en œuvre à partir de la deuxième moitié des années 1970. Le propos de cette thèse est d'expliquer en détail le fonctionnement de l'expérience esthétique de chacun des deux groupes de chanteurs vis-à-vis de leur pratique vocale. Il s'agit notamment de développer deux ethnographies différentes sur la base de caractéristiques socioculturelles et musicales propres à chaque contexte générationnel, étudiant toutes sortes de manifestations esthétiques et particulièrement les discours de nos chanteurs. Notre conclusion ouvre le champ de la comparaison des résultats obtenus au sein des deux enquêtes distinctes. Au-delà de la variété des critères, des comportements, des réactions et des facteurs qui caractérisent l'expérience esthétique des deux générations de chanteurs, nous cherchons à envisager la présence éventuelle d'une constante paradigmatique des critères esthétiques, valable aussi bien pour les chanteurs paysans anciens que pour les revivalistes.",
+        "This dissertation addresses epistemological and methodological problems related to studying the aesthetics of traditional vocal practices in Salento. In the first two sections of the dissertation, I examine from an epistemological perspective the ontological status of aesthetic experience and the relevance of studying aesthetics in ethnomusicological fieldwork. In the third and fourth sections I present the results of my fieldwork research, conducted with two distinct socio-cultural groups of Salentine singers: traditional singers and revival singers. In addition to coming from two different generations, these two groups of singers are also rooted in two distinct socio-cultural and economic milieux: in one case, the agro-pastoral world that subsisted in Salento until the 1960s; in the other case, contemporary society, which since the second half of the 1970s has been marked by urbanization, globalization, and the shift to a service economy. This dissertation explains in detail how each of the two groups of singers experience aesthetics. I develop two different investigations based on the socio-cultural and musical characteristics peculiar to each generational context, studying various kinds of aesthetic expressions and especially the singers' discourse. In the conclusion I compare the results of the investigations I carried out with the two groups. Besides considering the variety of criteria, behaviors, reactions, and other factors that characterize the aesthetic experience of these two generations of singers, I propose that there exists a single, constant paradigm of aesthetic criteria that is valid for both traditional singers and for revival singers." ;
     bibo:degree <http://id.loc.gov/authorities/subjects/sh85038715> ;
     rel:author <http://id.loc.gov/authorities/names/n2017002478> ;
     rel:ths <http://canlink.library.ualberta.ca/Person/39277b8eac6ee2e80cce5bc186031d73> ;
+    cwrc:hasGenre cwrc:genreDissertation ;
     = <http://hdl.handle.net/1866/8535> .
 
 <http://canlink.library.ualberta.ca/thesisDegree/des> a bibo:thesisDegree ;

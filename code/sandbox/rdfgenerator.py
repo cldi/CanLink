@@ -635,7 +635,7 @@ def validateRecord(record, errors, warnings):
 
 
 def main():
-    reader = MARCReader(open("files/U_Montreal_100_BibliographicRecords_from_ILS.mrc", "rb"), force_utf8=True)
+    reader = MARCReader(open("files/qs_thesis.mrc", "rb"), force_utf8=True)
 
     records = {}
     errors = []
@@ -686,7 +686,7 @@ def main():
 
 
     #print(g.serialize(format="xml").decode("utf-8"))
-    g.serialize("U_Montreal_100_BibliographicRecords_from_ILS.xml", format="xml")
+    g.serialize("qs_thesis.xml", format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 

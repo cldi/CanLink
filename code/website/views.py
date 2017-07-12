@@ -18,7 +18,7 @@ def index(request):
     return render(request, "website/header.html")
 
 
-def submit(request):
+def thesisSubmission(request):
     # called when the presses the submit button after pasting the records
     if request.method == 'POST':
         if request.is_ajax():
@@ -36,10 +36,11 @@ def submit(request):
             #     return HttpResponse("0")
 
             return_values = processRecords(raw_records)
+            
             return(HttpResponse(json.dumps(return_values)))     # success
-
+    if request.method == "GET":
+        return(render(request, "website/thesisSubmission.html"))
     return HttpResponse("Server Error")
-
 
 def validateRecaptcha(recaptcha_response, user_ip):
 

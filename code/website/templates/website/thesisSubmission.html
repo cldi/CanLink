@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CLDI - Testing Website</title>
+    <meta charset="utf-8" /> {% load static %}
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.red-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'website/css/fonts.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'website/css/styles.css' %}" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{% csrf_token %}">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="{% static 'website/js/scripts.js' %}"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- title -->
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6 text-center center-block" id="mainTitle"> Insert Title Here </div>
+            <div class="col-sm-3"></div>
+        </div>
+        <!-- paste area -->
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8" id="pasteArea">
+                <div id="messages">
+                    <div id="errors">
+                        <div id="heading">ERRORS</div>
+                        <div id="errors_body"></div>
+                    </div>
+                    <div id="warnings">
+                        <hr>
+                        <div id="heading">WARNINGS</div>
+                        <div id="warnings_body"></div>
+                    </div>
+                    <div id="theses">
+                        <hr>
+                        <div id="heading">RECORDS</div>
+                        <div id="theses_body"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </div>
+    </div>
+</body>
+<script>
+var retrievedObject = localStorage.getItem('my_response');
+
+console.log('retrievedObject: ', JSON.parse(retrievedObject));
+
+var my_response = JSON.parse(retrievedObject);
+
+if (my_response.errors.length >= 1) {
+    document.getElementById("errors").style.display = "block";
+    $("#pasteAreaSubmitButtonText").html('Errors Occured');
+
+    for (error in my_response.errors) {
+        console.log(my_response.errors[error]);
+        $("#errors_body").append("<div class='file_error'><div class='file_error_message'>" + my_response.errors[error] + "</div>");
+    }
+
+}
+if (my_response.warnings.length >= 1) {
+    document.getElementById("warnings").style.display = "block";
+    for (warning in my_response.warnings) {
+        console.log(my_response.warnings[warning]);
+        $("#warnings_body").append("<div class='file_warning'><div class='file_warning_message'>" + my_response.warnings[warning] + "</div>");
+    }
+}
+if (my_response.theses.length >= 1) {
+    document.getElementById("theses").style.display = "block";
+    for (thesis in my_response.theses) {
+        console.log(my_response.theses[thesis]);
+        $("#theses_body").append("<div class='file_thesis'><div class='file_thesis_message'>" + my_response.theses[thesis] + "</div>");
+    }
+}
+</script>
+
+</html>
