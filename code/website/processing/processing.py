@@ -432,7 +432,7 @@ class Thesis():
                 # the url is not linking to a pdf - a handle.net url or something else
                 # need to extract the link to the pdf from here
                 try:
-                    output.append(self.getPDFFromPage(url))
+                    output.append(urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]"))
                 except:
                     pass
 

@@ -1,4 +1,3 @@
-
 from pymarc import MARCReader
 import hashlib
 import re
@@ -432,7 +431,7 @@ class Thesis():
                 # the url is not linking to a pdf - a handle.net url or something else
                 # need to extract the link to the pdf from here
                 try:
-                    output.append(self.getPDFFromPage(url))
+                    output.append(urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]"))
                 except:
                     pass
 
@@ -635,7 +634,7 @@ def validateRecord(record, errors, warnings):
 
 
 def main():
-    reader = MARCReader(open("files/qs_thesis.mrc", "rb"), force_utf8=True)
+    reader = MARCReader(open("files/U_Montreal_100_BibliographicRecords_from_ILS.mrc", "rb"), force_utf8=True)
 
     records = {}
     errors = []
@@ -685,8 +684,8 @@ def main():
         # print("-"*50)
 
 
-    #print(g.serialize(format="xml").decode("utf-8"))
-    g.serialize("qs_thesis.xml", format="xml")
+    print(g.serialize(format="xml").decode("utf-8"))
+    # g.serialize("qs_thesis.xml", format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 
