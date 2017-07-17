@@ -11,11 +11,12 @@ import sqlite3
 from rdflib import URIRef, Graph, Literal, Namespace
 from rdflib.namespace import RDF, FOAF, DC, SKOS, RDFS, OWL
 import urllib.parse
-import re
 from urllib.request import urlopen, urlparse
 from bs4 import BeautifulSoup
 import os
 import ssl
+import random
+import time
 
 context = ssl._create_unverified_context()
 # NOTE
@@ -433,7 +434,9 @@ class Thesis():
                 # the url is not linking to a pdf - a handle.net url or something else
                 # need to extract the link to the pdf from here
                 try:
-                    output.append(urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]"))
+                    pdfUrl = urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]")
+                    if pdfUrl:
+                        output.append(pdfUrl)
                 except:
                     pass
 
@@ -461,6 +464,9 @@ class Thesis():
             else:
                 # append to the end of the redirect url
                 return(redirect_url + pdf_url)
+        if pdf_url == "":
+            return None
+        
         return(pdf_url)
 
     def getManifestations(self):
@@ -669,7 +675,8 @@ def process(records_file):
 
 
     #print(g.serialize(format="xml").decode("utf-8"))
-    g.serialize("website/processing/tmp/qs_thesis.xml", format="xml")
+    output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
+    g.serialize("website/processing/tmp/" + output_file_name, format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now
     # has to do something with the fact that process is called and the lists are outside 
