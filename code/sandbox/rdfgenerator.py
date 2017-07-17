@@ -614,7 +614,7 @@ def validateRecord(record, errors, warnings):
         status = False
     if not record.universityUri: record_warnings.append("University URI couldn't be generated - Make sure the University Name is valid")
     if not record.date: record_warnings.append("Publication Date not found")
-    if not record.language: record_warnings.append("Language not found - Setting language to English")
+    if not record.language: record_warnings.append("Language not found")
     if not record.subjects: record_warnings.append("Subjects not found")
     if record.subjects and record.subjectUris and len(record.subjectUris) < len(record.subjects): record_warnings.append("Some Subject URIs couldn't be generated")
     if not record.degree: record_warnings.append("Degree Type not found")

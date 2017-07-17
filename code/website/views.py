@@ -72,11 +72,10 @@ def processRecords(raw_records):
     
     status = 1      # 1 = recaptcha successful
     errors = response[0]
-    warnings = response[1]
-    theses = response[2]
+    submissions = response[1]
+    total_records = response[2]
 
-
-    return_response = {"status":status, "errors":errors, "warnings":warnings, "theses":theses}
+    return_response = {"status":status, "errors":errors, "submissions":submissions, "total_records": total_records}
     # print(return_response)
 
     return(return_response)

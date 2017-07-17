@@ -33,12 +33,7 @@ function submitForm(){
 
     // clear old messages if this is a resubmit
     $("#errors_body").empty();
-    $("#warnings_body").empty();
-    $("#theses_body").empty();
-    document.getElementById("errors").style.display = "none";
-    document.getElementById("warnings").style.display = "none";
-    document.getElementById("theses").style.display = "none";
-
+    $("#submissions_body").empty();
 
     //Send data  
     $.ajax({
@@ -60,9 +55,10 @@ function submitForm(){
             // // TODO check the response here and do something with it
             console.log(my_response);
 
-            localStorage.setItem('my_response', JSON.stringify(my_response));
+            localStorage.setItem('canlink_submission', JSON.stringify(my_response));
 
             if (my_response.status == 1){
+
                 window.location.replace("/thesisSubmission")
                 // if (my_response.errors.length >= 1){
                 //     document.getElementById("errors").style.display = "block";
@@ -82,11 +78,11 @@ function submitForm(){
                 //         $("#warnings_body").append("<div class='file_warning'><div class='file_warning_message'>" + my_response.warnings[warning] + "</div>");
                 //     }
                 // }
-                // if (my_response.theses.length >= 1){
-                //     document.getElementById("theses").style.display = "block";
-                //     for(thesis in my_response.theses){
-                //         console.log(my_response.theses[thesis]);
-                //         $("#theses_body").append("<div class='file_thesis'><div class='file_thesis_message'>" + my_response.theses[thesis] + "</div>");
+                // if (my_response.submissions.length >= 1){
+                //     document.getElementById("submissions").style.display = "block";
+                //     for(thesis in my_response.submissions){
+                //         console.log(my_response.submissions[thesis]);
+                //         $("#submissions_body").append("<div class='file_thesis'><div class='file_thesis_message'>" + my_response.submissions[thesis] + "</div>");
                 //     }
                 // }
             }

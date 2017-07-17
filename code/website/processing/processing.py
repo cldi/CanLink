@@ -54,10 +54,6 @@ g.bind("cwrc", CWRC)
 # so that we don't need to go to dbpedia every time
 university_uri_cache = {}
 
-# will be filled after the validation function is done
-# warnings = []
-# errors = []
-logs = []
 
 class Thesis():
     def __init__(self, record):
@@ -601,16 +597,15 @@ def mergeRecords(thesis1, thesis2):
     thesis1.uri = thesis1.getURI()
 
 
-def validateRecord(record, errors, warnings):
+def validateRecord(record, errors):
     record_errors = []
-    record_warnings = []
 
     # mandatory fields: author, university, title, date, degree 
-    if not record.title: record_errors.append("Title not found - Please enter the titles and submit form again")
-    if not record.author: record_errors.append("Author Name not found - Please enter the author name and submit the form again")
-    if not record.universityUri: record_errors.append("University URI couldn't be generated - Make sure the University Name is valid")
-    if not record.date: record_errors.append("Publication Date not found")
-    if not record.degreeUri: record_errors.append("Degree URI could not be generated - Please make sure the degree is valid")
+    if not record.title: record_errors.append("Title not found - Record not uploaded")
+    if not record.author: record_errors.append("Author Name not found - Record not uploaded")
+    if not record.universityUri: record_errors.append("University URI could not be generated - Record not uploaded")
+    if not record.date: record_errors.append("Publication Date not found - Record not uploaded")
+    if not record.degreeUri: record_errors.append("Degree URI could not be generated - Record not uploaded")
 
     for error in record_errors:
         errors.append("Record #" + record.control + " - " + error)
@@ -627,8 +622,7 @@ def process(records_file):
 
     records = {}
     errors = []
-    warnings = []
-    theses = []
+    submissions = []
 
     # when the control number isn't given, we use this to generate one
     count = 0 
@@ -667,10 +661,10 @@ def process(records_file):
     for thesis in records.values():
         # print(thesis)
         
-        if validateRecord(thesis, errors, warnings):
+        if validateRecord(thesis, errors):
             # if there were no errors then generate RDF
             thesis.generateRDF()
-            theses.append("Record #" + str(thesis.control) + " was uploaded successfully.")
+            submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
         # print("-"*50)
 
 
@@ -682,4 +676,4 @@ def process(records_file):
     # return(sorted(list(set(errors))), sorted(list(set(warnings))))
     # NOTE
     # return(errors)
-    return([errors, warnings, theses])
+    return([errors, submissions, count])
