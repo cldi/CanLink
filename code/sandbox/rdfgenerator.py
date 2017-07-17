@@ -203,16 +203,20 @@ class Thesis():
     def getDate(self):
         value_260c = getField(self.record, "260", "c")
         value_264c = getField(self.record, "264", "c")
-        
+        value_008 = getField(self.record, "008")
+
         date = None
 
         if value_260c:
             date = value_260c[0]
         elif value_264c:
             date = value_264c[0]
-
+        elif value_008 and len(str(value_008).split()[1]) >= 11 and str(value_008).split()[1][7:11].isdigit(): 
+            date = str(value_008).split()[1][7:11]
+        
         if not date: 
             return None
+
          # remove all non numeric characters
         return(''.join(c for c in date if str(c).isdigit()))
 
@@ -684,7 +688,7 @@ def main():
         # print("-"*50)
 
 
-    print(g.serialize(format="xml").decode("utf-8"))
+    #print(g.serialize(format="xml").decode("utf-8"))
     # g.serialize("qs_thesis.xml", format="xml")
 
     # sometimes the lists persist through different sessions so remove the duplicates for now

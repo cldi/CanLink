@@ -52,15 +52,15 @@ textarea:focus {
 }
 .file_error, .file_warning, .file_thesis{
     width: 100%;
-    height: 40px;
+    height: 25px;
     transition: box-shadow 0.3s ease-out;
     overflow-y: scroll;
     margin-bottom: 15px;
 }
-.file_error:hover, .file_warning:hover, .file_thesis:hover{
+/*.file_error:hover, .file_warning:hover, .file_thesis:hover{
     box-shadow: 0 1px 10px 1px #D8D8D8;
     transition: box-shadow 0.1s ease-in-out;
-}
+}*/
 .file_error_message, .file_warning_message, .file_thesis_message{
     color: #000021;
     padding-left: 10px;
@@ -78,7 +78,6 @@ textarea:focus {
 .file_thesis{
     background-color: #B5FFE7;
     border-left: 15px solid #64D5AF;
-    height: 490px;
 }
 #warnings, #theses{
     margin-top: 40px;

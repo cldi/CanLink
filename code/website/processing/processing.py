@@ -204,13 +204,16 @@ class Thesis():
     def getDate(self):
         value_260c = getField(self.record, "260", "c")
         value_264c = getField(self.record, "264", "c")
-        
+        value_008 = getField(self.record, "008")
+
         date = None
 
         if value_260c:
             date = value_260c[0]
         elif value_264c:
             date = value_264c[0]
+        elif value_008 and len(str(value_008).split()[1]) >= 11 and str(value_008).split()[1][7:11].isdigit(): 
+            date = str(value_008).split()[1][7:11]
 
         if not date: 
             return None
@@ -328,6 +331,7 @@ class Thesis():
                         "masc":["MASc", "http://canlink.library.ualberta.ca/thesisDegree/masc"],
                         "msc":["MSc", "http://canlink.library.ualberta.ca/thesisDegree/msc"],
                         "llm":["LLM", "http://id.loc.gov/authorities/subjects/sh2012003813"],
+                        "lld":["LLD", "http://id.loc.gov/authorities/subjects/sh85038713"],
                         "mws":["MWS", "http://canlink.library.ualberta.ca/thesisDegree/mws"],
                         "mhk":["MHK", "http://canlink.library.ualberta.ca/thesisDegree/mhk"],
                         "mpp":["MPP", "http://canlink.library.ualberta.ca/thesisDegree/mpp"],
@@ -342,7 +346,8 @@ class Thesis():
                         "des":["Des", "http://canlink.library.ualberta.ca/thesisDegree/des"],
                         "msw":["MSW", "http://canlink.library.ualberta.ca/thesisDegree/msw"],
                         "ma":["MA", "http://id.loc.gov/authorities/subjects/sh85081990"],
-                        "mn":["MN", "http://canlink.library.ualberta.ca/thesisDegree/mn"]
+                        "mn":["MN", "http://canlink.library.ualberta.ca/thesisDegree/mn"],
+                        "docteur":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"]
         }
 
         for code in degree_codes:
@@ -371,7 +376,7 @@ class Thesis():
                  "doctoralthesis":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],
                  "doctorofbusinessadministration":["DBA", "http://canlink.library.ualberta.ca/thesisDegree/dba"],
                  "doctorofscience":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],
-                 "doctor":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"]}
+                 "doctor":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],}
         
         if "master" in degree or "doctor" in degree:
             match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
@@ -600,38 +605,21 @@ def validateRecord(record, errors, warnings):
     record_errors = []
     record_warnings = []
 
-    # valudates a record after the file has been processed - does NOT check for errors in the file
-    status = True
-
-    if not record.title: 
-        record_errors.append("Title not found - Please enter the titles and submit form again")
-        status = False
-    if not record.author: 
-        record_errors.append("Author Name not found - Please enter the author name and submit the form again")
-        status = False
-    if not record.universityUri: record_warnings.append("University URI couldn't be generated - Make sure the University Name is valid")
-    if not record.date: record_warnings.append("Publication Date not found")
-    if not record.language: record_warnings.append("Language not found - Setting language to English")
-    if not record.subjects: record_warnings.append("Subjects not found")
-    if record.subjects and record.subjectUris and len(record.subjectUris) < len(record.subjects): record_warnings.append("Some Subject URIs couldn't be generated")
-    if not record.degree: record_warnings.append("Degree Type not found")
-    if not record.degreeUri: record_warnings.append("Degree URI could not be generated - Please make sure the degree is valid")
-    if not record.advisors: record_warnings.append("Advisors not found")
-    if not record.contentUrl: record_warnings.append("Content URLs not found")
-
-    # check if the control number was randomly generated - it didn't exist in the original records
-    # if record.control[0] == "R":
-    #     recordNumber = record.control[1:]       # everything after "R" is the occurence number
-    #     warnings.append("Record #" + recordNumber + " didn't have a control number - #" + record.control + " was assigned to it")
+    # mandatory fields: author, university, title, date, degree 
+    if not record.title: record_errors.append("Title not found - Please enter the titles and submit form again")
+    if not record.author: record_errors.append("Author Name not found - Please enter the author name and submit the form again")
+    if not record.universityUri: record_errors.append("University URI couldn't be generated - Make sure the University Name is valid")
+    if not record.date: record_errors.append("Publication Date not found")
+    if not record.degreeUri: record_errors.append("Degree URI could not be generated - Please make sure the degree is valid")
 
     for error in record_errors:
         errors.append("Record #" + record.control + " - " + error)
-
-    for warning in record_warnings:
-        warnings.append("Record #" + record.control + " - " + warning)
-
     
-    return status
+    if len(record_errors) > 0:
+        # print(record)
+        return False
+    
+    return True
 
 
 def process(records_file):
@@ -678,10 +666,11 @@ def process(records_file):
         
     for thesis in records.values():
         # print(thesis)
-        theses.append(str(thesis))
+        
         if validateRecord(thesis, errors, warnings):
-            # if there were no errors (could still have warnings) then generate RDF
+            # if there were no errors then generate RDF
             thesis.generateRDF()
+            theses.append("Record #" + str(thesis.control) + " was uploaded successfully.")
         # print("-"*50)
 
 
