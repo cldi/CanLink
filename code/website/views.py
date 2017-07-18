@@ -11,18 +11,25 @@ import json
 import io
 from .processing import *
 from .processing.processing import *
+from django.views.decorators.csrf import csrf_exempt
 # import processing.processing
 # Create your views here.
 
 def index(request):
     return render(request, "website/header.html")
 
-
+@csrf_exempt
 def thesisSubmission(request):
     # called when the presses the submit button after pasting the records
     if request.method == 'POST':
         if request.is_ajax():
-            raw_records = request.POST.get("records")
+            
+            if "records_file" in request.FILES:
+                raw_records = request.FILES["records_file"].read().decode("utf-8")
+            else:
+                raw_records = request.POST.get("records")    
+
+
             # recaptcha_response = request.POST.get("recaptcha")
             user_ip = get_ip(request)
 
@@ -38,6 +45,7 @@ def thesisSubmission(request):
             return_values = processRecords(raw_records)
             
             return(HttpResponse(json.dumps(return_values)))     # success
+    
     if request.method == "GET":
         return(render(request, "website/thesisSubmission.html"))
     return HttpResponse("Server Error")
