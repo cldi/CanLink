@@ -54,7 +54,7 @@ function submitForm() {
             if (my_response.status == 1) {
                 // recaptcha successful
                 localStorage.setItem('canlink_submission', JSON.stringify(my_response));
-                window.location.replace("/thesisSubmission")
+                window.location.replace("/submit/thesisSubmission")
             } else {
                 // recaptcha error - someone tampered with the recaptcha code
                 console.log("recaptcha error")
