@@ -31,10 +31,9 @@ function submitForm() {
     formData.append("csrfmiddlewaretoken", csrftoken)
 
 
-    // show the loading bar - change color just in case it was resubmitted after error
+    // show the loading circle
     document.getElementById("pasteAreaSubmitButtonText").style.display = "none";
     document.getElementById("pasteAreaSubmitButtonLoading").style.display = "block";
-    document.getElementById("pasteAreaSubmitButton").style.background = "#000021";
 
     //Send data  
     $.ajax({
@@ -60,8 +59,6 @@ function submitForm() {
                 // recaptcha error - someone tampered with the recaptcha code
                 console.log("recaptcha error")
             }
-
-
         },
 
         // handle a non-successful response
