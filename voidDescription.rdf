@@ -81,6 +81,13 @@
     <rdfs:comment xml:lang="fr">CanaLien : un projet de données liées pour les thèses canadiennes est un projet pilote du Groupe de travail sur les projets numériques de l'Initiative Canadienne sur les Données Liées (<![CDATA[https: //connect.library.utoronto .ca / display / U5LD / Canadian + Linked + Data + Initiative + Home]]>). Son objectif est d'accroître la découverte des thèses et des dissertations au Canada en profitant du pouvoir des données liées pour créer des connexions et des relations inattendues. Les établissements participants sont: Université de la Colombie-Britannique, Université de l'Alberta, Université d'Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Université Queens, Université de Toronto, Université McGill, Université de Montréal, Université Memorial de Terre-Neuve.</rdfs:comment>
     <dc:date rdf:datatype="http://www.w3.org/2001/XMLSchema#date">DATE_TODAY</dc:date>
     <dc:rights rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/"/> 
+      <foaf:account>
+       <foaf:OnlineAccount rdf:about="#twitterHandle">
+        <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount"/>
+        <foaf:accountServiceHomepage rdf:resource="http://www.twitter.com/"/>
+      <foaf:accountName>canlink207</foaf:accountName>
+     </foaf:OnlineAccount>
+    </foaf:account>
     <dc:creator>
      <foaf:Person rdf:about="#RobWarren">
       <foaf:name>Robert Warren</foaf:name>
