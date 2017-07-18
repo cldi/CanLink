@@ -19,31 +19,30 @@ function getCookie(name) {
 // $("#pasteAreaSubmitButton").click(function(e) {
 function submitForm() {
 
-    //Prevent default submit
-    // e.preventDefault();
+    var csrftoken = getCookie('csrftoken');
+    var records = $('#records').val();
+
+    var formData = new FormData();
+    var fileInput = document.getElementById('records_upload');
+    var file = fileInput.files[0];
+    
+    formData.append('records_file', file);
+    formData.append("records", records)
+    formData.append("csrfmiddlewaretoken", csrftoken)
+
 
     // show the loading bar - change color just in case it was resubmitted after error
     document.getElementById("pasteAreaSubmitButtonText").style.display = "none";
     document.getElementById("pasteAreaSubmitButtonLoading").style.display = "block";
     document.getElementById("pasteAreaSubmitButton").style.background = "#000021";
-    // prepare csrf token
-    var csrftoken = getCookie('csrftoken');
-    // get the data
-    var records = $('#records').val();
-
-    // clear old messages if this is a resubmit
-    $("#errors_body").empty();
-    $("#submissions_body").empty();
 
     //Send data  
     $.ajax({
         url: "thesisSubmission/",
         type: "POST", // http method
-        data: {
-            csrfmiddlewaretoken: csrftoken,
-            // recaptcha:grecaptcha.getResponse(),
-            records: records
-        },
+        processData: false,
+        contentType: false,
+        data: formData,
         // handle a successful response
         success: function(response) {
             // stop the loading circle
@@ -52,10 +51,6 @@ function submitForm() {
 
             // parse the json 
             my_response = JSON.parse(response);
-            // // TODO check the response here and do something with it
-            console.log(my_response);
-
-
 
             if (my_response.status == 1) {
                 // recaptcha successful

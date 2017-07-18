@@ -38,7 +38,7 @@
                 <form method="post" id="upload_form" enctype="multipart/form-data">
                     <label class="btn btn-default btn-file" id="upload_button" style="color: #000021; border-radius: 0px; border-color: white; background-color: white;">
                         Upload MARC File
-                        <input type="file" id="records_upload" style="display: none;" onchange="uploadFile(this)">
+                        <input type="file" id="records_upload" style="display: none;" onchange="submitForm()">
                     </label>
                 </form>
                 <!-- <button
@@ -58,35 +58,5 @@
         </div>
     </div>
 </body>
-<script>
-// handle file uploads
-function uploadFile(input) {
-
-    var formData = new FormData();
-    var fileInput = document.getElementById('records_upload');
-    var file = fileInput.files[0];
-    formData.append('records_file', file);
-    formData.append("test", "test");
-
-    // var formData = new FormData();
-    // formData.append("records", $('input[type=file]')[0].files[0]);
-    
-
-    $.ajax({
-        type: "POST",
-        url: "thesisSubmission/",
-        processData: false,
-        contentType: false,
-        dataType: "json",
-        data: formData,
-        success: function(data){
-            alert("success");
-        }
-
-    });
-
-
-}
-</script>
 
 </html>

@@ -18,16 +18,22 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     return render(request, "website/header.html")
 
-@csrf_exempt
+
 def thesisSubmission(request):
     # called when the presses the submit button after pasting the records
     if request.method == 'POST':
         if request.is_ajax():
-            
-            if "records_file" in request.FILES:
+            try:
                 raw_records = request.FILES["records_file"].read().decode("utf-8")
-            else:
-                raw_records = request.POST.get("records")    
+            except:
+                raw_records = request.POST.get("records") 
+
+            # raw_records = max(test_1, test_2)
+
+            # if "records_file" in request.FILES:
+            #     raw_records = request.FILES["records_file"].read().decode("utf-8")
+            # else:
+            #     raw_records = request.POST.get("records")    
 
 
             # recaptcha_response = request.POST.get("recaptcha")
