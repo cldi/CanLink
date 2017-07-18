@@ -37,7 +37,7 @@ function submitForm() {
 
     //Send data  
     $.ajax({
-        url: "thesisSubmission/",
+        url: "/thesisSubmission/",
         type: "POST", // http method
         processData: false,
         contentType: false,

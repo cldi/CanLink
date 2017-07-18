@@ -622,6 +622,9 @@ def validateRecord(record, errors):
     
     return True
 
+def sendTweet(tweet):
+    
+    pass
 
 def process(records_file):
     reader = MARCReader(records_file, force_utf8=True)
