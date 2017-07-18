@@ -67,8 +67,12 @@ def processRecords(raw_records):
         records_file = io.BytesIO(raw_records.encode("cp1252"))
     except:
         records_file = io.BytesIO(raw_records.encode("utf-8"))
- 
-    response = process(records_file)
+    
+    try:
+        response = process(records_file)
+    except:
+        # there was some type of error processing the file
+        return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
     
     status = 1      # 1 = recaptcha successful
     errors = response[0]

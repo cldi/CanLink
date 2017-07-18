@@ -22,7 +22,6 @@
     <meta name="csrf-token" content="{% csrf_token %}">
     <script src='https://www.google.com/recaptcha/api.js'></script>
     <script src="{% static 'website/js/scripts.js' %}"></script>
-    
 </head>
 
 <body>
@@ -57,7 +56,7 @@
 </body>
 <script>
 var retrievedObject = localStorage.getItem('canlink_submission');
-localStorage.removeItem("canlink_submission");          
+localStorage.removeItem("canlink_submission");
 
 var canlink_submission = JSON.parse(retrievedObject);
 

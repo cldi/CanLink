@@ -17,7 +17,7 @@ function getCookie(name) {
 
 //When submit is clicked
 // $("#pasteAreaSubmitButton").click(function(e) {
-function submitForm(){
+function submitForm() {
 
     //Prevent default submit
     // e.preventDefault();
@@ -37,13 +37,13 @@ function submitForm(){
 
     //Send data  
     $.ajax({
-        url: "thesisSubmission/", 
+        url: "thesisSubmission/",
         type: "POST", // http method
         data: {
             csrfmiddlewaretoken: csrftoken,
             // recaptcha:grecaptcha.getResponse(),
             records: records
-        }, 
+        },
         // handle a successful response
         success: function(response) {
             // stop the loading circle
@@ -55,49 +55,24 @@ function submitForm(){
             // // TODO check the response here and do something with it
             console.log(my_response);
 
-            localStorage.setItem('canlink_submission', JSON.stringify(my_response));
 
-            if (my_response.status == 1){
 
+            if (my_response.status == 1) {
+                // recaptcha successful
+                localStorage.setItem('canlink_submission', JSON.stringify(my_response));
                 window.location.replace("/thesisSubmission")
-                // if (my_response.errors.length >= 1){
-                //     document.getElementById("errors").style.display = "block";
-                //     document.getElementById("pasteAreaSubmitButton").style.background = "#FF3838";
-                //     $("#pasteAreaSubmitButtonText").html('Errors Occured');
-                    
-                //     for(error in my_response.errors){
-                //         console.log(my_response.errors[error]);
-                //         $("#errors_body").append("<div class='file_error'><div class='file_error_message'>" + my_response.errors[error] + "</div>");
-                //     }
-
-                // }
-                // if (my_response.warnings.length >= 1){
-                //     document.getElementById("warnings").style.display = "block";
-                //     for(warning in my_response.warnings){
-                //         console.log(my_response.warnings[warning]);
-                //         $("#warnings_body").append("<div class='file_warning'><div class='file_warning_message'>" + my_response.warnings[warning] + "</div>");
-                //     }
-                // }
-                // if (my_response.submissions.length >= 1){
-                //     document.getElementById("submissions").style.display = "block";
-                //     for(thesis in my_response.submissions){
-                //         console.log(my_response.submissions[thesis]);
-                //         $("#submissions_body").append("<div class='file_thesis'><div class='file_thesis_message'>" + my_response.submissions[thesis] + "</div>");
-                //     }
-                // }
-            }
-            else{
+            } else {
                 // recaptcha error - someone tampered with the recaptcha code
                 console.log("recaptcha error")
             }
-            
-            
+
+
         },
 
         // handle a non-successful response
         error: function(xhr, errmsg, err) {
             console.log(xhr.status + ": " + xhr.responseText);
-            alert("SERVER ERROR");    // not related to recaptcha - just some other error
+            alert("SERVER ERROR"); // not related to recaptcha - just some other error
             // stop the loading circle
             document.getElementById("pasteAreaSubmitButtonText").style.display = "block";
             document.getElementById("pasteAreaSubmitButtonLoading").style.display = "none";
