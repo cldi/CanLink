@@ -623,10 +623,19 @@ def validateRecord(record, errors):
     return True
 
 def sendTweet(tweet):
-    
-    pass
+    try:
+        # api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
+        #           consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
+        #           access_token_key = os.environ.get("TWITTER_ACCESS_KEY"),
+        #           access_token_secret=os.environ.get("TWITTER_ACCESS_SECRET"))
 
-def process(records_file):
+        # status = api.PostUpdate(tweet)
+        print(tweet + " sent")
+        return True
+    except:
+        return False
+
+def process(records_file, lac_upload):
     reader = MARCReader(records_file, force_utf8=True)
 
     records = {}
@@ -635,6 +644,8 @@ def process(records_file):
 
     # when the control number isn't given, we use this to generate one
     count = 0 
+    # keep a list of the unversities seen and take the one that appears the most for the tweet
+    universities = []       
     # process and merge the records
     for record in reader: 
         # read record
@@ -643,6 +654,7 @@ def process(records_file):
         # get control number and linking number
         controlNumber = thesis.control
         linkingNumber = thesis.linking
+
         # if no linking number, check if the control number shows up as a linking number of any other record -> merge them 
         # if linking number, check if the linking number shows up as a control number of any other record -> merge them
         if not controlNumber: 
@@ -674,6 +686,7 @@ def process(records_file):
             # if there were no errors then generate RDF
             thesis.generateRDF()
             submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
+            universities.append(thesis.university)
         # print("-"*50)
 
 
@@ -681,9 +694,20 @@ def process(records_file):
     output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
     g.serialize("website/processing/tmp/" + output_file_name, format="xml")
 
-    # sometimes the lists persist through different sessions so remove the duplicates for now
-    # has to do something with the fact that process is called and the lists are outside 
-    # return(sorted(list(set(errors))), sorted(list(set(warnings))))
-    # NOTE
-    # return(errors)
+
+    # send the tweet 
+
+    if lac_upload:
+        upload_organization = "Library and Archives Canada"
+    else:
+        upload_organization = max(set(universities), key=universities.count).strip()
+        
+    # get the university with the highest occurances to weed out any outliers in the records
+    
+    tweet = upload_organization + " just added " + str(count) + " theses to the dataset!"
+    if not sendTweet(tweet):
+        # an error occured while sending the tweet 
+        # log the error in github later
+        print("error")
+
     return([errors, submissions, count])

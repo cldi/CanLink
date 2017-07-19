@@ -19,6 +19,8 @@ function getCookie(name) {
 // $("#pasteAreaSubmitButton").click(function(e) {
 function submitForm() {
 
+    var lac = document.getElementById("lacCheckbox").checked;
+
     var csrftoken = getCookie('csrftoken');
     var records = $('#records').val();
 
@@ -27,9 +29,9 @@ function submitForm() {
     var file = fileInput.files[0];
     
     formData.append('records_file', file);
-    formData.append("records", records)
-    formData.append("csrfmiddlewaretoken", csrftoken)
-
+    formData.append("records", records);
+    formData.append("csrfmiddlewaretoken", csrftoken);
+    formData.append("lac", lac);
 
     // show the loading circle
     document.getElementById("pasteAreaSubmitButtonText").style.display = "none";

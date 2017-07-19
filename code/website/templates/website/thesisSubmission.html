@@ -7,7 +7,7 @@
     <script>
     // if the item in the local storage isn't available, then someone tried to access /thesisSubmission without actually submitting anything
     if (localStorage.getItem("canlink_submission") === null) {
-        window.location.replace("/");
+        window.location.replace("/submit");
     }
     </script>
     <meta charset="utf-8" /> {% load static %}

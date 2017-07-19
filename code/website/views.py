@@ -24,20 +24,21 @@ def thesisSubmission(request):
     if request.method == 'POST':
         if request.is_ajax():
             try:
+                # uploaded file
                 raw_records = request.FILES["records_file"].read().decode("utf-8")
             except:
+                # copy and paste
                 raw_records = request.POST.get("records") 
-
-            # raw_records = max(test_1, test_2)
-
-            # if "records_file" in request.FILES:
-            #     raw_records = request.FILES["records_file"].read().decode("utf-8")
-            # else:
-            #     raw_records = request.POST.get("records")    
-
 
             # recaptcha_response = request.POST.get("recaptcha")
             user_ip = get_ip(request)
+
+            # convert js true/false to python True/False
+            if request.POST.get("lac") == "false":
+                lac_upload = False
+            else:
+                lac_upload = True
+            
 
             # print(recaptcha_response, raw_records, user_ip)
 
@@ -48,7 +49,7 @@ def thesisSubmission(request):
             # else:
             #     return HttpResponse("0")
 
-            return_values = processRecords(raw_records)
+            return_values = processRecords(raw_records, lac_upload)
             
             return(HttpResponse(json.dumps(return_values)))     # success
     
@@ -75,7 +76,7 @@ def validateRecaptcha(recaptcha_response, user_ip):
         return(False)
 
 
-def processRecords(raw_records):
+def processRecords(raw_records, lac_upload):
     # convert the string to a "file" but without actually saving on disk
     try:
         records_file = io.BytesIO(raw_records.encode("cp1252"))
@@ -83,7 +84,7 @@ def processRecords(raw_records):
         records_file = io.BytesIO(raw_records.encode("utf-8"))
     
     try:
-        response = process(records_file)
+        response = process(records_file, lac_upload)
     except:
         # there was some type of error processing the file
         return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
