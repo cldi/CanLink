@@ -23,10 +23,16 @@ def thesisSubmission(request):
     # called when the presses the submit button after pasting the records
     if request.method == 'POST':
         if request.is_ajax():
-            try:
-                # uploaded file
-                raw_records = request.FILES["records_file"].read().decode("utf-8")
-            except:
+
+            if len(request.FILES) != 0:
+                # a file was uploaded
+                file = request.FILES["records_file"].read()
+                try:
+                    raw_records = file.decode("utf-8")
+                except:
+                    raw_records = file.decode("cp1252")
+
+            else:
                 # copy and paste
                 raw_records = request.POST.get("records") 
 

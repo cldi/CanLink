@@ -28,8 +28,14 @@ function submitForm() {
     var fileInput = document.getElementById('records_upload');
     var file = fileInput.files[0];
     
-    formData.append('records_file', file);
-    formData.append("records", records);
+    var file_path = document.getElementById("records_upload").value;
+    if (file_path != "") {
+        formData.append('records_file', file);    
+    }
+    else{
+        formData.append("records", records);    
+    }
+
     formData.append("csrfmiddlewaretoken", csrftoken);
     formData.append("lac", lac);
 

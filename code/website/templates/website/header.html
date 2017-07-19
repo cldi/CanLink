@@ -37,12 +37,14 @@
                 <textarea id="records" name="records"></textarea>
                 <form method="post" id="upload_form" enctype="multipart/form-data">
                     <label class="btn btn-default btn-file" id="upload_button" style="color: #000021; border-radius: 0px; border-color: white; background-color: white;">
-                        Upload MARC File
-                        <input type="file" id="records_upload" style="display: none;" onchange="submitForm()">
+                        <span id="upload_button_text">Upload MARC File</span>
+                        <input type="file" id="records_upload" style="display: none;" onchange="uploadedFile()">
                     </label>
-                    <label style="float: right"><input id="lacCheckbox" type="checkbox" value="">This is an LAC upload</input></label>
-
+                    <label style="float: right">
+                        <input id="lacCheckbox" type="checkbox" value="">This is an LAC upload</input>
+                    </label>
                 </form>
+
                 <!-- <button
                         id="pasteAreaSubmitButton" 
                         class="g-recaptcha center-block"
@@ -60,5 +62,21 @@
         </div>
     </div>
 </body>
+<script>
+function uploadedFile() {
+    var file_path = document.getElementById("records_upload").value;
+    if (file_path != "") {
+        var upload_text = file_path.substring(file_path.lastIndexOf("\\")+1);
+        if (upload_text.length > 20){
+            upload_text = upload_text.substring(0, 20) + "...";
+        }
+        upload_text = upload_text + " uploaded";
+        
+        document.getElementById("upload_button_text").innerHTML = upload_text;
+    } else {
+        alert("file removed");
+    }
+}
+</script>
 
 </html>
