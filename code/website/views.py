@@ -12,6 +12,7 @@ import io
 from .processing import *
 from .processing.processing import *
 from django.views.decorators.csrf import csrf_exempt
+import traceback
 # import processing.processing
 # Create your views here.
 
@@ -91,7 +92,9 @@ def processRecords(raw_records, lac_upload):
     
     try:
         response = process(records_file, lac_upload)
-    except:
+    except Exception as e:
+        print(e)
+        print(traceback.format_exc())
         # there was some type of error processing the file
         return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
     

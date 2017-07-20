@@ -193,6 +193,18 @@ class Thesis():
                 university_uri_cache[universityName] = uri
                 return uri    # return the uri associated with that name
             else:
+                # couldn't find a match - submit an issue 
+                error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
+                with open("website/processing/errors/"+error_file_name, "wb") as error_file:
+                    error_file.write(self.record.as_marc())
+
+                title = "Missing University URL"
+                body = "The URL for ["+ self.university + "](https://localhost/)\nRecord File: " + error_file_name
+                label = "Missing URL"
+
+                submitGithubIssue(title, body, label)
+                
+
                 return None
 
     def getDate(self):
@@ -634,9 +646,9 @@ def sendTweet(tweet):
         print(tweet + " not sent")
         return False
 
-def submitGithubIssue(title, body, label, filename=None):
-    access_token = os.environ.get("GITHUB_TOKEN")
+def submitGithubIssue(title, body, label):
     try:
+        access_token = os.environ.get("GITHUB_TOKEN"))
         r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
                     json = {"title":title, "body":body, "labels":[label]})
         print(r.text)
@@ -719,7 +731,5 @@ def process(records_file, lac_upload):
         # an error occured while sending the tweet 
         # log the error in github later
         print("error")
-
-    submitGithubIssue("Testing", "Some Body", "TEST")
 
     return([errors, submissions, count])
