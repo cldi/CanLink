@@ -24,14 +24,18 @@ def thesisSubmission(request):
     # called when the presses the submit button after pasting the records
     if request.method == 'POST':
         if request.is_ajax():
-
             if len(request.FILES) != 0:
                 # a file was uploaded
                 file = request.FILES["records_file"].read()
-                try:
-                    raw_records = file.decode("utf-8")
-                except:
-                    raw_records = file.decode("cp1252")
+
+                for enc in ["cp1252", "utf-8"]:
+                    try:
+                        raw_records = file.decode(enc)
+                        break
+                    except:
+                        continue
+
+                    return(HttpResponse(json.dumps({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})))
 
             else:
                 # copy and paste
@@ -64,8 +68,8 @@ def thesisSubmission(request):
         return(render(request, "website/thesisSubmission.html"))
     return HttpResponse("Server Error")
 
-def validateRecaptcha(recaptcha_response, user_ip):
 
+def validateRecaptcha(recaptcha_response, user_ip):
     data = {
         'secret': settings.RECAPTCHA_SECRET,
         'response': recaptcha_response,
@@ -84,17 +88,30 @@ def validateRecaptcha(recaptcha_response, user_ip):
 
 
 def processRecords(raw_records, lac_upload):
-    # convert the string to a "file" but without actually saving on disk
-    try:
-        records_file = io.BytesIO(raw_records.encode("cp1252"))
-    except:
-        records_file = io.BytesIO(raw_records.encode("utf-8"))
-    
+    encoding = ""
+    for enc in ["cp1252", "utf-8"]:
+        try:
+            records_file = io.BytesIO(raw_records.encode(enc))
+            encoding = enc
+            break
+        except:
+            continue
+
+        error_file_name = saveErrorFile(raw_records.encode(encoding))
+        submitGithubIssue("Error Finding Encoding", "File: " + error_file_name, "BUG")
+
     try:
         response = process(records_file, lac_upload)
     except Exception as e:
-        print(e)
-        print(traceback.format_exc())
+        # save file locally 
+        error_file_name = saveErrorFile(raw_records.encode(encoding))
+        # submit github issue
+        python_stacktrace = traceback.format_exc()
+        title = "Error Processing File"
+        body = "File: " + error_file_name + "\nPython Stacktrace:\n\n" + python_stacktrace
+        label = "BUG"
+        submitGithubIssue(title, body, label)
+
         # there was some type of error processing the file
         return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
     

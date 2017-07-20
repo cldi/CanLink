@@ -14,21 +14,16 @@ import ssl
 import random
 import time
 import requests
-
+# next line is necesary to find pdf links from urls with https
 context = ssl._create_unverified_context()
-# NOTE
-# load the pickle objects that will be used for university and subject uri generation
+
 with open("website/processing/files/universities.pickle", "rb") as handle:
     universities = pickle.load(handle)      # key: name, value: uri
 
 with open("website/processing/files/subjects_full.pickle", "rb") as handle:
     subjects = pickle.load(handle)      # key: subject name, value: uri
 
-# with open("files/authoritiesnames.pickle", "rb") as handle:
-#     names = pickle.load(handle)         # key: name, value: uri
-
-
-# set up the RDFLib output
+# set up RDFLib
 g = Graph()
 
 REL = Namespace("http://purl.org/vocab/relationship/")
@@ -77,6 +72,7 @@ class Thesis():
         self.manifestations = self.getManifestations() 
         self.uri = self.getURI()        
 
+
     def getControlNumber(self):
         value_001 = getField(self.record, "001")
         
@@ -85,6 +81,7 @@ class Thesis():
         
         return(str(value_001).split()[1])
             
+
     def getLinkingControlNumber(self):
         value_004 = getField(self.record, "004")
         
@@ -93,6 +90,7 @@ class Thesis():
         
         return(str(value_004).split()[1])
 
+
     def getAuthorName(self):
         value_100a = getField(self.record, "100", "a")
 
@@ -100,6 +98,7 @@ class Thesis():
             return None
 
         return(value_100a[0].strip(" .,"))
+
 
     def getAuthorUri(self):
         if not self.author:
@@ -120,10 +119,12 @@ class Thesis():
 
         return("http://canlink.library.ualberta.ca/Person/"+str(hashlib.md5(self.author.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest()))
 
+
     def getTitle(self):
         if not self.record.title():
             return None
         return(self.record.title().strip("/. "))
+
 
     def getAbstract(self):
         value_520_a = getField(self.record, "520", "a")
@@ -131,6 +132,7 @@ class Thesis():
         if not value_520_a:
             return(None)
         return(value_520_a)
+
 
     def getUniversity(self): 
 
@@ -153,17 +155,12 @@ class Thesis():
         elif value_260b: 
             university = value_260b[0]
 
-
         if not university:
             return None
 
         # remove the extra characters
         university = university.replace(".", "").replace(",", "").strip()
         university = ''.join([i for i in university if not i.isdigit()])
-        # university = ''.join([i for i in university if i.isalpha() or i == " "])    # remove the dates or anything else it might have
-
-        # # removes the brackets
-        # university = re.sub(r'\(.*\)', '', university)
 
         return university
         
@@ -182,8 +179,6 @@ class Thesis():
         else:
             # get the names of the universities
             universityNames = universities.keys()
-
-            # print("Processing: ", universityName, self.control)
             # find the closest university name in the list of names
             match = difflib.get_close_matches(universityName, universityNames, n=1)
 
@@ -194,18 +189,15 @@ class Thesis():
                 return uri    # return the uri associated with that name
             else:
                 # couldn't find a match - submit an issue 
-                error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
-                with open("website/processing/errors/"+error_file_name, "wb") as error_file:
-                    error_file.write(self.record.as_marc())
+                error_file_name = saveErrorFile(self.record.as_marc())
 
                 title = "Missing University URL"
                 body = "The URL for ["+ self.university + "](https://localhost/)\nRecord File: " + error_file_name
                 label = "Missing URL"
-
                 submitGithubIssue(title, body, label)
-                
 
                 return None
+
 
     def getDate(self):
         value_260c = getField(self.record, "260", "c")
@@ -225,6 +217,7 @@ class Thesis():
             return None
         # remove all non numeric characters
         return(''.join(c for c in date if str(c).isdigit()))
+
 
     def getSubjects(self):
         value_630a = getField(self.record, "630", "a")
@@ -247,6 +240,7 @@ class Thesis():
 
         return([subject.strip(".") for subject in subjects])
 
+
     def getSubjectUris(self):
         if not self.subjects:
             return None
@@ -260,16 +254,9 @@ class Thesis():
                 # URIs.append(subjects[subject.lower()])
             else:
                 URIs[subject] = None
-            # elif len(subject) > 3 and len(subject) < 30:
-            #   # get the closest subject but making sure that atleast the first character matches
-            #   closest = difflib.get_close_matches(subject, [key for key in subjects.keys() if key[0:4] == subject[0:4]], n=1, cutoff=0.90)
-            #   if not closest:
-            #       continue
-            #   URIs.append("http://id.loc.gov/authorities/subjects/" + closest[0])
-            #   print("NEW SUBJECT GENERATED: " + closest[0] + " for original:" + subject)
 
         return URIs
-    # TODO Make sure to update this function in processing.py
+
 
     def getLanguage(self):
         value_008 = getField(self.record, "008")
@@ -285,8 +272,8 @@ class Thesis():
         elif value_040b: 
             language = value_040b[0]
         
-        # print(language)
         return("http://id.loc.gov/vocabulary/languages/"+language)
+
 
     def getDegree(self):
         value_502a = getField(self.record, "502", "a")
@@ -307,6 +294,7 @@ class Thesis():
         if degree:
             return degree
         return None
+
 
     def getDegreeUri(self):
         # convert the degree name to lowercase and remove the extra characters except for the space
@@ -393,10 +381,8 @@ class Thesis():
                 return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
             return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
 
-
-        # if uri: return(uri)
-
         return([None, None])
+
 
     def getAdvisors(self):
         value_500a = getField(self.record, "500", "a")
@@ -411,6 +397,7 @@ class Thesis():
                     return([advisor.strip(" .,") for advisor in item.split(":", 1)[1].split(",")])
         
         return None
+
 
     def getAdvisorUris(self):
         uris = []
@@ -428,6 +415,7 @@ class Thesis():
             uris.append(uri)
 
         return uris
+
 
     def getContentUrl(self):
         value_856u = getField(self.record, "856", "u")
@@ -451,7 +439,7 @@ class Thesis():
                     pass
 
         return(output)
-        # return(["<"+url+">" for url in value_856u])
+
 
     def getPDFFromPage(self, url):
         html_object = urlopen(url, context=context)
@@ -480,6 +468,7 @@ class Thesis():
         
         return(pdf_url)
 
+
     def getManifestations(self):
         # returns a list of the content urls hashed and with a ualberta uri 
         if not self.contentUrl:
@@ -491,11 +480,13 @@ class Thesis():
 
         return manifestations
 
+
     def getURI(self):
         if self.author and self.title:
             identifier = hashlib.md5((str(self.author).encode("utf-8") + str(self.title).encode("utf-8"))).hexdigest()
             return("http://canlink.library.ualberta.ca/thesis/"+str(identifier))
         return None
+
 
     def generateRDF(self):
         # thesis title - don't need to check if it exists because validateRecords did that already
@@ -575,6 +566,7 @@ class Thesis():
         return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
         """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstract)
 
+
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
     # subfield ex: "b"
@@ -633,6 +625,7 @@ def validateRecord(record, errors):
     
     return True
 
+
 def sendTweet(tweet):
     try:
         api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
@@ -646,15 +639,25 @@ def sendTweet(tweet):
         print(tweet + " not sent")
         return False
 
+
 def submitGithubIssue(title, body, label):
     try:
-        access_token = os.environ.get("GITHUB_TOKEN"))
+        access_token ="4906e105abca31049d5067ef797ca933bd10f367" 
+        # access_token = os.environ.get("GITHUB_TOKEN")
         r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
                     json = {"title":title, "body":body, "labels":[label]})
         print(r.text)
     except Exception as e:
         print(e)
     
+
+def saveErrorFile(content):
+    error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
+    with open("website/processing/errors/"+error_file_name, "wb") as error_file:
+        error_file.write(content)
+
+    return error_file_name
+
 
 def process(records_file, lac_upload):
     reader = MARCReader(records_file, force_utf8=True)
