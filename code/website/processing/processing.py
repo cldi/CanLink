@@ -1,13 +1,9 @@
-
 from pymarc import MARCReader
 import hashlib
 import re
 import difflib
 import pickle
-import fnmatch
-import codecs
 import unidecode
-import sqlite3
 from rdflib import URIRef, Graph, Literal, Namespace
 from rdflib.namespace import RDF, FOAF, DC, SKOS, RDFS, OWL
 import urllib.parse
@@ -17,6 +13,7 @@ import os
 import ssl
 import random
 import time
+import requests
 
 context = ssl._create_unverified_context()
 # NOTE
@@ -214,7 +211,7 @@ class Thesis():
 
         if not date: 
             return None
-         # remove all non numeric characters
+        # remove all non numeric characters
         return(''.join(c for c in date if str(c).isdigit()))
 
     def getSubjects(self):
@@ -261,6 +258,7 @@ class Thesis():
 
         return URIs
     # TODO Make sure to update this function in processing.py
+
     def getLanguage(self):
         value_008 = getField(self.record, "008")
         value_040b = getField(self.record, "040", "b")
@@ -442,6 +440,7 @@ class Thesis():
 
         return(output)
         # return(["<"+url+">" for url in value_856u])
+
     def getPDFFromPage(self, url):
         html_object = urlopen(url, context=context)
         html_doc = html_object.read()
@@ -624,16 +623,26 @@ def validateRecord(record, errors):
 
 def sendTweet(tweet):
     try:
-        # api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
-        #           consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
-        #           access_token_key = os.environ.get("TWITTER_ACCESS_KEY"),
-        #           access_token_secret=os.environ.get("TWITTER_ACCESS_SECRET"))
-
-        # status = api.PostUpdate(tweet)
-        print(tweet + " sent")
+        api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
+                  consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
+                  access_token_key = os.environ.get("TWITTER_ACCESS_KEY"),
+                  access_token_secret=os.environ.get("TWITTER_ACCESS_SECRET"))
+        
+        status = api.PostUpdate(tweet)
         return True
     except:
+        print(tweet + " not sent")
         return False
+
+def submitGithubIssue(title, body, label, filename=None):
+    access_token = os.environ.get("GITHUB_TOKEN")
+    try:
+        r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
+                    json = {"title":title, "body":body, "labels":[label]})
+        print(r.text)
+    except Exception as e:
+        print(e)
+    
 
 def process(records_file, lac_upload):
     reader = MARCReader(records_file, force_utf8=True)
@@ -655,25 +664,30 @@ def process(records_file, lac_upload):
         controlNumber = thesis.control
         linkingNumber = thesis.linking
 
-        # if no linking number, check if the control number shows up as a linking number of any other record -> merge them 
-        # if linking number, check if the linking number shows up as a control number of any other record -> merge them
+        # if no linking number, check if the control number shows up as a linking number of any other record -> merge
+        #  them if linking number, check if the linking number shows up as a control number of any other record ->
+        # merge them
         if not controlNumber: 
             # TODO print("Control")
             thesis.control = "R"+str(count)        # permanently replacing the control number with a generated one for validation purposes
             records[thesis.control] = thesis
 
         elif linkingNumber and linkingNumber in records.keys():
-            # linking number for the current record exists and we already processed the other record that this links to -> merge them into one
+            # linking number for the current record exists and we already processed the other record that this links
+            # to -> merge them into one
             rec = records[linkingNumber]        # rec = the record we are merging the current record into
             mergeRecords(rec, thesis)        
 
         elif not linkingNumber and controlNumber in records.keys():
-            # linking number for the current record doesn't exist and we already processed the other record that this links to -> merge them into one
+            # linking number for the current record doesn't exist and we already processed the other record that this
+            #  links to -> merge them into one
             rec = records[controlNumber]        # rec = the record we are merging the current record into
             mergeRecords(rec, thesis)
 
         elif linkingNumber:
-            #pretend the linking number is a control number when adding to dictionary because the top two statements check for the control number and for the supplementary records, the control number is useless but we need to merge using identical linking numbers so store the linking number for searching
+            # pretend the linking number is a control number when adding to dictionary because the top two statements
+            # check for the control number and for the supplementary records, the control number is useless but we
+            # need to merge using identical linking numbers so store the linking number for searching
             records[linkingNumber] = thesis
 
         elif not linkingNumber:
@@ -689,25 +703,23 @@ def process(records_file, lac_upload):
             universities.append(thesis.university)
         # print("-"*50)
 
-
-    #print(g.serialize(format="xml").decode("utf-8"))
+    # print(g.serialize(format="xml").decode("utf-8"))
     output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
     g.serialize("website/processing/tmp/" + output_file_name, format="xml")
 
-
     # send the tweet 
-
     if lac_upload:
         upload_organization = "Library and Archives Canada"
     else:
         upload_organization = max(set(universities), key=universities.count).strip()
         
     # get the university with the highest occurances to weed out any outliers in the records
-    
     tweet = upload_organization + " just added " + str(count) + " theses to the dataset!"
     if not sendTweet(tweet):
         # an error occured while sending the tweet 
         # log the error in github later
         print("error")
+
+    submitGithubIssue("Testing", "Some Body", "TEST")
 
     return([errors, submissions, count])

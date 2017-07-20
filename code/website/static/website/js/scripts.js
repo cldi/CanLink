@@ -27,13 +27,12 @@ function submitForm() {
     var formData = new FormData();
     var fileInput = document.getElementById('records_upload');
     var file = fileInput.files[0];
-    
+
     var file_path = document.getElementById("records_upload").value;
     if (file_path != "") {
-        formData.append('records_file', file);    
-    }
-    else{
-        formData.append("records", records);    
+        formData.append('records_file', file);
+    } else {
+        formData.append("records", records);
     }
 
     formData.append("csrfmiddlewaretoken", csrftoken);
@@ -46,7 +45,7 @@ function submitForm() {
     //Send data  
     $.ajax({
         url: "/submission/thesisSubmission/",
-        type: "POST", 
+        type: "POST",
         processData: false,
         contentType: false,
         data: formData,
@@ -79,5 +78,3 @@ function submitForm() {
         }
     });
 };
-
-

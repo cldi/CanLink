@@ -44,7 +44,6 @@
                         <input id="lacCheckbox" type="checkbox" value="">This is an LAC upload</input>
                     </label>
                 </form>
-
                 <!-- <button
                         id="pasteAreaSubmitButton" 
                         class="g-recaptcha center-block"
@@ -66,12 +65,12 @@
 function uploadedFile() {
     var file_path = document.getElementById("records_upload").value;
     if (file_path != "") {
-        var upload_text = file_path.substring(file_path.lastIndexOf("\\")+1);
-        if (upload_text.length > 20){
+        var upload_text = file_path.substring(file_path.lastIndexOf("\\") + 1);
+        if (upload_text.length > 20) {
             upload_text = upload_text.substring(0, 20) + "...";
         }
         upload_text = upload_text + " uploaded";
-        
+
         document.getElementById("upload_button_text").innerHTML = upload_text;
     } else {
         alert("file removed");
