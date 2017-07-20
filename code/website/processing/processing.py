@@ -642,12 +642,15 @@ def sendTweet(tweet):
 
 def submitGithubIssue(title, body, label):
     try:
-        access_token ="4906e105abca31049d5067ef797ca933bd10f367" 
-        # access_token = os.environ.get("GITHUB_TOKEN")
-        r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
+        access_token = os.environ.get("GITHUB_TOKEN")
+        # r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
+        #             json = {"title":title, "body":body, "labels":[label]})
+        r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
                     json = {"title":title, "body":body, "labels":[label]})
+
         print(r.text)
     except Exception as e:
+        print(title, body, label)
         print(e)
     
 
