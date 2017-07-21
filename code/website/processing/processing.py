@@ -379,7 +379,17 @@ class Thesis():
                 return(degrees[match[0]][0], degrees[match[0]][1])
             if "master" in degree:
                 return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
-            return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
+            else:
+                return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
+
+        # if the program has come to this point then a degree uri was not generated 
+        # save the record to a error file and then submit an issue to github
+        error_file_name = saveErrorFile(self.record.as_marc())
+
+        title = "Missing Degree URL"
+        body = "The Degree URL for ["+ self.degree.strip() + "](https://localhost/)\nRecord File: " + error_file_name
+        label = "Missing URL"
+        submitGithubIssue(title, body, label)
 
         return([None, None])
 
@@ -651,7 +661,7 @@ def submitGithubIssue(title, body, label):
         print(r.text)
     except Exception as e:
         print(title, body, label)
-        print(e)
+        # print(e)
     
 
 def saveErrorFile(content):
@@ -730,12 +740,13 @@ def process(records_file, lac_upload):
         upload_organization = "Library and Archives Canada"
     else:
         upload_organization = max(set(universities), key=universities.count).strip()
-        
-    # get the university with the highest occurances to weed out any outliers in the records
-    tweet = upload_organization + " just added " + str(count) + " theses to the dataset!"
-    if not sendTweet(tweet):
-        # an error occured while sending the tweet 
-        # log the error in github later
-        print("error")
+    
+    if len(submissions) > 0:
+        # get the university with the highest occurances to weed out any outliers in the records
+        tweet = upload_organization + " just added " + str(len(submissions)) + " theses to the dataset!"
+        if not sendTweet(tweet):
+            # an error occured while sending the tweet 
+            # log the error in github later
+            print("error")
 
     return([errors, submissions, count])
