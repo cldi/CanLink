@@ -96,9 +96,9 @@ def processRecords(raw_records, lac_upload):
             break
         except:
             continue
-
-        error_file_name = saveErrorFile(raw_records.encode(encoding))
-        submitGithubIssue("Error Finding Encoding", "File: " + error_file_name, "BUG")
+        # next two lines wouldn't run properly since we don't have the encoding - leave this for later
+        # error_file_name = saveErrorFile(raw_records.encode(encoding))
+        # submitGithubIssue("Error Finding Encoding", "File: " + error_file_name, "BUG")
 
     try:
         response = process(records_file, lac_upload)
@@ -124,5 +124,93 @@ def processRecords(raw_records, lac_upload):
     # print(return_response)
 
     return(return_response)
+
+@csrf_exempt
+def updateUri(request):
+    if request.method == "POST":
+        response = json.loads(request.body.decode('utf-8'))
+        # only check for comment creations - not deletions
+        if response["action"] == "deleted":
+            return HttpResponse(1)
+
+        issue_title = response["issue"]["title"]
+        issue = response["issue"]["body"]
+        comment = response["comment"]["body"]
+
+        if issue_title == "Missing University URL":
+            # take the university name from the issue and not the comment
+            # so we don't need to worry about spelling mistakes
+            university_name = issue.split("[")[1].split("]")[0].strip()
+            university_uri = comment.strip()
+            record_file = issue.split("Record File: ")[1].strip()
+            print(response)
+            
+            print(university_name)
+            print(university_uri)
+            print(record_file)
+
+            # add the new uri to the universities.pickle file
+            with open("website/processing/files/testing.pickle", "rb") as handle:
+                testing_universities = pickle.load(handle)
+
+            testing_universities[university_name] = university_uri
+
+            with open("website/processing/files/testing.pickle", "wb") as handle:
+                pickle.dump(testing_universities, handle, protocol=pickle.HIGHEST_PROTOCOL)
+                print("Saved:", university_name, university_uri)
+
+            # reprocess the file
+            with open("website/processing/errors/"+record_file, "rb") as error_file:
+                data = error_file.read()
+                
+                for enc in ["cp1252", "utf-8"]:
+                    try:
+                        raw_records = data.decode(enc)
+                        processRecords(raw_records, False)
+                        break
+                    except:
+                        continue
+
+                
+
+                
+            # call processing.py after saving the value to see if it works (success = no issue produced) 
+
+
+            # with open("website/processing/files/testing.pickle", "rb") as handle:
+            #     testing_universities = pickle.load(handle)
+            # # add the new university uri
+            # testing_universities[university_name] = university_uri
+
+            # with open("website/processing/files/testing.pickle", "wb") as handle:
+            #     pickle.dump(testing_universities, handle, protocol=pickle.HIGHEST_PROTOCOL)
+            #     print("Saved:", university_name, university_uri)
+            
+
+            # add the university to the universities database - create a new copy of universities list for now
+            # run processing.py on that record - turn off tweet output? 
+            # 
+
+
+        # elif issue_title == "Missing Degree URL":
+        #     degree_name = issue.split("[")[1].split("]")[0].strip()
+        #     degree_uri = comment.strip()
+        #     record_file = issue.split("Record File: ")[1].strip()
+            
+        #     print(degree_name)
+        #     print(degree_uri)
+        #     print(record_file)            
+        
+        return HttpResponse(1)
+
+
+
+
+
+
+
+
+
+
 
             

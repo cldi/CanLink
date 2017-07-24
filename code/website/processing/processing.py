@@ -14,42 +14,20 @@ import ssl
 import random
 import time
 import requests
+import traceback
 # next line is necesary to find pdf links from urls with https
 context = ssl._create_unverified_context()
-
-with open("website/processing/files/universities.pickle", "rb") as handle:
-    universities = pickle.load(handle)      # key: name, value: uri
-
-with open("website/processing/files/subjects_full.pickle", "rb") as handle:
-    subjects = pickle.load(handle)      # key: subject name, value: uri
-
-# set up RDFLib
-g = Graph()
-
 REL = Namespace("http://purl.org/vocab/relationship/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
 
-g.bind("foaf", FOAF)
-g.bind("dc", DC)
-g.bind("rdf", RDF)
-g.bind("rel", REL)
-g.bind("frbr", FRBR)
-g.bind("bibo", BIBO)
-g.bind("schema", SCHEMA)
-g.bind("skos", SKOS)
-g.bind("rdfs", RDFS)
-g.bind("owl", OWL)
-g.bind("cwrc", CWRC)
-# used to keep non-persistent memory of the universities we have processed before
-# so that we don't need to go to dbpedia every time
-university_uri_cache = {}
-
+with open("website/processing/files/subjects_full.pickle", "rb") as handle:
+    subjects = pickle.load(handle)      # key: subject name, value: uri
 
 class Thesis():
-    def __init__(self, record):
+    def __init__(self, record, universities, university_uri_cache):
         self.record = record
         
         self.control = self.getControlNumber()
@@ -58,7 +36,7 @@ class Thesis():
         self.title = self.getTitle()
         self.abstract = self.getAbstract()
         self.university = self.getUniversity()
-        self.universityUri = self.getUniversityUri()
+        self.universityUri = self.getUniversityUri(universities, university_uri_cache)
         self.authorUri = self.getAuthorUri()
         self.date = self.getDate()
         self.language = self.getLanguage()
@@ -164,10 +142,12 @@ class Thesis():
 
         return university
         
-    def getUniversityUri(self):
+    def getUniversityUri(self, universities, university_uri_cache):
         if not self.university:
             return None
 
+        print("TESTING", universities["Université Laval Faculté de droit de Montréal"], self.university)
+        print("cache", university_uri_cache)
         # get rid of slashes if they exist
         universityName = self.university.split("/")[0]
         # remove the special characters like accents
@@ -175,6 +155,7 @@ class Thesis():
         
         if universityName in university_uri_cache.keys():
             # print("Found in cache: ", universityName, self.control)
+            print("1", university_uri_cache[universityName])
             return(university_uri_cache[universityName])    
         else:
             # get the names of the universities
@@ -186,13 +167,14 @@ class Thesis():
                 uri = universities[match[0]]
                 # save to cache for future reference
                 university_uri_cache[universityName] = uri
+                print("2", uri)
                 return uri    # return the uri associated with that name
             else:
                 # couldn't find a match - submit an issue 
                 error_file_name = saveErrorFile(self.record.as_marc())
 
                 title = "Missing University URL"
-                body = "The URL for ["+ self.university + "](https://localhost/)\nRecord File: " + error_file_name
+                body = "The URL for ["+ self.university.strip() + "](https://localhost/)\nRecord File: " + error_file_name
                 label = "Missing URL"
                 submitGithubIssue(title, body, label)
 
@@ -384,12 +366,12 @@ class Thesis():
 
         # if the program has come to this point then a degree uri was not generated 
         # save the record to a error file and then submit an issue to github
-        error_file_name = saveErrorFile(self.record.as_marc())
+        # error_file_name = saveErrorFile(self.record.as_marc())
 
-        title = "Missing Degree URL"
-        body = "The Degree URL for ["+ self.degree.strip() + "](https://localhost/)\nRecord File: " + error_file_name
-        label = "Missing URL"
-        submitGithubIssue(title, body, label)
+        # title = "Missing Degree URL"
+        # body = "The Degree URL for ["+ self.degree.strip() + "](https://localhost/)\nRecord File: " + error_file_name
+        # label = "Missing URL"
+        # submitGithubIssue(title, body, label)
 
         return([None, None])
 
@@ -498,7 +480,7 @@ class Thesis():
         return None
 
 
-    def generateRDF(self):
+    def generateRDF(self, g):
         # thesis title - don't need to check if it exists because validateRecords did that already
         g.add((URIRef(self.uri), DC.title, Literal(self.title)))
         # same as (links that are not pdf files but still contain information about this thesis)
@@ -653,15 +635,15 @@ def sendTweet(tweet):
 def submitGithubIssue(title, body, label):
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
+        # access_token = "a19525049676f2b6f2a27b07408b36020f6f3d5a"
         # r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
-        #             json = {"title":title, "body":body, "labels":[label]})
+                     # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
         r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    json = {"title":title, "body":body, "labels":[label]})
+                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
-        print(r.text)
     except Exception as e:
         print(title, body, label)
-        # print(e)
+        print(traceback.format_exc())
     
 
 def saveErrorFile(content):
@@ -679,6 +661,26 @@ def process(records_file, lac_upload):
     errors = []
     submissions = []
 
+    with open("website/processing/files/testing.pickle", "rb") as handle:
+        universities_dbpedia = pickle.load(handle)      # key: name, value: uri
+
+    # used to keep non-persistent memory of the universities we have processed before
+    # so that we don't need to go to dbpedia every time
+    university_uri_cache = {}
+
+    g = Graph()
+    
+    g.bind("foaf", FOAF)
+    g.bind("dc", DC)
+    g.bind("rdf", RDF)
+    g.bind("rel", REL)
+    g.bind("frbr", FRBR)
+    g.bind("bibo", BIBO)
+    g.bind("schema", SCHEMA)
+    g.bind("skos", SKOS)
+    g.bind("rdfs", RDFS)
+    g.bind("owl", OWL)
+    g.bind("cwrc", CWRC)
     # when the control number isn't given, we use this to generate one
     count = 0 
     # keep a list of the unversities seen and take the one that appears the most for the tweet
@@ -686,7 +688,7 @@ def process(records_file, lac_upload):
     # process and merge the records
     for record in reader: 
         # read record
-        thesis = Thesis(record)
+        thesis = Thesis(record, universities_dbpedia, university_uri_cache)
         count += 1
         # get control number and linking number
         controlNumber = thesis.control
@@ -726,7 +728,7 @@ def process(records_file, lac_upload):
         
         if validateRecord(thesis, errors):
             # if there were no errors then generate RDF
-            thesis.generateRDF()
+            thesis.generateRDF(g)
             submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
             universities.append(thesis.university)
         # print("-"*50)
@@ -748,5 +750,7 @@ def process(records_file, lac_upload):
             # an error occured while sending the tweet 
             # log the error in github later
             print("error")
+
+    university_uri_cache = {}       # clear the cache 
 
     return([errors, submissions, count])

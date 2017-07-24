@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:bibo="http://purl.org/ontology/bibo/"
+   xmlns:cwrc="http://sparql.cwrc.ca/ontologies/cwrc#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:rel="http://purl.org/vocab/relationship/"
+>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/Person/4626ff3d01a647d4d0a7323b1fdd83cd">
+    <foaf:firstName>Rodolphe</foaf:firstName>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <foaf:lastName>Lemieux</foaf:lastName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/thesis/0c148f37b0b1b753b2a52c79238659c4">
+    <dc:issued rdf:datatype="gYear">1896</dc:issued>
+    <dc:publisher rdf:resource="b.com"/>
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+    <bibo:degree rdf:resource="http://id.loc.gov/authorities/subjects/sh2012003813"/>
+    <rdf:type rdf:resource="http://schema.org/creativeWork"/>
+    <cwrc:hasGenre rdf:resource="http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation"/>
+    <rel:author rdf:resource="http://canlink.library.ualberta.ca/Person/4626ff3d01a647d4d0a7323b1fdd83cd"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Work"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Expression"/>
+    <dc:creator rdf:resource="http://canlink.library.ualberta.ca/Person/4626ff3d01a647d4d0a7323b1fdd83cd"/>
+    <dc:title>De la contrainte par corps</dc:title>
+    <dc:language rdf:resource="http://id.loc.gov/vocabulary/languages/fre"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://id.loc.gov/authorities/subjects/sh2012003813">
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesisDegree"/>
+    <rdfs:label>LLM</rdfs:label>
+  </rdf:Description>
+</rdf:RDF>
