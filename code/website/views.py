@@ -87,7 +87,7 @@ def validateRecaptcha(recaptcha_response, user_ip):
         return(False)
 
 
-def processRecords(raw_records, lac_upload):
+def processRecords(raw_records, lac_upload, silent_output=False):
     encoding = ""
     for enc in ["cp1252", "utf-8"]:
         try:
@@ -101,7 +101,7 @@ def processRecords(raw_records, lac_upload):
         # submitGithubIssue("Error Finding Encoding", "File: " + error_file_name, "BUG")
 
     try:
-        response = process(records_file, lac_upload)
+        response = process(records_file, lac_upload, silent_output)
     except Exception as e:
         # save file locally 
         error_file_name = saveErrorFile(raw_records.encode(encoding))
@@ -110,7 +110,7 @@ def processRecords(raw_records, lac_upload):
         title = "Error Processing File"
         body = "File: " + error_file_name + "\nPython Stacktrace:\n\n" + python_stacktrace
         label = "BUG"
-        submitGithubIssue(title, body, label)
+        submitGithubIssue(title, body, label, silent_output=False)
 
         # there was some type of error processing the file
         return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
@@ -166,41 +166,49 @@ def updateUri(request):
                 for enc in ["cp1252", "utf-8"]:
                     try:
                         raw_records = data.decode(enc)
-                        processRecords(raw_records, False)
+                        processRecords(raw_records, False, silent_output=True)
+                        break
+                    except:
+                        continue
+            print("fixed university")
+
+        elif issue_title == "Missing Degree URL":
+            degree_name = issue.split("[")[1].split("]")[0].strip()
+            degree_label, degree_uri = comment.split()
+            record_file = issue.split("Record File: ")[1].strip()
+            
+            degree_name = ''.join([i for i in degree_name if i.isalpha()]).lower()
+            print(degree_name)
+            print(degree_uri)
+            print(record_file)
+            
+            # save the new degree
+            with open("website/processing/files/degrees_new.pickle", "rb") as handle:
+                testing_degrees = pickle.load(handle)
+
+            # TODO this is a temporary fix for multiple issues with the same missing degree url
+            # need to make it so that duplicate universities don't occur
+            if degree_name not in testing_degrees:
+                testing_degrees[degree_name] = [degree_label, degree_uri]
+
+                with open("website/processing/files/degrees_new.pickle", "wb") as handle:
+                    pickle.dump(testing_degrees, handle, protocol=pickle.HIGHEST_PROTOCOL)
+                    print("Saved:", degree_name, degree_uri)
+
+             # reprocess the file
+            with open("website/processing/errors/"+record_file, "rb") as error_file:
+                data = error_file.read()
+                
+                for enc in ["cp1252", "utf-8"]:
+                    try:
+                        raw_records = data.decode(enc)
+                        processRecords(raw_records, False, silent_output=True)
                         break
                     except:
                         continue
 
-                
+            print("fixed degree")
 
-                
-            # call processing.py after saving the value to see if it works (success = no issue produced) 
-
-
-            # with open("website/processing/files/testing.pickle", "rb") as handle:
-            #     testing_universities = pickle.load(handle)
-            # # add the new university uri
-            # testing_universities[university_name] = university_uri
-
-            # with open("website/processing/files/testing.pickle", "wb") as handle:
-            #     pickle.dump(testing_universities, handle, protocol=pickle.HIGHEST_PROTOCOL)
-            #     print("Saved:", university_name, university_uri)
-            
-
-            # add the university to the universities database - create a new copy of universities list for now
-            # run processing.py on that record - turn off tweet output? 
-            # 
-
-
-        # elif issue_title == "Missing Degree URL":
-        #     degree_name = issue.split("[")[1].split("]")[0].strip()
-        #     degree_uri = comment.strip()
-        #     record_file = issue.split("Record File: ")[1].strip()
-            
-        #     print(degree_name)
-        #     print(degree_uri)
-        #     print(record_file)            
-        
         return HttpResponse(1)
 
 

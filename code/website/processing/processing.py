@@ -23,12 +23,11 @@ SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
 
-with open("website/processing/files/subjects_full.pickle", "rb") as handle:
-    subjects = pickle.load(handle)      # key: subject name, value: uri
-
 class Thesis():
-    def __init__(self, record, universities, university_uri_cache):
+    def __init__(self, record, universities, university_uri_cache, subjects, degrees, silent_output):
+
         self.record = record
+        self.silent_output = silent_output
         
         self.control = self.getControlNumber()
         self.linking = self.getLinkingControlNumber()
@@ -41,9 +40,9 @@ class Thesis():
         self.date = self.getDate()
         self.language = self.getLanguage()
         self.subjects = self.getSubjects()
-        self.subjectUris = self.getSubjectUris()
+        self.subjectUris = self.getSubjectUris(subjects)
         self.degree = self.getDegree()
-        self.degreeLabel, self.degreeUri = self.getDegreeUri()
+        self.degreeLabel, self.degreeUri = self.getDegreeUri(degrees)
         self.advisors = self.getAdvisors()
         self.advisorUris = self.getAdvisorUris()
         self.contentUrl = self.getContentUrl()
@@ -146,8 +145,6 @@ class Thesis():
         if not self.university:
             return None
 
-        print("TESTING", universities["Université Laval Faculté de droit de Montréal"], self.university)
-        print("cache", university_uri_cache)
         # get rid of slashes if they exist
         universityName = self.university.split("/")[0]
         # remove the special characters like accents
@@ -155,7 +152,6 @@ class Thesis():
         
         if universityName in university_uri_cache.keys():
             # print("Found in cache: ", universityName, self.control)
-            print("1", university_uri_cache[universityName])
             return(university_uri_cache[universityName])    
         else:
             # get the names of the universities
@@ -167,7 +163,6 @@ class Thesis():
                 uri = universities[match[0]]
                 # save to cache for future reference
                 university_uri_cache[universityName] = uri
-                print("2", uri)
                 return uri    # return the uri associated with that name
             else:
                 # couldn't find a match - submit an issue 
@@ -176,7 +171,7 @@ class Thesis():
                 title = "Missing University URL"
                 body = "The URL for ["+ self.university.strip() + "](https://localhost/)\nRecord File: " + error_file_name
                 label = "Missing URL"
-                submitGithubIssue(title, body, label)
+                submitGithubIssue(title, body, label, self.silent_output)
 
                 return None
 
@@ -223,7 +218,7 @@ class Thesis():
         return([subject.strip(".") for subject in subjects])
 
 
-    def getSubjectUris(self):
+    def getSubjectUris(self, subjects):
         if not self.subjects:
             return None
 
@@ -278,7 +273,7 @@ class Thesis():
         return None
 
 
-    def getDegreeUri(self):
+    def getDegreeUri(self, degrees):
         # convert the degree name to lowercase and remove the extra characters except for the space
         if not self.degree:
             return([None, None])
@@ -331,47 +326,24 @@ class Thesis():
             if code in degree:
                 return(degree_codes[code][0], degree_codes[code][1])
 
-        # check for longer sentences if the keywords aren't available
-        degrees = {"masterofscience":["MSc", "http://canlink.library.ualberta.ca/thesisDegree/msc"],
-                 "masterofarts":["MA", "http://id.loc.gov/authorities/subjects/sh85081990"],
-                 "masteroffinearts":["MFA", "http://canlink.library.ualberta.ca/thesisDegree/mfa"],
-                 "masterofappliedscience":["MASc", "http://canlink.library.ualberta.ca/thesisDegree/masc"],
-                 "masteroflaws":["LLM", "http://id.loc.gov/authorities/subjects/sh2012003813"],
-                 "masterofenvironmentalstudies":["MEnv", "http://canlink.library.ualberta.ca/thesisDegree/menv"],
-                 "masterofeducation":["MEd", "http://id.loc.gov/authorities/subjects/sh2010014261"],
-                 "masterofnursing":["MN", "http://canlink.library.ualberta.ca/thesisDegree/mn"],
-                 "masterofarchitecture":["MArch", "http://canlink.library.ualberta.ca/thesisDegree/march"],
-                 "masterofmathematics":["MMath", "http://canlink.library.ualberta.ca/thesisDegree/mmath"],
-                 "masterofhealthstudies":["MHStud", "http://canlink.library.ualberta.ca/thesisDegree/mhstud"],
-                 "masterofcounselling":["MCoun", "http://canlink.library.ualberta.ca/thesisDegree/mcoun"],
-                 "masterofengineering":["MEng", "http://canlink.library.ualberta.ca/thesisDegree/meng"],
-                 "masterofadvancedstudies":["MAS", "http://canlink.library.ualberta.ca/thesisDegree/mas"],
-                 "masterofphysicaleducation":["MPhysEd", "http://canlink.library.ualberta.ca/thesisDegree/mphysed"],
-                 "masterofbusinessadministration":["MBA", "http://id.loc.gov/authorities/subjects/sh85081991"],
-                 "masterofworshipstudies":["MWS", "http://canlink.library.ualberta.ca/thesisDegree/mws"],
-                 "doctorofphilosophy":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],
-                 "doctoralthesis":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],
-                 "doctorofbusinessadministration":["DBA", "http://canlink.library.ualberta.ca/thesisDegree/dba"],
-                 "doctorofscience":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],
-                 "doctor":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],}
-        
-        if "master" in degree or "doctor" in degree:
-            match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
-            if match:
-                return(degrees[match[0]][0], degrees[match[0]][1])
-            if "master" in degree:
-                return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
-            else:
-                return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
+        match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
+        if match:
+            return(degrees[match[0]][0], degrees[match[0]][1])
+        # check for longer sentences from the degrees file if the keywords aren't available
+
+        if "master" in degree:
+            return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
+        elif "doctor" in degree:
+            return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
 
         # if the program has come to this point then a degree uri was not generated 
         # save the record to a error file and then submit an issue to github
-        # error_file_name = saveErrorFile(self.record.as_marc())
+        error_file_name = saveErrorFile(self.record.as_marc())
 
-        # title = "Missing Degree URL"
-        # body = "The Degree URL for ["+ self.degree.strip() + "](https://localhost/)\nRecord File: " + error_file_name
-        # label = "Missing URL"
-        # submitGithubIssue(title, body, label)
+        title = "Missing Degree URL"
+        body = "The Degree URL for ["+ self.degree.strip() + "](https://localhost/)\nRecord File: " + error_file_name
+        label = "Missing URL"
+        submitGithubIssue(title, body, label, self.silent_output)
 
         return([None, None])
 
@@ -618,7 +590,8 @@ def validateRecord(record, errors):
     return True
 
 
-def sendTweet(tweet):
+def sendTweet(tweet, silent_output):
+    if silent_output: return None
     try:
         api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
                   consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
@@ -632,14 +605,15 @@ def sendTweet(tweet):
         return False
 
 
-def submitGithubIssue(title, body, label):
+def submitGithubIssue(title, body, label, silent_output):
+    if silent_output: return None
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
-        # access_token = "a19525049676f2b6f2a27b07408b36020f6f3d5a"
+        
         # r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
                      # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
         r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+                    # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
     except Exception as e:
         print(title, body, label)
@@ -654,7 +628,15 @@ def saveErrorFile(content):
     return error_file_name
 
 
-def process(records_file, lac_upload):
+def process(records_file, lac_upload, silent_output):
+    # silent_output makes it so that it doesn't generate github issues or tweets 
+    # ex: first time a record is processed, we put all the issues on github
+    # what if there were multiple issues with one record -> it would generate the
+    #   issues again after one issue was fixed since we just call the function again
+    # this would lead to many duplicate issues
+    # solution: after the first processing, pass in silent_output = True to stop
+    #   creating gitub isues and to stop the tweet since it was already counted in the 
+    #   original tweet
     reader = MARCReader(records_file, force_utf8=True)
 
     records = {}
@@ -664,6 +646,11 @@ def process(records_file, lac_upload):
     with open("website/processing/files/testing.pickle", "rb") as handle:
         universities_dbpedia = pickle.load(handle)      # key: name, value: uri
 
+    with open("website/processing/files/subjects_full.pickle", "rb") as handle:
+        subjects = pickle.load(handle)      # key: subject name, value: uri
+
+    with open("website/processing/files/degrees_new.pickle", "rb") as handle:
+        degrees = pickle.load(handle)
     # used to keep non-persistent memory of the universities we have processed before
     # so that we don't need to go to dbpedia every time
     university_uri_cache = {}
@@ -688,7 +675,7 @@ def process(records_file, lac_upload):
     # process and merge the records
     for record in reader: 
         # read record
-        thesis = Thesis(record, universities_dbpedia, university_uri_cache)
+        thesis = Thesis(record, universities_dbpedia, university_uri_cache, subjects, degrees, silent_output)
         count += 1
         # get control number and linking number
         controlNumber = thesis.control
@@ -722,7 +709,7 @@ def process(records_file, lac_upload):
 
         elif not linkingNumber:
             records[controlNumber] = thesis
-        
+    
     for thesis in records.values():
         # print(thesis)
         
@@ -734,23 +721,20 @@ def process(records_file, lac_upload):
         # print("-"*50)
 
     # print(g.serialize(format="xml").decode("utf-8"))
-    output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
-    g.serialize("website/processing/tmp/" + output_file_name, format="xml")
+    if len(submissions) > 0:
+        output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
+        g.serialize("website/processing/tmp/" + output_file_name, format="xml")
 
     # send the tweet 
-    if lac_upload:
-        upload_organization = "Library and Archives Canada"
-    else:
-        upload_organization = max(set(universities), key=universities.count).strip()
-    
-    if len(submissions) > 0:
-        # get the university with the highest occurances to weed out any outliers in the records
+    if len(universities) > 0:
+        if lac_upload:
+            upload_organization = "Library and Archives Canada"
+        else:
+            # find the name of university that appears most in the file
+            upload_organization = max(set(universities), key=universities.count).strip()
+        
         tweet = upload_organization + " just added " + str(len(submissions)) + " theses to the dataset!"
-        if not sendTweet(tweet):
-            # an error occured while sending the tweet 
-            # log the error in github later
+        if not sendTweet(tweet, silent_output):
             print("error")
-
-    university_uri_cache = {}       # clear the cache 
 
     return([errors, submissions, count])

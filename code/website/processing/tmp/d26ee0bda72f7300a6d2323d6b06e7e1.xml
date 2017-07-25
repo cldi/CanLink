@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:bibo="http://purl.org/ontology/bibo/"
+   xmlns:cwrc="http://sparql.cwrc.ca/ontologies/cwrc#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:rel="http://purl.org/vocab/relationship/"
+>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/thesis/9739c1fe732ce8d5c021e8cd3fefdef3">
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Expression"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Work"/>
+    <bibo:degree rdf:resource="https://www.maharsh.net/msc"/>
+    <dc:title>Acton Vale et son évolution</dc:title>
+    <dc:creator rdf:resource="http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1"/>
+    <dc:publisher rdf:resource="http://dbpedia.org/resource/Université_de_Montréal"/>
+    <rel:author rdf:resource="http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1"/>
+    <cwrc:hasGenre rdf:resource="http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation"/>
+    <dc:language rdf:resource="http://id.loc.gov/vocabulary/languages/fre"/>
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+    <dc:issued rdf:datatype="gYear">1946</dc:issued>
+    <rdf:type rdf:resource="http://schema.org/creativeWork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/Person/0efdde7ed2163c46d04f052c89167ba1">
+    <foaf:lastName>Rousseau</foaf:lastName>
+    <foaf:firstName>Claire</foaf:firstName>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.maharsh.net/msc">
+    <rdfs:label>MSc</rdfs:label>
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesisDegree"/>
+  </rdf:Description>
+</rdf:RDF>

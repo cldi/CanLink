@@ -10,25 +10,25 @@
 >
   <rdf:Description rdf:about="http://canlink.library.ualberta.ca/thesis/0c148f37b0b1b753b2a52c79238659c4">
     <rdf:type rdf:resource="http://schema.org/creativeWork"/>
-    <dc:issued rdf:datatype="gYear">1896</dc:issued>
-    <dc:publisher rdf:resource="c.com"/>
-    <cwrc:hasGenre rdf:resource="http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation"/>
-    <dc:creator rdf:resource="http://canlink.library.ualberta.ca/Person/b9d2a4bcb3ab86f88b3bd654197394f2"/>
-    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+    <dc:creator rdf:resource="http://canlink.library.ualberta.ca/Person/ff9b725a8a4a2e5c7984a8f22f40e527"/>
     <dc:language rdf:resource="http://id.loc.gov/vocabulary/languages/fre"/>
-    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Work"/>
-    <dc:title>De la contrainte par corps</dc:title>
+    <dc:issued rdf:datatype="gYear">1896</dc:issued>
     <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Expression"/>
     <bibo:degree rdf:resource="http://id.loc.gov/authorities/subjects/sh2012003813"/>
-    <rel:author rdf:resource="http://canlink.library.ualberta.ca/Person/b9d2a4bcb3ab86f88b3bd654197394f2"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/Person/b9d2a4bcb3ab86f88b3bd654197394f2">
-    <foaf:firstName>Rodolphe</foaf:firstName>
-    <foaf:lastName>Lemieux</foaf:lastName>
-    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <dc:publisher rdf:resource="https://www.maharsh.net/Montreal"/>
+    <rel:author rdf:resource="http://canlink.library.ualberta.ca/Person/ff9b725a8a4a2e5c7984a8f22f40e527"/>
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+    <cwrc:hasGenre rdf:resource="http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Work"/>
+    <dc:title>De la contrainte par corps</dc:title>
   </rdf:Description>
   <rdf:Description rdf:about="http://id.loc.gov/authorities/subjects/sh2012003813">
     <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesisDegree"/>
     <rdfs:label>LLM</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/Person/ff9b725a8a4a2e5c7984a8f22f40e527">
+    <foaf:firstName>Rodolphe</foaf:firstName>
+    <foaf:lastName>Lemieux</foaf:lastName>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
   </rdf:Description>
 </rdf:RDF>

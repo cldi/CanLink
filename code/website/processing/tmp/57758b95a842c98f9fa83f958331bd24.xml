@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+   xmlns:bibo="http://purl.org/ontology/bibo/"
+   xmlns:cwrc="http://sparql.cwrc.ca/ontologies/cwrc#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:foaf="http://xmlns.com/foaf/0.1/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:rel="http://purl.org/vocab/relationship/"
+>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/thesis/2117db78e4cb245f3a7a529c49260f08">
+    <dc:creator rdf:resource="http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9"/>
+    <cwrc:hasGenre rdf:resource="http://sparql.cwrc.ca/ontologies/cwrc#genreDissertation"/>
+    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh85025528"/>
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesis"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Expression"/>
+    <dc:language rdf:resource="http://id.loc.gov/vocabulary/languages/fre"/>
+    <dc:subject rdf:resource="http://canlink.library.ualberta.ca/subject/e3dc97d980ab7f2f5f0a55fcdc8026d3"/>
+    <bibo:degree rdf:resource="https://www.maharsh.net/msc"/>
+    <rdf:type rdf:resource="http://purl.org/vocab/frbr/core#Work"/>
+    <dc:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh85136729"/>
+    <dc:subject rdf:resource="http://canlink.library.ualberta.ca/subject/053751a21b7b1aa6691d4f1011f7d69b"/>
+    <rel:author rdf:resource="http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9"/>
+    <dc:title>Développement industriel, problème social et systèmes d'action à la naissance du syndicalisme catholique</dc:title>
+    <dc:publisher rdf:resource="http://dbpedia.org/resource/Université_de_Montréal"/>
+    <dc:issued rdf:datatype="gYear">1967</dc:issued>
+    <rdf:type rdf:resource="http://schema.org/creativeWork"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/subject/e3dc97d980ab7f2f5f0a55fcdc8026d3">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label>église et problèmes sociaux</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/Person/2d25ed723aa146eb02a892b38ef18fe9">
+    <foaf:lastName>Maheu</foaf:lastName>
+    <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/Person"/>
+    <foaf:firstName>Louis</foaf:firstName>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/subject/053751a21b7b1aa6691d4f1011f7d69b">
+    <rdf:type rdf:resource="http://www.w3.org/2004/02/skos/core#Concept"/>
+    <rdfs:label>syndicats catholiques</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://www.maharsh.net/msc">
+    <rdf:type rdf:resource="http://purl.org/ontology/bibo/thesisDegree"/>
+    <rdfs:label>MSc</rdfs:label>
+  </rdf:Description>
+</rdf:RDF>
