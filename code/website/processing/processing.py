@@ -169,7 +169,7 @@ class Thesis():
                 error_file_name = saveErrorFile(self.record.as_marc())
 
                 title = "Missing University URL"
-                body = "The URL for ["+ self.university.strip() + "](https://localhost/)\nRecord File: " + error_file_name
+                body = "**To fix, comment below in the following format:** \n`http://dbpedia.org/resource/University_of_Alberta`\n\nThe URL for ["+ self.university.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
                 label = "Missing URL"
                 submitGithubIssue(title, body, label, self.silent_output)
 
@@ -341,7 +341,7 @@ class Thesis():
         error_file_name = saveErrorFile(self.record.as_marc())
 
         title = "Missing Degree URL"
-        body = "The Degree URL for ["+ self.degree.strip() + "](https://localhost/)\nRecord File: " + error_file_name
+        body = "**To fix, comment below in the following format:** \n`MSc http://canlink.library.ualberta.ca/thesisDegree/msc`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
         label = "Missing URL"
         submitGithubIssue(title, body, label, self.silent_output)
 
@@ -576,9 +576,9 @@ def validateRecord(record, errors):
     # mandatory fields: author, university, title, date, degree 
     if not record.title: record_errors.append("Title not found - Record not uploaded")
     if not record.author: record_errors.append("Author Name not found - Record not uploaded")
-    if not record.universityUri: record_errors.append("University URI could not be generated - Record not uploaded")
+    if not record.university: record_errors.append("University not found - Record not uploaded")
     if not record.date: record_errors.append("Publication Date not found - Record not uploaded")
-    if not record.degreeUri: record_errors.append("Degree URI could not be generated - Record not uploaded")
+    if not record.degree: record_errors.append("Degree not found - Record not uploaded")
 
     for error in record_errors:
         errors.append("Record #" + record.control + " - " + error)
@@ -606,14 +606,12 @@ def sendTweet(tweet, silent_output):
 
 
 def submitGithubIssue(title, body, label, silent_output):
+    print(body, silent_output)
     if silent_output: return None
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
-        
-        # r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
-                     # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
         r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
     except Exception as e:
         print(title, body, label)
