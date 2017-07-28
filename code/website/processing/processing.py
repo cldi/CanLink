@@ -166,7 +166,7 @@ class Thesis():
                 return uri    # return the uri associated with that name
             else:
                 # couldn't find a match - submit an issue 
-                error_file_name = saveErrorFile(self.record.as_marc())
+                error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
                 title = "Missing University URL"
                 body = "**To fix, comment below in the following format:** \n`http://dbpedia.org/resource/University_of_Alberta`\n\nThe URL for ["+ self.university.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
@@ -289,6 +289,16 @@ class Thesis():
         degree = ''.join([i for i in degree if i.isalpha()]).lower()
         uri = None
         label = None        # label = MSc for degree = msc
+
+        match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
+        if match:
+            return(degrees[match[0]][0], degrees[match[0]][1])
+        # check for longer sentences from the degrees file
+        if "master" in degree:
+            return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
+        elif "doctor" in degree:
+            return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
+
         # do the basic ones
         degree_codes = {
                         "maîtrise":["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"],
@@ -326,19 +336,10 @@ class Thesis():
             if code in degree:
                 return(degree_codes[code][0], degree_codes[code][1])
 
-        match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
-        if match:
-            return(degrees[match[0]][0], degrees[match[0]][1])
-        # check for longer sentences from the degrees file if the keywords aren't available
-
-        if "master" in degree:
-            return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
-        elif "doctor" in degree:
-            return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
-
+        
         # if the program has come to this point then a degree uri was not generated 
         # save the record to a error file and then submit an issue to github
-        error_file_name = saveErrorFile(self.record.as_marc())
+        error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
         title = "Missing Degree URL"
         body = "**To fix, comment below in the following format:** \n`MSc http://canlink.library.ualberta.ca/thesisDegree/msc`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
@@ -571,6 +572,8 @@ def mergeRecords(thesis1, thesis2):
 
 
 def validateRecord(record, errors):
+    # validation for showing the errors on the webpage - not for issues
+    # example: this won't raise an error if a degree uri is not provided but it will if a degree name isn't
     record_errors = []
 
     # mandatory fields: author, university, title, date, degree 
@@ -606,19 +609,23 @@ def sendTweet(tweet, silent_output):
 
 
 def submitGithubIssue(title, body, label, silent_output):
-    print(body, silent_output)
+    # print(body, silent_output)
     if silent_output: return None
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
-        r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+        r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
+                     json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+        # r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
+                    # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
     except Exception as e:
-        print(title, body, label)
-        print(traceback.format_exc())
+        print("\n--\nGithub Issue", title, body, label)
+        # print(traceback.format_exc())
     
 
-def saveErrorFile(content):
+def saveErrorFile(content, silent_output):
+    if silent_output: return None
+    # error_file_name = hashlib.md5(str(content).encode("utf-8")).hexdigest() + ".mrc"
     error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
     with open("website/processing/errors/"+error_file_name, "wb") as error_file:
         error_file.write(content)
@@ -713,11 +720,13 @@ def process(records_file, lac_upload, silent_output):
         
         if validateRecord(thesis, errors):
             # if there were no errors then generate RDF
-            thesis.generateRDF(g)
-            submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
-            universities.append(thesis.university)
+            # if silent_output is true, we don't count his as a successful upload if the uris are not there 
+            # so this is to avoid adding duplicate incomplete records to /tmp
+            if not silent_output or silent_output and thesis.degreeUri and thesis.universityUri:
+                thesis.generateRDF(g)
+                submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
+                universities.append(thesis.university)
         # print("-"*50)
-
     # print(g.serialize(format="xml").decode("utf-8"))
     if len(submissions) > 0:
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"

@@ -104,7 +104,7 @@ def processRecords(raw_records, lac_upload, silent_output=False):
         response = process(records_file, lac_upload, silent_output)
     except Exception as e:
         # save file locally 
-        error_file_name = saveErrorFile(raw_records.encode(encoding))
+        error_file_name = saveErrorFile(raw_records.encode(encoding), silent_output)
         # submit github issue
         python_stacktrace = traceback.format_exc()
         title = "Error Processing File"
@@ -128,6 +128,7 @@ def processRecords(raw_records, lac_upload, silent_output=False):
 @csrf_exempt
 def updateUri(request):
     if request.method == "POST":
+        print("test")
         response = json.loads(request.body.decode('utf-8'))
         # only check for comments created/edited in an open issue
         if response["action"] == "deleted" or response["issue"]["state"] == "closed":
@@ -185,6 +186,7 @@ def updateUri(request):
             print("fixed university")
             createComment(issue_number, "> University has been updated in the records\n> Closing Issue")
             closeIssue(issue_number)
+            removeFile("website/processing/errors/"+record_file)
 
         elif issue_title == "Missing Degree URL":
 
@@ -216,29 +218,34 @@ def updateUri(request):
                     pickle.dump(testing_degrees, handle, protocol=pickle.HIGHEST_PROTOCOL)
                     print("Saved:", degree_name, degree_uri)
 
-             # reprocess the file
-            with open("website/processing/errors/"+record_file, "rb") as error_file:
-                data = error_file.read()
-                
-                for enc in ["cp1252", "utf-8"]:
-                    try:
-                        raw_records = data.decode(enc)
-                        processRecords(raw_records, False, silent_output=True)
-                        break
-                    except:
-                        continue
+            # reprocess the file
+            try:
+                with open("website/processing/errors/"+record_file, "rb") as error_file:
+                    data = error_file.read()
+                    
+                    for enc in ["cp1252", "utf-8"]:
+                        try:
+                            raw_records = data.decode(enc)
+                            processRecords(raw_records, False, silent_output=True)
+                            break
+                        except:
+                            continue
+            except:
+                # if there is an error finding the file, that means the issue has been solved already so we can just close the issue
+                pass
 
             print("fixed degree")
-            # TODO create a comment saying that it was fixed
             createComment(issue_number, "> Degree has been updated in the records\n> Closing Issue")
             closeIssue(issue_number)
+            removeFile("website/processing/errors/"+record_file)
         return HttpResponse(1)
 
 def createComment(issue_number, body):
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
-        r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+        r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues/"+str(issue_number)+"/comments?access_token=" + access_token, json = {"body":body.strip()})
+        # r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
+                    # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
         print(r.text)
     except Exception as e:
         print(traceback.format_exc())
@@ -246,12 +253,22 @@ def createComment(issue_number, body):
 def closeIssue(issue_number):
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
-        r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+        r = requests.patch("https://api.github.com/repos/maharshmellow/CanLink_website/issues/"+str(issue_number)+"?access_token=" + access_token, json = {"state":"closed"})
+        # r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
+                    # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
         print(r.text)
+
     except Exception as e:
         print(traceback.format_exc())
 
+def removeFile(file_location):
+    try:
+        os.remove(file_location)
+        print("Removed File: ", file_location)
+    except Exception as e:
+        print(traceback.format_exc())
+        return False
+    return True
 
 
 
