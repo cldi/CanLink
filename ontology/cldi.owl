@@ -151,5 +151,30 @@
  <rdfs:comment xml:lang="fr">L'ICDL utilise soit les sujets LCHS ou un concept SKOS.</rdfs:comment>
 </rdf:Description>
 
+<prov:Activity rdf:about="#marclodconverter">
+ <rdf:type rdf:resource="http://usefulinc.com/ns/doap#Project"/>
+ <rdfs:label xml:lang="en">The CanLink MARC/LOD Converter Software</rdfs:label> 
+ <rdfs:label xml:lang="fr">Le convertisseur CanaLien MARC/LOD</rdfs:label> 
+ <doap:name xml:lang="en">The CanLink MARC/LOD Converter Software</doap:name> 
+ <doap:name xml:lang="fr">Le convertisseur CanaLien MARC/LOD</doap:name> 
+ <doap:homepage rdf:resource="http://canlink.library.ualberta.ca/"/>
+ <doap:category rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
+ <doap:license rdf:resource="http://creativecommons.org/licenses/by-nc/4.0/"/>
+ <doap:service-endpoint rdf:resource="http://canlink.library.ualberta.ca/"/>
+ <doap:language rdf:resource="http://id.loc.gov/vocabulary/languages/eng"/>
+ <doap:language rdf:resource="http://id.loc.gov/vocabulary/languages/fre"/>
+ <doap:programming-language rdf:resource="https://en.wikipedia.org/wiki/Python_(programming_language)"/> 
+ <doap:developer rdf:resource="#SharonFarnel"/>
+ <doap:developer rdf:resource="#RobWarren"/>
+ <doap:developer rdf:resource="#MaharshPatel"/>
+ <doap:shortdesc xml:lang="en">Converts MARC format thesis records into Linked Open Data records.</doap:shortdesc>
+ <doap:shortdesc xml:lang="fr">Convertie les records MARC en données liées.</doap:shortdesc>
+ <doap:repository>
+  <doap:GitRepository rdf:about="#canlinkrepo">
+   <doap:location rdf:resource="https://github.com/cldi/CanLink.git"/>
+   <doap:browse rdf:resource="https://github.com/cldi/CanLink/"/>
+  </doap:GitRepository>
+ </doap:repository>
+</prov:Activity>
 
 </rdf:RDF>
