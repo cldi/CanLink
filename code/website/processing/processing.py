@@ -613,13 +613,11 @@ def submitGithubIssue(title, body, label, silent_output):
     if silent_output: return None
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
-        r = requests.post("https://api.github.com/repos/maharshmellow/CanLink_website/issues?access_token=" + access_token,
-                     json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
-        # r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
-                    # json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
+        r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
+                    json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
     except Exception as e:
-        print("\n--\nGithub Issue", title, body, label)
+        print("Github Issue", title, body, label)
         # print(traceback.format_exc())
     
 
@@ -648,16 +646,16 @@ def process(records_file, lac_upload, silent_output):
     errors = []
     submissions = []
 
-    with open("website/processing/files/testing.pickle", "rb") as handle:
+    with open("website/processing/files/universities.pickle", "rb") as handle:
         universities_dbpedia = pickle.load(handle)      # key: name, value: uri
 
-    with open("website/processing/files/subjects_full.pickle", "rb") as handle:
+    with open("website/processing/files/subjects.pickle", "rb") as handle:
         subjects = pickle.load(handle)      # key: subject name, value: uri
 
-    with open("website/processing/files/degrees_new.pickle", "rb") as handle:
+    with open("website/processing/files/degrees.pickle", "rb") as handle:
         degrees = pickle.load(handle)
     # used to keep non-persistent memory of the universities we have processed before
-    # so that we don't need to go to dbpedia every time
+    # so that we don't need to go to dbpedia every time for the same file
     university_uri_cache = {}
 
     g = Graph()
