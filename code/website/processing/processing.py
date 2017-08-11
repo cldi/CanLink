@@ -18,6 +18,7 @@ import traceback
 from concurrent.futures import ProcessPoolExecutor
 import concurrent.futures
 import urllib.request
+from langdetect import detect
 
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
@@ -40,12 +41,12 @@ class Thesis():
         self.linking = self.getLinkingControlNumber()
         self.author = self.getAuthorName()
         self.title = self.getTitle()
-        self.abstract = self.getAbstract()
         self.university = self.getUniversity()
         self.universityUri = self.getUniversityUri(universities, university_uri_cache)
         self.authorUri = self.getAuthorUri()
         self.date = self.getDate()
         self.language = self.getLanguage()
+        self.abstract = self.getAbstract()
         self.subjects = self.getSubjects()
         self.subjectUris = self.getSubjectUris(subjects)
         self.degree = self.getDegree()
@@ -115,6 +116,17 @@ class Thesis():
 
         if not value_520_a:
             return(None)
+
+        if self.language and len(value_520_a) > 0:
+            # choose the abstract that matches the language of the record
+
+            # only get two characters since the language detection code returns a two code language back
+            record_language = self.language[-3:-1]
+
+            for abstract in value_520_a:
+                if detect(abstract) == record_language:
+                    return [abstract]
+
         return(value_520_a)
 
 
