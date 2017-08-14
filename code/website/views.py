@@ -171,7 +171,7 @@ def updateUri(request):
                 print("Saved:", university_name, university_uri)
 
             # reprocess the file
-            with open("website/processing/errors/"+record_file, "rb") as error_file:
+            with open("/home/ubuntu/CanLink/code/website/processing/errors/"+record_file, "rb") as error_file:
                 data = error_file.read()
 
                 for enc in ["cp1252", "utf-8"]:
