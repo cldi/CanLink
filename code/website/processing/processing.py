@@ -647,7 +647,7 @@ def saveErrorFile(content, silent_output):
     if silent_output: return None
     # error_file_name = hashlib.md5(str(content).encode("utf-8")).hexdigest() + ".mrc"
     error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
-    with open("website/processing/errors/"+error_file_name, "wb") as error_file:
+    with open("/home/ubuntu/CanLink/code/website/processing/errors/"+error_file_name, "wb") as error_file:
         error_file.write(content)
 
     return error_file_name
@@ -695,13 +695,13 @@ def process(records_file, lac_upload, silent_output):
     errors = []
     submissions = []
 
-    with open("website/processing/files/universities.pickle", "rb") as handle:
+    with open("/home/ubuntu/CanLink/code/website/processing/files/universities.pickle", "rb") as handle:
         universities_dbpedia = pickle.load(handle)      # key: name, value: uri
 
-    with open("website/processing/files/subjects.pickle", "rb") as handle:
+    with open("/home/ubuntu/CanLink/code/website/processing/files/subjects.pickle", "rb") as handle:
         subjects = pickle.load(handle)      # key: subject name, value: uri
 
-    with open("website/processing/files/degrees.pickle", "rb") as handle:
+    with open("/home/ubuntu/CanLink/website/processing/website/processing/files/degrees.pickle", "rb") as handle:
         degrees = pickle.load(handle)
     # used to keep non-persistent memory of the universities we have processed before
     # so that we don't need to go to dbpedia every time for the same file

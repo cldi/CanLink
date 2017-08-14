@@ -161,12 +161,12 @@ def updateUri(request):
             print(record_file)
 
             # add the new uri to the universities.pickle file
-            with open("website/processing/files/universities.pickle", "rb") as handle:
+            with open("/home/ubuntu/CanLink/code/website/processing/files/universities.pickle", "rb") as handle:
                 testing_universities = pickle.load(handle)
 
             testing_universities[university_name] = university_uri
 
-            with open("website/processing/files/universities.pickle", "wb") as handle:
+            with open("/home/ubuntu/CanLink/code/website/processing/files/universities.pickle", "wb") as handle:
                 pickle.dump(testing_universities, handle, protocol=pickle.HIGHEST_PROTOCOL)
                 print("Saved:", university_name, university_uri)
 
@@ -184,7 +184,7 @@ def updateUri(request):
             print("fixed university")
             createComment(issue_number, "> University has been updated in the records\n> Closing Issue")
             closeIssue(issue_number)
-            removeFile("website/processing/errors/"+record_file)
+            removeFile("/home/ubuntu/CanLink/code/website/processing/errors/"+record_file)
 
         elif issue_title == "Missing Degree URL":
 
@@ -204,7 +204,7 @@ def updateUri(request):
             print(record_file)
 
             # save the new degree
-            with open("website/processing/files/degrees.pickle", "rb") as handle:
+            with open("/home/ubuntu/CanLink/code/website/processing/files/degrees.pickle", "rb") as handle:
                 testing_degrees = pickle.load(handle)
 
             # TODO this is a temporary fix for multiple issues with the same missing degree url
@@ -212,13 +212,13 @@ def updateUri(request):
             if degree_name not in testing_degrees:
                 testing_degrees[degree_name] = [degree_label, degree_uri]
 
-                with open("website/processing/files/degrees.pickle", "wb") as handle:
+                with open("/home/ubuntu/CanLink/code/website/processing/files/degrees.pickle", "wb") as handle:
                     pickle.dump(testing_degrees, handle, protocol=pickle.HIGHEST_PROTOCOL)
                     print("Saved:", degree_name, degree_uri)
 
             # reprocess the file
             try:
-                with open("website/processing/errors/"+record_file, "rb") as error_file:
+                with open("/home/ubuntu/CanLink/code/website/processing/errors/"+record_file, "rb") as error_file:
                     data = error_file.read()
 
                     for enc in ["cp1252", "utf-8"]:
@@ -235,7 +235,7 @@ def updateUri(request):
             print("fixed degree")
             createComment(issue_number, "> Degree has been updated in the records\n> Closing Issue")
             closeIssue(issue_number)
-            removeFile("website/processing/errors/"+record_file)
+            removeFile("/home/ubuntu/CanLink/code/website/processing/errors/"+record_file)
         return HttpResponse(1)
 
 def createComment(issue_number, body):
