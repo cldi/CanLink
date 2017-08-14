@@ -15,6 +15,14 @@ import random
 import time
 import requests
 import traceback
+from concurrent.futures import ProcessPoolExecutor
+import concurrent.futures
+import urllib.request
+from langdetect import detect
+
+from requests.packages.urllib3.exceptions import InsecureRequestWarning
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
+
 # next line is necesary to find pdf links from urls with https
 context = ssl._create_unverified_context()
 REL = Namespace("http://purl.org/vocab/relationship/")
@@ -28,17 +36,17 @@ class Thesis():
 
         self.record = record
         self.silent_output = silent_output
-        
+
         self.control = self.getControlNumber()
         self.linking = self.getLinkingControlNumber()
         self.author = self.getAuthorName()
         self.title = self.getTitle()
-        self.abstract = self.getAbstract()
         self.university = self.getUniversity()
         self.universityUri = self.getUniversityUri(universities, university_uri_cache)
         self.authorUri = self.getAuthorUri()
         self.date = self.getDate()
         self.language = self.getLanguage()
+        self.abstract = self.getAbstract()
         self.subjects = self.getSubjects()
         self.subjectUris = self.getSubjectUris(subjects)
         self.degree = self.getDegree()
@@ -46,32 +54,32 @@ class Thesis():
         self.advisors = self.getAdvisors()
         self.advisorUris = self.getAdvisorUris()
         self.contentUrl = self.getContentUrl()
-        self.manifestations = self.getManifestations() 
-        self.uri = self.getURI()        
+        self.manifestations = None
+        self.uri = self.getURI()
 
 
     def getControlNumber(self):
         value_001 = getField(self.record, "001")
-        
+
         if not value_001:
             return None
-        
+
         return(str(value_001).split()[1])
-            
+
 
     def getLinkingControlNumber(self):
         value_004 = getField(self.record, "004")
-        
+
         if not value_004:
             return None
-        
+
         return(str(value_004).split()[1])
 
 
     def getAuthorName(self):
         value_100a = getField(self.record, "100", "a")
 
-        if not value_100a: 
+        if not value_100a:
             return None
 
         return(value_100a[0].strip(" .,"))
@@ -84,7 +92,7 @@ class Thesis():
         value_100zero = getField(self.record, "100", "0")
         if value_100zero:
             return(value_100zero[0])
-        
+
         # # check the authoritiesnames file to see if it exists
         # modifiedName = "".join([x for x in unidecode.unidecode(self.author.lower()).replace(" ", "") if x.isalpha()])
 
@@ -108,28 +116,39 @@ class Thesis():
 
         if not value_520_a:
             return(None)
+
+        if self.language and len(value_520_a) > 0:
+            # choose the abstract that matches the language of the record
+
+            # only get two characters since the language detection code returns a two code language back
+            record_language = self.language[-3:-1]
+
+            for abstract in value_520_a:
+                if detect(abstract) == record_language:
+                    return [abstract]
+
         return(value_520_a)
 
 
-    def getUniversity(self): 
+    def getUniversity(self):
 
         value_502c = getField(self.record, "502", "c")
         value_710a = getField(self.record, "710", "a")
         value_502a = getField(self.record, "502", "a")
         value_264b = getField(self.record, "264", "b")
         value_260b = getField(self.record, "260", "b")
-        
+
         university = None
-        
-        if value_502c: 
+
+        if value_502c:
             university = value_502c[0]
-        elif value_710a: 
+        elif value_710a:
             university = value_710a[0]
         elif value_502a:
             university = value_502a[0].split("thesis", 1)[-1].split("Thesis", 1)[-1].split("--", 1)[-1].split("-", 1)[-1]
-        elif value_264b: 
+        elif value_264b:
             university = value_264b[0]
-        elif value_260b: 
+        elif value_260b:
             university = value_260b[0]
 
         if not university:
@@ -140,7 +159,7 @@ class Thesis():
         university = ''.join([i for i in university if not i.isdigit()])
 
         return university
-        
+
     def getUniversityUri(self, universities, university_uri_cache):
         if not self.university:
             return None
@@ -149,10 +168,10 @@ class Thesis():
         universityName = self.university.split("/")[0]
         # remove the special characters like accents
         universityName = unidecode.unidecode(universityName)
-        
+
         if universityName in university_uri_cache.keys():
             # print("Found in cache: ", universityName, self.control)
-            return(university_uri_cache[universityName])    
+            return(university_uri_cache[universityName])
         else:
             # get the names of the universities
             universityNames = universities.keys()
@@ -165,7 +184,7 @@ class Thesis():
                 university_uri_cache[universityName] = uri
                 return uri    # return the uri associated with that name
             else:
-                # couldn't find a match - submit an issue 
+                # couldn't find a match - submit an issue
                 error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
                 title = "Missing University URL"
@@ -187,10 +206,10 @@ class Thesis():
             date = value_260c[0]
         elif value_264c:
             date = value_264c[0]
-        elif value_008 and len(str(value_008).split()[1]) >= 11 and str(value_008).split()[1][7:11].isdigit(): 
+        elif value_008 and len(str(value_008).split()[1]) >= 11 and str(value_008).split()[1][7:11].isdigit():
             date = str(value_008).split()[1][7:11]
 
-        if not date: 
+        if not date:
             return None
         # remove all non numeric characters
         return(''.join(c for c in date if str(c).isdigit()))
@@ -208,11 +227,11 @@ class Thesis():
 
         for subject in value_650a:
             subjects.append(subject)
-        
+
         for subject in value_653a:
             subjects.append(subject)
-        
-        if not subjects:    
+
+        if not subjects:
             return None
 
         return([subject.strip(".") for subject in subjects])
@@ -242,13 +261,13 @@ class Thesis():
 
         language = "eng"
 
-        if value_008 and len(str(value_008).split()[1]) >= 38 and str(value_008).split()[1][35:38].isalpha(): 
+        if value_008 and len(str(value_008).split()[1]) >= 38 and str(value_008).split()[1][35:38].isalpha():
             language = str(value_008).split()[1][35:38]
-        elif value_041a: 
+        elif value_041a:
             language = value_041a[0]
-        elif value_040b: 
+        elif value_040b:
             language = value_040b[0]
-        
+
         return("http://id.loc.gov/vocabulary/languages/"+language)
 
 
@@ -258,12 +277,12 @@ class Thesis():
 
         degree = None
 
-        if value_502b: 
+        if value_502b:
             degree = value_502b[0]
-        elif value_502a: 
+        elif value_502a:
             degree = value_502a[0].split("--", 1)[0].split(",", 1)[0]
 
-        if not degree:  
+        if not degree:
             return None
 
         degree = degree.replace("Thesis", "").replace("thesis", "").replace("(", "").replace(")", "").strip()
@@ -277,14 +296,18 @@ class Thesis():
         # convert the degree name to lowercase and remove the extra characters except for the space
         if not self.degree:
             return([None, None])
-        
-        degree = self.degree 
+
+        degree = self.degree
         # remove everything after "in" since that indicates a specialization
         if "in" in degree.split():
             degree = " ".join(degree.split()[:degree.split().index("in")])
 
         if "," in degree:
             degree = " ".join(degree[:degree.index(",")].split())
+
+        # TODO TODO TODO
+        # if "-" in degree:
+        #     degree = " ".join(degree[:degree.index("-")])
 
         degree = ''.join([i for i in degree if i.isalpha()]).lower()
         uri = None
@@ -336,8 +359,8 @@ class Thesis():
             if code in degree:
                 return(degree_codes[code][0], degree_codes[code][1])
 
-        
-        # if the program has come to this point then a degree uri was not generated 
+
+        # if the program has come to this point then a degree uri was not generated
         # save the record to a error file and then submit an issue to github
         error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
@@ -353,23 +376,23 @@ class Thesis():
         value_500a = getField(self.record, "500", "a")
         value_720a= getField(self.record, "720", "a")
 
-        if value_720a: 
+        if value_720a:
             return(value_720a)
 
         if value_500a:
             for item in value_500a:
                 if "advisor" in item.lower() or "directeur" in item.lower() and ":" in item:
                     return([advisor.strip(" .,") for advisor in item.split(":", 1)[1].split(",")])
-        
+
         return None
 
 
     def getAdvisorUris(self):
         uris = []
-        
+
         if not self.advisors:
             return None
-        
+
         for name in self.advisors:
             uri = ""
             if self.universityUri:
@@ -387,23 +410,23 @@ class Thesis():
 
         if not value_856u:
             return None
-        
+
         urls = [urllib.parse.quote(url, safe="%/:=&?~#+!$,;'@()*[]") for url in value_856u]
-        output = []
+        # output = []
+        return urls
+        # for url in urls:
+        #     output.append(url)
+        #     if ".pdf" not in url:
+        #         # the url is not linking to a pdf - a handle.net url or something else
+        #         # need to extract the link to the pdf from here
+        #         try:
+        #             pdfUrl = urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]")
+        #             if pdfUrl:
+        #                 output.append(pdfUrl)
+        #         except:
+        #             pass
 
-        for url in urls:
-            output.append(url)
-            if ".pdf" not in url:
-                # the url is not linking to a pdf - a handle.net url or something else
-                # need to extract the link to the pdf from here
-                try:
-                    pdfUrl = urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]")
-                    if pdfUrl:
-                        output.append(pdfUrl)
-                except:
-                    pass
-
-        return(output)
+        # return(output)
 
 
     def getPDFFromPage(self, url):
@@ -430,12 +453,12 @@ class Thesis():
                 return(redirect_url + pdf_url)
         if pdf_url == "":
             return None
-        
+
         return(pdf_url)
 
 
     def getManifestations(self):
-        # returns a list of the content urls hashed and with a ualberta uri 
+        # returns a list of the content urls hashed and with a ualberta uri
         if not self.contentUrl:
             return None
 
@@ -459,7 +482,7 @@ class Thesis():
         # same as (links that are not pdf files but still contain information about this thesis)
         if self.contentUrl:
             for url in self.contentUrl:
-                if ".pdf" not in url:
+                if ".pdf" not in url and url != "":
                     g.add((URIRef(self.uri), OWL.sameAs, URIRef(url)))
 
         # date
@@ -481,8 +504,8 @@ class Thesis():
             g.add((URIRef(self.authorUri), RDF.type, FOAF.Person))
             # author name
             if "," in self.author:
-                g.add((URIRef(self.authorUri), FOAF.lastName, Literal(self.author.split(",")[0].strip())))   
-                g.add((URIRef(self.authorUri), FOAF.firstName, Literal(self.author.split(",")[1].strip())))    
+                g.add((URIRef(self.authorUri), FOAF.lastName, Literal(self.author.split(",")[0].strip())))
+                g.add((URIRef(self.authorUri), FOAF.firstName, Literal(self.author.split(",")[1].strip())))
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
         # abstract
@@ -491,10 +514,10 @@ class Thesis():
                 g.add((URIRef(self.uri), BIBO.abstract, Literal(item)))
         # publisher
         if self.universityUri:
-            g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri))) 
+            g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri)))
         # thesis types
-        g.add((URIRef(self.uri), RDF.type, FRBR.Work)) 
-        g.add((URIRef(self.uri), RDF.type, FRBR.Expression)) 
+        g.add((URIRef(self.uri), RDF.type, FRBR.Work))
+        g.add((URIRef(self.uri), RDF.type, FRBR.Expression))
         g.add((URIRef(self.uri), RDF.type, SCHEMA.creativeWork))
         g.add((URIRef(self.uri), RDF.type, BIBO.thesis))
         g.add((URIRef(self.uri), CWRC.hasGenre, CWRC.genreDissertation))
@@ -527,15 +550,15 @@ class Thesis():
                 g.add((URIRef(manifestation), RDF.type, SCHEMA.MediaObject))
 
 
-    def __str__(self):
-        return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
-        """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstract)
+    # def __str__(self):
+    #     return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
+    #     """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstract)
 
 
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
     # subfield ex: "b"
-    # need this function since just doing record["710"]["b"] doesn't work if 
+    # need this function since just doing record["710"]["b"] doesn't work if
     # there are multiple lines of the same tag
     results = []
     for field in record.get_fields(tag_value):
@@ -553,7 +576,7 @@ def getField(record, tag_value, subfield_value=None):
 def mergeRecords(thesis1, thesis2):
     # takes in two theses (objects of Thesis class) and merges the information into one
     # if thesis2 contains some authors and thesis1 contains some, then they won't be merged even though it logically makes sense to merge them --> assuming that a single field isn't split between two records
-    
+
     # the list of attributes that need to be merged into one object
     attributes = ["title", "author", "abstract","university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
 
@@ -576,7 +599,7 @@ def validateRecord(record, errors):
     # example: this won't raise an error if a degree uri is not provided but it will if a degree name isn't
     record_errors = []
 
-    # mandatory fields: author, university, title, date, degree 
+    # mandatory fields: author, university, title, date, degree
     if not record.title: record_errors.append("Title not found - Record not uploaded")
     if not record.author: record_errors.append("Author Name not found - Record not uploaded")
     if not record.university: record_errors.append("University not found - Record not uploaded")
@@ -585,11 +608,11 @@ def validateRecord(record, errors):
 
     for error in record_errors:
         errors.append("Record #" + record.control + " - " + error)
-    
+
     if len(record_errors) > 0:
         # print(record)
         return False
-    
+
     return True
 
 
@@ -600,7 +623,7 @@ def sendTweet(tweet, silent_output):
                   consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
                   access_token_key = os.environ.get("TWITTER_ACCESS_KEY"),
                   access_token_secret=os.environ.get("TWITTER_ACCESS_SECRET"))
-        
+
         status = api.PostUpdate(tweet)
         return True
     except:
@@ -609,7 +632,6 @@ def sendTweet(tweet, silent_output):
 
 
 def submitGithubIssue(title, body, label, silent_output):
-    # print(body, silent_output)
     if silent_output: return None
     try:
         access_token = os.environ.get("GITHUB_TOKEN")
@@ -619,7 +641,7 @@ def submitGithubIssue(title, body, label, silent_output):
     except Exception as e:
         print("Github Issue", title, body, label)
         # print(traceback.format_exc())
-    
+
 
 def saveErrorFile(content, silent_output):
     if silent_output: return None
@@ -631,14 +653,41 @@ def saveErrorFile(content, silent_output):
     return error_file_name
 
 
+# Retrieve a single page and report the url and contents
+def getPDF(url, record_id):
+
+    r = requests.get(url, verify=False)
+    html = r.text
+    redirect_url = r.url
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    pdf_url = ""
+    for link in soup.find_all("a"):
+        l = link.get("href")
+        if ".pdf" in str(l).lower():
+            if (pdf_url == "" or len(pdf_url) > len(str(l))):
+                pdf_url = str(l)
+
+    # convert relative links to absolute links if necessary
+    if pdf_url and "http" not in pdf_url and "www" not in pdf_url:
+        if pdf_url[0] == "/":
+            base_url = '{uri.scheme}://{uri.netloc}'.format(uri=urllib.request.urlparse(redirect_url))
+            pdf_url = base_url + pdf_url
+        else:
+            pdf_url = redirect_url + pdf_url
+    print(pdf_url)
+    return {"pdf_url":pdf_url, "record_id":record_id}
+
+
 def process(records_file, lac_upload, silent_output):
-    # silent_output makes it so that it doesn't generate github issues or tweets 
+    # silent_output makes it so that it doesn't generate github issues or tweets
     # ex: first time a record is processed, we put all the issues on github
     # what if there were multiple issues with one record -> it would generate the
     #   issues again after one issue was fixed since we just call the function again
     # this would lead to many duplicate issues
     # solution: after the first processing, pass in silent_output = True to stop
-    #   creating gitub isues and to stop the tweet since it was already counted in the 
+    #   creating gitub isues and to stop the tweet since it was already counted in the
     #   original tweet
     reader = MARCReader(records_file, force_utf8=True)
 
@@ -659,7 +708,7 @@ def process(records_file, lac_upload, silent_output):
     university_uri_cache = {}
 
     g = Graph()
-    
+
     g.bind("foaf", FOAF)
     g.bind("dc", DC)
     g.bind("rdf", RDF)
@@ -672,14 +721,15 @@ def process(records_file, lac_upload, silent_output):
     g.bind("owl", OWL)
     g.bind("cwrc", CWRC)
     # when the control number isn't given, we use this to generate one
-    count = 0 
+    count = 0
     # keep a list of the unversities seen and take the one that appears the most for the tweet
-    universities = []       
+    universities = []
     # process and merge the records
-    for record in reader: 
+    for record in reader:
         # read record
         thesis = Thesis(record, universities_dbpedia, university_uri_cache, subjects, degrees, silent_output)
         count += 1
+        print(count)
         # get control number and linking number
         controlNumber = thesis.control
         linkingNumber = thesis.linking
@@ -687,7 +737,7 @@ def process(records_file, lac_upload, silent_output):
         # if no linking number, check if the control number shows up as a linking number of any other record -> merge
         #  them if linking number, check if the linking number shows up as a control number of any other record ->
         # merge them
-        if not controlNumber: 
+        if not controlNumber:
             # TODO print("Control")
             thesis.control = "R"+str(count)        # permanently replacing the control number with a generated one for validation purposes
             records[thesis.control] = thesis
@@ -696,7 +746,7 @@ def process(records_file, lac_upload, silent_output):
             # linking number for the current record exists and we already processed the other record that this links
             # to -> merge them into one
             rec = records[linkingNumber]        # rec = the record we are merging the current record into
-            mergeRecords(rec, thesis)        
+            mergeRecords(rec, thesis)
 
         elif not linkingNumber and controlNumber in records.keys():
             # linking number for the current record doesn't exist and we already processed the other record that this
@@ -712,14 +762,57 @@ def process(records_file, lac_upload, silent_output):
 
         elif not linkingNumber:
             records[controlNumber] = thesis
-    
+
+    # convert into url_map = {"url":"record #"}
+    url_map = {}
+    # generate pdf_urls = {"record #":[list of pdf urls]}
+    pdf_urls = {}
+
+    for record_id in records:
+        record_object = records[record_id]
+        if not record_object.contentUrl:
+            continue
+        for url in record_object.contentUrl:
+            if ".pdf" not in url.lower():
+                url_map[url] = record_id
+
+
+    # convert the urls to pdf urls in parallel
+    with ProcessPoolExecutor(max_workers=10) as executor:
+        tasks = []
+        for url in url_map:
+            record_id = url_map[url]
+            tasks.append(executor.submit(getPDF, url, record_id))
+
+        for future in concurrent.futures.as_completed(tasks):
+            # runs after everything has completed
+            try:
+                result = future.result()
+            except Exception as e:
+                print("ERROR")
+                continue
+            record_id = result["record_id"]
+            pdf_url = result["pdf_url"]
+            if record_id in pdf_urls:
+                pdf_urls[record_id].append(pdf_url)
+            else:
+                pdf_urls[record_id] = [pdf_url]
+
+        # print(pdf_urls)
+
+    # assign the urls back to the records
+    for record_number in pdf_urls.keys():
+        record = records[record_number]
+        record.contentUrl += pdf_urls[record_number]
+        record.manifestations = record.getManifestations()
+
+    count = 0
     for thesis in records.values():
         # print(thesis)
-        
+        count += 1
         if validateRecord(thesis, errors):
             # if there were no errors then generate RDF
-            # if silent_output is true, we don't count his as a successful upload if the uris are not there 
-            # so this is to avoid adding duplicate incomplete records to /tmp
+            # if silent_output is true, we don't count his as a successful upload if the uris are not there to avoid adding duplicate incomplete records to /tmp
             if not silent_output or silent_output and thesis.degreeUri and thesis.universityUri:
                 thesis.generateRDF(g)
                 submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
@@ -730,14 +823,14 @@ def process(records_file, lac_upload, silent_output):
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
         g.serialize("website/processing/tmp/" + output_file_name, format="xml")
 
-    # send the tweet 
+    # send the tweet
     if len(universities) > 0:
         if lac_upload:
             upload_organization = "Library and Archives Canada"
         else:
             # find the name of university that appears most in the file
             upload_organization = max(set(universities), key=universities.count).strip()
-        
+
         tweet = upload_organization + " just added " + str(len(submissions)) + " theses to the dataset!"
         if not sendTweet(tweet, silent_output):
             print("error")
