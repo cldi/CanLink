@@ -701,7 +701,7 @@ def process(records_file, lac_upload, silent_output):
     with open("/home/ubuntu/CanLink/code/website/processing/files/subjects.pickle", "rb") as handle:
         subjects = pickle.load(handle)      # key: subject name, value: uri
 
-    with open("/home/ubuntu/CanLink/website/processing/website/processing/files/degrees.pickle", "rb") as handle:
+    with open("/home/ubuntu/CanLink/website/processing/files/degrees.pickle", "rb") as handle:
         degrees = pickle.load(handle)
     # used to keep non-persistent memory of the universities we have processed before
     # so that we don't need to go to dbpedia every time for the same file
