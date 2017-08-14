@@ -821,7 +821,7 @@ def process(records_file, lac_upload, silent_output):
     # print(g.serialize(format="xml").decode("utf-8"))
     if len(submissions) > 0:
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
-        g.serialize("website/processing/tmp/" + output_file_name, format="xml")
+        g.serialize("/home/ubuntu/CanLink/website/processing/tmp/" + output_file_name, format="xml")
 
     # send the tweet
     if len(universities) > 0:
