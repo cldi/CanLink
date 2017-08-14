@@ -9,8 +9,8 @@ import time
 import codecs
 import json
 import io
-from .processing import *
-from .processing.processing import *
+from processing import *
+from processing.processing import *
 from django.views.decorators.csrf import csrf_exempt
 import traceback
 
