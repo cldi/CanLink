@@ -31,6 +31,10 @@ SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
 
+# processing_folder_prefix = "/home/ubuntu/CanLink/code/website/processing"      # for the server
+processing_folder_prefix = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code/website/processing"      # for local development
+
+
 class Thesis():
     def __init__(self, record, universities, university_uri_cache, subjects, degrees, silent_output):
 
@@ -647,7 +651,7 @@ def saveErrorFile(content, silent_output):
     if silent_output: return None
     # error_file_name = hashlib.md5(str(content).encode("utf-8")).hexdigest() + ".mrc"
     error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
-    with open("/home/ubuntu/CanLink/code/website/processing/errors/"+error_file_name, "wb") as error_file:
+    with open(processing_folder_prefix + "/errors/"+error_file_name, "wb") as error_file:
         error_file.write(content)
 
     return error_file_name
@@ -695,13 +699,13 @@ def process(records_file, lac_upload, silent_output):
     errors = []
     submissions = []
 
-    with open("/home/ubuntu/CanLink/code/website/processing/files/universities.pickle", "rb") as handle:
+    with open(processing_folder_prefix + "/files/universities.pickle", "rb") as handle:
         universities_dbpedia = pickle.load(handle)      # key: name, value: uri
 
-    with open("/home/ubuntu/CanLink/code/website/processing/files/subjects.pickle", "rb") as handle:
+    with open(processing_folder_prefix + "/files/subjects.pickle", "rb") as handle:
         subjects = pickle.load(handle)      # key: subject name, value: uri
 
-    with open("/home/ubuntu/CanLink/code/website/processing/files/degrees.pickle", "rb") as handle:
+    with open(processing_folder_prefix + "/files/degrees.pickle", "rb") as handle:
         degrees = pickle.load(handle)
     # used to keep non-persistent memory of the universities we have processed before
     # so that we don't need to go to dbpedia every time for the same file
@@ -821,7 +825,7 @@ def process(records_file, lac_upload, silent_output):
     # print(g.serialize(format="xml").decode("utf-8"))
     if len(submissions) > 0:
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
-        g.serialize("/home/ubuntu/CanLink/code/website/processing/tmp/" + output_file_name, format="xml")
+        g.serialize(processing_folder_prefix + "/tmp/" + output_file_name, format="xml")
 
     # send the tweet
     if len(universities) > 0:
