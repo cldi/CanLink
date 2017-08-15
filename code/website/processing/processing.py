@@ -15,6 +15,7 @@ import random
 import time
 import requests
 import traceback
+import subprocess
 from concurrent.futures import ProcessPoolExecutor
 import concurrent.futures
 import urllib.request
@@ -207,7 +208,7 @@ class Thesis():
         if not date:
             return None
         # remove all non numeric characters
-        return(''.join(c for c in date if str(c).isdigit()))
+        return(int(''.join(c for c in date if str(c).isdigit())))
 
 
     def getSubjects(self):
