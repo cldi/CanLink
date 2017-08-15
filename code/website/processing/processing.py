@@ -50,7 +50,7 @@ class Thesis():
         self.authorUri = self.getAuthorUri()
         self.date = self.getDate()
         self.language = self.getLanguage()
-        self.abstract = self.getAbstract()
+        self.abstracts = self.getAbstract()
         self.subjects = self.getSubjects()
         self.subjectUris = self.getSubjectUris(subjects)
         self.degree = self.getDegree()
@@ -120,16 +120,6 @@ class Thesis():
 
         if not value_520_a:
             return(None)
-
-        if self.language and len(value_520_a) > 0:
-            # choose the abstract that matches the language of the record
-
-            # only get two characters since the language detection code returns a two code language back
-            record_language = self.language[-3:-1]
-
-            for abstract in value_520_a:
-                if detect(abstract) == record_language:
-                    return [abstract]
 
         return(value_520_a)
 
@@ -514,9 +504,11 @@ class Thesis():
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
         # abstract
-        if self.abstract:
-            for item in self.abstract:
-                g.add((URIRef(self.uri), BIBO.abstract, Literal(item)))
+        if self.abstracts:
+            for item in self.abstracts:
+                # TODO get the language of the abstract here
+                abstract_language = detect(item)
+                g.add((URIRef(self.uri), BIBO.abstract, Literal(item, lang=abstract_language)))
         # publisher
         if self.universityUri:
             g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri)))
@@ -557,7 +549,7 @@ class Thesis():
 
     # def __str__(self):
     #     return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
-    #     """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstract)
+    #     """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstracts)
 
 
 def getField(record, tag_value, subfield_value=None):
