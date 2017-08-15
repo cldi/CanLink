@@ -317,10 +317,11 @@ class Thesis():
         uri = None
         label = None        # label = MSc for degree = msc
 
+        # see if it exists in the degrees.pickle file
         match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
         if match:
             return(degrees[match[0]][0], degrees[match[0]][1])
-        # check for longer sentences from the degrees file
+
         if "master" in degree:
             return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
         elif "doctor" in degree:
@@ -491,7 +492,7 @@ class Thesis():
 
         # date
         if self.date:
-            g.add((URIRef(self.uri), DC.issued, Literal(self.date, datatype="gYear")))
+            g.add((URIRef(self.uri), DC.issued, Literal(self.date, datatype="http://www.w3.org/2001/XMLSchema#gYear")))
         # language
         if self.language:
             g.add((URIRef(self.uri), DC.language, URIRef(self.language)))
@@ -657,7 +658,6 @@ def saveErrorFile(content, silent_output):
     return error_file_name
 
 
-# Retrieve a single page and report the url and contents
 def getPDF(url, record_id):
 
     r = requests.get(url, verify=False)
@@ -680,6 +680,7 @@ def getPDF(url, record_id):
             pdf_url = base_url + pdf_url
         else:
             pdf_url = redirect_url + pdf_url
+    pdfUrl = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
     print(pdf_url)
     return {"pdf_url":pdf_url, "record_id":record_id}
 
