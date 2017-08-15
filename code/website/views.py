@@ -9,6 +9,7 @@ import time
 import codecs
 import json
 import io
+
 try:
     from .processing import *
 except:
@@ -22,8 +23,8 @@ except:
 from django.views.decorators.csrf import csrf_exempt
 import traceback
 
-# project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
-project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
+project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
+# project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
 
 
 def index(request):

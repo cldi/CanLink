@@ -32,8 +32,8 @@ SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
 
-# project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
-project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
+project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
+# project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
 
 
 
