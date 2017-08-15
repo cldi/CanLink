@@ -819,6 +819,12 @@ def process(records_file, lac_upload, silent_output):
     if len(submissions) > 0:
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
         g.serialize(project_folder_path + "/website/processing/tmp/" + output_file_name, format="xml")
+        # TODO call the script here
+        try:
+            subprocess.call(["."+project_folder_path+"/scripts/loadRDF.sh", output_file_name])
+        except:
+            print("Calling Script Failed:")
+            print('.'+project_folder_path+'/scripts/loadRDF.sh')
 
     # send the tweet
     if len(universities) > 0:
