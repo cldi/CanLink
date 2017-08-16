@@ -652,16 +652,19 @@ def saveErrorFile(content, silent_output):
 
 
 def getPDF(url, record_id):
-
     r = requests.get(url, verify=False)
     html = r.text
     redirect_url = r.url
 
     soup = BeautifulSoup(html, "html.parser")
 
+    print("ORIGINAL URL:",redirect_url)
+
     pdf_url = ""
+    links = []
     for link in soup.find_all("a"):
         l = link.get("href")
+        links.append(l)
         if ".pdf" in str(l).lower():
             if (pdf_url == "" or len(pdf_url) > len(str(l))):
                 pdf_url = str(l)
@@ -673,8 +676,22 @@ def getPDF(url, record_id):
             pdf_url = base_url + pdf_url
         else:
             pdf_url = redirect_url + pdf_url
-    pdfUrl = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
-    print(pdf_url)
+
+    if pdf_url:
+        pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
+        print("1", pdf_url)
+        return {"pdf_url":pdf_url, "record_id":record_id}
+
+    # couldn't find a pdf link  - go through all the links to see which is a pdf
+    for link in links:
+        if link and link[0:4] == "http":
+            r = requests.get(link, verify=False)
+            if "pdf" in r.headers["Content-Type"]:
+                pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
+                print("5", pdf_url)
+                return {"pdf_url":pdf_url, "record_id":record_id}
+
+
     return {"pdf_url":pdf_url, "record_id":record_id}
 
 
