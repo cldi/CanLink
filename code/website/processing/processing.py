@@ -24,8 +24,10 @@ from langdetect import detect
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
-# next line is necesary to find pdf links from urls with https
+# necesary to find pdf links from urls with https
 context = ssl._create_unverified_context()
+
+
 REL = Namespace("http://purl.org/vocab/relationship/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
@@ -41,10 +43,10 @@ class Thesis():
     def __init__(self, record, universities, university_uri_cache, subjects, degrees, silent_output):
 
         self.record = record
-        self.silent_output = silent_output
+        self.silent_output = silent_output          # used to supress twitter and github output
 
         self.control = self.getControlNumber()
-        self.linking = self.getLinkingControlNumber()
+        self.linking = self.getLinkingControlNumber()       # some theses are split between multiple records joined with a linking number
         self.author = self.getAuthorName()
         self.title = self.getTitle()
         self.university = self.getUniversity()
@@ -60,13 +62,12 @@ class Thesis():
         self.advisors = self.getAdvisors()
         self.advisorUris = self.getAdvisorUris()
         self.contentUrl = self.getContentUrl()
-        self.manifestations = None
+        self.manifestations = None      # will be generated after the pdf links are found on the website
         self.uri = self.getURI()
 
 
     def getControlNumber(self):
         value_001 = getField(self.record, "001")
-
         if not value_001:
             return None
 
@@ -75,7 +76,6 @@ class Thesis():
 
     def getLinkingControlNumber(self):
         value_004 = getField(self.record, "004")
-
         if not value_004:
             return None
 
@@ -84,7 +84,6 @@ class Thesis():
 
     def getAuthorName(self):
         value_100a = getField(self.record, "100", "a")
-
         if not value_100a:
             return None
 
@@ -94,16 +93,11 @@ class Thesis():
     def getAuthorUri(self):
         if not self.author:
             return None
-        # see if the uri is given in the records
+
+        # some records contain a URI for the author - see if that exists before generating one
         value_100zero = getField(self.record, "100", "0")
         if value_100zero:
             return(value_100zero[0])
-
-        # # check the authoritiesnames file to see if it exists
-        # modifiedName = "".join([x for x in unidecode.unidecode(self.author.lower()).replace(" ", "") if x.isalpha()])
-
-        # if modifiedName in names.keys():
-        #     return("<http://id.loc.gov/authorities/names/" + names[modifiedName] + ">")
 
         if not self.universityUri:
             return None
@@ -114,12 +108,12 @@ class Thesis():
     def getTitle(self):
         if not self.record.title():
             return None
+
         return(self.record.title().strip("/. "))
 
 
     def getAbstract(self):
         value_520_a = getField(self.record, "520", "a")
-
         if not value_520_a:
             return(None)
 
@@ -127,14 +121,13 @@ class Thesis():
 
 
     def getUniversity(self):
+        university = None
 
         value_502c = getField(self.record, "502", "c")
         value_710a = getField(self.record, "710", "a")
         value_502a = getField(self.record, "502", "a")
         value_264b = getField(self.record, "264", "b")
         value_260b = getField(self.record, "260", "b")
-
-        university = None
 
         if value_502c:
             university = value_502c[0]
@@ -160,25 +153,26 @@ class Thesis():
         if not self.university:
             return None
 
-        # get rid of slashes if they exist
         universityName = self.university.split("/")[0]
+
         # remove the special characters like accents
         universityName = unidecode.unidecode(universityName)
 
+        # sometimes one file has all the records from one university
+        # add it to the cache and see if it exists there next time instead of searching dbpedia each time
         if universityName in university_uri_cache.keys():
-            # print("Found in cache: ", universityName, self.control)
             return(university_uri_cache[universityName])
         else:
-            # get the names of the universities
             universityNames = universities.keys()
+
             # find the closest university name in the list of names
             match = difflib.get_close_matches(universityName, universityNames, n=1)
-
             if match:
                 uri = universities[match[0]]
-                # save to cache for future reference
+
+                # add the university and the uri to the cache
                 university_uri_cache[universityName] = uri
-                return uri    # return the uri associated with that name
+                return uri
             else:
                 # couldn't find a match - submit an issue
                 error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
@@ -207,7 +201,7 @@ class Thesis():
 
         if not date:
             return None
-        # remove all non numeric characters
+        # remove all non-numeric characters
         return(int(''.join(c for c in date if str(c).isdigit())))
 
 
@@ -237,13 +231,11 @@ class Thesis():
         if not self.subjects:
             return None
 
-        # URIs = []
-        URIs = {}
+        URIs = {}       # {"subject":"URI"}
         for subject in self.subjects:
             if subject.lower() in subjects.keys():
                 # exact subject found
                 URIs[subject] = subjects[subject.lower()]
-                # URIs.append(subjects[subject.lower()])
             else:
                 URIs[subject] = None
 
@@ -255,7 +247,7 @@ class Thesis():
         value_040b = getField(self.record, "040", "b")
         value_041a = getField(self.record, "041", "a")
 
-        language = "eng"
+        language = "eng"        # default to english
 
         if value_008 and len(str(value_008).split()[1]) >= 38 and str(value_008).split()[1][35:38].isalpha():
             language = str(value_008).split()[1][35:38]
@@ -289,7 +281,6 @@ class Thesis():
 
 
     def getDegreeUri(self, degrees):
-        # convert the degree name to lowercase and remove the extra characters except for the space
         if not self.degree:
             return([None, None])
 
@@ -307,9 +298,9 @@ class Thesis():
 
         degree = ''.join([i for i in degree if i.isalpha()]).lower()
         uri = None
-        label = None        # label = MSc for degree = msc
+        label = None        # label = "MSc" for degree = "msc"
 
-        # see if it exists in the degrees.pickle file
+        # see if the degree exists in the degrees.pickle file - find the value that matches >90%
         match = difflib.get_close_matches(degree, degrees.keys(), n=1, cutoff=0.90)
         if match:
             return(degrees[match[0]][0], degrees[match[0]][1])
@@ -319,7 +310,7 @@ class Thesis():
         elif "doctor" in degree:
             return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
 
-        # do the basic ones
+        # see if it contains one of the common degree codes
         degree_codes = {
                         "maîtrise":["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"],
                         "mphysed":["MPhysEd", "http://canlink.library.ualberta.ca/thesisDegree/mphysed"],
@@ -358,7 +349,7 @@ class Thesis():
 
 
         # if the program has come to this point then a degree uri was not generated
-        # save the record to a error file and then submit an issue to github
+        # save the record to a error file and then submit an issue to github for a human to find the uri
         error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
         title = "Missing Degree URL"
@@ -408,51 +399,9 @@ class Thesis():
         if not value_856u:
             return None
 
+        # clean up the urls
         urls = [urllib.parse.quote(url, safe="%/:=&?~#+!$,;'@()*[]") for url in value_856u]
-        # output = []
         return urls
-        # for url in urls:
-        #     output.append(url)
-        #     if ".pdf" not in url:
-        #         # the url is not linking to a pdf - a handle.net url or something else
-        #         # need to extract the link to the pdf from here
-        #         try:
-        #             pdfUrl = urllib.parse.quote(self.getPDFFromPage(url), safe="%/:=&?~#+!$,;'@()*[]")
-        #             if pdfUrl:
-        #                 output.append(pdfUrl)
-        #         except:
-        #             pass
-
-        # return(output)
-
-
-    def getPDFFromPage(self, url):
-        html_object = urlopen(url, context=context)
-        html_doc = html_object.read()
-        soup = BeautifulSoup(html_doc, "html.parser")
-
-        pdf_url = ""
-        # find all the .pdf links in the page
-        for link in soup.find_all("a"):
-            l = link.get("href")
-            if ".pdf" in str(l):
-                pdf_url = str(l)
-
-        # convert relative links to absolute links if necessary
-        if pdf_url and "http" not in pdf_url and "www" not in pdf_url:
-            redirect_url = html_object.geturl()
-            if pdf_url[0] == "/":
-                # append to the base of the redirect url
-                base_url = '{uri.scheme}://{uri.netloc}'.format(uri=urlparse(redirect_url))
-                return(base_url + pdf_url)
-            else:
-                # append to the end of the redirect url
-                return(redirect_url + pdf_url)
-        if pdf_url == "":
-            return None
-
-        return(pdf_url)
-
 
     def getManifestations(self):
         # returns a list of the content urls hashed and with a ualberta uri
@@ -548,11 +497,6 @@ class Thesis():
                 g.add((URIRef(manifestation), RDF.type, SCHEMA.MediaObject))
 
 
-    # def __str__(self):
-    #     return """Control:          %s<br>Title:                   %s<br>URI:                   %s<br>Author:          %s<br>Author Uri:          %s<br>University:          %s<br>University Uri: %s<br>Date:                   %s<br>Language:          %s<br>Subjects:          %s<br>Subjects Uris:          %s<br>Degree:          %s<br>Degree Uri:          %s<br>Advisors:          %s<br>Advisor Uris:          %s<br>Content Url:          %s<br>Manifest.:          %s<br>Abstract.:          %s
-    #     """ % (self.control, self.title, self.uri, self.author, self.authorUri, self.university, self.universityUri, self.date, self.language, self.subjects, self.subjectUris, self.degree, self.degreeUri, self.advisors, self.advisorUris, self.contentUrl, self.manifestations, self.abstracts)
-
-
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
     # subfield ex: "b"
@@ -573,7 +517,10 @@ def getField(record, tag_value, subfield_value=None):
 
 def mergeRecords(thesis1, thesis2):
     # takes in two theses (objects of Thesis class) and merges the information into one
-    # if thesis2 contains some authors and thesis1 contains some, then they won't be merged even though it logically makes sense to merge them --> assuming that a single field isn't split between two records
+    # example: if thesis1 contains the title and thesis2 contains the abstract, then the abstract will get put into thesis1
+    #
+    # this works as long as both theses don't contain the same field
+    # for example: if thesis1 and thesis2 both contain an author, then the program only keeps the value of thesis1
 
     # the list of attributes that need to be merged into one object
     attributes = ["title", "author", "abstract","university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
@@ -594,7 +541,7 @@ def mergeRecords(thesis1, thesis2):
 
 def validateRecord(record, errors):
     # validation for showing the errors on the webpage - not for issues
-    # example: this won't raise an error if a degree uri is not provided but it will if a degree name isn't
+    # example: this won't raise an error if a degree uri (it will create an issue) is not provided, but it will if a degree name isn't
     record_errors = []
 
     # mandatory fields: author, university, title, date, degree
@@ -608,7 +555,6 @@ def validateRecord(record, errors):
         errors.append("Record #" + record.control + " - " + error)
 
     if len(record_errors) > 0:
-        # print(record)
         return False
 
     return True
@@ -625,7 +571,7 @@ def sendTweet(tweet, silent_output):
         status = api.PostUpdate(tweet)
         return True
     except:
-        print(tweet + " not sent")
+        print(tweet + " (NOT SUBMITTED)")
         return False
 
 
@@ -637,13 +583,11 @@ def submitGithubIssue(title, body, label, silent_output):
                     json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
     except Exception as e:
-        print("Github Issue", title, body, label)
-        # print(traceback.format_exc())
+        print("Github Issue (NOT SUBMITTED)", title, body, label)
 
 
 def saveErrorFile(content, silent_output):
     if silent_output: return None
-    # error_file_name = hashlib.md5(str(content).encode("utf-8")).hexdigest() + ".mrc"
     error_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".mrc"
     with open(project_folder_path + "/website/processing/errors/"+error_file_name, "wb") as error_file:
         error_file.write(content)
@@ -652,6 +596,7 @@ def saveErrorFile(content, silent_output):
 
 
 def getPDF(url, record_id):
+    # finds the pdf link on the website
     r = requests.get(url, verify=False)
     html = r.text
     redirect_url = r.url
@@ -660,6 +605,7 @@ def getPDF(url, record_id):
 
     print("ORIGINAL URL:",redirect_url)
 
+    # see if there is any ".pdf" link on the page
     pdf_url = ""
     links = []
     for link in soup.find_all("a"):
@@ -677,12 +623,14 @@ def getPDF(url, record_id):
         else:
             pdf_url = redirect_url + pdf_url
 
+    # if the ".pdf" url was found - properly format it and return
     if pdf_url:
         pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
         print("1", pdf_url)
         return {"pdf_url":pdf_url, "record_id":record_id}
 
-    # couldn't find a pdf link  - go through all the links to see which is a pdf
+    # couldn't find a pdf link  - go through all the links to see which is of pdf type
+    # (not ".pdf" extension because some pdfs don't have a ".pdf" extension)
     for link in links:
         if link and link[0:4] == "http":
             r = requests.get(link, verify=False)
@@ -691,16 +639,15 @@ def getPDF(url, record_id):
                 print("5", pdf_url)
                 return {"pdf_url":pdf_url, "record_id":record_id}
 
-
     return {"pdf_url":pdf_url, "record_id":record_id}
 
 
 def process(records_file, lac_upload, silent_output):
     # silent_output makes it so that it doesn't generate github issues or tweets
     # ex: first time a record is processed, we put all the issues on github
-    # what if there were multiple issues with one record -> it would generate the
+    # - what if there were multiple issues with one record -> it would generate the
     #   issues again after one issue was fixed since we just call the function again
-    # this would lead to many duplicate issues
+    # - this would lead to many duplicate issues
     # solution: after the first processing, pass in silent_output = True to stop
     #   creating gitub isues and to stop the tweet since it was already counted in the
     #   original tweet
@@ -741,7 +688,6 @@ def process(records_file, lac_upload, silent_output):
     universities = []
     # process and merge the records
     for record in reader:
-        # read record
         thesis = Thesis(record, universities_dbpedia, university_uri_cache, subjects, degrees, silent_output)
         count += 1
         print(count)
@@ -753,7 +699,6 @@ def process(records_file, lac_upload, silent_output):
         #  them if linking number, check if the linking number shows up as a control number of any other record ->
         # merge them
         if not controlNumber:
-            # TODO print("Control")
             thesis.control = "R"+str(count)        # permanently replacing the control number with a generated one for validation purposes
             records[thesis.control] = thesis
 
@@ -778,11 +723,12 @@ def process(records_file, lac_upload, silent_output):
         elif not linkingNumber:
             records[controlNumber] = thesis
 
-    # convert into url_map = {"url":"record #"}
+    # url_map = {"url":"record #"}
     url_map = {}
-    # generate pdf_urls = {"record #":[list of pdf urls]}
+    # pdf_urls = {"record #":[list of pdf urls]}
     pdf_urls = {}
 
+    # generate url_map
     for record_id in records:
         record_object = records[record_id]
         if not record_object.contentUrl:
@@ -792,7 +738,7 @@ def process(records_file, lac_upload, silent_output):
                 url_map[url] = record_id
 
 
-    # convert the urls to pdf urls in parallel
+    # extract the pdf links from the urls in parallel
     with ProcessPoolExecutor(max_workers=10) as executor:
         tasks = []
         for url in url_map:
@@ -800,49 +746,52 @@ def process(records_file, lac_upload, silent_output):
             tasks.append(executor.submit(getPDF, url, record_id))
 
         for future in concurrent.futures.as_completed(tasks):
-            # runs after everything has completed
+            # runs after the task has completed
             try:
                 result = future.result()
             except Exception as e:
                 print("ERROR")
+                print(traceback.format_exc())
                 continue
+
             record_id = result["record_id"]
             pdf_url = result["pdf_url"]
+
             if record_id in pdf_urls:
                 pdf_urls[record_id].append(pdf_url)
             else:
                 pdf_urls[record_id] = [pdf_url]
 
-        # print(pdf_urls)
-
-    # assign the urls back to the records
+    # add the pdf urls back to the records and generate the manifestations
     for record_number in pdf_urls.keys():
         record = records[record_number]
         record.contentUrl += pdf_urls[record_number]
         record.manifestations = record.getManifestations()
 
+    # this count represents the total number of records (after merging) - will be sent to the website to display at the top
     count = 0
     for thesis in records.values():
-        # print(thesis)
         count += 1
         if validateRecord(thesis, errors):
             # if there were no errors then generate RDF
-            # if silent_output is true, we don't count his as a successful upload if the uris are not there to avoid adding duplicate incomplete records to /tmp
+            # if silent output is true, then check if we have the degree and university uris because otherwise it is
+            # an incomplete record anyway - there could be another pending issue related to this record in github that needs
+            # to be solved for this action to complete
             if not silent_output or silent_output and thesis.degreeUri and thesis.universityUri:
                 thesis.generateRDF(g)
                 submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
                 universities.append(thesis.university)
-        # print("-"*50)
-    # print(g.serialize(format="xml").decode("utf-8"))
+
+    # store the successful records in /tmp and call the loadRDF script
     if len(submissions) > 0:
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
         g.serialize(project_folder_path + "/website/processing/tmp/" + output_file_name, format="xml")
-        # TODO call the script here
+
         try:
             subprocess.call(["."+project_folder_path+"/scripts/loadRDF.sh", output_file_name])
         except:
             print("Calling Script Failed:")
-            print('.'+project_folder_path+'/scripts/loadRDF.sh')
+            print('.'+project_folder_path+'/scripts/loadRDF.sh '+output_file_name)
 
     # send the tweet
     if len(universities) > 0:
