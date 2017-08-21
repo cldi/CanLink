@@ -323,24 +323,24 @@ class Thesis():
                         "dent":["MDent", "http://canlink.library.ualberta.ca/thesisDegree/mdent"],
                         "masc":["MASc", "http://canlink.library.ualberta.ca/thesisDegree/masc"],
                         "msc":["MSc", "http://canlink.library.ualberta.ca/thesisDegree/msc"],
-                        "llm":["LLM", "http://id.loc.gov/authorities/subjects/sh2012003813"],
-                        "lld":["LLD", "http://id.loc.gov/authorities/subjects/sh85038713"],
+                        "llm":["LLM", "http://canlink.library.ualberta.ca/thesisDegree/llm"],
+                        "lld":["LLD", "http://canlink.library.ualberta.ca/thesisDegree/lld"],
                         "mws":["MWS", "http://canlink.library.ualberta.ca/thesisDegree/mws"],
                         "mhk":["MHK", "http://canlink.library.ualberta.ca/thesisDegree/mhk"],
                         "mpp":["MPP", "http://canlink.library.ualberta.ca/thesisDegree/mpp"],
-                        "mba":["MBA", "http://id.loc.gov/authorities/subjects/sh85081991"],
+                        "mba":["MBA", "http://canlink.library.ualberta.ca/thesisDegree/mba"],
                         "mfa":["MFA", "http://canlink.library.ualberta.ca/thesisDegree/mfa"],
                         "sjd":["SJD", "http://canlink.library.ualberta.ca/thesisDegree/sjd"],
                         "edd":["EDD", "http://canlink.library.ualberta.ca/thesisDegree/edd"],
-                        "med":["MEd", "http://id.loc.gov/authorities/subjects/sh2010014261"],
-                        "phd":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"],
+                        "med":["MEd", "http://canlink.library.ualberta.ca/thesisDegree/med"],
+                        "phd":["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"],
                         "dba":["DBA", "http://canlink.library.ualberta.ca/thesisDegree/dba"],
-                        "dsc":["DSc", "http://id.loc.gov/authorities/subjects/sh85038715"],
+                        "dsc":["DSc", "http://canlink.library.ualberta.ca/thesisDegree/dsc"],
                         "des":["Des", "http://canlink.library.ualberta.ca/thesisDegree/des"],
                         "msw":["MSW", "http://canlink.library.ualberta.ca/thesisDegree/msw"],
-                        "ma":["MA", "http://id.loc.gov/authorities/subjects/sh85081990"],
+                        "ma":["MA", "http://canlink.library.ualberta.ca/thesisDegree/ma"],
                         "mn":["MN", "http://canlink.library.ualberta.ca/thesisDegree/mn"],
-                        "docteur":["PhD", "http://id.loc.gov/authorities/subjects/sh85038715"]
+                        "docteur":["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"]
         }
 
         for code in degree_codes:
