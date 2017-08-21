@@ -102,7 +102,7 @@ class Thesis():
         if not self.universityUri:
             return None
 
-        return("http://canlink.library.ualberta.ca/Person/"+str(hashlib.md5(self.author.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest()))
+        return("http://canlink.library.ualberta.ca/person/"+str(hashlib.md5(self.author.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest()))
 
 
     def getTitle(self):
@@ -384,9 +384,9 @@ class Thesis():
         for name in self.advisors:
             uri = ""
             if self.universityUri:
-                uri = "http://canlink.library.ualberta.ca/Person/"+str(hashlib.md5(name.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest())
+                uri = "http://canlink.library.ualberta.ca/person/"+str(hashlib.md5(name.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest())
             else:
-                uri = "http://canlink.library.ualberta.ca/Person/"+str(hashlib.md5(name.encode("utf-8")).hexdigest())
+                uri = "http://canlink.library.ualberta.ca/person/"+str(hashlib.md5(name.encode("utf-8")).hexdigest())
 
             uris.append(uri)
 
