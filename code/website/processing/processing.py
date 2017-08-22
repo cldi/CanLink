@@ -13,6 +13,7 @@ import os
 import ssl
 import random
 import time
+import datetime
 import requests
 import traceback
 import subprocess
@@ -33,6 +34,10 @@ BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 CWRC = Namespace("http://sparql.cwrc.ca/ontologies/cwrc#")
+PROV = Namespace("http://www.w3.org/ns/prov#")
+CANLINK = Namespace("http://canlink.library.ualberta.ca/ontologies/canlink#")
+DOAP = Namespace("http://usefulinc.com/ns/doap#")
+VOID = Namespace("http://rdfs.org/ns/void#")
 
 project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
 # project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
@@ -422,9 +427,11 @@ class Thesis():
         return None
 
 
-    def generateRDF(self, g):
+    def generateRDF(self, g, runtime):
         # thesis title - don't need to check if it exists because validateRecords did that already
         g.add((URIRef(self.uri), DC.title, Literal(self.title)))
+        g.add((URIRef(self.uri), PROV.wasGeneratedBy, URIRef(runtime)))
+        g.add((URIRef(self.uri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
         # same as (links that are not pdf files but still contain information about this thesis)
         if self.contentUrl:
             for url in self.contentUrl:
@@ -442,12 +449,14 @@ class Thesis():
             g.add((URIRef(self.uri), BIBO.degree, URIRef(self.degreeUri)))
             g.add((URIRef(self.degreeUri), RDF.type, BIBO.thesisDegree))
             g.add((URIRef(self.degreeUri), RDFS.label, Literal(self.degreeLabel)))
+            g.add((URIRef(self.degreeUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
         # author uri
         if self.authorUri:
             g.add((URIRef(self.uri), DC.creator, URIRef(self.authorUri)))
             g.add((URIRef(self.uri), REL.author, URIRef(self.authorUri)))
             # author type
             g.add((URIRef(self.authorUri), RDF.type, FOAF.Person))
+            g.add((URIRef(self.authorUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
             # author name
             if "," in self.author:
                 g.add((URIRef(self.authorUri), FOAF.lastName, Literal(self.author.split(",")[0].strip())))
@@ -474,6 +483,9 @@ class Thesis():
                 g.add((URIRef(self.uri), REL.ths, URIRef(uri)))
                 g.add((URIRef(uri), FOAF.name, Literal(self.advisors[index])))
                 g.add((URIRef(uri), RDF.type, FOAF.Person))
+
+                # runtime
+                g.add((URIRef(uri), PROV.wasGeneratedBy, URIRef(runtime)))
         # subjects
         if self.subjectUris:
             for subject in self.subjectUris.keys():
@@ -486,6 +498,7 @@ class Thesis():
 
                     g.add((URIRef(newSubjectUri), RDF.type, SKOS.Concept))
                     g.add((URIRef(newSubjectUri), RDFS.label, Literal(subject.lower())))
+                    g.add((URIRef(newSubjectUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
                     g.add((URIRef(self.uri), DC.subject, URIRef(newSubjectUri)))
         # manifestation
         if self.manifestations:
@@ -495,6 +508,11 @@ class Thesis():
                 g.add((URIRef(manifestation), SCHEMA.contentUrl, URIRef(self.contentUrl[index])))
                 g.add((URIRef(manifestation), RDF.type, FRBR.Manifestation))
                 g.add((URIRef(manifestation), RDF.type, SCHEMA.MediaObject))
+                g.add((URIRef(manifestation), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
+
+                # runtime
+                g.add((URIRef(manifestation), PROV.wasGeneratedBy, URIRef(runtime)))
+
 
 
 def getField(record, tag_value, subfield_value=None):
@@ -651,6 +669,9 @@ def process(records_file, lac_upload, silent_output):
     # solution: after the first processing, pass in silent_output = True to stop
     #   creating gitub isues and to stop the tweet since it was already counted in the
     #   original tweet
+
+    start_time = datetime.datetime.now().isoformat()[:-7] + "Z"
+
     reader = MARCReader(records_file, force_utf8=True)
 
     records = {}
@@ -682,6 +703,10 @@ def process(records_file, lac_upload, silent_output):
     g.bind("rdfs", RDFS)
     g.bind("owl", OWL)
     g.bind("cwrc", CWRC)
+    g.bind("prov", PROV)
+    g.bind("canlink", CANLINK)
+    g.bind("doap", DOAP)
+    g.bind("void", VOID)
     # when the control number isn't given, we use this to generate one
     count = 0
     # keep a list of the unversities seen and take the one that appears the most for the tweet
@@ -768,6 +793,7 @@ def process(records_file, lac_upload, silent_output):
         record.contentUrl += pdf_urls[record_number]
         record.manifestations = record.getManifestations()
 
+    runtime = "http://canlink.library.ualberta.ca/runtime/"+hashlib.md5(start_time.encode()).hexdigest()
     # this count represents the total number of records (after merging) - will be sent to the website to display at the top
     count = 0
     for thesis in records.values():
@@ -778,9 +804,22 @@ def process(records_file, lac_upload, silent_output):
             # an incomplete record anyway - there could be another pending issue related to this record in github that needs
             # to be solved for this action to complete
             if not silent_output or silent_output and thesis.degreeUri and thesis.universityUri:
-                thesis.generateRDF(g)
+                thesis.generateRDF(g, runtime)
                 submissions.append("Record #" + str(thesis.control) + " was uploaded successfully")
-                universities.append(thesis.university)
+                universities.append(thesis.university) # TODO maybe add the uri with this?
+
+
+    # add to the runtime info
+    end_time = datetime.datetime.now().isoformat()[:-7] + "Z"
+    g.add((URIRef(runtime), PROV.startedAtTime, Literal(start_time)))
+    g.add((URIRef(runtime), PROV.endedAtTime, Literal(end_time)))
+    g.add((URIRef(runtime), PROV.activity, CANLINK.marclodconverter))
+    g.add((URIRef(runtime), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
+
+    g.add((CANLINK.marclodconverter, RDF.type, DOAP.Project))
+    g.add((CANLINK.marclodconverter, DOAP.repository, CANLINK.canlinkrepo))
+
+    g.add((CANLINK.canlinkrepo, DOAP.browse, URIRef("http://github.com/cldi/CanLink")))
 
     # store the successful records in /tmp and call the loadRDF script
     if len(submissions) > 0:
@@ -804,5 +843,7 @@ def process(records_file, lac_upload, silent_output):
         tweet = upload_organization + " just added " + str(len(submissions)) + " theses to the dataset!"
         if not sendTweet(tweet, silent_output):
             print("error")
+
+
 
     return([errors, submissions, count])
