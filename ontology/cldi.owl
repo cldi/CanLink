@@ -70,6 +70,11 @@
     <!-- Dissertations, Academic -->
     <dcterms:subject rdf:resource="http://id.loc.gov/authorities/subjects/sh98007393"/>
   </owl:Ontology>
+  
+  <owl:DatatypeProperty rdf:about="#pid">
+   <skos:definition xml:lang="fr">Le numéros de procédé Unix</skos:definition>
+   <skos:definition xml:lang="en">Unix process number for a job</skos:definition>    
+  </owl:DatatypeProperty>
 
 <rdf:Description rdf:about="http://purl.org/dc/terms/language">
  <rdfs:domain rdf:resource="http://purl.org/ontology/bibo/thesis"/>
