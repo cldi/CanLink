@@ -454,7 +454,7 @@ class Thesis():
         # author uri
         if self.authorUri:
             g.add((URIRef(self.uri), DC.creator, URIRef(self.authorUri)))
-            g.add((URIRef(self.uri), REL.auth, URIRef(self.authorUri)))
+            g.add((URIRef(self.uri), REL.aut, URIRef(self.authorUri)))
             # author type
             g.add((URIRef(self.authorUri), RDF.type, FOAF.Person))
             g.add((URIRef(self.authorUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
