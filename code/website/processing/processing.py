@@ -314,7 +314,7 @@ class Thesis():
         if "master" in degree:
             return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
         elif "doctor" in degree:
-            return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
+            return(["PhD", "http://purl.org/ontology/bibo/degrees/phd"])
 
         # see if it contains one of the common degree codes
         degree_codes = {
@@ -328,7 +328,7 @@ class Thesis():
                         "mdes":["MDes", "http://canlink.library.ualberta.ca/thesisDegree/mdes"],
                         "dent":["MDent", "http://canlink.library.ualberta.ca/thesisDegree/mdent"],
                         "masc":["MASc", "http://canlink.library.ualberta.ca/thesisDegree/masc"],
-                        "msc":["MSc", "http://canlink.library.ualberta.ca/thesisDegree/msc"],
+                        "msc":["MSc", "http://purl.org/ontology/bibo/degrees/ms"],
                         "llm":["LLM", "http://canlink.library.ualberta.ca/thesisDegree/llm"],
                         "lld":["LLD", "http://canlink.library.ualberta.ca/thesisDegree/lld"],
                         "mws":["MWS", "http://canlink.library.ualberta.ca/thesisDegree/mws"],
@@ -339,14 +339,14 @@ class Thesis():
                         "sjd":["SJD", "http://canlink.library.ualberta.ca/thesisDegree/sjd"],
                         "edd":["EDD", "http://canlink.library.ualberta.ca/thesisDegree/edd"],
                         "med":["MEd", "http://canlink.library.ualberta.ca/thesisDegree/med"],
-                        "phd":["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"],
+                        "phd":["PhD", "http://purl.org/ontology/bibo/degrees/phd"],
                         "dba":["DBA", "http://canlink.library.ualberta.ca/thesisDegree/dba"],
                         "dsc":["DSc", "http://canlink.library.ualberta.ca/thesisDegree/dsc"],
                         "des":["Des", "http://canlink.library.ualberta.ca/thesisDegree/des"],
                         "msw":["MSW", "http://canlink.library.ualberta.ca/thesisDegree/msw"],
-                        "ma":["MA", "http://canlink.library.ualberta.ca/thesisDegree/ma"],
+                        "ma":["MA", "http://purl.org/ontology/bibo/degrees/ma"],
                         "mn":["MN", "http://canlink.library.ualberta.ca/thesisDegree/mn"],
-                        "docteur":["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"]
+                        "docteur":["PhD", "http://purl.org/ontology/bibo/degrees/phd"]
         }
 
         for code in degree_codes:
@@ -359,7 +359,7 @@ class Thesis():
         error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
         title = "Missing Degree URL"
-        body = "**To fix, comment below in the following format:** \n`MSc http://canlink.library.ualberta.ca/thesisDegree/msc`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
+        body = "**To fix, comment below in the following format:** \n`MSc http://purl.org/ontology/bibo/degrees/ms`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
         label = "Missing URL"
         submitGithubIssue(title, body, label, self.silent_output)
 
@@ -836,7 +836,6 @@ def process(records_file, lac_upload, silent_output):
         g.add((URIRef(runtime), CLDI.pid, Literal(str(os.getpid()))))
     except:
         pass
-
 
     # store the successful records in /tmp and call the loadRDF script
     if len(submissions) > 0:
