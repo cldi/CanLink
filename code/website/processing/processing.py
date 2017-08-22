@@ -38,6 +38,7 @@ PROV = Namespace("http://www.w3.org/ns/prov#")
 CANLINK = Namespace("http://canlink.library.ualberta.ca/ontologies/canlink#")
 DOAP = Namespace("http://usefulinc.com/ns/doap#")
 VOID = Namespace("http://rdfs.org/ns/void#")
+LOC = Namespace("http://id.loc.gov/vocabulary/relators/")
 
 project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
 # project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
@@ -471,6 +472,9 @@ class Thesis():
         # publisher
         if self.universityUri:
             g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri)))
+
+            g.add((URIRef(self.uri), LOC.pub, URIRef(self.universityUri)))
+
         # thesis types
         g.add((URIRef(self.uri), RDF.type, FRBR.Work))
         g.add((URIRef(self.uri), RDF.type, FRBR.Expression))
@@ -707,6 +711,7 @@ def process(records_file, lac_upload, silent_output):
     g.bind("canlink", CANLINK)
     g.bind("doap", DOAP)
     g.bind("void", VOID)
+    g.bind("loc", LOC)
     # when the control number isn't given, we use this to generate one
     count = 0
     # keep a list of the unversities seen and take the one that appears the most for the tweet
