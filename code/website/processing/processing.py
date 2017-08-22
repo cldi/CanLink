@@ -816,11 +816,6 @@ def process(records_file, lac_upload, silent_output):
     g.add((URIRef(runtime), PROV.activity, CANLINK.marclodconverter))
     g.add((URIRef(runtime), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
 
-    g.add((CANLINK.marclodconverter, RDF.type, DOAP.Project))
-    g.add((CANLINK.marclodconverter, DOAP.repository, CANLINK.canlinkrepo))
-
-    g.add((CANLINK.canlinkrepo, DOAP.browse, URIRef("http://github.com/cldi/CanLink")))
-
     # store the successful records in /tmp and call the loadRDF script
     if len(submissions) > 0:
         output_file_name = hashlib.md5(str(time.time() + random.randrange(10000)).encode("utf-8")).hexdigest() + ".xml"
