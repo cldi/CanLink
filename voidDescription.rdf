@@ -30,16 +30,16 @@
     xmlns="http://canlink.library.ualberta.ca/.well-know/void#">
 
   <!-- This document is largely static and describes the dataset. -->  
-  <dcat:Distribution rdf:about="#canlinkmaindataset-sparql">
+  <dcat:Distribution rdf:about="http://canlink.library.ualberta.ca/void/canlinkmaindataset-sparql">
    <dcat:accessURL rdf:resource="http://canlink.library.ualberta.ca/sparql"/>
   </dcat:Distribution>
   
-  <rdf:Description rdf:about="#canlinkmaindataset">
+  <rdf:Description rdf:about="http://canlink.library.ualberta.ca/void/canlinkmaindataset">
     <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
     <dcterms:modified rdf:datatype="http://www.w3.org/2001/XMLSchema#Date">DATE_TODAY</dcterms:modified>
     <rdf:type rdf:resource="http://rdfs.org/ns/void#Dataset"/>
     <rdf:type rdf:resource="http://www.w3.org/ns/dcat#Dataset"/>
-    <dcat:distribution rdf:resource="#canlinkmaindataset-sparql"/>
+    <dcat:distribution rdf:resource="http://canlink.library.ualberta.ca/void/canlinkmaindataset-sparql"/>
     <void:uriRegexPattern>http://canlink.library.ualberta.ca/data/.+</void:uriRegexPattern>
     <foaf:homepage rdf:resource="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
     <void:exampleResource rdf:resource="http://canlink.library.ualberta.ca/"/>
