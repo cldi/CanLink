@@ -476,7 +476,7 @@ class Thesis():
         g.add((URIRef(self.uri), RDF.type, FRBR.Expression))
         g.add((URIRef(self.uri), RDF.type, SCHEMA.creativeWork))
         g.add((URIRef(self.uri), RDF.type, BIBO.thesis))
-        g.add((URIRef(self.uri), CWRC.hasGenre, CWRC.genreDissertation))
+        g.add((URIRef(self.uri), CWRC.hasGenre, CWRC.genreScholarship))
         # advisors
         if self.advisorUris:
             for index, uri in enumerate(self.advisorUris):
