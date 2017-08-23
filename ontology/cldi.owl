@@ -74,6 +74,10 @@
   <owl:DatatypeProperty rdf:about="#pid">
    <skos:definition xml:lang="fr">Le numéros de procédé Unix</skos:definition>
    <skos:definition xml:lang="en">Unix process number for a job</skos:definition>    
+   <rdfs:comment xml:lang="en">Used by CanLink to track transformation processes on the server.</rdfs:comment>
+   <rdfs:comment xml:lang="fr">Utilisé par CanLink pour suivre les processus de transformation sur le serveur.</rdfs:comment>
+   <void:inDataset rdf:resource="http://canlink.library.ualberta.ca/.well-know/void#datasetdefinition"/>
+   <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/ontologies/canlink"/>
   </owl:DatatypeProperty>
 
 <rdf:Description rdf:about="http://purl.org/dc/terms/language">
