@@ -35,7 +35,7 @@ SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
 CWRC = Namespace("http://sparql.cwrc.ca/ontologies/genre#")
 PROV = Namespace("http://www.w3.org/ns/prov#")
-CANLINK = Namespace("http://canlink.library.ualberta.ca/ontologies/canlink#")
+CLDI = Namespace("http://canlink.library.ualberta.ca/ontologies/canlink#")
 DOAP = Namespace("http://usefulinc.com/ns/doap#")
 VOID = Namespace("http://rdfs.org/ns/void#")
 LOC = Namespace("http://id.loc.gov/vocabulary/relators/")
@@ -708,7 +708,7 @@ def process(records_file, lac_upload, silent_output):
     g.bind("owl", OWL)
     g.bind("cwrc", CWRC)
     g.bind("prov", PROV)
-    g.bind("canlink", CANLINK)
+    g.bind("cldi", CLDI)
     g.bind("doap", DOAP)
     g.bind("void", VOID)
     g.bind("loc", LOC)
@@ -818,8 +818,25 @@ def process(records_file, lac_upload, silent_output):
     end_time = datetime.datetime.now().isoformat()[:-7] + "Z"
     g.add((URIRef(runtime), PROV.startedAtTime, Literal(start_time)))
     g.add((URIRef(runtime), PROV.endedAtTime, Literal(end_time)))
-    g.add((URIRef(runtime), PROV.activity, CANLINK.marclodconverter))
+    g.add((URIRef(runtime), PROV.activity, CLDI.marclodconverter))
     g.add((URIRef(runtime), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
+    g.add((URIRef(runtime), RDF.type, PROV.Activity))
+    g.add((URIRef(runtime), RDF.type, PROV.Generation))
+
+    try:
+        upload_organization = unidecode.unidecode(max(set(universities), key=universities.count).strip().split("/")[0])
+        upload_organization_uri = university_uri_cache[upload_organization]
+        g.add((URIRef(runtime), PROV.actedOnBehalfOf, URIRef(upload_organization_uri)))
+    except:
+        pass
+
+    try:
+        revision_number = subprocess.check_output(["git","describe", "--all", "--long"]).decode("utf-8").strip()
+        g.add((URIRef(runtime), DOAP.revision, Literal(revision_number)))
+        g.add((URIRef(runtime), CLDI.pid, Literal(str(os.getpid()))))
+    except:
+        pass
+
 
     # store the successful records in /tmp and call the loadRDF script
     if len(submissions) > 0:
