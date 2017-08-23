@@ -514,6 +514,7 @@ class Thesis():
                     g.add((URIRef(newSubjectUri), RDFS.label, Literal(subject.lower())))
                     g.add((URIRef(newSubjectUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
                     g.add((URIRef(self.uri), DC.subject, URIRef(newSubjectUri)))
+                    g.add((URIRef(newSubjectUri), PROV.wasGeneratedBy, URIRef(runtime)))
         # manifestation
         if self.manifestations:
             for index, manifestation in enumerate(self.manifestations):
