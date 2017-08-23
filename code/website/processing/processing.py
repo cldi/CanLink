@@ -21,7 +21,8 @@ from concurrent.futures import ProcessPoolExecutor
 import concurrent.futures
 import urllib.request
 from langdetect import detect
-
+from io import StringIO, BytesIO
+from PyPDF2.pdf import PdfFileReader
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -67,6 +68,7 @@ class Thesis():
         self.degreeLabel, self.degreeUri = self.getDegreeUri(degrees)
         self.advisors = self.getAdvisors()
         self.advisorUris = self.getAdvisorUris()
+        self.num_pages = None           # will be generated after the pdf files are downloaded and processed for the length
         self.contentUrl = self.getContentUrl()
         self.manifestations = None      # will be generated after the pdf links are found on the website
         self.uri = self.getURI()
@@ -407,6 +409,7 @@ class Thesis():
 
         # clean up the urls
         urls = [urllib.parse.quote(url, safe="%/:=&?~#+!$,;'@()*[]") for url in value_856u]
+
         return urls
 
     def getManifestations(self):
@@ -417,6 +420,13 @@ class Thesis():
         manifestations = []
         for url in self.contentUrl:
             manifestations.append("http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest())
+
+            if not self.num_pages and ".pdf" in url:
+                print(url)
+                r = requests.get(url)
+                f = BytesIO(r.content)
+                self.num_pages = PdfFileReader(f).getNumPages()
+                print(self.num_pages)
 
         return manifestations
 
@@ -517,7 +527,8 @@ class Thesis():
                 # runtime
                 g.add((URIRef(manifestation), PROV.wasGeneratedBy, URIRef(runtime)))
 
-
+        if self.num_pages:
+            g.add((URIRef(self.uri), BIBO.numPages, Literal(str(self.num_pages))))
 
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
@@ -792,11 +803,13 @@ def process(records_file, lac_upload, silent_output):
             else:
                 pdf_urls[record_id] = [pdf_url]
 
+
     # add the pdf urls back to the records and generate the manifestations
     for record_number in pdf_urls.keys():
         record = records[record_number]
         record.contentUrl += pdf_urls[record_number]
         record.manifestations = record.getManifestations()
+
 
     runtime = "http://canlink.library.ualberta.ca/runtime/"+hashlib.md5(start_time.encode()).hexdigest()
     # this count represents the total number of records (after merging) - will be sent to the website to display at the top
