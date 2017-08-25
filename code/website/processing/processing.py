@@ -473,6 +473,9 @@ class Thesis():
             if "," in self.author:
                 g.add((URIRef(self.authorUri), FOAF.lastName, Literal(self.author.split(",")[0].strip())))
                 g.add((URIRef(self.authorUri), FOAF.firstName, Literal(self.author.split(",")[1].strip())))
+
+                # add the full name in there as well for consistency
+                g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip().replace(",",""))))
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
         # abstract
