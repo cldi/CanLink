@@ -31,6 +31,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 context = ssl._create_unverified_context()
 
 
+DC = Namespace("http://purl.org/dc/terms/")
 REL = Namespace("http://purl.org/vocab/relationship/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
@@ -712,8 +713,8 @@ def process(records_file, lac_upload, silent_output):
 
     g = Graph()
 
-    g.bind("foaf", FOAF)
     g.bind("dc", DC)
+    g.bind("foaf", FOAF)
     g.bind("rdf", RDF)
     g.bind("rel", REL)
     g.bind("frbr", FRBR)
