@@ -21,7 +21,8 @@ from concurrent.futures import ProcessPoolExecutor
 import concurrent.futures
 import urllib.request
 from langdetect import detect
-
+from io import StringIO, BytesIO
+from PyPDF2.pdf import PdfFileReader
 from requests.packages.urllib3.exceptions import InsecureRequestWarning
 requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
@@ -67,6 +68,7 @@ class Thesis():
         self.degreeLabel, self.degreeUri = self.getDegreeUri(degrees)
         self.advisors = self.getAdvisors()
         self.advisorUris = self.getAdvisorUris()
+        self.num_pages = None           # will be generated after the pdf files are downloaded and processed for the length
         self.contentUrl = self.getContentUrl()
         self.manifestations = None      # will be generated after the pdf links are found on the website
         self.uri = self.getURI()
@@ -314,7 +316,7 @@ class Thesis():
         if "master" in degree:
             return(["Master", "http://canlink.library.ualberta.ca/thesisDegree/master"])
         elif "doctor" in degree:
-            return(["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"])
+            return(["PhD", "http://purl.org/ontology/bibo/degrees/phd"])
 
         # see if it contains one of the common degree codes
         degree_codes = {
@@ -328,7 +330,7 @@ class Thesis():
                         "mdes":["MDes", "http://canlink.library.ualberta.ca/thesisDegree/mdes"],
                         "dent":["MDent", "http://canlink.library.ualberta.ca/thesisDegree/mdent"],
                         "masc":["MASc", "http://canlink.library.ualberta.ca/thesisDegree/masc"],
-                        "msc":["MSc", "http://canlink.library.ualberta.ca/thesisDegree/msc"],
+                        "msc":["MSc", "http://purl.org/ontology/bibo/degrees/ms"],
                         "llm":["LLM", "http://canlink.library.ualberta.ca/thesisDegree/llm"],
                         "lld":["LLD", "http://canlink.library.ualberta.ca/thesisDegree/lld"],
                         "mws":["MWS", "http://canlink.library.ualberta.ca/thesisDegree/mws"],
@@ -339,14 +341,14 @@ class Thesis():
                         "sjd":["SJD", "http://canlink.library.ualberta.ca/thesisDegree/sjd"],
                         "edd":["EDD", "http://canlink.library.ualberta.ca/thesisDegree/edd"],
                         "med":["MEd", "http://canlink.library.ualberta.ca/thesisDegree/med"],
-                        "phd":["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"],
+                        "phd":["PhD", "http://purl.org/ontology/bibo/degrees/phd"],
                         "dba":["DBA", "http://canlink.library.ualberta.ca/thesisDegree/dba"],
                         "dsc":["DSc", "http://canlink.library.ualberta.ca/thesisDegree/dsc"],
                         "des":["Des", "http://canlink.library.ualberta.ca/thesisDegree/des"],
                         "msw":["MSW", "http://canlink.library.ualberta.ca/thesisDegree/msw"],
-                        "ma":["MA", "http://canlink.library.ualberta.ca/thesisDegree/ma"],
+                        "ma":["MA", "http://purl.org/ontology/bibo/degrees/ma"],
                         "mn":["MN", "http://canlink.library.ualberta.ca/thesisDegree/mn"],
-                        "docteur":["PhD", "http://canlink.library.ualberta.ca/thesisDegree/phd"]
+                        "docteur":["PhD", "http://purl.org/ontology/bibo/degrees/phd"]
         }
 
         for code in degree_codes:
@@ -359,7 +361,7 @@ class Thesis():
         error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
         title = "Missing Degree URL"
-        body = "**To fix, comment below in the following format:** \n`MSc http://canlink.library.ualberta.ca/thesisDegree/msc`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
+        body = "**To fix, comment below in the following format:** \n`MSc http://purl.org/ontology/bibo/degrees/ms`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
         label = "Missing URL"
         submitGithubIssue(title, body, label, self.silent_output)
 
@@ -407,6 +409,7 @@ class Thesis():
 
         # clean up the urls
         urls = [urllib.parse.quote(url, safe="%/:=&?~#+!$,;'@()*[]") for url in value_856u]
+
         return urls
 
     def getManifestations(self):
@@ -417,6 +420,13 @@ class Thesis():
         manifestations = []
         for url in self.contentUrl:
             manifestations.append("http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest())
+
+            if not self.num_pages and ".pdf" in url:
+                print(url)
+                r = requests.get(url)
+                f = BytesIO(r.content)
+                self.num_pages = PdfFileReader(f).getNumPages()
+                print(self.num_pages)
 
         return manifestations
 
@@ -504,6 +514,7 @@ class Thesis():
                     g.add((URIRef(newSubjectUri), RDFS.label, Literal(subject.lower())))
                     g.add((URIRef(newSubjectUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
                     g.add((URIRef(self.uri), DC.subject, URIRef(newSubjectUri)))
+                    g.add((URIRef(newSubjectUri), PROV.wasGeneratedBy, URIRef(runtime)))
         # manifestation
         if self.manifestations:
             for index, manifestation in enumerate(self.manifestations):
@@ -517,7 +528,8 @@ class Thesis():
                 # runtime
                 g.add((URIRef(manifestation), PROV.wasGeneratedBy, URIRef(runtime)))
 
-
+        if self.num_pages:
+            g.add((URIRef(self.uri), BIBO.numPages, Literal(str(self.num_pages))))
 
 def getField(record, tag_value, subfield_value=None):
     # tag ex: "710"
@@ -792,11 +804,13 @@ def process(records_file, lac_upload, silent_output):
             else:
                 pdf_urls[record_id] = [pdf_url]
 
+
     # add the pdf urls back to the records and generate the manifestations
     for record_number in pdf_urls.keys():
         record = records[record_number]
         record.contentUrl += pdf_urls[record_number]
         record.manifestations = record.getManifestations()
+
 
     runtime = "http://canlink.library.ualberta.ca/runtime/"+hashlib.md5(start_time.encode()).hexdigest()
     # this count represents the total number of records (after merging) - will be sent to the website to display at the top
@@ -836,7 +850,6 @@ def process(records_file, lac_upload, silent_output):
         g.add((URIRef(runtime), CLDI.pid, Literal(str(os.getpid()))))
     except:
         pass
-
 
     # store the successful records in /tmp and call the loadRDF script
     if len(submissions) > 0:
