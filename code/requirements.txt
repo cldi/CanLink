@@ -10,3 +10,4 @@ git+git://github.com/maharshmellow/pymarc
 rdflib==4.2.2
 beautifulsoup4==4.6.0
 langdetect==1.0.7
+python-twitter==3.3

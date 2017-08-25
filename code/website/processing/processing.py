@@ -12,6 +12,7 @@ from bs4 import BeautifulSoup
 import os
 import ssl
 import random
+import twitter
 import time
 import datetime
 import requests
@@ -30,6 +31,7 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 context = ssl._create_unverified_context()
 
 
+DC = Namespace("http://purl.org/dc/terms/")
 REL = Namespace("http://purl.org/vocab/relationship/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
@@ -186,7 +188,7 @@ class Thesis():
                 error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
                 title = "Missing University URL"
-                body = "**To fix, comment below in the following format:** \n`http://dbpedia.org/resource/University_of_Alberta`\n\nThe URL for ["+ self.university.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
+                body = "The URI for **"+ self.university.strip() + "** could not be found\n\n**To fix, comment below in the following format:** \n`http://dbpedia.org/resource/University_of_Alberta`\n\nRecord:\n" + str(self.record) + "\n\nRecord File: " + error_file_name
                 label = "Missing URL"
                 submitGithubIssue(title, body, label, self.silent_output)
 
@@ -361,7 +363,7 @@ class Thesis():
         error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
         title = "Missing Degree URL"
-        body = "**To fix, comment below in the following format:** \n`MSc http://purl.org/ontology/bibo/degrees/ms`\n\nThe Degree URL for ["+ self.degree.strip() + "](https://localhost/) could not be found\nRecord File: " + error_file_name
+        body = "The URI for **"+ self.degree.strip() + "** could not be found\n\n**To fix, comment below in the following format:** \n`MSc http://purl.org/ontology/bibo/degrees/ms`\n\nRecord:\n" + str(self.record) + "\n\nRecord File: " + error_file_name
         label = "Missing URL"
         submitGithubIssue(title, body, label, self.silent_output)
 
@@ -472,6 +474,9 @@ class Thesis():
             if "," in self.author:
                 g.add((URIRef(self.authorUri), FOAF.lastName, Literal(self.author.split(",")[0].strip())))
                 g.add((URIRef(self.authorUri), FOAF.firstName, Literal(self.author.split(",")[1].strip())))
+
+                # add the full name in there as well for consistency
+                g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip().replace(",",""))))
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
         # abstract
@@ -575,7 +580,7 @@ def mergeRecords(thesis1, thesis2):
 
 def validateRecord(record, errors):
     # validation for showing the errors on the webpage - not for issues
-    # example: this won't raise an error if a degree uri (it will create an issue) is not provided, but it will if a degree name isn't
+    # example: this won't raise an error if a degree uri is not provided (it will create an issue), but it will if a degree name isn't
     record_errors = []
 
     # mandatory fields: author, university, title, date, degree
@@ -660,7 +665,7 @@ def getPDF(url, record_id):
     # if the ".pdf" url was found - properly format it and return
     if pdf_url:
         pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
-        print("1", pdf_url)
+        print("PDF URL:", pdf_url)
         return {"pdf_url":pdf_url, "record_id":record_id}
 
     # couldn't find a pdf link  - go through all the links to see which is of pdf type
@@ -670,7 +675,7 @@ def getPDF(url, record_id):
             r = requests.get(link, verify=False)
             if "pdf" in r.headers["Content-Type"]:
                 pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
-                print("5", pdf_url)
+                print("PDF URL:", pdf_url)
                 return {"pdf_url":pdf_url, "record_id":record_id}
 
     return {"pdf_url":pdf_url, "record_id":record_id}
@@ -708,8 +713,8 @@ def process(records_file, lac_upload, silent_output):
 
     g = Graph()
 
-    g.bind("foaf", FOAF)
     g.bind("dc", DC)
+    g.bind("foaf", FOAF)
     g.bind("rdf", RDF)
     g.bind("rel", REL)
     g.bind("frbr", FRBR)

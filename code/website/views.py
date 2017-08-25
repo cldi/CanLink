@@ -155,7 +155,7 @@ def updateUri(request):
         elif issue_title == "Missing University URL":
             # take the university name from the issue and not the comment
             # so we don't need to worry about spelling mistakes
-            university_name = issue.split("[")[1].split("]")[0].strip()
+            university_name = issue.split("The URI for **")[1].split("** could not be found")[0].strip()
             university_uri = comment.strip()
             record_file = issue.split("Record File: ")[1].strip()
             print(response)
@@ -199,11 +199,11 @@ def updateUri(request):
 
             # check if the comment is in the proper format
             if len(comment.split()) != 2 or "http" not in comment.split()[1]:
-                createComment(issue_number, "> Invalid Format\n> Example: MSc http://canlink.library.ualberta.ca/thesisDegree/msc")
+                createComment(issue_number, "> Invalid Format\n> Example: MSc http://purl.org/ontology/bibo/degrees/ms")
                 return HttpResponse(1)
 
 
-            degree_name = issue.split("[")[1].split("]")[0].strip()
+            degree_name = issue.split("The URI for **")[1].split("** could not be found")[0].strip()
             degree_label, degree_uri = comment.split()
             record_file = issue.split("Record File: ")[1].strip()
 
