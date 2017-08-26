@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>CanaLien</title>
+    <style>
+    .center {
+    text-align: center;
+    }
+    .mytop {
+    text-align: center;
+    border: 3px solid black;
+    }
+    </style>
+  </head>
+  <body>
+<p align="right"><a href="faq-en.html">English Version</a></p>
+
+  <h2 class="center">CanaLien : un projet de données liées pour les thèses canadiennes</h2> 
+Can Link - un projet de données liées pour les thèses canadiennes
+est un projet de preuve de concept du groupe de travail sur les projets numériques de la
+<a href="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home">
+Initiative sur les données liées au Canada - Groupe de travail sur les projets numériques</a>.
+
+Son objectif est d'accroître la découverte des thèses canadiennes et
+dissertations en tirant parti de la puissance des données liées.
+
+Les institutions participantes sont: L'Université de Colombie britannique,
+L'Université de l'Alberta, Bibliothèque et Archives Canada,
+Université Queens, Université de Toronto, Université McGill, Université de
+Montréal, Université Memorial de Terre-Neuve.
+
+<h4>Q: Qui est impliqué dans le projet CanaLien et comment est-il financé?</h4>
+ 
+<p>A: CanaLien implique des membres du Groupe de travail sur les projets numériques
+de l'Initiative canadienne sur les données liées
+(<a href="https://www.ubc.ca/">Université de Colombie Britannique</a>, 
+<a href="https://www.ualberta.ca/">Université de l'Alberta</a>, 
+<a href="http://www.bac-lac.gc.ca/Pages/default.aspx">Bibliothèque et Archives Canada</a>, 
+<a href="http://www.queensu.ca/">Université Queens</a>, 
+<a href="https://www.utoronto.ca/">Université de Toronto</a>, 
+<a href="http://www.mcgill.ca/">Université McGill</a>, 
+<a href="http://www.umontreal.ca/">Université de Montréal</a>, 
+<a href="http://www.dbdump.org/news/about">Robert Warren</a> (<a href="http://www.cwrc.ca/">CWRC</a>/<a
+href="http://www.muninn-project.org/">Muninn</a>)). 
+En outre, des records ont été fourni par l'
+<a href="https://www.mun.ca/">Université Memorial de Terre-Neuve</a>. 
+
+Les bibliothèques de L'Université de l'Alberta  et le programme Young Canada
+Works financent un étudiant d'été position en 2017 pour mener à bien la
+majeure partie du travail technique.  </p>
+
+<h4>Q: Quelles données sont incluses dans le projet? </h4>
+
+<p>A:
+Les données incluses sont des sous-ensembles d'enregistrements pour des dissertations et des thèses
+qui ont un objet numérique accessible au public. Bibliothèque et Archives Canada est un sous-ensemble de ceux trouvés dans le
+<a href="http://www.bac-lac.gc.ca/fra/services/theses/Pages/theses-canada.aspx">
+Portail Thèses Canada </a>.</p>
+ 
+<h4>Q: Puis-je contribuer des records au projet?</h4>
+
+<p>A: Oui! L'objectif du projet était de commencer par un petit ensemble d'enregistrements afin
+nous pourrions affiner et documenter nos processus, puis demander aux autres de participer!
+Si vous souhaitez soumettre des enregistrements, nous aimerions avoir de vos nouvelles!</p>
+
+<h4>Q: À qui puis-je contacter pour plus d'informations? </h4>
+
+<p>A: Pour plus d'informations sur le projet ou pour participer, envoyez
+nous un courriel:
+Sharon Farnel (sharondotfarnel at ualbertadotca) or Rob Warren
+(rwarren at muninn-projectdotorg).</p>
+
+
+<h4>Q: Quel est le plan à long terme pour le projet? </h4>
+
+<p>A: 
+Cette phase initiale consiste à piloter et à documenter les processus et les flux de
+bien que des infrastructures potentielles. Nous travaillons avec les liens
+Initiative de données et d'autres groupes de recherche sur un plan durable à long terme
+pour que le projet continue de croître et de prospérer. Plus de détails seront
+ont annoncé leur finalisation.
+</p>
+
+<h4>Q: Puis-je télécharger les données?</h4> 
+
+<p>A:
+Les décharges de données sont disponibles pour téléchargement à
+<a
+href="http://canlink.library.ualberta.ca/downloads/">http://canlink.library.ualberta.ca/downloads/</a>,
+le code est disponible pour téléchargement à<a href="https://github.com/cldi/CanLink">https://github.com/cldi/CanLink</a>
+et une description complète à <a href="https://datahub.io/dataset/can-link">https://datahub.io/dataset/can-link</a>.</p>
+ 
+
+<h4>Q: Que puis-je faire avec les données?</h4>
+
+<p>A: Les données sont disponibles sous une
+<a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Attribution Non-Commercial license</a>.</p>
+
+<h4>Q: Quels formats les données de thèse sont-elles disponibles?</h4>
+
+<p>A: 
+Les données sont disponibles en utilisant des principes de données ouvertes liées à l'aide de HTTP
+négociation de contenu et ajout d'extensions à l'URI (.rdf, .nt, .ttl,
+.json-ld). De plus, les données de thèse peuvent être exportées en format bibtex et ris
+utilisant à la fois la négociation de contenu HTTP et les extensions ajoutées (.bibtex
+et .ris).
+</p>
+
+<h4>Q: Le texte intégral de la thèse est-il disponible dans le cadre de l'ensemble de données?</h4>
+
+<p>A: 
+Certaines entrées de thèse comportent un noeud frbr: manifestation qui relie une version pdf.
+</p>
+
+<h4>Q: Quelle ontologie est utilisée pour coder les données de thèse?</h4>
+
+<p>A: L'ontologie est composée d'un certain nombre d'autres ontologies, y compris
+<a href="http://vocab.org/frbr/core">FRBR</a>, <a
+href="http://bibliontology.com/">BIBO</a>, <a
+href="http://schema.org/">schema.org</a>, <a href="http://sparql.cwrc.ca/ontologies/genre.html">CWRC Genres</a>, <a href="http://id.loc.gov/vocabulary/languages.html">Library of
+Congress Languages</a>, <a href="http://id.loc.gov/authorities/subjects.html">Library of Congress Subject Headings</a>, <a
+href="http://www.bnf.fr/en/professionals/anx_cataloging_indexing/a.subject_reference_systems.html">Bibliothèque nationale de France Subject Headings</a>, <a
+href="https://www.bac-lac.gc.ca/eng/services/canadian-subject-headings/Pages/canadian-subject-headings.aspx">Canadian Subject Headings</a>, <a href="https://www.w3.org/TR/prov-o/">W3 Provenance Ontology</a>,
+<a href=http://purl.org/dc/terms/"">Dublin Core Terms</a>, <a href="http://id.loc.gov/vocabulary/relators.html">Library of Congress
+Relators</a>,
+<a href="http://xmlns.com/foaf/spec/">Friend of a Friend Ontology</a>, and <a
+href="https://github.com/ewilderj/doap">DOAP</a>.</p>
+
+<p>L'ontologie est documenté ici <a href="http://canlink.library.ualberta.ca/canlink">here</a>.</p>
+
+  </body>
+</html>
+
