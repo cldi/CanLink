@@ -2,7 +2,8 @@
 <?php require_once( "sparqllib.php" );
 $storeName ="CanLink - CanaLien";
 $storeURL = "http://canlink.library.ualberta.ca/sparql";
-error_reporting(E_ALL); php?>
+error_reporting(E_ALL); 
+?>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title><?php print $storeName; ?> SPARQL Server</title>
@@ -252,7 +253,7 @@ z-index: 100;
 //  $result = sparql_query("SELECT * WHERE {?void <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/TR/void/Dataset> . }");
 $result = sparql_query("
 SELECT ?graph ?uri ?name ?description ?status ?version ?prefix ?entities  WHERE { GRAPH ?graph {
-?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> . 
+   ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> . 
    OPTIONAL {?uri <http://purl.org/dc/terms/description>  ?description . }
    OPTIONAL {?uri <http://www.w3.org/2002/07/owl#versionInfo> ?version .}
    OPTIONAL {?uri <http://xmlns.com/foaf/0.1/name> ?name . }
@@ -309,7 +310,7 @@ $result = sparql_query("
 SELECT ?graph ?uri ?name ?description ?status ?version ?prefix ?entities  WHERE { GRAPH ?graph {
 ?uri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://rdfs.org/ns/void#Dataset> . 
    OPTIONAL { ?auri <http://www.w3.org/1999/02/22-rdf-syntax-ns#type> <http://www.w3.org/2002/07/owl#Ontology> .
-              FILTER (?uri = ?auri) . }
+              ?auri <http://rdfs.org/ns/void#inDataset> ?uri . }
    OPTIONAL {?uri <http://purl.org/dc/terms/description>  ?description . }
    OPTIONAL {?uri <http://www.w3.org/2002/07/owl#versionInfo> ?version .}
    OPTIONAL {?uri <http://xmlns.com/foaf/0.1/name> ?name . }
