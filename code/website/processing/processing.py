@@ -423,13 +423,6 @@ class Thesis():
         for url in self.contentUrl:
             manifestations.append("http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest())
 
-            if not self.num_pages and ".pdf" in url:
-                print(url)
-                r = requests.get(url)
-                f = BytesIO(r.content)
-                self.num_pages = PdfFileReader(f).getNumPages()
-                print(self.num_pages)
-
         return manifestations
 
 
@@ -470,6 +463,7 @@ class Thesis():
             # author type
             g.add((URIRef(self.authorUri), RDF.type, FOAF.Person))
             g.add((URIRef(self.authorUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
+            g.add((URIRef(self.authorUri), PROV.wasGeneratedBy, URIRef(runtime)))
             # author name
             if "," in self.author:
                 g.add((URIRef(self.authorUri), FOAF.lastName, Literal(self.author.split(",")[0].strip())))
@@ -479,6 +473,7 @@ class Thesis():
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip().replace(",",""))))
             else:
                 g.add((URIRef(self.authorUri), FOAF.name, Literal(self.author.strip())))
+
         # abstract
         if self.abstracts:
             for item in self.abstracts:
@@ -503,6 +498,7 @@ class Thesis():
                 g.add((URIRef(uri), FOAF.name, Literal(self.advisors[index])))
                 g.add((URIRef(uri), RDF.type, FOAF.Person))
 
+                g.add((URIRef(uri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
                 # runtime
                 g.add((URIRef(uri), PROV.wasGeneratedBy, URIRef(runtime)))
         # subjects
@@ -634,7 +630,16 @@ def saveErrorFile(content, silent_output):
     return error_file_name
 
 
-def getPDF(url, record_id):
+def getPDF(url, record_id, num_pages):
+
+    if ".pdf" in url:
+        if not num_pages:
+            pdf_request = requests.get(url, verify=False)
+            pdf_object = BytesIO(pdf_request.content)
+            num_pages = PdfFileReader(pdf_object).getNumPages()
+
+        return {"record_id":record_id, "pdf_url":url, "num_pages":num_pages}
+
     # finds the pdf link on the website
     r = requests.get(url, verify=False)
     html = r.text
@@ -646,6 +651,7 @@ def getPDF(url, record_id):
 
     # see if there is any ".pdf" link on the page
     pdf_url = ""
+
     links = []
     for link in soup.find_all("a"):
         l = link.get("href")
@@ -666,19 +672,25 @@ def getPDF(url, record_id):
     if pdf_url:
         pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
         print("PDF URL:", pdf_url)
-        return {"pdf_url":pdf_url, "record_id":record_id}
+        # return {"pdf_url":pdf_url, "record_id":record_id}
+    else:
+        # couldn't find a pdf link  - go through all the links to see which is of pdf type
+        # (not ".pdf" extension because some pdfs don't have a ".pdf" extension)
+        for link in links:
+            if link and link[0:4] == "http":
+                r = requests.get(link, verify=False)
+                if "pdf" in r.headers["Content-Type"]:
+                    pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
+                    print("PDF URL:", pdf_url)
+                    # return {"pdf_url":pdf_url, "record_id":record_id}
 
-    # couldn't find a pdf link  - go through all the links to see which is of pdf type
-    # (not ".pdf" extension because some pdfs don't have a ".pdf" extension)
-    for link in links:
-        if link and link[0:4] == "http":
-            r = requests.get(link, verify=False)
-            if "pdf" in r.headers["Content-Type"]:
-                pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
-                print("PDF URL:", pdf_url)
-                return {"pdf_url":pdf_url, "record_id":record_id}
+    if not num_pages and len(pdf_url) >= 10:
+        pdf_request = requests.get(pdf_url, verify=False)
+        pdf_object = BytesIO(pdf_request.content)
+        num_pages = PdfFileReader(pdf_object).getNumPages()
+        print(num_pages)
 
-    return {"pdf_url":pdf_url, "record_id":record_id}
+    return {"record_id":record_id, "pdf_url":pdf_url, "num_pages":num_pages}
 
 
 def process(records_file, lac_upload, silent_output):
@@ -781,8 +793,8 @@ def process(records_file, lac_upload, silent_output):
         if not record_object.contentUrl:
             continue
         for url in record_object.contentUrl:
-            if ".pdf" not in url.lower():
-                url_map[url] = record_id
+            # if ".pdf" not in url.lower():
+            url_map[url] = record_id
 
 
     # extract the pdf links from the urls in parallel
@@ -790,31 +802,29 @@ def process(records_file, lac_upload, silent_output):
         tasks = []
         for url in url_map:
             record_id = url_map[url]
-            tasks.append(executor.submit(getPDF, url, record_id))
+            # pass in the num_pages so that if there are multiple urls given per record
+            # it stops finding the num_pages after the first one since they will all be identical
+            tasks.append(executor.submit(getPDF, url, record_id, num_pages=records[record_id].num_pages))
 
         for future in concurrent.futures.as_completed(tasks):
             # runs after the task has completed
             try:
                 result = future.result()
             except Exception as e:
-                print("ERROR")
-                print(traceback.format_exc())
                 continue
 
             record_id = result["record_id"]
             pdf_url = result["pdf_url"]
+            num_pages = result["num_pages"]
 
-            if record_id in pdf_urls:
-                pdf_urls[record_id].append(pdf_url)
-            else:
-                pdf_urls[record_id] = [pdf_url]
+            if pdf_url != "":
+                records[record_id].contentUrl.append(pdf_url)
+                records[record_id].num_pages = num_pages
 
 
     # add the pdf urls back to the records and generate the manifestations
-    for record_number in pdf_urls.keys():
-        record = records[record_number]
-        record.contentUrl += pdf_urls[record_number]
-        record.manifestations = record.getManifestations()
+    for r in records.values():
+        r.manifestations = r.getManifestations()
 
 
     runtime = "http://canlink.library.ualberta.ca/runtime/"+hashlib.md5(start_time.encode()).hexdigest()
