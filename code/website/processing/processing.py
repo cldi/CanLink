@@ -705,6 +705,12 @@ def process(records_file, lac_upload, silent_output):
 
     start_time = datetime.datetime.now().isoformat()[:-7] + "Z"
 
+    # set all environment variables
+    try:
+        subprocess.call(["./home/ubuntu/passWords.sh"])
+    except:
+        pass
+
     reader = MARCReader(records_file, force_utf8=True)
 
     records = {}
