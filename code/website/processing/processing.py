@@ -72,7 +72,7 @@ class Thesis():
         self.advisorUris = self.getAdvisorUris()
         self.num_pages = None           # will be generated after the pdf files are downloaded and processed for the length
         self.contentUrl = self.getContentUrl()
-        self.manifestations = None      # will be generated after the pdf links are found on the website
+        self.manifestations = self.getManifestations()      # will be generated after the pdf links are found on the website
         self.uri = self.getURI()
 
 
@@ -630,67 +630,67 @@ def saveErrorFile(content, silent_output):
     return error_file_name
 
 
-def getPDF(url, record_id, num_pages):
-
-    if ".pdf" in url:
-        if not num_pages:
-            pdf_request = requests.get(url, verify=False)
-            pdf_object = BytesIO(pdf_request.content)
-            num_pages = PdfFileReader(pdf_object).getNumPages()
-
-        return {"record_id":record_id, "pdf_url":url, "num_pages":num_pages}
-
-    # finds the pdf link on the website
-    r = requests.get(url, verify=False)
-    html = r.text
-    redirect_url = r.url
-
-    soup = BeautifulSoup(html, "html.parser")
-
-    print("ORIGINAL URL:",redirect_url)
-
-    # see if there is any ".pdf" link on the page
-    pdf_url = ""
-
-    links = []
-    for link in soup.find_all("a"):
-        l = link.get("href")
-        links.append(l)
-        if ".pdf" in str(l).lower():
-            if (pdf_url == "" or len(pdf_url) > len(str(l))):
-                pdf_url = str(l)
-
-    # convert relative links to absolute links if necessary
-    if pdf_url and "http" not in pdf_url and "www" not in pdf_url:
-        if pdf_url[0] == "/":
-            base_url = '{uri.scheme}://{uri.netloc}'.format(uri=urllib.request.urlparse(redirect_url))
-            pdf_url = base_url + pdf_url
-        else:
-            pdf_url = redirect_url + pdf_url
-
-    # if the ".pdf" url was found - properly format it and return
-    if pdf_url:
-        pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
-        print("PDF URL:", pdf_url)
-        # return {"pdf_url":pdf_url, "record_id":record_id}
-    else:
-        # couldn't find a pdf link  - go through all the links to see which is of pdf type
-        # (not ".pdf" extension because some pdfs don't have a ".pdf" extension)
-        for link in links:
-            if link and link[0:4] == "http":
-                r = requests.get(link, verify=False)
-                if "pdf" in r.headers["Content-Type"]:
-                    pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
-                    print("PDF URL:", pdf_url)
-                    # return {"pdf_url":pdf_url, "record_id":record_id}
-
-    if not num_pages and len(pdf_url) >= 10:
-        pdf_request = requests.get(pdf_url, verify=False)
-        pdf_object = BytesIO(pdf_request.content)
-        num_pages = PdfFileReader(pdf_object).getNumPages()
-        print(num_pages)
-
-    return {"record_id":record_id, "pdf_url":pdf_url, "num_pages":num_pages}
+# def getPDF(url, record_id, num_pages):
+#
+#     if ".pdf" in url:
+#         if not num_pages:
+#             pdf_request = requests.get(url, verify=False)
+#             pdf_object = BytesIO(pdf_request.content)
+#             num_pages = PdfFileReader(pdf_object).getNumPages()
+#
+#         return {"record_id":record_id, "pdf_url":url, "num_pages":num_pages}
+#
+#     # finds the pdf link on the website
+#     r = requests.get(url, verify=False)
+#     html = r.text
+#     redirect_url = r.url
+#
+#     soup = BeautifulSoup(html, "html.parser")
+#
+#     print("ORIGINAL URL:",redirect_url)
+#
+#     # see if there is any ".pdf" link on the page
+#     pdf_url = ""
+#
+#     links = []
+#     for link in soup.find_all("a"):
+#         l = link.get("href")
+#         links.append(l)
+#         if ".pdf" in str(l).lower():
+#             if (pdf_url == "" or len(pdf_url) > len(str(l))):
+#                 pdf_url = str(l)
+#
+#     # convert relative links to absolute links if necessary
+#     if pdf_url and "http" not in pdf_url and "www" not in pdf_url:
+#         if pdf_url[0] == "/":
+#             base_url = '{uri.scheme}://{uri.netloc}'.format(uri=urllib.request.urlparse(redirect_url))
+#             pdf_url = base_url + pdf_url
+#         else:
+#             pdf_url = redirect_url + pdf_url
+#
+#     # if the ".pdf" url was found - properly format it and return
+#     if pdf_url:
+#         pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
+#         print("PDF URL:", pdf_url)
+#         # return {"pdf_url":pdf_url, "record_id":record_id}
+#     else:
+#         # couldn't find a pdf link  - go through all the links to see which is of pdf type
+#         # (not ".pdf" extension because some pdfs don't have a ".pdf" extension)
+#         for link in links:
+#             if link and link[0:4] == "http":
+#                 r = requests.get(link, verify=False)
+#                 if "pdf" in r.headers["Content-Type"]:
+#                     pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
+#                     print("PDF URL:", pdf_url)
+#                     # return {"pdf_url":pdf_url, "record_id":record_id}
+#
+#     if not num_pages and len(pdf_url) >= 10:
+#         pdf_request = requests.get(pdf_url, verify=False)
+#         pdf_object = BytesIO(pdf_request.content)
+#         num_pages = PdfFileReader(pdf_object).getNumPages()
+#         print(num_pages)
+#
+#     return {"record_id":record_id, "pdf_url":pdf_url, "num_pages":num_pages}
 
 
 def process(records_file, lac_upload, silent_output):
@@ -704,6 +704,12 @@ def process(records_file, lac_upload, silent_output):
     #   original tweet
 
     start_time = datetime.datetime.now().isoformat()[:-7] + "Z"
+
+    # set all environment variables
+    try:
+        subprocess.call(["./home/ubuntu/passWords.sh"])
+    except:
+        pass
 
     reader = MARCReader(records_file, force_utf8=True)
 
@@ -782,49 +788,49 @@ def process(records_file, lac_upload, silent_output):
         elif not linkingNumber:
             records[controlNumber] = thesis
 
-    # url_map = {"url":"record #"}
-    url_map = {}
-    # pdf_urls = {"record #":[list of pdf urls]}
-    pdf_urls = {}
+    # # url_map = {"url":"record #"}
+    # url_map = {}
+    # # pdf_urls = {"record #":[list of pdf urls]}
+    # pdf_urls = {}
+    #
+    # # generate url_map
+    # for record_id in records:
+    #     record_object = records[record_id]
+    #     if not record_object.contentUrl:
+    #         continue
+    #     for url in record_object.contentUrl:
+    #         # if ".pdf" not in url.lower():
+    #         url_map[url] = record_id
+    #
+    #
+    # # extract the pdf links from the urls in parallel
+    # with ProcessPoolExecutor(max_workers=10) as executor:
+    #     tasks = []
+    #     for url in url_map:
+    #         record_id = url_map[url]
+    #         # pass in the num_pages so that if there are multiple urls given per record
+    #         # it stops finding the num_pages after the first one since they will all be identical
+    #         tasks.append(executor.submit(getPDF, url, record_id, num_pages=records[record_id].num_pages))
+    #
+    #     for future in concurrent.futures.as_completed(tasks):
+    #         # runs after the task has completed
+    #         try:
+    #             result = future.result()
+    #         except Exception as e:
+    #             continue
+    #
+    #         record_id = result["record_id"]
+    #         pdf_url = result["pdf_url"]
+    #         num_pages = result["num_pages"]
+    #
+    #         if pdf_url != "":
+    #             records[record_id].contentUrl.append(pdf_url)
+    #             records[record_id].num_pages = num_pages
 
-    # generate url_map
-    for record_id in records:
-        record_object = records[record_id]
-        if not record_object.contentUrl:
-            continue
-        for url in record_object.contentUrl:
-            # if ".pdf" not in url.lower():
-            url_map[url] = record_id
 
-
-    # extract the pdf links from the urls in parallel
-    with ProcessPoolExecutor(max_workers=10) as executor:
-        tasks = []
-        for url in url_map:
-            record_id = url_map[url]
-            # pass in the num_pages so that if there are multiple urls given per record
-            # it stops finding the num_pages after the first one since they will all be identical
-            tasks.append(executor.submit(getPDF, url, record_id, num_pages=records[record_id].num_pages))
-
-        for future in concurrent.futures.as_completed(tasks):
-            # runs after the task has completed
-            try:
-                result = future.result()
-            except Exception as e:
-                continue
-
-            record_id = result["record_id"]
-            pdf_url = result["pdf_url"]
-            num_pages = result["num_pages"]
-
-            if pdf_url != "":
-                records[record_id].contentUrl.append(pdf_url)
-                records[record_id].num_pages = num_pages
-
-
-    # add the pdf urls back to the records and generate the manifestations
-    for r in records.values():
-        r.manifestations = r.getManifestations()
+    # # add the pdf urls back to the records and generate the manifestations
+    # for r in records.values():
+    #     r.manifestations = r.getManifestations()
 
 
     runtime = "http://canlink.library.ualberta.ca/runtime/"+hashlib.md5(start_time.encode()).hexdigest()
