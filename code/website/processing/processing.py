@@ -859,7 +859,7 @@ def process(records_file, lac_upload, silent_output):
         pass
 
     try:
-        revision_number = subprocess.check_output(["git","describe", "--all", "--long"]).decode("utf-8").strip()
+        revision_number = subprocess.check_output(["git","describe", "--all", "--long"], shell=True).decode("utf-8").strip()
         g.add((URIRef(runtime), DOAP.revision, Literal(revision_number)))
         g.add((URIRef(runtime), CLDI.pid, Literal(str(os.getpid()))))
     except:
@@ -871,7 +871,7 @@ def process(records_file, lac_upload, silent_output):
         g.serialize(project_folder_path + "/website/processing/tmp/" + output_file_name, format="xml")
 
         try:
-            subprocess.call(["."+project_folder_path+"/scripts/loadRDF.sh", output_file_name])
+            subprocess.call(["."+project_folder_path+"/scripts/loadRDF.sh", output_file_name], shell=True)
         except:
             print("Calling Script Failed:")
             print('.'+project_folder_path+'/scripts/loadRDF.sh '+output_file_name)

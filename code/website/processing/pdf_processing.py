@@ -2,6 +2,7 @@
 from SPARQLWrapper import SPARQLWrapper, JSON
 from collections import defaultdict
 import requests
+import hashlib
 from bs4 import BeautifulSoup
 import ssl
 from io import StringIO, BytesIO
@@ -67,7 +68,10 @@ def getNumPages(url):
     except:
         pass
 
-def addManifestation(thesis_uri, url):
+def addManifestation(thesis_uri, url, runtime):
+    # generate the manifestation uri
+    manifestation = "http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest()
+
     sparql = SPARQLWrapper("http://18ed7af0.ngrok.io/canlink/update")
     sparql.setQuery("""
     PREFIX void:  <http://rdfs.org/ns/void#>
@@ -85,18 +89,49 @@ def addManifestation(thesis_uri, url):
     PREFIX frbr: <http://purl.org/vocab/frbr/core#>
 
     INSERT DATA{
-	<%s> dc:subject <%s>
-    }
-    """%(thesis_uri, url))
+  <%s>    schema:encodesCreativeWork    <%s>  .
+  <%s>    schema:contentUrl    <%s>  .
+  <%s>    prov:wasGeneratedBy <%s> .
+  <%s>    void:inDataset   <http://canlink.library.ualberta.ca/void/canlinkmaindataset>  .
+  <%s>    rdf:type   frbr:Manifestation .
+  <%s>    rdf:type   schema:MediaObject .
+
+}
+    """%(manifestation, thesis_uri, manifestation, url, manifestation, runtime, manifestation, manifestation, manifestation))
 
     sparql.method = "POST"
-    # sparql.query()
+    sparql.query()
 
     print("Adding Manifestation for:", thesis_uri, "with content url =", url)
 
 
 def addNumPages(thesis_uri, num_pages):
-    print("Adding numPages for:", thesis_uri, "with numPages =", num_pages)
+    sparql = SPARQLWrapper("http://18ed7af0.ngrok.io/canlink/update")
+    sparql.setQuery("""
+    PREFIX void:  <http://rdfs.org/ns/void#>
+    PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+    PREFIX doap:  <http://usefulinc.com/ns/doap#>
+    PREFIX owl:   <http://www.w3.org/2002/07/owl#>
+    PREFIX rel:   <http://id.loc.gov/vocabulary/relators/>
+    PREFIX bibo:  <http://purl.org/ontology/bibo/>
+    PREFIX rdfs:  <http://www.w3.org/2000/01/rdf-schema#>
+    PREFIX cwrc:  <http://sparql.cwrc.ca/ontologies/genre#>
+    PREFIX prov:  <http://www.w3.org/ns/prov#>
+    PREFIX foaf:  <http://xmlns.com/foaf/0.1/>
+    PREFIX dc:    <http://purl.org/dc/terms/>
+    PREFIX schema: <http://schema.org/>
+    PREFIX frbr: <http://purl.org/vocab/frbr/core#>
+
+    INSERT DATA{
+	<%s> bibo:numPages "%s"
+    }
+    """%(thesis_uri, num_pages))
+
+    sparql.method = "POST"
+    sparql.query()
+
+    print("Adding Num Pages for:", thesis_uri, "with pages =", num_pages)
+
 
 sparql = SPARQLWrapper("http://18ed7af0.ngrok.io/canlink/sparql")
 
@@ -115,10 +150,11 @@ PREFIX dc:    <http://purl.org/dc/terms/>
 PREFIX schema: <http://schema.org/>
 PREFIX frbr: <http://purl.org/vocab/frbr/core#>
 
-SELECT ?thesis ?url
+SELECT ?thesis ?url ?runtime
 WHERE {
 	?thesis rdf:type bibo:thesis .
     ?thesis owl:sameAs ?url .
+    ?thesis prov:wasGeneratedBy ?runtime .
     MINUS { ?thesis bibo:numPages ?c . }
 }
 """)
@@ -127,6 +163,7 @@ WHERE {
 
 # run the query and put the results in a dictionary with the values being a list of urls associated with the thesis uri
 data = defaultdict(list)
+runtimes = {}
 
 sparql.setReturnFormat(JSON)
 results = sparql.query().convert()
@@ -134,8 +171,10 @@ results = sparql.query().convert()
 for thesis in results["results"]["bindings"]:
     thesis_uri = thesis["thesis"]["value"]
     url = thesis["url"]["value"]
+    runtime = thesis["runtime"]["value"]
 
     data[thesis_uri].append(url)
+    runtimes[thesis_uri] = runtime
 
 # process each thesis individually
 for thesis_uri in data:
@@ -151,15 +190,13 @@ for thesis_uri in data:
             pdf_url = getPDFUrl(url)
 
             if pdf_url:
-                addManifestation(thesis_uri, pdf_url)
+                addManifestation(thesis_uri, pdf_url, runtimes[thesis_uri])
         else:
             pdf_url = url
 
         if pdf_url and num_pages == 0:
             num_pages = getNumPages(url)
             addNumPages(thesis_uri, num_pages)
-
-            # TODO add the numPages value to the thesis object
 
         # print()
         elif urls.index(url) == len(urls)-1:

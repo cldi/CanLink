@@ -113,7 +113,7 @@ def processRecords(raw_records, lac_upload, silent_output=False):
 
     try:
         # set all environment variables
-        subprocess.call(["./home/ubuntu/passWords.sh"])
+        subprocess.call(["./home/ubuntu/passWords.sh"], shell=True)
         # process the records
         response = process(records_file, lac_upload, silent_output)
     except Exception as e:
