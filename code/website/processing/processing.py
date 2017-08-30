@@ -420,7 +420,8 @@ class Thesis():
 
         manifestations = []
         for url in self.contentUrl:
-            manifestations.append("http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest())
+            if ".pdf" in url:           # non pdf manifestation will be handled by pdf_processing.py
+                manifestations.append("http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest())
 
         return manifestations
 
@@ -440,7 +441,7 @@ class Thesis():
         # same as (links that are not pdf files but still contain information about this thesis)
         if self.contentUrl:
             for url in self.contentUrl:
-                if ".pdf" not in url and url != "":
+                if url != "":
                     g.add((URIRef(self.uri), OWL.sameAs, URIRef(url)))
 
         # date
