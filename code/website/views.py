@@ -112,6 +112,9 @@ def processRecords(raw_records, lac_upload, silent_output=False):
         return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format in UTF-8 Encoding"], "submissions":[], "total_records": 0})
 
     try:
+        # set all environment variables
+        subprocess.call(["./home/ubuntu/passWords.sh"])
+        # process the records
         response = process(records_file, lac_upload, silent_output)
     except Exception as e:
         # save file locally

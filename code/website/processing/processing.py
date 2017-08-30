@@ -32,7 +32,7 @@ context = ssl._create_unverified_context()
 
 
 DC = Namespace("http://purl.org/dc/terms/")
-REL = Namespace("http://purl.org/vocab/relationship/")
+REL = Namespace("http://id.loc.gov/vocabulary/relators/")
 BIBO = Namespace("http://purl.org/ontology/bibo/")
 SCHEMA = Namespace("http://schema.org/")
 FRBR = Namespace("http://purl.org/vocab/frbr/core#")
@@ -41,7 +41,6 @@ PROV = Namespace("http://www.w3.org/ns/prov#")
 CLDI = Namespace("http://canlink.library.ualberta.ca/ontologies/canlink#")
 DOAP = Namespace("http://usefulinc.com/ns/doap#")
 VOID = Namespace("http://rdfs.org/ns/void#")
-LOC = Namespace("http://id.loc.gov/vocabulary/relators/")
 
 project_folder_path = "/home/ubuntu/CanLink/code"      # for the server
 # project_folder_path = "/Users/maharshmellow/Google Drive/Code/Github/CanLink/code"      # for local development
@@ -483,7 +482,7 @@ class Thesis():
         if self.universityUri:
             g.add((URIRef(self.uri), DC.publisher, URIRef(self.universityUri)))
 
-            g.add((URIRef(self.uri), LOC.pub, URIRef(self.universityUri)))
+            g.add((URIRef(self.uri), REL.pub, URIRef(self.universityUri)))
 
         # thesis types
         g.add((URIRef(self.uri), RDF.type, FRBR.Work))
@@ -705,12 +704,6 @@ def process(records_file, lac_upload, silent_output):
 
     start_time = datetime.datetime.now().isoformat()[:-7] + "Z"
 
-    # set all environment variables
-    try:
-        subprocess.call(["./home/ubuntu/passWords.sh"])
-    except:
-        pass
-
     reader = MARCReader(records_file, force_utf8=True)
 
     records = {}
@@ -746,7 +739,6 @@ def process(records_file, lac_upload, silent_output):
     g.bind("cldi", CLDI)
     g.bind("doap", DOAP)
     g.bind("void", VOID)
-    g.bind("loc", LOC)
     # when the control number isn't given, we use this to generate one
     count = 0
     # keep a list of the unversities seen and take the one that appears the most for the tweet
