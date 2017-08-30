@@ -187,7 +187,7 @@ class Thesis():
                 error_file_name = saveErrorFile(self.record.as_marc(), self.silent_output)
 
                 title = "Missing University URL"
-                body = "The URI for **"+ self.university.strip() + "** could not be found\n\n**To fix, comment below in the following format:** \n`http://dbpedia.org/resource/University_of_Alberta`\n\nRecord:\n" + str(self.record) + "\n\nRecord File: " + error_file_name
+                body = "The URI for **"+ self.university.strip() + "** could not be found\n\n**To fix, comment below in the following format:** \n`http://dbpedia.org/resource/WIKIPEDIA_UNIVERSITY_URI`\n\nRecord:\n" + str(self.record) + "\n\nRecord File: " + error_file_name
                 label = "Missing URL"
                 submitGithubIssue(title, body, label, self.silent_output)
 
