@@ -458,6 +458,12 @@ class Thesis():
             g.add((URIRef(self.degreeUri), VOID.inDataset, URIRef("http://canlink.library.ualberta.ca/void/canlinkmaindataset")))
         # author uri
         if self.authorUri:
+            # if the uri was provided in the record (LOC or some other), then generate a new ualberta uri
+            if "canlink.library.ualberta.ca" not in self.authorUri:
+                provided_uri = self.authorUri
+                self.authorUri = "http://canlink.library.ualberta.ca/person/"+str(hashlib.md5(self.author.encode("utf-8")+self.universityUri.encode("utf-8")).hexdigest())
+                g.add((URIRef(self.authorUri), OWL.sameAs, URIRef(provided_uri)))
+
             g.add((URIRef(self.uri), DC.creator, URIRef(self.authorUri)))
             g.add((URIRef(self.uri), REL.aut, URIRef(self.authorUri)))
             # author type
@@ -859,7 +865,7 @@ def process(records_file, lac_upload, silent_output):
         pass
 
     try:
-        revision_number = subprocess.check_output(["git","describe", "--all", "--long"], shell=True).decode("utf-8").strip()
+        revision_number = subprocess.check_output(["git","describe", "--all", "--long"]).decode("utf-8").strip()
         g.add((URIRef(runtime), DOAP.revision, Literal(revision_number)))
         g.add((URIRef(runtime), CLDI.pid, Literal(str(os.getpid()))))
     except:
