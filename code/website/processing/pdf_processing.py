@@ -1,5 +1,5 @@
 # this script will find all the theses in the triplestore and find the PDF links and the length of the PDF
-from SPARQLWrapper import SPARQLWrapper, JSON
+from SPARQLWrapper import SPARQLWrapper, JSON, DIGEST
 from collections import defaultdict
 import requests
 import hashlib
@@ -15,17 +15,15 @@ requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 context = ssl._create_unverified_context()
 
 def getPDFUrl(url):
-    # finds the pdf link on the website
     r = requests.get(url, verify=False)
     html = r.text
     redirect_url = r.url
 
     soup = BeautifulSoup(html, "html.parser")
 
-    # see if there is any ".pdf" link on the page
     pdf_url = ""
-
     links = []
+
     for link in soup.find_all("a"):
         l = link.get("href")
         links.append(l)
@@ -44,20 +42,16 @@ def getPDFUrl(url):
     # if the ".pdf" url was found - properly format it and return
     if pdf_url:
         pdf_url = urllib.parse.quote(pdf_url, safe="%/:=&?~#+!$,;'@()*[]")
-        # print("PDF URL:", pdf_url)
         return(pdf_url)
-        # return {"pdf_url":pdf_url, "record_id":record_id}
-    # else:
-    #     # couldn't find a pdf link  - go through all the links to see which is of pdf type
-    #     # (not ".pdf" extension because some pdfs don't have a ".pdf" extension)
-    #     for link in links:
-    #         if link and link[0:4] == "http":
-    #             r = requests.get(link, verify=False)
-    #             if "pdf" in r.headers["Content-Type"]:
-    #                 pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
-    #                 return(pdf_url)
-    #                 # print("PDF URL:", pdf_url)
-    #                 # return {"pdf_url":pdf_url, "record_id":record_id}
+    else:
+        # couldn't find a pdf link  - go through all the links to see which is of pdf type
+        # (not ".pdf" extension - those would already be found by now if they existed on the page)
+        for link in links:
+            if link and link[0:4] == "http":
+                r = requests.get(link, verify=False)
+                if "pdf" in r.headers["Content-Type"]:
+                    pdf_url = urllib.parse.quote(r.url, safe="%/:=&?~#+!$,;'@()*[]")
+                    return(pdf_url)
 
 def getNumPages(url):
     try:
@@ -72,7 +66,10 @@ def addManifestation(thesis_uri, url, runtime):
     # generate the manifestation uri
     manifestation = "http://canlink.library.ualberta.ca/manifestation/"+hashlib.md5(url.encode("utf-8")).hexdigest()
 
-    sparql = SPARQLWrapper("http://18ed7af0.ngrok.io/canlink/update")
+    sparql = SPARQLWrapper("http://canlink.library.ualberta.ca/sparql-auth")
+    sparql.setHTTPAuth(DIGEST)
+    sparql.setCredentials("cldi", os.environ.get("SPARQL_PASSWORD"))
+
     sparql.setQuery("""
     PREFIX void:  <http://rdfs.org/ns/void#>
     PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -106,7 +103,10 @@ def addManifestation(thesis_uri, url, runtime):
 
 
 def addNumPages(thesis_uri, num_pages):
-    sparql = SPARQLWrapper("http://18ed7af0.ngrok.io/canlink/update")
+    sparql = SPARQLWrapper("http://canlink.library.ualberta.ca/sparql-auth")
+    sparql.setHTTPAuth(DIGEST)
+    sparql.setCredentials("cldi", os.environ.get("SPARQL_PASSWORD"))
+
     sparql.setQuery("""
     PREFIX void:  <http://rdfs.org/ns/void#>
     PREFIX rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
@@ -133,7 +133,7 @@ def addNumPages(thesis_uri, num_pages):
     print("Adding Num Pages for:", thesis_uri, "with pages =", num_pages)
 
 
-sparql = SPARQLWrapper("http://18ed7af0.ngrok.io/canlink/sparql")
+sparql = SPARQLWrapper("http://canlink.library.ualberta.ca/sparql")
 
 sparql.setQuery("""
 PREFIX void:  <http://rdfs.org/ns/void#>
@@ -159,8 +159,6 @@ WHERE {
 }
 """)
 
-
-
 # run the query and put the results in a dictionary with the values being a list of urls associated with the thesis uri
 data = defaultdict(list)
 runtimes = {}
@@ -182,10 +180,9 @@ for thesis_uri in data:
 
     num_pages = 0
     # go through all the urls and find the pdf links for all of them
-    # find the num_pages from the first url
+    # find the num_pages from one of the urls (they should all be the same length so don't need to check all of them)
     print("-"*50)
     for url in urls:
-        # print(url)
         if ".pdf" not in url.lower():
             pdf_url = getPDFUrl(url)
 
@@ -198,7 +195,6 @@ for thesis_uri in data:
             num_pages = getNumPages(url)
             addNumPages(thesis_uri, num_pages)
 
-        # print()
         elif urls.index(url) == len(urls)-1:
             # if this is the last url given for this thesis and we still don't have a num_pages
             # then put in numPages = N/A
@@ -206,6 +202,3 @@ for thesis_uri in data:
             # and it won't be able to find the number of pages ever due to a broken link
 
             addNumPages(thesis_uri, num_pages="N/A")
-        # print(url, num_pages)
-
-    # print(thesis_uri)
