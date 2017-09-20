@@ -45,7 +45,7 @@
     <foaf:homepage rdf:resource="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
     <void:exampleResource rdf:resource="http://canlink.library.ualberta.ca/"/>
     <void:sparqlEndpoint rdf:resource="http://canlink.library.ualberta.ca/sparql" />
-    <void:dataDump rdf:resource="http://canlink.library.ualberta.ca/Downloads/"/>
+    <void:dataDump rdf:resource="http://canlink.library.ualberta.ca/Downloads/canlink-current.gz"/>
     <void:feature rdf:resource="http://www.w3.org/ns/formats/RDF_XML"/>
     <void:feature rdf:resource="http://www.w3.org/ns/formats/N-Triples"/>
     <void:feature rdf:resource="http://www.w3.org/ns/formats/Turtle"/>
