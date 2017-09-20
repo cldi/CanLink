@@ -25,13 +25,14 @@
     xmlns:loc="http://id.loc.gov/vocabulary/relators/"
     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
     xmlns:cwrc="http://www.cwrc.ca/ontologies/cwrc#"
-    xml:base="http://canlink.library.ualberta.ca/.well-know/void#"
+    xml:base="http://canlink.library.ualberta.ca/void/canlink"
     xmlns:dcat="http://www.w3.org/ns/dcat#"
-    xmlns="http://canlink.library.ualberta.ca/.well-know/void#">
+    xmlns="http://canlink.library.ualberta.ca/void/canlink">
 
   <!-- This document is largely static and describes the dataset. -->  
   <dcat:Distribution rdf:about="http://canlink.library.ualberta.ca/void/canlinkmaindataset-sparql">
    <dcat:accessURL rdf:resource="http://canlink.library.ualberta.ca/sparql"/>
+   <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
   </dcat:Distribution>
   
   <rdf:Description rdf:about="http://canlink.library.ualberta.ca/void/canlinkmaindataset">
@@ -83,6 +84,7 @@
     <dc:rights rdf:resource="https://creativecommons.org/licenses/by/3.0/"/> 
       <foaf:account>
        <foaf:OnlineAccount rdf:about="#twitterHandle">
+       <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
         <rdf:type rdf:resource="http://xmlns.com/foaf/0.1/OnlineChatAccount"/>
         <foaf:accountServiceHomepage rdf:resource="http://www.twitter.com/"/>
       <foaf:accountName>canlink2017</foaf:accountName>
@@ -93,46 +95,55 @@
       <foaf:name>Robert Warren</foaf:name>
       <owl:sameAs rdf:resource="http://rdf.muninn-project.org/ww1/2011/11/11/Person/Warren"/>
       <owl:sameAs rdf:resource="http://sparql.cwrc.ca/ontology/cwrc#RobWarren"/>
+      <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
      </foaf:Person>
     </dc:creator>
     <dc:creator>
      <foaf:Person rdf:about="#SharonFarnel">
       <foaf:name>Sharon Farnel</foaf:name>
-     </foaf:Person>
+      <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
+    </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#MaharshPatel">
         <foaf:name>Maharsh Patel</foaf:name>
+      <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#MeganChellew">
-        <foaf:name>Megan Chellew</foaf:name>
+        <foaf:name>Megan Chellew</foaf:name>        
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#SueAndrews">
         <foaf:name>Sue Andrews</foaf:name>
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#SandraMorden">
         <foaf:name>Sandra Morden</foaf:name>
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#ArouceWasty">
         <foaf:name>Arouce Wasty</foaf:name>
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#Marie-HélèneVézina">
         <foaf:name>Marie-Hélène Vézina</foaf:name>
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:creator>
       <foaf:Person rdf:about="#HeatherPretty">
         <foaf:name>Heather Pretty</foaf:name>
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Person>
     </dc:creator>
     <dc:publisher>
@@ -149,6 +160,7 @@
         <foaf:member rdf:resource="#Marie-HélèneVézina"/>
         <foaf:member rdf:resource="#HeatherPretty"/>
         <foaf:homepage rdf:resource="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home"/>
+        <rdfs:isDefinedBy rdf:resource="http://canlink.library.ualberta.ca/.well-know/void"/>
       </foaf:Organization>
     </dc:publisher>
     <!-- Electronic dissertations  -->
