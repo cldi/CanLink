@@ -12,13 +12,16 @@ $storeName ="CanLink - CanaLien";
 $storeURL = "http://canlink.library.ualberta.ca/sparql";
 //$URI="http://canlink.library.ualberta.ca/thesis/b1d69d5514023b77b1b1908355c65114";
 //$URI="http://canlink.library.ualberta.ca/thesis/b5a2c518f0f81edc5ab2f8227b8e981c";
-$URI=$_GET["URI"];
+$URI=$_GET["url"];
 $URIBits = parse_url($URI);
 //error_reporting(E_ALL);
 $db = sparql_connect($storeURL );
 if (! $db->alive()) {
   print "500 Server failiure";
  } else {
+header('Content-Type: application/x-bibtex');
+header('Content-Disposition: attachment; filename="' . substr( strrchr($URI,"/"),1) . '.bib"');
+header("HTTP/1.0 200 OK");
 $sparqlQuery = "
 SELECT ?title ?year (SAMPLE(COALESCE(?universityReq,?universityEN,?universityANY))) as ?university 
    (SAMPLE(COALESCE(?fullname, CONCAT(?firstName, \" \", ?lastName)))) as ?authorname ?advisorName
@@ -57,8 +60,9 @@ $result = sparql_query($sparqlQuery);
 $row = sparql_fetch_array( $result );
 print "@Comment{This is an export from " . $storeName . " \\url{http://canlink.library.ualberta.ca/}}\n";
 print "@Comment{Provient de " . $storeName . " \\url{http://canlink.library.ualberta.ca/}}\n";
+//print $row["degree"];
 $degree="mastersthesis";
-if ( strpos(strtolower($row["degree"]) ,"/p") > 0 ) {
+if ( strpos(strtolower($row["degree"]) ,"/ph") > 0 ) {
  $degree="phdthesis";
 }
 print '@' . $degree;
@@ -74,12 +78,11 @@ if ($row["abstract"]) {
  print "abstract={" . $row["abstract"] . "},\n";
 }
 if ($row["pdfurl"]) {
- print "pdf={" . $row["pdfurl"] . "},\n";
+ print "url={" . $row["pdfurl"] . "},\n";
+} else {
+ print 'url={' . $URI . "},\n";
 }
-
-//$sparqlQuery = "
-
-print 'url={' . $URI . "}\n";
+print 'annote={Citation downloaded from \url{' . $URI . "}}\n";
 print "}\n";
 }
 ?>
