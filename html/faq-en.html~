@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>CanLink - CanaLien</title>
+    <style>
+    .center {
+    text-align: center;
+    }
+    .mytop {
+    text-align: center;
+    border: 3px solid black;
+    }
+    </style>
+  </head>
+  <body>
+  <h2 class="center">CanLink : a linked data project for Canadian theses</h2> 
+  Can Link - a linked data project for Canadian theses 
+is a proof of concept project of the Digital Projects Working Group of the <a href="https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home">
+Canadian Linked Data Initiative - Digital Projects Working Group of the Canadian Linked Data Initiative</a>.
+
+Its goal is to increase the discoverability of Canadian theses and
+dissertations by leveraging the power of linked data to surface unexpected
+connections and relationships.
+
+Participating institutions are: University of British Columbia, University
+of Alberta, Library and Archives Canada/Bibliothèque et Archives Canada,
+Queens University, University of Toronto, McGill University, Université de
+Montréal, Memorial University of Newfoundland.
+
+
+<h4>Q: Who is involved in the Can Link project and how is it funded?</h4>
+ 
+<p>A: Can Link involves members of the Canadian Linked Data Initiative Digital
+Projects Working Group (<a href="https://www.ubc.ca/">University of British Columbia</a>, 
+<a href="https://www.ualberta.ca/">University of Alberta</a>, 
+<a href="http://www.bac-lac.gc.ca/Pages/default.aspx">Library and Archives Canada/Bibliothèque et Archives Canada</a>, 
+<a href="http://www.queensu.ca/">Queens University</a>, 
+<a href="https://www.utoronto.ca/">University of Toronto</a>, 
+<a href="http://www.mcgill.ca/">McGill University</a>, 
+<a href="http://www.umontreal.ca/">Université de Montréal</a>, 
+<a href="http://www.dbdump.org/news/about">Robert Warren</a> (<a href="http://www.cwrc.ca/">CWRC</a>/<a
+href="http://www.muninn-project.org/">Muninn</a>)).  In addition, records have been
+provided by 
+<a href="https://www.mun.ca/">Memorial University of Newfoundland</a>.  The University of Alberta
+Libraries and the Young Canada Works program are funding a summer student
+position in 2017 to carry out the bulk of the technical work.</p>
+
+<h4>Q: What data is included in the project? </h4>
+
+<p>A: The data included are subsets of records for dissertations and theses
+that have a publicly available digital object.  Library and Archives
+Canada/Bibliothèque et Archives Canada are a subset of those found in the
+<a href="https://www.bac-lac.gc.ca/eng/services/theses/Pages/theses-canada.aspx">Theses Canada
+Portal</a>.</p>
+ 
+<h4>Q: Can I contribute records to the project? </h4>
+
+<p>A: Yes!  The goal of the project was to start with a small set of records so
+we could refine and document our processes, and then ask others to join in! 
+If you would like to submit records we’d love to hear from you!</p>
+
+<h4>Q: Who can I contact for further information? </h4>
+
+<p>A: For further information on the project or to get involved, please email
+Sharon Farnel (sharondotfarnel at ualbertadotca) or Rob Warren
+(rwarren at muninn-projectdotorg).</p>
+
+
+<h4>Q: What is the long term plan for the project? </h4>
+
+<p>A: This initial phase is to pilot and document processes and workflows, as
+well as potential infrastructure.  We are working with the Canadian Linked
+Data Initiative and other research groups on a long-term, sustainable plan
+for the project to continue to grow and thrive.  More details will be
+announced as they become finalized.</p>
+
+<h4>Q: Can I download the data?</h4> 
+
+<p>A: Data dumps are available for download at <a
+href="http://canlink.library.ualberta.ca/downloads/">http://canlink.library.ualberta.ca/downloads/</a>,
+the code is available for download at <a
+href="https://github.com/cldi/CanLink">https://github.com/cldi/CanLink</a>
+and a full description at <a
+href="https://datahub.io/dataset/can-link">https://datahub.io/dataset/can-link</a>.</p>
+ 
+
+<h4>Q: What can I do with the data?</h4>
+
+<p>A: The data is made available under a <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC Attribution Non-Commercial license</a>.</p>
+
+<h4>Q: What formats is the thesis data available as?</h4>
+
+<p>A: The data is available using linked open data principles using both HTTP
+content negotiation and appending extensions to the URI (.rdf, .nt, .ttl,
+.json-ld). Additionally, thesis data can be exported to bibtex and ris
+formats using both HTTP content negotiation and appending extensions (.bibtex
+and .ris).</p>
+
+<h4>Q: Are the thesis full-text available as part of the dataset?</h4>
+
+<p>A: Some thesis entries have a frbr:manifestation node that links to a pdf
+version.</p>
+
+<h4>Q: What ontology is used to encode the thesis data?</h4>
+
+<p>A: The ontology is composed from a number of other ontologies, including 
+<a href="http://vocab.org/frbr/core">FRBR</a>, <a href="http://bibliontology.com/">the bibliography ontology</a>, <a
+href="http://schema.org/">schema.org</a>, <a href="http://sparql.cwrc.ca/ontologies/genre.html">CWRC Genres</a>, <a href="http://id.loc.gov/vocabulary/languages.html">Library of
+Congress Languages</a>, <a href="http://id.loc.gov/authorities/subjects.html">Library of Congress Subject Headings</a>, <a
+href="http://www.bnf.fr/en/professionals/anx_cataloging_indexing/a.subject_reference_systems.html">Bibliothèque nationale de France Subject Headings</a>, <a
+href="https://www.bac-lac.gc.ca/eng/services/canadian-subject-headings/Pages/canadian-subject-headings.aspx">Canadian Subject Headings</a>, <a href="https://www.w3.org/TR/prov-o/">W3 Provenance Ontology</a>,
+<a href=http://purl.org/dc/terms/"">Dublin Core Terms</a>, <a href="http://id.loc.gov/vocabulary/relators.html">Library of Congress
+Relators</a>,
+<a href="http://xmlns.com/foaf/spec/">Friend of a Friend Ontology</a>, and <a
+href="https://github.com/ewilderj/doap">DOAP</a>.</p>
+
+<p>Documentation for the ontology is located <a
+href="http://canlink.library.ualberta.ca/canlink">here</a>.</p>
+
+  </body>
+</html>
+

@@ -1,7 +1,7 @@
 #!/bin/sh
 #
 #
-mkdir website/processing/files
+mkdir -p website/processing/files
 mkdir website/processing/errors
 mkdir website/processing/tmp
 cp data/*.pickle website/processing/files/.

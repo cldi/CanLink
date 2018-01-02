@@ -29,7 +29,7 @@ if DEBUG:
     RECAPTCHA_SECRET = "6LdPqSUUAAAAABbtPQC9c2XWYHCgxf4w-gQSRzOU"
     DATA_UPLOAD_MAX_MEMORY_SIZE = None          # remove the upload size limit when testing out locally
 else:
-    SECRET_KEY = os.environ.get("SECRET_KEY")
+    SECRET_KEY = ".`;sk[Rd\\kS_!oEc&;nUOE45un45f4i5mf45f45f4-T5fV_j0dg\\H*s(2O>#ks,-]a"
     RECAPTCHA_SECRET = os.environ.get("RECAPTCHA_SECRET")
 
 # Application definition

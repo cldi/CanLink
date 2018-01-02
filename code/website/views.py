@@ -113,7 +113,8 @@ def processRecords(raw_records, lac_upload, silent_output=False):
 
     try:
         # set all environment variables
-        subprocess.call(["./home/ubuntu/passWords.sh"], shell=True)
+        subprocess.call(["./home/ubuntu/passWords.sh"],shell=True)
+        # shell=True
         # process the records
         response = process(records_file, lac_upload, silent_output)
     except Exception as e:
@@ -250,7 +251,7 @@ def updateUri(request):
 
 def createComment(issue_number, body):
     try:
-        access_token = os.environ.get("GITHUB_TOKEN")
+        access_token = "04fb1991a3079558af49be29bd50e9bf29a07690"
         r = requests.post("https://api.github.com/repos/cldi/CanLink/issues/"+str(issue_number)+"/comments?access_token=" + access_token, json = {"body":body.strip()})
 
     except Exception as e:
@@ -259,7 +260,7 @@ def createComment(issue_number, body):
 
 def closeIssue(issue_number):
     try:
-        access_token = os.environ.get("GITHUB_TOKEN")
+        access_token = "04fb1991a3079558af49be29bd50e9bf29a07690"
         r = requests.patch("https://api.github.com/repos/cldi/CanLink/issues/"+str(issue_number)+"?access_token=" + access_token, json = {"state":"closed"})
 
     except Exception as e:

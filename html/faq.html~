@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>CanLink - CanaLien</title>
+    <style>
+    .center {
+    text-align: center;
+    }
+    .mytop {
+    text-align: center;
+    border: 3px solid black;
+    }
+    </style>
+  </head>
+  <body>
+  <h2 class="center">CanLink : a linked data project for Canadian theses - CanaLien : un projet de données liées pour les thèses
+  canadiennes</h2>
+Can Link - a linked data project for Canadian theses / CanaLien : un projet de données liées pour les thèses canadiennes is a proof of concept project of the Digital Projects Working Group of the Canadian Linked Data Initiative (https://connect.library.utoronto.ca/display/U5LD/Canadian+Linked+Data+Initiative+Home). 
+
+Its goal is to increase the discoverability of Canadian theses and dissertations by leveraging the power of linked data to surface unexpected connections and relationships. 
+
+Participating institutions are: University of British Columbia, University of Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Queens University, University of Toronto, McGill University, Université de Montréal, Memorial University of Newfoundland.
+
+
+
+FAQ:
+
+<h4>Q: Who is involved in the Can Link project and how is it funded?</h4>
+ 
+A: Can Link involves members of the Canadian Linked Data Initiative Digital Projects Working Group (University of British Columbia, University of Alberta, Library and Archives Canada/Bibliothèque et Archives Canada, Queens University, University of Toronto, McGill University, Université de Montréal, Robert Warren (CWRC/Muninn)). In addition, records have been provided by Memorial University of Newfoundland. The University of Alberta Libraries and the Young Canada Works program are funding a summer student position in 2017 to carry out the bulk of the technical work.
+
+<h4>Q: What data is included in the project? </h4>
+
+A: The data included are subsets of records for dissertations and theses that have a publicly available digital object. Library and Archives Canada/Bibliothèque et Archives Canada are a subset of those found in the Theses Canada Portal.
+ 
+<h4>Q: Can I contribute records to the project? </h4>
+
+A: Yes! The goal of the project was to start with a small set of records so we could refine and document our processes, and then ask others to join in! If you would like to submit records we’d love to hear from you!
+
+<h4>Q: Who can I contact for further information? </h4>
+
+A: For further information on the project or to get involved, please email Sharon Farnel (sharondotfarnelatualbertadotca) or Rob Warren (rwarrenatmathdotcarletondotca).
+
+
+<h4>Q: What is the long term plan for the project? </h4>
+
+A: This initial phase is to pilot and document processes and workflows, as well as potential infrastructure. We are working with the Canadian Linked Data Initiative and other research groups on a long-term, sustainable plan for the project to continue to grow and thrive. More details will be announced as they become finalized.
+
+<h4>Q: Can I download the data?</h4> 
+
+A: The data is available for download at https://datahub.io/dataset/can-link 
+
+
+<h4>Q: What can I do with the data?</h4>
+
+A: The data is made available under a CC Attribution Non-Commercial license (https://creativecommons.org/licenses/by-nc/4.0/)
+
+  </body>
+</html>
+

@@ -604,10 +604,14 @@ def validateRecord(record, errors):
 def sendTweet(tweet, silent_output):
     if silent_output: return None
     try:
-        api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
-                  consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
-                  access_token_key = os.environ.get("TWITTER_ACCESS_KEY"),
-                  access_token_secret=os.environ.get("TWITTER_ACCESS_SECRET"))
+#        api = twitter.Api(consumer_key = os.environ.get("TWITTER_CONSUMER_KEY"),
+#                  consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET"),
+#                  access_token_key = os.environ.get("TWITTER_ACCESS_KEY"),
+#                  access_token_secret=os.environ.get("TWITTER_ACCESS_SECRET"))
+        api = twitter.Api(consumer_key = "ZBKSsQBCgo4Zwzsoh7s2dRuHw",
+                  consumer_secret = "XsgjTz38Vl1NbxPvSQqarq2NyY2JkGhMb7IFSQZJa7GC1tKDWr",
+                  access_token_key = "887064180196388864-cyMpaw8w8gvnHUN6sKbjjzR3XBHwahH",
+                  access_token_secret = "J4WRUFYnGMFvfJKRtc5th6LFkmdj26vXn6XNqtpm1ZUoj")
 
         status = api.PostUpdate(tweet)
         return True
@@ -619,7 +623,7 @@ def sendTweet(tweet, silent_output):
 def submitGithubIssue(title, body, label, silent_output):
     if silent_output: return None
     try:
-        access_token = os.environ.get("GITHUB_TOKEN")
+        access_token = "04fb1991a3079558af49be29bd50e9bf29a07690"
         r = requests.post("https://api.github.com/repos/cldi/CanLink/issues?access_token=" + access_token,
                     json = {"title":title.strip(), "body":body.strip(), "labels":[label.strip()]})
 
@@ -877,10 +881,11 @@ def process(records_file, lac_upload, silent_output):
         g.serialize(project_folder_path + "/website/processing/tmp/" + output_file_name, format="xml")
 
         try:
-            subprocess.call(["."+project_folder_path+"/scripts/loadRDF.sh", output_file_name], shell=True)
+            print(["."+project_folder_path+"/scripts/loadRDF.sh", project_folder_path + "/website/processing/tmp/" + output_file_name])
+            subprocess.call([project_folder_path+"/scripts/loadRDF.sh", project_folder_path + "/website/processing/tmp/" + output_file_name])
         except:
             print("Calling Script Failed:")
-            print('.'+project_folder_path+'/scripts/loadRDF.sh '+output_file_name)
+            print(project_folder_path+'/scripts/loadRDF.sh '+output_file_name)
 
     # send the tweet
     if len(universities) > 0:
