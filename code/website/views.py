@@ -46,7 +46,7 @@ def thesisSubmission(request):
                     except:
                         continue
 
-                    return(HttpResponse(json.dumps({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})))
+                    return(HttpResponse(json.dumps({"status":1, "errors":["Error processing file --- Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})))
 
             else:
                 # copy and paste
@@ -128,7 +128,7 @@ def processRecords(raw_records, lac_upload, silent_output=False):
         submitGithubIssue(title, body, label, silent_output=False)
 
         # there was some type of error processing the file
-        return({"status":1, "errors":["Error processing file - Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
+        return({"status":1, "errors":["Error processing file -- Please make sure it is in proper MARC format"], "submissions":[], "total_records": 0})
 
     status = 1      # 1 = recaptcha successful
     errors = response[0]

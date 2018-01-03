@@ -564,16 +564,13 @@ def mergeRecords(thesis1, thesis2):
     # for example: if thesis1 and thesis2 both contain an author, then the program only keeps the value of thesis1
 
     # the list of attributes that need to be merged into one object
-    attributes = ["title", "author", "abstract","university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
+    attributes = ["title", "author", "abstract", "university", "universityUri", "authorUri", "date", "language", "subjects", "subjectUris", "degree", "degreeUri", "advisors", "advisorUris", "contentUrl", "uri", "manifestations"]
 
     for attribute in attributes:
         # if thesis1 doesn't have a value for this attribute, then copy it from thesis2
-        try:
-            thesis1_attribute_value = getattr(thesis1, attribute)
-            thesis2_attribute_value = getattr(thesis2, attribute)
-        except:
-            continue
-
+        thesis1_attribute_value = getattr(thesis1, attribute)
+        thesis2_attribute_value = getattr(thesis2, attribute)
+      
         if not thesis1_attribute_value and thesis2_attribute_value:
             # copy that value to the same attribute of thesis1
             setattr(thesis1, attribute, thesis2_attribute_value)
