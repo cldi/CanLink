@@ -211,7 +211,12 @@ class Thesis():
         if not date:
             return None
         # remove all non-numeric characters
-        return(int(''.join(c for c in date if str(c).isdigit())))
+        indate = str(''.join(c for c in date if str(c).isdigit()))
+        try:
+            indate = int(indate)
+        except:
+            continue
+        return(indate)
 
 
     def getSubjects(self):
@@ -568,9 +573,12 @@ def mergeRecords(thesis1, thesis2):
 
     for attribute in attributes:
         # if thesis1 doesn't have a value for this attribute, then copy it from thesis2
-        thesis1_attribute_value = getattr(thesis1, attribute)
-        thesis2_attribute_value = getattr(thesis2, attribute)
-      
+        try:
+            thesis1_attribute_value = getattr(thesis1, attribute)
+            thesis2_attribute_value = getattr(thesis2, attribute)
+        except:
+            continue
+
         if not thesis1_attribute_value and thesis2_attribute_value:
             # copy that value to the same attribute of thesis1
             setattr(thesis1, attribute, thesis2_attribute_value)
