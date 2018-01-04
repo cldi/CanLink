@@ -1,7 +1,10 @@
 venv
 *.pyc
+*.py~
+*.sh~
 staticfiles
 .env
 code/website/processing/errors
 code/website/processing/tmp
 code/website/processing/files
+code/CanLink_env
