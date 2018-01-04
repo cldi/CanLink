@@ -215,7 +215,7 @@ class Thesis():
         try:
             indate = int(indate)
         except:
-            continue
+            indate = indate
         return(indate)
 
 
